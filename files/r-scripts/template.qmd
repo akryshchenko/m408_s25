@@ -1,0 +1,30 @@
+---
+title: "Title"
+author: "Name Here"
+date: "`r format(Sys.time(),'%m-%d-%Y')`"
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    code-fold: true
+    code-tools: true
+    code-line-numbers: true
+    embed-resources: true
+knitr:
+  opts_chunk:
+    echo: true
+    message: false
+    warning: false
+    error: true
+    tidy: styler
+    R.options:
+      digits: 3
+      max.print: 100
+---
+
+## Problem 1
+
+## Problem 2
+
+## Problem 3
+
