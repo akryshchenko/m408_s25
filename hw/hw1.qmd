@@ -1,11 +1,11 @@
 ---
 title: "Homework 1"
-date: 1/23/24
+date: 1/30/25
 editor: visual
 draft: false
 ---
 
-**Due 6/14/24 \@ 11:59 PM**
+**Due 2/6/25 \@ 11:59 PM**
 
 You must comment all your code to receive credit.
 
@@ -36,8 +36,6 @@ Find the median value for each column of the matrix `y`.
 ## Problem 3
 
 Write the code that will generate the first 1000 numbers of the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence).
-
-
 
 ## Problem 4
 

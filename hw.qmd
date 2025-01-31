@@ -1,0 +1,7 @@
+---
+title: "Homework"
+editor: source
+listing:
+  contents: hw
+  type: default
+---

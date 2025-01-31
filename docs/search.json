@@ -105,6 +105,13 @@
     "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
   },
   {
+    "objectID": "hw.html",
+    "href": "hw.html",
+    "title": "Homework",
+    "section": "",
+    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "files/r-scripts/template.html#problem-2",
     "href": "files/r-scripts/template.html#problem-2",
     "title": "Title",
@@ -123,7 +130,7 @@
     "href": "hw/hw2.html",
     "title": "Homework 2",
     "section": "",
-    "text": "Due 2/17/24 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+    "text": "Due 2/13/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
   },
   {
     "objectID": "hw/hw2.html#problem-1",
@@ -158,7 +165,7 @@
     "href": "hw/hw1.html",
     "title": "Homework 1",
     "section": "",
-    "text": "Due 6/14/24 @ 11:59 PM\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas.\nFor all problems, you must use at least one for or while loop."
+    "text": "Due 2/6/25 @ 11:59 PM\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas.\nFor all problems, you must use at least one for or while loop."
   },
   {
     "objectID": "hw/hw1.html#problem-1",
@@ -194,6 +201,34 @@
     "title": "Homework 1",
     "section": "Problem 5",
     "text": "Problem 5\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+  },
+  {
+    "objectID": "files/Hw.html",
+    "href": "files/Hw.html",
+    "title": "HW 1",
+    "section": "",
+    "text": "This is easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-1",
+    "href": "files/Hw.html#problem-1",
+    "title": "HW 1",
+    "section": "",
+    "text": "This is easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-2",
+    "href": "files/Hw.html#problem-2",
+    "title": "HW 1",
+    "section": "Problem 2",
+    "text": "Problem 2\nThis is also easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-3",
+    "href": "files/Hw.html#problem-3",
+    "title": "HW 1",
+    "section": "Problem 3 —",
+    "text": "Problem 3 —"
   },
   {
     "objectID": "lectures/2bS25.html#learning-objectives",
@@ -410,13 +445,13 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] 0.05162771"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.0220926"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.174041"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.035194"
   }
 ]
