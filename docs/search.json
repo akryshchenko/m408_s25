@@ -4,105 +4,196 @@
     "href": "ec.html",
     "title": "Lectures",
     "section": "",
-    "text": "Control Flow\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Control Flow\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "lectures/1bS25.html#introduction-to-r",
-    "href": "lectures/1bS25.html#introduction-to-r",
-    "title": "R Basics",
-    "section": "Introduction to R",
-    "text": "Introduction to R"
+    "objectID": "lectures/3aS25.html#learning-objectives",
+    "href": "lectures/3aS25.html#learning-objectives",
+    "title": "Control Flow",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nnext Statements\nbreak Statements\nwhile Loops"
   },
   {
-    "objectID": "lectures/1bS25.html#r-packages",
-    "href": "lectures/1bS25.html#r-packages",
-    "title": "R Basics",
+    "objectID": "lectures/3aS25.html#next-statements-1",
+    "href": "lectures/3aS25.html#next-statements-1",
+    "title": "Control Flow",
+    "section": "next Statements",
+    "text": "next Statements\nThe next statement is used to skip an iteration of a loop. This is used along an if statement.\n\nfor (i in vector){\n  perform task\n  if (condition){\n    next\n  } else {\n    perform task\n  }\n}"
+  },
+  {
+    "objectID": "lectures/3aS25.html#break-statements-1",
+    "href": "lectures/3aS25.html#break-statements-1",
+    "title": "Control Flow",
+    "section": "break Statements",
+    "text": "break Statements\nThe break statement is used to stop a loop if the condition is met. This is used along with an if statement.\n\nfor (i in vector){\n  perform task\n  if (condition){\n    break\n  } else {\n    perform task\n  }\n}"
+  },
+  {
+    "objectID": "lectures/3aS25.html#while-loops-1",
+    "href": "lectures/3aS25.html#while-loops-1",
+    "title": "Control Flow",
+    "section": "while Loops",
+    "text": "while Loops\nA while loop is a combination of a for loop and a break statement. The loop will continue indefinitely until a condition becomes false.\n\n# Initial Condition\ncondition &lt;- starting TRUE condition\n\nwhile (condition){\n  perform task\n  condition &lt;- update condition\n}"
+  },
+  {
+    "objectID": "lectures/3aS25.html#example",
+    "href": "lectures/3aS25.html#example",
+    "title": "Control Flow",
+    "section": "Example",
+    "text": "Example\nSimulate from a \\(N(0,1)\\) distribution until you have 50 positive numbers.\n\n\nCode\nn &lt;- 0\npos_num &lt;- c()\n\nwhile (n &lt; 51){\n  x &lt;- rnorm(1)\n  if (x &gt; 0) {\n    pos_num &lt;- c(pos_num, x)\n    n &lt;- n + 1\n  }\n}\n\npos_num"
+  },
+  {
+    "objectID": "lectures/3aS25.html#example-1",
+    "href": "lectures/3aS25.html#example-1",
+    "title": "Control Flow",
+    "section": "Example",
+    "text": "Example\nFind the value of \\(x\\) where the function \\(y=1/x\\) relative converges (\\(\\frac{|y_{old}-y_{new}|}{y_{old}}\\)) at a level of \\(10^-6\\) as \\(x\\rightarrow \\infty\\).\n\n\nCode\ndiff &lt;- 10\nx &lt;- 2\ny_old &lt;- 1\nwhile (diff &gt; 1e-6){\n  y_new &lt;- 1 / x\n  diff &lt;- abs(y_old - y_new) / y_old\n  x &lt;- x + 1\n  y_old &lt;- y_new\n}"
+  },
+  {
+    "objectID": "lectures/3aS25.html#example-2",
+    "href": "lectures/3aS25.html#example-2",
+    "title": "Control Flow",
+    "section": "Example",
+    "text": "Example\nSimulate from a \\(Binom(1,.2)\\) distribution until the sum of the random variables generated is 50.\n\n\nCode\nsum_bin &lt;- 0\nx &lt;- c()\nwhile (sum_bin &lt;51) {\n  x &lt;- c(x, rbinom(1, 1, 0.2))\n  sum_bin &lt;- sum(x)\n}\nsum_bin\nlength(x)"
+  },
+  {
+    "objectID": "lectures/3aS25.html#example-3",
+    "href": "lectures/3aS25.html#example-3",
+    "title": "Control Flow",
+    "section": "Example",
+    "text": "Example\nGenerate the 10th row of Pascal’s Triangle.\n\n\nCode\ni &lt;- 2\nx &lt;- c(1, 1)\nwhile (i &lt; 11){\n  n &lt;- length(x) + 1\n  y &lt;- vector(length = n)\n  y[1] &lt;- 1\n  y[n] &lt;- 1\n  for (i in 2:(n-1)){\n    y[i] &lt;- x[i-1] + x[i]\n  }\n  x &lt;- y\n  i &lt;- i + 1\n}\nx"
+  },
+  {
+    "objectID": "lectures/3aS25.html#example-4",
+    "href": "lectures/3aS25.html#example-4",
+    "title": "Control Flow",
+    "section": "Example",
+    "text": "Example\nGenerate the first 1000 prime numbers.\n\n\nCode\nx &lt;- 2\ny &lt;- 2\nN &lt;- 1\nwhile(N &lt; 1001){\n  y &lt;- y + 1\n  nn &lt;- length(which(y %% x == 0))\n  if (nn == 0){\n    x &lt;- c(x,y)\n  }\n  N &lt;- length(x)\n}\nx"
+  },
+  {
+    "objectID": "lectures/3bS25.html#learning-objectives",
+    "href": "lectures/3bS25.html#learning-objectives",
+    "title": "Functions",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nBuilt-in Functions\nUser-built functions\nExtensions"
+  },
+  {
+    "objectID": "lectures/3bS25.html#built-in-functions-1",
+    "href": "lectures/3bS25.html#built-in-functions-1",
+    "title": "Functions",
+    "section": "Built-in Functions",
+    "text": "Built-in Functions\nThere are several available functions in R to conduct specific statistical methods or tasks"
+  },
+  {
+    "objectID": "lectures/3bS25.html#help-documentation",
+    "href": "lectures/3bS25.html#help-documentation",
+    "title": "Functions",
+    "section": "Help Documentation",
+    "text": "Help Documentation\n\n\n\n\n\n\n\nSection\nDescription\n\n\n\n\nDescription\nProvides a brief introduction of the function\n\n\nUsage\nProvides potential usage of the function\n\n\nArguments\nArguments that the function can take\n\n\nDetails\nAn in depth description of the function\n\n\nValue\nProvides information of the output produced by the function\n\n\nNotes\nAny need to know information about the function\n\n\nAuthors\nDevelopers of the function\n\n\nReferences\nReferences to the model and function\n\n\nSee Also\nProvide information of supporting functions\n\n\nExamples\nExamples of the function"
+  },
+  {
+    "objectID": "lectures/3bS25.html#generic-functions",
+    "href": "lectures/3bS25.html#generic-functions",
+    "title": "Functions",
+    "section": "Generic Functions",
+    "text": "Generic Functions\nSeveral R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as summary() and plot().\nFor example, the summary() is a generic for several types of functions: summary.aov(), summary.lm(), summary.glm(), and many more."
+  },
+  {
+    "objectID": "lectures/3bS25.html#commonly-used-function",
+    "href": "lectures/3bS25.html#commonly-used-function",
+    "title": "Functions",
+    "section": "Commonly-used Function",
+    "text": "Commonly-used Function\n\n\n\nFunctions\nDescription\n\n\n\n\naov()\nFits an ANOVA Model\n\n\nlm()\nFits a linear model\n\n\nglm()\nFits a general linear model\n\n\nt.test()\nConducts a t-test"
+  },
+  {
+    "objectID": "lectures/3bS25.html#user-built-functions-1",
+    "href": "lectures/3bS25.html#user-built-functions-1",
+    "title": "Functions",
+    "section": "User-built functions",
+    "text": "User-built functions\n\nFunctions created by the user for analysis\nNeeds to be ran once to the R environment\nWill be lost when R session is closed"
+  },
+  {
+    "objectID": "lectures/3bS25.html#anatomy",
+    "href": "lectures/3bS25.html#anatomy",
+    "title": "Functions",
+    "section": "Anatomy",
+    "text": "Anatomy\n\nname_of_function &lt;- function(data_1, data_2 = NULL, \n                             argument_1, argument_2 = TRUE, argument_3 = NULL,\n                             ...){\n  # Conduct Task\n  # Conduct Task\n  output_object &lt;- Tasks\n  return(output_object)\n}\n\n\n\nfunction: used to construct the function\ndata1: first data argument that needs to supplied\ndata2: second data argument that does not need to be supplied\nargument1: first argument must be supplied to alter function\nargument2: second argument to alter function, set to TRUE\nargument3: third argument that does not need to be supplied\n…: additional arguments supplied to other functions"
+  },
+  {
+    "objectID": "lectures/3bS25.html#example",
+    "href": "lectures/3bS25.html#example",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function for\n\\[\ny = \\ln(x^2)\n\\]"
+  },
+  {
+    "objectID": "lectures/3bS25.html#example-1",
+    "href": "lectures/3bS25.html#example-1",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function for\n\\[\nf(x) = \\left\\{\\begin{array}{cc}\nx^3 & x&lt;0\\\\\nx^2 + 5 & \\mathrm{otherwise}\n\\end{array} \\right.\n\\]"
+  },
+  {
+    "objectID": "lectures/3bS25.html#example-2",
+    "href": "lectures/3bS25.html#example-2",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function for\n\\[\nf(x,y) = \\left\\{\\begin{array}{cc}\nx^3 e^y &  x&lt;0\\ \\\\\nx^2 + 5 + \\ln(y) & \\mathrm{otherwise}\n\\end{array} \\right.\n\\]"
+  },
+  {
+    "objectID": "lectures/3bS25.html#example-3",
+    "href": "lectures/3bS25.html#example-3",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate the function that allows your to compute the z-score of a specific value x using the sampling distribution from a set of data (y vector):\n\\[\nz =  \\frac{x-\\bar y}{\\sqrt{s^2_{y}/n_y}}\n\\]"
+  },
+  {
+    "objectID": "lectures/3bS25.html#r-packages",
+    "href": "lectures/3bS25.html#r-packages",
+    "title": "Functions",
     "section": "R Packages",
-    "text": "R Packages\n\nCore PackagesCourse PackagesMisc Packages\n\n\n\nTidyverse\ncsucistats\n\n\ninstall.packages('csucistats', \n  repos = c('https://inqs909.r-universe.dev', \n  'https://cloud.r-project.org'))\n\n\n\n\n\n\nISLR2\nleaps\ngam\ntree\n\n\n\ngbm\ne1071\nglmnet\ntorch\n\n\n\n\n\nRMarkdown\nQuarto\nextraInserts (GitHub Package)"
+    "text": "R Packages\nR Packages are used to utilize functions created from the community.\nInstallation\n\ninstall.packages(\"tidyverse\")\n\nLoading\n\nlibrary(tidyverse)"
   },
   {
-    "objectID": "lectures/1bS25.html#load-r-package",
-    "href": "lectures/1bS25.html#load-r-package",
-    "title": "R Basics",
-    "section": "Load R Package",
-    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(torch)\n\n\nYou must load packages every new R Session"
+    "objectID": "lectures/3bS25.html#reticulate",
+    "href": "lectures/3bS25.html#reticulate",
+    "title": "Functions",
+    "section": "Reticulate",
+    "text": "Reticulate\nReticulate is an R package that allows you to utilize python within R."
   },
   {
-    "objectID": "lectures/1bS25.html#r-as-a-calculator",
-    "href": "lectures/1bS25.html#r-as-a-calculator",
-    "title": "R Basics",
-    "section": "R as a calculator",
-    "text": "R as a calculator\nR can evaluate different expressions in the console tab.\nTry the following:\n\n\\(4(4+2)/34\\)\n\\(6^3\\)\n\\(3-1\\)\n\\(4+4/3+45(32*34-54)\\)"
+    "objectID": "lectures/3bS25.html#rcpp",
+    "href": "lectures/3bS25.html#rcpp",
+    "title": "Functions",
+    "section": "Rcpp",
+    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x)    820ns 984.01ns   816780.    2.93KB     81.7\n#&gt; 2 var_r(x)     1.64µs   2.01µs   426812.   23.73KB     85.4\n#&gt; 3 var(x)       3.12µs   3.61µs   270042.   13.71KB     81.0\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x104a397c0&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
   },
   {
-    "objectID": "lectures/1bS25.html#r-calculator",
-    "href": "lectures/1bS25.html#r-calculator",
-    "title": "R Basics",
-    "section": "R Calculator",
-    "text": "R Calculator\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "objectID": "lectures/3bS25.html#motivating-example",
+    "href": "lectures/3bS25.html#motivating-example",
+    "title": "Functions",
+    "section": "Motivating Example",
+    "text": "Motivating Example\n\\[\nf(x) = 2 x^3 - 20x -43\n\\]\n\n\nCode\nf &lt;- function(x) 2*x^3 - 20 * x - 43\nx &lt;- seq(-5,5, length.out = 100)\nplot(x, f(x), type = \"l\")\nabline(h=0)"
   },
   {
-    "objectID": "lectures/1bS25.html#r-functions",
-    "href": "lectures/1bS25.html#r-functions",
-    "title": "R Basics",
-    "section": "R Functions",
-    "text": "R Functions\nR functions performs tasks to specific data values.\nEvaluate the following values in R:\n\n\\(\\sqrt{3}\\)\n\\(e^3\\)\n\\(\\ln(53)\\)\n\\(\\log(324)\\)\n\\(\\sin(3)\\)\n\\(\\sin(3\\pi)\\)"
+    "objectID": "lectures/3bS25.html#finding-the-root",
+    "href": "lectures/3bS25.html#finding-the-root",
+    "title": "Functions",
+    "section": "Finding the Root",
+    "text": "Finding the Root\n\n\nCode\nf &lt;- function(x) 2*x^3 - 20 * x - 43\nx &lt;- seq(-5,5, length.out = 100)\nuniroot(f, lower = -5, upper = 5)\n\n\n#&gt; $root\n#&gt; [1] 3.932792\n#&gt; \n#&gt; $f.root\n#&gt; [1] -2.30166e-05\n#&gt; \n#&gt; $iter\n#&gt; [1] 7\n#&gt; \n#&gt; $init.it\n#&gt; [1] NA\n#&gt; \n#&gt; $estim.prec\n#&gt; [1] 6.103516e-05"
   },
   {
-    "objectID": "lectures/1bS25.html#r-functions-1",
-    "href": "lectures/1bS25.html#r-functions-1",
-    "title": "R Basics",
-    "section": "R Functions",
-    "text": "R Functions\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "objectID": "lectures/3bS25.html#bisection-method-1",
+    "href": "lectures/3bS25.html#bisection-method-1",
+    "title": "Functions",
+    "section": "Bisection Method",
+    "text": "Bisection Method\n\nBegin with an interval \\(a\\) and \\(b\\) and evaluate \\(f(a)\\) and \\(f(b)\\).\nIf \\(f(a)\\) and \\(f(b)\\) are opposite signs, calculate \\(c = \\frac{a+b}{2}\\) and \\(f(c)\\).\nIf \\(|f(c)|&lt;\\varepsilon\\), for a small \\(\\varepsilon\\), then stop the algorithm and \\(c\\) is the root.\nReplace \\((a,f(a))\\) or \\((b,f(b))\\) with \\((c, f(c))\\) so that the signs of \\(f( \\cdot )\\) is 0."
   },
   {
-    "objectID": "lectures/1bS25.html#types-of-data",
-    "href": "lectures/1bS25.html#types-of-data",
-    "title": "R Basics",
-    "section": "Types of Data",
-    "text": "Types of Data\n\nNumeric\nCharacter\nLogical\nMissing\n\nEvaluate the following code:\n\nis.numeric(1)\nis.numeric(\"1\")\nis.numeric(T)\nis.numeric(NA)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-data-1",
-    "href": "lectures/1bS25.html#types-of-data-1",
-    "title": "R Basics",
-    "section": "Types of Data",
-    "text": "Types of Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-objects",
-    "href": "lectures/1bS25.html#types-of-objects",
-    "title": "R Basics",
-    "section": "Types of Objects",
-    "text": "Types of Objects\nIn R, an object contains a set of data. The most common types are vectors and matrix.\nRun this code and print out the objects in the console:\n\nx &lt;- 3:34\ny &lt;- matrix(1:20, nrow = 4)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-objects-1",
-    "href": "lectures/1bS25.html#types-of-objects-1",
-    "title": "R Basics",
-    "section": "Types of objects",
-    "text": "Types of objects\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "lectures/1bS25.html#data-frames",
-    "href": "lectures/1bS25.html#data-frames",
-    "title": "R Basics",
-    "section": "Data Frames",
-    "text": "Data Frames\nData frames can be thought of as R’s version of a data set.\nPlay around with mtcars:\n\nmtcars \n\n#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb\n#&gt; Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4\n#&gt; Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4\n#&gt; Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1\n#&gt; Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1\n#&gt; Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2\n#&gt; Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1\n#&gt; Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4\n#&gt; Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2\n#&gt; Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2\n#&gt; Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4\n#&gt; Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4\n#&gt; Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3\n#&gt; Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3\n#&gt; Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3\n#&gt; Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4\n#&gt; Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4\n#&gt; Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4\n#&gt; Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1\n#&gt; Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2\n#&gt; Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1\n#&gt; Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1\n#&gt; Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2\n#&gt; AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2\n#&gt; Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4\n#&gt; Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2\n#&gt; Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1\n#&gt; Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2\n#&gt; Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2\n#&gt; Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4\n#&gt; Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6\n#&gt; Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8\n#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2"
-  },
-  {
-    "objectID": "lectures/1bS25.html#lists",
-    "href": "lectures/1bS25.html#lists",
-    "title": "R Basics",
-    "section": "Lists",
-    "text": "Lists\nList can be thought as an extended vector, but each element is a different R object.\nTry playing with this R object:\n\nlist_one &lt;- list(mtcars, rep(0, 4),\n                 diag(rep(1, 3)))"
-  },
-  {
-    "objectID": "lectures/1bS25.html#lists-1",
-    "href": "lectures/1bS25.html#lists-1",
-    "title": "R Basics",
-    "section": "Lists",
-    "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "objectID": "lectures/3bS25.html#bisection-code",
+    "href": "lectures/3bS25.html#bisection-code",
+    "title": "Functions",
+    "section": "Bisection Code",
+    "text": "Bisection Code\n\n\nCode\nf &lt;- function(x){2*x^3 - 20 * x - 43}\naa &lt;- -5\nbb &lt;- 5\ndiff &lt;- 10\ni &lt;- 0\nwhile(diff &gt; 1e-6){\n  faa &lt;- f(aa)\n  cc &lt;- (aa + bb) / 2\n  fcc &lt;- f(cc)\n  if (faa &lt; 0 & fcc &gt; 0){\n    bb &lt;- cc\n  } else {\n    aa &lt;- cc\n  }\n  diff &lt;- abs(fcc)\n  i &lt;- i + 1\n}\ni\ncc\nfcc"
   },
   {
     "objectID": "hw.html",
@@ -287,6 +378,104 @@
     "text": "Example\nFor each column in mtcars, take the mean for the even columns, and median for the odd columns. Store the values in a list containing 2 vectors.\nAnswer:\n\n\nCode\nx &lt;- c()\ny &lt;- c()\nnn &lt;- ncol(mtcars)\nfor (i in 1:nn){\n  if (i %% 2 == 0){\n    x &lt;- c(x, mean(mtcars[,i]))\n  } else {\n    y &lt;- c(y, median(mtcars[,i]))\n  }\n}\n\nxy &lt;- list(x,y)"
   },
   {
+    "objectID": "lectures/1bS25.html#introduction-to-r",
+    "href": "lectures/1bS25.html#introduction-to-r",
+    "title": "R Basics",
+    "section": "Introduction to R",
+    "text": "Introduction to R"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-packages",
+    "href": "lectures/1bS25.html#r-packages",
+    "title": "R Basics",
+    "section": "R Packages",
+    "text": "R Packages\n\nCore PackagesCourse PackagesMisc Packages\n\n\n\nTidyverse\ncsucistats\n\n\ninstall.packages('csucistats', \n  repos = c('https://inqs909.r-universe.dev', \n  'https://cloud.r-project.org'))\n\n\n\n\n\n\nISLR2\nleaps\ngam\ntree\n\n\n\ngbm\ne1071\nglmnet\ntorch\n\n\n\n\n\nRMarkdown\nQuarto\nextraInserts (GitHub Package)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#load-r-package",
+    "href": "lectures/1bS25.html#load-r-package",
+    "title": "R Basics",
+    "section": "Load R Package",
+    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(torch)\n\n\nYou must load packages every new R Session"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-as-a-calculator",
+    "href": "lectures/1bS25.html#r-as-a-calculator",
+    "title": "R Basics",
+    "section": "R as a calculator",
+    "text": "R as a calculator\nR can evaluate different expressions in the console tab.\nTry the following:\n\n\\(4(4+2)/34\\)\n\\(6^3\\)\n\\(3-1\\)\n\\(4+4/3+45(32*34-54)\\)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-calculator",
+    "href": "lectures/1bS25.html#r-calculator",
+    "title": "R Basics",
+    "section": "R Calculator",
+    "text": "R Calculator\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-functions",
+    "href": "lectures/1bS25.html#r-functions",
+    "title": "R Basics",
+    "section": "R Functions",
+    "text": "R Functions\nR functions performs tasks to specific data values.\nEvaluate the following values in R:\n\n\\(\\sqrt{3}\\)\n\\(e^3\\)\n\\(\\ln(53)\\)\n\\(\\log(324)\\)\n\\(\\sin(3)\\)\n\\(\\sin(3\\pi)\\)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-functions-1",
+    "href": "lectures/1bS25.html#r-functions-1",
+    "title": "R Basics",
+    "section": "R Functions",
+    "text": "R Functions\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-data",
+    "href": "lectures/1bS25.html#types-of-data",
+    "title": "R Basics",
+    "section": "Types of Data",
+    "text": "Types of Data\n\nNumeric\nCharacter\nLogical\nMissing\n\nEvaluate the following code:\n\nis.numeric(1)\nis.numeric(\"1\")\nis.numeric(T)\nis.numeric(NA)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-data-1",
+    "href": "lectures/1bS25.html#types-of-data-1",
+    "title": "R Basics",
+    "section": "Types of Data",
+    "text": "Types of Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-objects",
+    "href": "lectures/1bS25.html#types-of-objects",
+    "title": "R Basics",
+    "section": "Types of Objects",
+    "text": "Types of Objects\nIn R, an object contains a set of data. The most common types are vectors and matrix.\nRun this code and print out the objects in the console:\n\nx &lt;- 3:34\ny &lt;- matrix(1:20, nrow = 4)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-objects-1",
+    "href": "lectures/1bS25.html#types-of-objects-1",
+    "title": "R Basics",
+    "section": "Types of objects",
+    "text": "Types of objects\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#data-frames",
+    "href": "lectures/1bS25.html#data-frames",
+    "title": "R Basics",
+    "section": "Data Frames",
+    "text": "Data Frames\nData frames can be thought of as R’s version of a data set.\nPlay around with mtcars:\n\nmtcars \n\n#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb\n#&gt; Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4\n#&gt; Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4\n#&gt; Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1\n#&gt; Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1\n#&gt; Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2\n#&gt; Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1\n#&gt; Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4\n#&gt; Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2\n#&gt; Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2\n#&gt; Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4\n#&gt; Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4\n#&gt; Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3\n#&gt; Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3\n#&gt; Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3\n#&gt; Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4\n#&gt; Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4\n#&gt; Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4\n#&gt; Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1\n#&gt; Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2\n#&gt; Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1\n#&gt; Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1\n#&gt; Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2\n#&gt; AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2\n#&gt; Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4\n#&gt; Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2\n#&gt; Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1\n#&gt; Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2\n#&gt; Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2\n#&gt; Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4\n#&gt; Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6\n#&gt; Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8\n#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2"
+  },
+  {
+    "objectID": "lectures/1bS25.html#lists",
+    "href": "lectures/1bS25.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\nList can be thought as an extended vector, but each element is a different R object.\nTry playing with this R object:\n\nlist_one &lt;- list(mtcars, rep(0, 4),\n                 diag(rep(1, 3)))"
+  },
+  {
+    "objectID": "lectures/1bS25.html#lists-1",
+    "href": "lectures/1bS25.html#lists-1",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
     "objectID": "lectures/2aS25.html#anouncements",
     "href": "lectures/2aS25.html#anouncements",
     "title": "Control Flow",
@@ -445,13 +634,13 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.0220926"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.01158637"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.035194"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.038381"
   }
 ]

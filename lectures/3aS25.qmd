@@ -1,0 +1,208 @@
+---
+title: "Control Flow"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+
+
+revealjs-plugins:
+  - verticator
+  
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - code-fullscreen
+  - webr
+
+webr: 
+  show-startup-message: true
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+```
+
+## Learning Objectives
+
+-   `next` Statements
+-   `break` Statements
+-   `while` Loops
+
+# `next` Statements
+
+## `next` Statements
+
+The `next` statement is used to skip an iteration of a loop. This is used along an `if` statement.
+
+```{r}
+#| eval: false
+
+for (i in vector){
+  perform task
+  if (condition){
+    next
+  } else {
+    perform task
+  }
+}
+
+```
+
+# `break` Statements
+
+## `break` Statements
+
+The `break` statement is used to stop a loop if the condition is met. This is used along with an `if` statement.
+
+```{r}
+#| eval: false
+
+for (i in vector){
+  perform task
+  if (condition){
+    break
+  } else {
+    perform task
+  }
+}
+```
+
+# `while` Loops
+
+## `while` Loops
+
+A while loop is a combination of a `for` loop and a `break` statement. The loop will continue indefinitely until a condition becomes false.
+
+```{r}
+#| eval: false
+
+# Initial Condition
+condition <- starting TRUE condition
+
+while (condition){
+  perform task
+  condition <- update condition
+}
+```
+
+## Example
+
+Simulate from a $N(0,1)$ distribution until you have 50 positive numbers.
+
+```{r}
+#| code-fold: true
+n <- 0
+pos_num <- c()
+
+while (n < 51){
+  x <- rnorm(1)
+  if (x > 0) {
+    pos_num <- c(pos_num, x)
+    n <- n + 1
+  }
+}
+
+pos_num
+```
+
+## Example
+
+Find the value of $x$ where the function $y=1/x$ relative converges ($\frac{|y_{old}-y_{new}|}{y_{old}}$) at a level of $10^-6$ as $x\rightarrow \infty$.
+
+```{r}
+#| code-fold: true
+
+diff <- 10
+x <- 2
+y_old <- 1
+while (diff > 1e-6){
+  y_new <- 1 / x
+  diff <- abs(y_old - y_new) / y_old
+  x <- x + 1
+  y_old <- y_new
+}
+
+
+```
+
+## Example
+
+Simulate from a $Binom(1,.2)$ distribution until the sum of the random variables generated is 50.
+
+```{r}
+#| code-fold: true
+
+sum_bin <- 0
+x <- c()
+while (sum_bin <51) {
+  x <- c(x, rbinom(1, 1, 0.2))
+  sum_bin <- sum(x)
+}
+sum_bin
+length(x)
+```
+
+# `for` Loop Examples
+
+## Example
+
+Generate the 10th row of Pascal's Triangle.
+
+```{r}
+#| code-fold: true
+i <- 2
+x <- c(1, 1)
+while (i < 11){
+  n <- length(x) + 1
+  y <- vector(length = n)
+  y[1] <- 1
+  y[n] <- 1
+  for (i in 2:(n-1)){
+    y[i] <- x[i-1] + x[i]
+  }
+  x <- y
+  i <- i + 1
+}
+x
+```
+
+## Example
+
+Generate the first 1000 prime numbers.
+
+```{r}
+#| code-fold: true
+
+x <- 2
+y <- 2
+N <- 1
+while(N < 1001){
+  y <- y + 1
+  nn <- length(which(y %% x == 0))
+  if (nn == 0){
+    x <- c(x,y)
+  }
+  N <- length(x)
+}
+x
+```
