@@ -1,0 +1,288 @@
+---
+title: "Intro to Data Manipulation"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    message: false
+    comment: "#>" 
+
+editor: source
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+```
+
+## Learning Objectives
+
+-   Anonymous Functions
+
+-   Pipes
+
+-   Scripting
+
+-   Data Manipulation
+
+# Anonymous Functions
+
+## Anonymous Functions
+
+An anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an `*apply()` function\
+
+```{r}
+#| eval: true
+x <- 1:10
+sapply(x, function(x) rnorm(1,x))
+```
+
+```{r}
+#| eval: true
+x <- 1:10
+sapply(x, \(x) rnorm(1,1,x))
+```
+
+## Example
+
+Use an anonymous function to square all the values in the following vector:
+
+```{r}
+# Use an anonymous function to calculate the square of each element in a vector
+numbers <- 1:40
+```
+
+## Example
+
+Use an anonymous function to convert the vector from Fahrenheit to Celsius:
+
+```{r}
+# Create a vector of temperatures in Fahrenheit
+temperatures_f <- c(32, 68, 104, 50)
+
+```
+
+$$
+C = \frac{5(F-32)}{9}
+$$
+
+# Pipes
+
+## Pipes
+
+Pipes are used to pass the output from one function and use it as input for another function. The output is piped into the first argument of the next function. There are two main pipes: R's base pipe and Magrittr's pipes. You must download and install the `magrittr` package; and you will need to load it everytime:
+
+```{r}
+#| eval: true
+library(magrittr)
+```
+
+Additionally, pipes can be used to chain functions together.
+
+## `|>`
+
+Before R 4.1, R did not have a pipe in its main program. The base pipe, `|>`, will pipe the output of the first operation and use it as the input of the first argument of the next function.
+
+```{r}
+#| eval: true
+x <- 1:40
+x |> mean()
+```
+
+## `%>%`
+
+The magrittr pipe, `%>%`, operates the same way as `|>`. Below are a couple of examples
+
+```{r}
+#| eval: true
+x <- 1:10
+x %>%  mean()
+x %>% sd
+x %>% rnorm(1, .)
+```
+
+## `%$%`
+
+The exposition pipe, `%$%`, will expose the named elements, from a list or data frame, to the next function.
+
+```{r}
+#| eval: true
+mtcars %$% plot(mpg, hp)
+```
+
+## `%T>%`
+
+The Tee pipe, `%T>%`, forward the output in the
+
+```{r}
+#| eval: true
+sin_40 <- 1:40 %>% mean %T>% print %>% sin
+print(sin_40)
+```
+
+## `%T>%`
+
+```{r}
+rnorm(100) %>% 
+  matrix(ncol=2) %>% 
+  sin() %T>% 
+  plot() %>% 
+  colSums()
+```
+
+## Examples
+
+Using the vector below, find the standard deviation using a pipe:
+
+```{r}
+x <- rgamma(100, 1)
+sd(x)
+```
+
+## Examples
+
+Chain pipe the previous results into the $sin(x)$.
+
+## Examples
+
+Chain pipe the previous results into $e^x$.
+
+## Examples
+
+Chain pipe the previous results into $x^2+5x+4$
+
+# Data Projects 
+
+## Scripting
+
+The structure a programming is important to ensure that all methods are executed properly.
+
+## Beginning of Script
+
+```{default}
+## Todays data 
+analysis_data <- format(Sys.time(),"%Y-%m-%d-%H-%M")
+
+## R Packages
+library(tidyverse)
+library(magrittr)
+
+## Functions
+source("fxs.R")
+Rcpp::sourceCpp("fxs.cpp")
+
+## Data
+df1 <- read_csv("file.csv")
+df2 <- load("file.RData") %>% get
+```
+
+## Middle of Script
+
+```{default}
+## Pre Analysis
+df1_prep <- Prep_data(df1)
+df2_prep <- Prep_data(df2)
+
+## Analysis
+df1_analysis <- analyze(df1_prep)
+df2_analysis <- analyze(df2_prep)
+
+## Post Analysis
+df1_post <- Prep_post(df1_anlysis)
+df2_post <- Prep_post(df2_anlysis)
+```
+
+## End of Script
+
+```{default}
+## Save Results
+res <- list(df1 = list(pre = df1_prep,
+                       analysis = df1_analysis,
+                       post = df1_post),
+            df2 = list(pre = df2_prep,
+                       analysis = df2_analysis,
+                       post = df2_post))
+file_name <- paste0("results_", analysis_data, ".RData")
+save(res, file = file_name)
+```
+
+
+## Keyboard Shortcuts
+
+Below is a list of recommended keyboard shortcuts:
+
+| Shortcut          | Windows/Linux    | Mac             |
+|-------------------|------------------|-----------------|
+| `%>%`             | Ctrl+Shift+M     | Cmd+Shift+M     |
+| Run Current Line  | Ctrl+Enter       | Cmd+Return      |
+| Run Current Chunk | Ctrl+Shift+Enter | Cmd+Shift+Enter |
+| Knit Document     | Ctrl+Shift+K     | Cmd+Shift+K     |
+| Add Cursor Below  | Ctrl+Alt+Down    | Cmd+Alt+Down    |
+| Comment Line      | Ctrl+Shift+C     | Cmd+Shift+C     |
+
+I recommend modify these keyboard shortcuts in RStudio
+
+| Shortcut | Windows/Linux | Mac         |
+|----------|---------------|-------------|
+| `%in%`   | Ctrl+Shift+I  | Cmd+Shift+I |
+| `%$%`    | Ctrl+Shift+D  | Cmd+Shift+D |
+| `%T>%`   | Ctrl+Shift+T  | Cmd+Shift+T |
+
+Note you will need to install the `extraInserts` package:
+
+```{r}
+#| eval: false
+remotes::install_github('konradzdeb/extraInserts')
+```
+
+
+# Data Manipulation
+
+## Data Manipulation
+
+## Tidyverse
+
+Tidyverse is a collection of R packages used for data manipulation. The `dplyr` package is known as the grammar of data manipulation with a set
+
+## Verbs
+
+-   `mutate()` adds new variables
+-   `select()` selects variables
+-   `filter()` filters data
+-   `if_else()` conditional function that returns 2 values
+-   `group_by()` a dataset is grouped by factors
+-   `summarise()` provides summaries of data
+
+## Example
+
+```{r}
+#| code-line-numbers: "|2|3|4|5|6-9|10|"
+#| eval: true
+library(palmerpenguins)
+sum_stats <- penguins %>% 
+  drop_na %>% 
+  filter(year==2007) %>% 
+  group_by(island) %>% 
+  summarise(mean = mean(bill_length_mm),
+            sd = sd(bill_length_mm),
+            median = median(bill_length_mm),
+            n = length(bill_length_mm)) %>% 
+  print
+```
+

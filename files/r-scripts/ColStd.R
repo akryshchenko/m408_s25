@@ -19,3 +19,27 @@ for (i in 1:n){
 truestd[i]<-sd(x[,i])
 }
 truestd
+
+
+
+
+x <- rnorm(501)
+median(x)
+sx<-sort(x)
+sx[(length(x)+1)/2]
+y <- rnorm(600)
+median(y)
+sy<-sort(y)
+(sy[length(y)/2]+sy[(length(y)/2)+1])/2
+
+x <- rnorm(500)
+sx<-sort(x)
+midx<-0
+if (length(x)%%2==0){
+  midx<-(sx[length(x)/2]+sx[(length(x)/2)+1])/2
+} else{
+  midx<-sx[(length(x)+1)/2]
+}
+midx
+median(x)
+

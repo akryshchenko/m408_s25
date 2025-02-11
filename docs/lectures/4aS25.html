@@ -6,17 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
-<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Control Flow 2</title>
+  <title>m408_s25 – *apply Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -106,7 +99,6 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/verticator/verticator.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -202,208 +194,195 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Control Flow 2</h1>
+  <h1 class="title">*apply Functions</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
+<section id="re-install" class="slide level2">
+<h2>Re Install</h2>
+<ul>
+<li>csucistats</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">'csucistats'</span>, </span>
+<span id="cb1-2"><a></a>  <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">'https://inqs909.r-universe.dev'</span>, </span>
+<span id="cb1-3"><a></a>  <span class="st">'https://cloud.r-project.org'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li>Nested <code>for</code> Loops</li>
+<li>*apply()</li>
+<li>apply()</li>
+<li>lapply()</li>
+<li>sapply</li>
+<li>mapply()</li>
+<li>tapply()</li>
 </ul>
 </section>
 <section>
-<section id="nested-for-loops" class="title-slide slide level1 agenda-slide center">
-<h1>Nested <code>for</code> Loops</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>Nested <code>for</code> Loops</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>More Examples</p>
-</div></li>
-</ul>
-</div>
+<section id="apply" class="title-slide slide level1 center">
+<h1><code>*apply()</code></h1>
+
 </section>
-<section id="nested-for-loops-1" class="slide level2">
-<h2>Nested <code>for</code> Loops</h2>
-<p>Nested <code>for</code> loops are <code>for</code> loops within another <code>for</code> loop. You can stack these loops as much as needed. Just make sure the index is different for each loop. The general format for a loop goes as follow:</p>
+<section id="apply-1" class="slide level2">
+<h2><code>*apply()</code></h2>
+<p>The <code>*apply()</code> functions are a set of functions that completes iterative tasks to each element of an R object.</p>
+</section></section>
+<section>
+<section id="apply-2" class="title-slide slide level1 center">
+<h1><code>apply()</code></h1>
+
+</section>
+<section id="apply-3" class="slide level2">
+<h2><code>apply()</code></h2>
+<p>The <code>apply</code> function returns a vector, array, or list of values by applying a function to the margins of an array. You will need to specify the following arguments:</p>
+<ul>
+<li><p><code>X</code>: an array to be indexed and applied</p></li>
+<li><p><code>MARGIN</code>: specifyng which index(es) to subset by</p></li>
+<li><p><code>FUN</code>: function to be applied</p></li>
+<li><p><code>…</code>: further arguments to be applied to <code>FUN</code>, must be labeled</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="cf">for</span> (i <span class="cf">in</span> vector_1){</span>
-<span id="cb1-2"><a></a>  <span class="cf">for</span> (ii <span class="cf">in</span> vector_2){</span>
-<span id="cb1-3"><a></a>    perform task</span>
-<span id="cb1-4"><a></a>  }</span>
-<span id="cb1-5"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">apply</span>(X, MARGIN, FUN, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Without using the <code>sd()</code> function, compute the standard deviation for each column of the matrix:</p>
+<p>Find the standard deviation of all the columns of the following matrix:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000</span>), <span class="at">nrow =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><span class="math display">\[
-s^2 = \frac{1}{n-1}\sum^n_{i=1}(x_i-\bar x)^2
-\]</span></p>
-</section></section>
-<section>
-<section id="more-examples" class="title-slide slide level1 agenda-slide center">
-<h1>More Examples</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Nested <code>for</code> Loops</p>
-</div></li>
-<li><div class="agenda-active">
-<p>More Examples</p>
-</div></li>
-</ul>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000</span>), <span class="at">nrow =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<p>The <code>median()</code> function obtain the median value of a vector. Write code to obtain the median value for any vector.</p>
+<p>Find the <span class="math inline">\(25th\)</span>, <span class="math inline">\(50th\)</span>, and <span class="math inline">\(75th\)</span> quartiles for each row of the following matrix:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)</span>
-<span id="cb3-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">501</span>)</span>
-<span id="cb3-3"><a></a><span class="fu">median</span>(x)</span>
-<span id="cb3-4"><a></a><span class="fu">median</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000</span>), <span class="at">nrow =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Answer:</p>
+</section></section>
+<section>
+<section id="lapply" class="title-slide slide level1 center">
+<h1><code>lapply()</code></h1>
+
+</section>
+<section id="lapply-1" class="slide level2">
+<h2><code>lapply()</code></h2>
+<p>The <code>lapply</code> function applies a function to all the elements of a vector or matrix, and it will return a list. You will need to specify the following arguments:</p>
+<ul>
+<li><p><code>X</code>: object to be iterated</p></li>
+<li><p><code>FUN</code>: a function to be applied</p></li>
+<li><p><code>…</code>: further arguments to be passed along to <code>FUN</code></p></li>
+</ul>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>wk <span class="ot">&lt;-</span> x </span>
-<span id="cb4-2"><a></a>pos50 <span class="ot">&lt;-</span> (<span class="fu">length</span>(wk) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb4-3"><a></a>swk <span class="ot">&lt;-</span> <span class="fu">sort</span>(wk)</span>
-<span id="cb4-4"><a></a><span class="cf">if</span> ((<span class="fu">length</span>(wk) <span class="sc">%%</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb4-5"><a></a>  val <span class="ot">&lt;-</span> (swk[<span class="fu">floor</span>(pos50)] <span class="sc">+</span> swk[<span class="fu">ceiling</span>(pos50)]) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb4-6"><a></a>} <span class="cf">else</span> {</span>
-<span id="cb4-7"><a></a>  val <span class="ot">&lt;-</span> swk[pos50]</span>
-<span id="cb4-8"><a></a>}</span>
-<span id="cb4-9"><a></a><span class="fu">print</span>(val)</span>
-<span id="cb4-10"><a></a><span class="fu">median</span>(wk)</span>
-<span id="cb4-11"><a></a></span>
-<span id="cb4-12"><a></a>wk <span class="ot">&lt;-</span> y </span>
-<span id="cb4-13"><a></a>pos50 <span class="ot">&lt;-</span> (<span class="fu">length</span>(wk) <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb4-14"><a></a>swk <span class="ot">&lt;-</span> <span class="fu">sort</span>(wk)</span>
-<span id="cb4-15"><a></a><span class="cf">if</span> ((<span class="fu">length</span>(wk) <span class="sc">%%</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb4-16"><a></a>  val <span class="ot">&lt;-</span> (swk[<span class="fu">floor</span>(pos50)] <span class="sc">+</span> swk[<span class="fu">ceiling</span>(pos50)]) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb4-17"><a></a>} <span class="cf">else</span> {</span>
-<span id="cb4-18"><a></a>  val <span class="ot">&lt;-</span> swk[pos50]</span>
-<span id="cb4-19"><a></a>}</span>
-<span id="cb4-20"><a></a><span class="fu">print</span>(val)</span>
-<span id="cb4-21"><a></a><span class="fu">median</span>(wk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">lapply</span>(X, FUN, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<p>Using the code below:</p>
+<p>Create a function that returns a labeled list for with the following values: mean, standard deviation, median, max, and min.</p>
+</section></section>
+<section>
+<section id="sapply" class="title-slide slide level1 center">
+<h1><code>sapply()</code></h1>
+
+</section>
+<section id="sapply-1" class="slide level2">
+<h2><code>sapply()</code></h2>
+<p>The <code>sapply()</code> function will apply a function to each element of a list or vector, and it will return a simplified object, vector, matrix, or array. The <code>sapply()</code> function uses 4 main arguments:</p>
+<ul>
+<li><p><code>X</code>: a vector or list to be iterated</p></li>
+<li><p><code>FUN</code>: a function to be applied</p></li>
+<li><p><code>…</code>: arguments passed along to <code>FUN</code>, must be labeled</p></li>
+<li><p><code>simplify</code>: indicates how to simplify the function, defaults to n-dimensional array based on output</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Create a new vector containing all the positive values of <code>x</code>. The new vector should be less than 5000.</p>
-<p>Answer:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>nn <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb6-2"><a></a>pos <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb6-3"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nn){</span>
-<span id="cb6-4"><a></a>  <span class="cf">if</span> (x[i] <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb6-5"><a></a>    pos <span class="ot">&lt;-</span> <span class="fu">c</span>(pos, x[i])</span>
-<span id="cb6-6"><a></a>  }</span>
-<span id="cb6-7"><a></a>}</span>
-<span id="cb6-8"><a></a>pos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">sapply</span>(X, FUN, ..., <span class="at">simplify =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
-<p>Create a vector reporting the data type of each variable in <code>ISLR2::BrainCancer</code></p>
+<p>Using the vector below, compute the length of each string using <code>sapply</code> and <code>str_length()</code> from <code>tidyverse</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(ISLR2)</span>
-<span id="cb7-2"><a></a>BrainCancer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Answer:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>nn <span class="ot">&lt;-</span> <span class="fu">ncol</span>(BrainCancer)</span>
-<span id="cb8-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb8-3"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nn){</span>
-<span id="cb8-4"><a></a>  y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="fu">class</span>(BrainCancer[,i]))</span>
-<span id="cb8-5"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>fruits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>, <span class="st">"date"</span>, <span class="st">"elderberry"</span>, <span class="st">"fig"</span>, <span class="st">"grape"</span>, <span class="st">"honeydew"</span>, <span class="st">"kiwi"</span>, <span class="st">"lemon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example-4" class="slide level2">
 <h2>Example</h2>
-<p><span class="math display">\[
-f(x,y) = x^2 + y^2 + \ln(x+y)
-\]</span></p>
-<p>Find all the values of <span class="math inline">\(f(x,y)\)</span> for every combination of <span class="math inline">\(x \in \{1, 8, 13, 25, 42, 67, 95\}\)</span> and <span class="math inline">\(y \in \{6, 12, 18, 52, 61, 79, 83\}\)</span></p>
-<p>Store values in a <span class="math inline">\(7\times 7\)</span> matrix.</p>
-<p>Answer:</p>
+<p>Using the list generated below, compute the mean of each element of the list using <code>sapply</code>.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">25</span>, <span class="dv">42</span>, <span class="dv">67</span>, <span class="dv">95</span>)</span>
-<span id="cb9-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">52</span>, <span class="dv">61</span>, <span class="dv">79</span>, <span class="dv">83</span>)</span>
-<span id="cb9-3"><a></a>res <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">7</span>, <span class="at">ncol =</span> <span class="dv">7</span>)</span>
-<span id="cb9-4"><a></a><span class="fu">colnames</span>(res) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
-<span id="cb9-5"><a></a><span class="fu">rownames</span>(res) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(y)</span>
-<span id="cb9-6"><a></a></span>
-<span id="cb9-7"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>){</span>
-<span id="cb9-8"><a></a>  <span class="cf">for</span> (ii <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>){</span>
-<span id="cb9-9"><a></a>    res[ii,i] <span class="ot">&lt;-</span> x[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y[ii]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">log</span>(x[i] <span class="sc">+</span> y[ii])</span>
-<span id="cb9-10"><a></a>  }</span>
-<span id="cb9-11"><a></a>}</span>
-<span id="cb9-12"><a></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co"># Generate a list of 10 lists, each containing 5 random numbers</span></span>
+<span id="cb8-2"><a></a>lists <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb8-3"><a></a>  means <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb8-4"><a></a>  <span class="fu">rnorm</span>(<span class="dv">5</span>, means)</span>
+<span id="cb8-5"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example-5" class="slide level2">
 <h2>Example</h2>
-<p>For each column in <code>mtcars</code>, take the mean for the even columns, and median for the odd columns. Store the values in a list containing 2 vectors.</p>
-<p>Answer:</p>
+<p>Using the vector below, use the <code>sapply()</code> to find <span class="math inline">\(\log(x)\)</span> for each value and return a matrix:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb10-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb10-3"><a></a>nn <span class="ot">&lt;-</span> <span class="fu">ncol</span>(mtcars)</span>
-<span id="cb10-4"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nn){</span>
-<span id="cb10-5"><a></a>  <span class="cf">if</span> (i <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb10-6"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="fu">mean</span>(mtcars[,i]))</span>
-<span id="cb10-7"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb10-8"><a></a>    y <span class="ot">&lt;-</span> <span class="fu">c</span>(y, <span class="fu">median</span>(mtcars[,i]))</span>
-<span id="cb10-9"><a></a>  }</span>
-<span id="cb10-10"><a></a>}</span>
-<span id="cb10-11"><a></a></span>
-<span id="cb10-12"><a></a>xy <span class="ot">&lt;-</span> <span class="fu">list</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>numbers <span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">400</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="mapply" class="title-slide slide level1 center">
+<h1><code>mapply()</code></h1>
+
+</section>
+<section id="mapply-1" class="slide level2">
+<h2><code>mapply()</code></h2>
+<p>The <code>mapply()</code> is the multivariate function of <code>sapply()</code>. The <code>mapply()</code> function has 3 major arguments:</p>
+<ul>
+<li><p><code>FUN</code>: function applied to data</p></li>
+<li><p><code>…</code>: arguments to be iterated, must be labeled.</p></li>
+<li><p><code>MoreArgs</code>: A list containing other arguments that are necessary to <code>FUN</code></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">mapply</span>(FUN, ..., <span class="at">MoreArgs =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-6" class="slide level2">
+<h2>Example</h2>
+<p>Let <code>x</code> and <code>y</code> be two vectors, shown below, represent the x and y coordinates of a point. Using <code>mapply()</code>, compute the the distance between the points and the origin.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb11-2"><a></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="tapply" class="title-slide slide level1 center">
+<h1><code>tapply()</code></h1>
+
+</section>
+<section id="tapply-1" class="slide level2">
+<h2><code>tapply()</code></h2>
+<p>The <code>tapply()</code> function will apply function to a group of values based on and indexed lists. It takes 3 arguments:</p>
+<ul>
+<li><p><code>X</code>: a vector that can split</p></li>
+<li><p><code>INDEX</code>: the index list made up of factors</p></li>
+<li><p><code>FUN</code>: the function that will be applied</p></li>
+<li><p><code>…</code>: further arguments to be passed to <code>FUN</code></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">tapply</span>(X, INDEX, <span class="at">FUN =</span> <span class="cn">NULL</span>, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="example-7" class="slide level2">
+<h2>Example</h2>
+<p>Using the <code>penguins</code> data set from the <code>palmerpenguins</code> package, compute the average <code>bill_length_mm</code> for each <code>island</code>.</p>
+</section>
+<section id="example-8" class="slide level2">
+<h2>Example</h2>
+<p>The vectors below provide the heights of different trees in the sample. Compute the median for each type of tree.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>heights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">68</span>, <span class="dv">65</span>, <span class="dv">80</span>, <span class="dv">75</span>, <span class="dv">60</span>, <span class="dv">68</span>, <span class="dv">90</span>, <span class="dv">72</span>)</span>
+<span id="cb13-2"><a></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"maple"</span>, <span class="st">"oak"</span>, <span class="st">"pine"</span>, <span class="st">"maple"</span>, <span class="st">"oak"</span>, <span class="st">"pine"</span>, <span class="st">"maple"</span>, <span class="st">"oak"</span>, <span class="st">"pine"</span>, <span class="st">"maple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-<div class="reveal-header">
-<div class="header-logo">
-<img data-src="">
-</div>
-<div class="sc-title">
-<p> </p>
-</div>
-<div class="header-text">
-<p> </p>
-</div>
-<div class="sb-title">
-<p> </p>
-</div>
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -420,7 +399,6 @@ f(x,y) = x^2 + y^2 + \ln(x+y)
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/verticator/verticator.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -444,7 +422,6 @@ f(x,y) = x^2 + y^2 + \ln(x+y)
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
-'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -615,7 +592,7 @@ f(x,y) = x^2 + y^2 + \ln(x+y)
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Verticator, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

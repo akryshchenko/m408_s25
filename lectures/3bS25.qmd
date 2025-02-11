@@ -19,6 +19,18 @@ knitr:
     comment: "#>" 
 
 editor: source
+
+revealjs-plugins:
+  - verticator
+  
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - code-fullscreen
+  - webr
+
+webr: 
+  show-startup-message: true
 ---
 
 ```{r}
