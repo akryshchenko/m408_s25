@@ -211,41 +211,18 @@
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li>Built-in Functions</li>
-<li>User-built functions</li>
-<li>Extensions</li>
+<li><p>Built-in Functions</p></li>
+<li><p>User-built functions</p></li>
+<li><p>Extensions</p></li>
 </ul>
-</section>
-<section>
-<section id="built-in-functions" class="title-slide slide level1 agenda-slide center">
-<h1>Built-in Functions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>Built-in Functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="built-in-functions-1" class="slide level2">
-<h2>Built-in Functions</h2>
 <p>There are several available functions in R to conduct specific statistical methods or tasks</p>
 </section>
 <section id="help-documentation" class="slide level2">
 <h2>Help Documentation</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 27%">
-<col style="width: 72%">
+<col style="width: 30%">
+<col style="width: 69%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -330,15 +307,12 @@
 </tr>
 </tbody>
 </table>
-</section></section>
+</section>
 <section>
 <section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
 <h1>User-built functions</h1>
 <div class="agenda">
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Built-in Functions</p>
-</div></li>
 <li><div class="agenda-active">
 <p>User-built functions</p>
 </div></li>
@@ -423,9 +397,6 @@ z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
 <div class="agenda">
 <ul>
 <li><div class="agenda-inactive agenda-pre-active">
-<p>Built-in Functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
 <p>User-built functions</p>
 </div></li>
 <li><div class="agenda-active">
@@ -492,9 +463,9 @@ z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
 <pre><code>#&gt; # A tibble: 3 × 6
 #&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x)    820ns   1.02µs   794297.    2.93KB     79.4
-#&gt; 2 var_r(x)     1.64µs   2.01µs   432775.   23.73KB     86.6
-#&gt; 3 var(x)       3.03µs   3.65µs   261230.   13.71KB    105.</code></pre>
+#&gt; 1 var_cpp(x) 942.99ns   1.11µs   764874.    2.93KB     76.5
+#&gt; 2 var_r(x)     1.84µs   2.05µs   408264.   23.73KB     81.7
+#&gt; 3 var(x)       3.24µs   3.57µs   276093.   13.71KB    110.</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -518,7 +489,7 @@ z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
 #&gt;     else stopifnot(is.atomic(y))
 #&gt;     .Call(C_cov, x, y, na.method, FALSE)
 #&gt; }
-#&gt; &lt;bytecode: 0x111588b38&gt;
+#&gt; &lt;bytecode: 0x1213012d0&gt;
 #&gt; &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 </div>
@@ -529,9 +500,6 @@ z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
 <h1>Bisection Method</h1>
 <div class="agenda">
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Built-in Functions</p>
-</div></li>
 <li><div class="agenda-inactive agenda-pre-active">
 <p>User-built functions</p>
 </div></li>
@@ -559,7 +527,7 @@ f(x) = 2 x^3 - 20x -43
 </details>
 
 </div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="finding-the-root" class="slide level2">
 <h2>Finding the Root</h2>
 <div class="cell">

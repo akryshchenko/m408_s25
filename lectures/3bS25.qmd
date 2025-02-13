@@ -45,19 +45,18 @@ library(tidyverse)
 ## Learning Objectives
 
 -   Built-in Functions
+
 -   User-built functions
+
 -   Extensions
 
-# Built-in Functions
-
-## Built-in Functions
 
 There are several available functions in R to conduct specific statistical methods or tasks
 
 ## Help Documentation
 
 | Section     | Description                                                 |
-|:-------------------|:---------------------------------------------------|
+|:---------------------|:-------------------------------------------------|
 | Description | Provides a brief introduction of the function               |
 | Usage       | Provides potential usage of the function                    |
 | Arguments   | Arguments that the function can take                        |
@@ -247,6 +246,10 @@ var
 This is an extremely advanced topic. Only do this if you need real speed and efficiency.
 
 # Bisection Method
+
+```{r}
+
+```
 
 ## Motivating Example
 

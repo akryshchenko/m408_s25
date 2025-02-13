@@ -165,14 +165,14 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.01299832"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.05129113"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 0.9598577"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.008808"
   },
   {
     "objectID": "lectures/1bS25.html#introduction-to-r",
@@ -396,7 +396,7 @@
     "href": "hw.html",
     "title": "Homework",
     "section": "",
-    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "files/r-scripts/template.html#problem-2",
@@ -417,35 +417,35 @@
     "href": "hw/hw2.html",
     "title": "Homework 2",
     "section": "",
-    "text": "Due 2/13/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+    "text": "Due 2/18/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
   },
   {
     "objectID": "hw/hw2.html#problem-1",
     "href": "hw/hw2.html#problem-1",
     "title": "Homework 2",
     "section": "Problem 1",
-    "text": "Problem 1\nWrite a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector.\n\n\nAnswer\nxsummary &lt;- function(x){\n  list(mean = mean(x),\n       median = median(x),\n       variance = var(x))\n}"
+    "text": "Problem 1\nWrite a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector."
   },
   {
     "objectID": "hw/hw2.html#problem-2",
     "href": "hw/hw2.html#problem-2",
     "title": "Homework 2",
     "section": "Problem 2",
-    "text": "Problem 2\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary.\n\n\nAnswer\nfxyz &lt;- function(x, y, z){\n  if (!z %in% c(0,1)){stop(\"z must be 0 or 1\")}\n  if (y&lt;=0){stop(\"y must be greater than 0\")}\n  if (z ==0){\n    return(x^2+sqrt(y))\n  } else {\n    return(x^2 + 2*x + 3 + log(y))\n  }\n}"
+    "text": "Problem 2\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
   },
   {
     "objectID": "hw/hw2.html#problem-3",
     "href": "hw/hw2.html#problem-3",
     "title": "Homework 2",
     "section": "Problem 3",
-    "text": "Problem 3\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop.\n\n\nAnswer\nfib &lt;- function(x){\n  post &lt;- c(0,1)\n  for(i in 3:x){\n    post &lt;- c(post, fib[i-2] + fib[i-1])\n  }\n  return(post)\n}"
+    "text": "Problem 3\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
   },
   {
     "objectID": "hw/hw2.html#problem-4",
     "href": "hw/hw2.html#problem-4",
     "title": "Homework 2",
     "section": "Problem 4",
-    "text": "Problem 4\nCreate a function that will randomly generate n numbers that are greater than x from a \\(Pois(\\lambda)\\).\n\n\nAnswer\nnew_pois &lt;- function(n, x, lambda){\n  nn &lt;- 0\n  post &lt;- c()\n  while(nn &lt; n){\n    new &lt;- rpois(1, lambda)\n    if (new &gt; x){\n      post &lt;- c(post, new)\n      nn &lt;- length(post)\n    }\n  }\n  return(post)\n}"
+    "text": "Problem 4\nCreate a function that will randomly generate n numbers that are greater than x from a \\(Pois(\\lambda)\\)."
   },
   {
     "objectID": "hw/hw1.html",
@@ -578,14 +578,7 @@
     "href": "lectures/3bS25.html#learning-objectives",
     "title": "Functions",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nBuilt-in Functions\nUser-built functions\nExtensions"
-  },
-  {
-    "objectID": "lectures/3bS25.html#built-in-functions-1",
-    "href": "lectures/3bS25.html#built-in-functions-1",
-    "title": "Functions",
-    "section": "Built-in Functions",
-    "text": "Built-in Functions\nThere are several available functions in R to conduct specific statistical methods or tasks"
+    "text": "Learning Objectives\n\nBuilt-in Functions\nUser-built functions\nExtensions\n\nThere are several available functions in R to conduct specific statistical methods or tasks"
   },
   {
     "objectID": "lectures/3bS25.html#help-documentation",
@@ -669,7 +662,7 @@
     "href": "lectures/3bS25.html#rcpp",
     "title": "Functions",
     "section": "Rcpp",
-    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x)    820ns   1.02µs   794297.    2.93KB     79.4\n#&gt; 2 var_r(x)     1.64µs   2.01µs   432775.   23.73KB     86.6\n#&gt; 3 var(x)       3.03µs   3.65µs   261230.   13.71KB    105.\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x111588b38&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
+    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x) 942.99ns   1.11µs   764874.    2.93KB     76.5\n#&gt; 2 var_r(x)     1.84µs   2.05µs   408264.   23.73KB     81.7\n#&gt; 3 var(x)       3.24µs   3.57µs   276093.   13.71KB    110.\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x1213012d0&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
   },
   {
     "objectID": "lectures/3bS25.html#motivating-example",
@@ -774,7 +767,7 @@
     "href": "lectures/4bS25.html#anonymous-functions-1",
     "title": "Intro to Data Manipulation",
     "section": "Anonymous Functions",
-    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1]  2.4748687 -0.5253318  1.6061220  4.1921183  4.3779036  8.3394535\n#&gt;  [7]  6.5621514  8.2309819  8.9183559 11.5051437\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  0.6360494 -0.4767848 -2.6716926  0.1479987  3.6831135  1.0915215\n#&gt;  [7]  4.0331547 11.4764187 -3.1142838  9.7508062"
+    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1] 2.135785 3.131467 2.738879 3.555381 5.362869 6.077445 6.832874 7.705707\n#&gt;  [9] 8.205853 9.631355\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  2.344290  2.308422  1.599165  1.378670  5.877549  2.623114  3.838340\n#&gt;  [8] -3.054062 30.205497  4.481965"
   },
   {
     "objectID": "lectures/4bS25.html#example",
@@ -809,7 +802,7 @@
     "href": "lectures/4bS25.html#section-1",
     "title": "Intro to Data Manipulation",
     "section": "%>%",
-    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 0.8231035"
+    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 2.596282"
   },
   {
     "objectID": "lectures/4bS25.html#section-2",

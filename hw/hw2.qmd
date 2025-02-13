@@ -1,6 +1,6 @@
 ---
 title: "Homework 2"
-date: 2/6/25
+date: 2/12/25
 editor: visual
 format: 
   html:
@@ -13,7 +13,7 @@ format:
 draft: false
 ---
 
-**Due 2/13/25 \@ 11:59 PM**
+**Due 2/18/25 \@ 11:59 PM**
 
 Use an RMD M408 Template to create the assignment.
 
@@ -25,17 +25,6 @@ Submit the \*.html file to canvas.
 
 Write a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector.
 
-```{r}
-#| code-fold: true
-#| code-summary: Answer
-
-xsummary <- function(x){
-  list(mean = mean(x),
-       median = median(x),
-       variance = var(x))
-}
-
-```
 
 ## Problem 2
 
@@ -50,58 +39,16 @@ $$
 
 Include any error messages if necessary.
 
-```{r}
-#| code-fold: true
-#| code-summary: Answer
 
-fxyz <- function(x, y, z){
-  if (!z %in% c(0,1)){stop("z must be 0 or 1")}
-  if (y<=0){stop("y must be greater than 0")}
-  if (z ==0){
-    return(x^2+sqrt(y))
-  } else {
-    return(x^2 + 2*x + 3 + log(y))
-  }
-}
-
-```
 
 ## Problem 3
 
 Create a function that will give you the first `x` Fibonacci numbers. You must use a `for` loop.
 
-```{r}
-#| code-fold: true
-#| code-summary: Answer
 
-fib <- function(x){
-  post <- c(0,1)
-  for(i in 3:x){
-    post <- c(post, fib[i-2] + fib[i-1])
-  }
-  return(post)
-}
-
-```
 
 ## Problem 4
 
 Create a function that will randomly generate `n` numbers that are greater than `x` from a $Pois(\lambda)$.
 
-```{r}
-#| code-fold: true
-#| code-summary: Answer
 
-new_pois <- function(n, x, lambda){
-  nn <- 0
-  post <- c()
-  while(nn < n){
-    new <- rpois(1, lambda)
-    if (new > x){
-      post <- c(post, new)
-      nn <- length(post)
-    }
-  }
-  return(post)
-}
-```

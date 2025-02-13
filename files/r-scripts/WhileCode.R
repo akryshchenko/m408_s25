@@ -33,14 +33,15 @@ y_old<-1
 x<-1
 diff<-10
 
-while(diff>=10^(-1)){
+while(diff>=10^(-6)){
   x<-x+1
   y<-1/x
   diff<-abs(y-y_old)/y_old
   print(diff)
   print(x)
   print(y)
-  y<-y_old
+  #y<-y_old # this was an error
+  y_old<-y
 }
 
 x
@@ -59,5 +60,8 @@ while (diff > 10^(-6)){
   x <- x + 1
   y_old <- y_new
 }
+
+y_new
+
 
 
