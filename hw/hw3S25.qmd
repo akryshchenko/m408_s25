@@ -1,0 +1,86 @@
+---
+title: "Homework 3"
+date: 2/18/25
+editor: visual
+draft: false
+---
+
+```{r}
+#| include: false
+
+start_date <- as.POSIXct("2022-01-01 00:00:00")
+end_date <- as.POSIXct("2022-12-31 23:59:59")
+
+# Generate a vector of random dates and times between the start and end dates
+random_dates <- as.POSIXct(runif(10, start_date, end_date), origin = "1970-01-01")
+
+# Print the vector of random dates and times
+random_dates
+
+```
+
+**Due 2/25/24 \@ 11:59 PM**
+
+Use an RMD or QMD file to create the assignment.
+
+You must comment all your code to receive credit.
+
+Submit the \*.html file to canvas.
+
+## Problem 1
+
+Using the vectors below, use `sapply()` to determine if the numbers are even or odd.
+
+```{r}
+x <- 1:20
+```
+
+## Problem 2
+
+Evaluate the following function:
+
+$$
+k(j(i(h(g(f(x))))))
+$$
+
+-   $f(x)=\sin(x)$
+
+-   $g(x) = x^2 +5$
+
+-   $h(x) = \exp{2x}$
+
+-   $i(x) = \sin(\pi x)$
+
+-   $j(x) = x^2 + 5$
+
+-   $k(x) = \sqrt x$
+
+You are not allowed to store values, but you may create and store functions.
+
+## Problem 3
+
+From the `penguins` data set from `palmerpenguins` package, create a new variable indicating if the penguin's flipper length (`flipper_length_mm`) is greater than the average flipper length. Afterwards, group by the new variable and find the mean `body_mass_g`.
+
+## Problem 4
+
+From the `penguins` data set from `palmerpenguins` package, find the mean and standard deviation of `flipper_length_mm` by `species`.
+
+## Problem 5
+
+Using the vector `random_dates` generated from the code below:
+
+```{r}
+#| eval: false
+# Set the start and end dates
+start_date <- as.POSIXct("2022-01-01 00:00:00")
+end_date <- as.POSIXct("2022-12-31 23:59:59")
+
+# Generate a vector of random dates and times between the start and end dates
+random_dates <- as.POSIXct(runif(10, start_date, end_date), origin = "1970-01-01")
+
+# Print the vector of random dates and times
+random_dates
+
+```
+
+Use `sapply()` to determine what day of the week (in words) does the date represent. Hint: Look at the `wday` function from `lubridate`.

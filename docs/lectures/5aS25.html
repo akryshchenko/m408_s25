@@ -6,17 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
-<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Functions</title>
+  <title>m408_s25 – Data Manipulation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -202,7 +195,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Functions</h1>
+  <h1 class="title">Data Manipulation</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -211,402 +204,308 @@
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li><p>Built-in Functions</p></li>
-<li><p>User-built functions</p></li>
-<li><p>Extensions</p></li>
+<li><p>Directories/R Projects</p></li>
+<li><p>Reading/Writing Data</p></li>
+<li><p>Merging Data</p></li>
+<li><p><code>dplyr</code> Functions</p></li>
 </ul>
-<p>There are several available functions in R to conduct specific statistical methods or tasks</p>
-</section>
-<section id="help-documentation" class="slide level2">
-<h2>Help Documentation</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Section</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Description</td>
-<td style="text-align: left;">Provides a brief introduction of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Usage</td>
-<td style="text-align: left;">Provides potential usage of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arguments</td>
-<td style="text-align: left;">Arguments that the function can take</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Details</td>
-<td style="text-align: left;">An in depth description of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Value</td>
-<td style="text-align: left;">Provides information of the output produced by the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Notes</td>
-<td style="text-align: left;">Any need to know information about the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Authors</td>
-<td style="text-align: left;">Developers of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">References</td>
-<td style="text-align: left;">References to the model and function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">See Also</td>
-<td style="text-align: left;">Provide information of supporting functions</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Examples</td>
-<td style="text-align: left;">Examples of the function</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="generic-functions" class="slide level2">
-<h2>Generic Functions</h2>
-<p>Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as <code>summary()</code> and <code>plot()</code>.</p>
-<p>For example, the <code>summary()</code> is a generic for several types of functions: <code>summary.aov()</code>, <code>summary.lm()</code>, <code>summary.glm()</code>, and many more.</p>
-</section>
-<section id="commonly-used-function" class="slide level2">
-<h2>Commonly-used Function</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functions</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>aov()</code></td>
-<td style="text-align: left;">Fits an ANOVA Model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>lm()</code></td>
-<td style="text-align: left;">Fits a linear model</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>glm()</code></td>
-<td style="text-align: left;">Fits a general linear model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>t.test()</code></td>
-<td style="text-align: left;">Conducts a t-test</td>
-</tr>
-</tbody>
-</table>
 </section>
 <section>
-<section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
-<h1>User-built functions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
+<section id="directoriesr-projects" class="title-slide slide level1 center">
+<h1>Directories/R Projects</h1>
+
 </section>
-<section id="user-built-functions-1" class="slide level2">
-<h2>User-built functions</h2>
-<ul>
-<li><p>Functions created by the user for analysis</p></li>
-<li><p>Needs to be ran once to the R environment</p></li>
-<li><p>Will be lost when R session is closed</p></li>
-</ul>
+<section id="scripting-style-guide" class="slide level2">
+<h2>Scripting Style Guide</h2>
+<p><a href="https://style.tidyverse.org/index.html">Tidyverse Style Guide</a></p>
 </section>
-<section id="anatomy" class="slide level2">
-<h2>Anatomy</h2>
+<section id="directories" class="slide level2">
+<h2>Directories</h2>
+<p>Directories is the file system located on your computer.</p>
+<p>A file path indicates the location of certain files relative to your main (home) folder.</p>
+</section>
+<section id="working-directory" class="slide level2">
+<h2>Working Directory</h2>
+<p>This is the folder where R will save and read all the files when the file path is not specified.</p>
+<p>To get the current working directory:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|4-5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>name_of_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data_1, <span class="at">data_2 =</span> <span class="cn">NULL</span>, </span>
-<span id="cb1-2"><a></a>                             argument_1, <span class="at">argument_2 =</span> <span class="cn">TRUE</span>, <span class="at">argument_3 =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a></a>                             ...){</span>
-<span id="cb1-4"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-5"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-6"><a></a>  output_object <span class="ot">&lt;-</span> Tasks</span>
-<span id="cb1-7"><a></a>  <span class="fu">return</span>(output_object)</span>
-<span id="cb1-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
+<p>To set the working directory:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">setwd</span>(<span class="st">"new_file_path"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="r-projects" class="slide level2">
+<h2>R Projects</h2>
+<p>R Projects are ways for RStudio to organize files together for specific</p>
+</section></section>
+<section>
+<section id="readingwriting-data" class="title-slide slide level1 center">
+<h1>Reading/Writing Data</h1>
+
+</section>
+<section id="read-data" class="slide level2">
+<h2>Read Data</h2>
 <ul>
-<li><p><code>function</code>: used to construct the function</p></li>
-<li><p><code>data1</code>: first data argument that needs to supplied</p></li>
-<li><p><code>data2</code>: second data argument that does not need to be supplied</p></li>
-<li><p><code>argument1</code>: first argument must be supplied to alter function</p></li>
-<li><p><code>argument2</code>: second argument to alter function, set to <code>TRUE</code></p></li>
-<li><p><code>argument3</code>: third argument that does not need to be supplied</p></li>
-<li><p><code>…</code>: additional arguments supplied to other functions</p></li>
+<li><p>Easiest way is to have RStudio do it for you</p></li>
+<li><p>Use Base R functions</p></li>
+<li><p>Use <code>readr</code> package for tabular/text files</p></li>
+<li><p>Use <code>readxl</code> package for excel files</p></li>
+<li><p>Use <code>haven</code> package to read SAS, SPSS, or Stata files.</p></li>
 </ul>
-</div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-y = \ln(x^2)
-\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"files/data/data_3_1.csv"</span>)</span>
+<span id="cb3-2"><a></a>data2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/home/inqs/Repos/M408_S23/data/data_3_2.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x) = \left\{\begin{array}{cc}
-x^3 &amp; x&lt;0\\
-x^2 + 5 &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
+<p>Download the following zip file: <a href="https://m408.inqs.info/files/data.zip">data</a></p>
+<p>Load data <code>data_3_1.csv</code> and <code>data_3_2.csv</code>.</p>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x,y) = \left\{\begin{array}{cc}
-x^3 e^y &amp;  x&lt;0\ \\
-x^2 + 5 + \ln(y) &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
+<p>Load the following data: <a href="https://m408.inqs.info/files/data/data_3_3.csv" class="uri">https://m408.inqs.info/files/data/data_3_3.csv</a></p>
+</section>
+<section id="write-data" class="slide level2">
+<h2>Write Data</h2>
+<p>Several functions that you can use to write functions from the <code>readr</code> and <code>readxl</code>.</p>
+<p>I recommend using the <code>write_csv</code> function and provide csv files.</p>
+</section>
+<section id="rdata" class="slide level2">
+<h2>RData</h2>
+<p>RData is the data file specific for R.</p>
+<h3 id="load-data">Load Data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">load</span>(<span class="st">"data.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<h3 id="write-data-1">Write Data</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">save</span>(RObject, <span class="at">file =</span> <span class="st">"data.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="merging-data" class="title-slide slide level1 center">
+<h1>Merging Data</h1>
+
+</section>
+<section id="join" class="slide level2">
+<h2><code>*_join()</code></h2>
+<ul>
+<li>The <code>*_join()</code> functions are used to merge 2 data frames together.</li>
+</ul>
 </section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
-<p>Create the function that allows your to compute the z-score of a specific value <code>x</code> using the sampling distribution from a set of data (<code>y</code> vector):</p>
-<p><span class="math display">\[
-z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
-\]</span></p>
+<p>Merge data sets <code>data_3_1.csv</code> and <code>data_3_2.csv</code> using the <code>full_join()</code></p>
 </section></section>
 <section>
-<section id="extensions" class="title-slide slide level1 agenda-slide center">
-<h1>Extensions</h1>
-<div class="agenda">
+<section id="dplyr-functions" class="title-slide slide level1 center">
+<h1><code>dplyr</code> Functions</h1>
+
+</section>
+<section id="mutate" class="slide level2">
+<h2><code>mutate()</code></h2>
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
+<li><p>Adds a new variable to a data frame</p></li>
+<li><p>Example:</p></li>
 </ul>
-</div>
-</section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p>R Packages are used to utilize functions created from the community.</p>
-<h3 id="installation">Installation</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">mutate</span>(<span class="at">log_mpg =</span> <span class="fu">log</span>(mpg)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA</code></pre>
 </div>
-<h3 id="loading">Loading</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="reticulate" class="slide level2">
-<h2>Reticulate</h2>
-<p>Reticulate is an R package that allows you to utilize python within R.</p>
-</section>
-<section id="rcpp" class="slide level2">
-<h2>Rcpp</h2>
-<p>Rcpp is an R package that allows you to call C++ programs in R.</p>
-<p>We will compare variance functions written in cpp, user-built R, and built-in R.</p>
-<p>Rcpp code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-4"><a></a><span class="dt">double</span> var_cpp<span class="op">(</span>NumericVector x<span class="op">){</span></span>
-<span id="cb4-5"><a></a><span class="dt">int</span> n <span class="op">=</span> x<span class="op">.</span>length<span class="op">();</span></span>
-<span id="cb4-6"><a></a>NumericVector pre<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb4-7"><a></a><span class="dt">double</span> mean_x <span class="op">=</span> mean<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb4-8"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> <span class="op">++</span>i<span class="op">){</span></span>
-<span id="cb4-9"><a></a>   pre<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>x<span class="op">[</span>i<span class="op">]-</span>mean_x<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a><span class="dt">int</span> divisor <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-12"><a></a><span class="dt">double</span> post <span class="op">=</span> sum<span class="op">(</span>pre<span class="op">)</span> <span class="op">/</span> divisor<span class="op">;</span></span>
-<span id="cb4-13"><a></a><span class="cf">return</span> post<span class="op">;</span></span>
-<span id="cb4-14"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>R code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>var_r <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a></a>  <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Benchmark Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb6-2"><a></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-3"><a></a><span class="fu">var_cpp</span>(x),</span>
-<span id="cb6-4"><a></a><span class="fu">var_r</span>(x),</span>
-<span id="cb6-5"><a></a><span class="fu">var</span>(x)</span>
-<span id="cb6-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
-#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x)    984ns   1.27µs   629785.    2.93KB     63.0
-#&gt; 2 var_r(x)     1.76µs   2.01µs   434552.   23.73KB     86.9
-#&gt; 3 var(x)       2.95µs    3.2µs   304923.   13.71KB    122.</code></pre>
+<pre><code>#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb  log_mpg
+#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 3.044522
+#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 3.044522
+#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 3.126761
+#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 3.063391
+#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 2.928524
+#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 2.895912</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; function (x, y = NULL, na.rm = FALSE, use) 
-#&gt; {
-#&gt;     if (missing(use)) 
-#&gt;         use &lt;- if (na.rm) 
-#&gt;             "na.or.complete"
-#&gt;         else "everything"
-#&gt;     na.method &lt;- pmatch(use, c("all.obs", "complete.obs", "pairwise.complete.obs", 
-#&gt;         "everything", "na.or.complete"))
-#&gt;     if (is.na(na.method)) 
-#&gt;         stop("invalid 'use' argument")
-#&gt;     if (is.data.frame(x)) 
-#&gt;         x &lt;- as.matrix(x)
-#&gt;     else stopifnot(is.atomic(x))
-#&gt;     if (is.data.frame(y)) 
-#&gt;         y &lt;- as.matrix(y)
-#&gt;     else stopifnot(is.atomic(y))
-#&gt;     .Call(C_cov, x, y, na.method, FALSE)
-#&gt; }
-#&gt; &lt;bytecode: 0x10cc87d48&gt;
-#&gt; &lt;environment: namespace:stats&gt;</code></pre>
-</div>
-</div>
-<p>This is an extremely advanced topic. Only do this if you need real speed and efficiency.</p>
-</section></section>
-<section>
-<section id="bisection-method" class="title-slide slide level1 agenda-slide center">
-<h1>Bisection Method</h1>
-<div class="agenda">
+</section>
+<section id="mutate-1" class="slide level2">
+<h2><code>mutate()</code></h2>
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bisection Method</p>
-</div></li>
+<li><p>Each argument is a new variable added</p></li>
+<li><p>Example:</p></li>
 </ul>
-</div>
-</section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
-<p><span class="math display">\[
-f(x) = 2 x^3 - 20x -43
-\]</span></p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb10-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb10-3"><a></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb10-4"><a></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">mutate</span>(<span class="at">log_mpg =</span> <span class="fu">log</span>(mpg), <span class="at">log_hp =</span> <span class="fu">log</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA
+#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA</code></pre>
 </div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="finding-the-root" class="slide level2">
-<h2>Finding the Root</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb11-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">uniroot</span>(f, <span class="at">lower =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; $root
-#&gt; [1] 3.932792
-#&gt; 
-#&gt; $f.root
-#&gt; [1] -2.30166e-05
-#&gt; 
-#&gt; $iter
-#&gt; [1] 7
-#&gt; 
-#&gt; $init.it
-#&gt; [1] NA
-#&gt; 
-#&gt; $estim.prec
-#&gt; [1] 6.103516e-05</code></pre>
+<pre><code>#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb  log_mpg
+#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 3.044522
+#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 3.044522
+#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 3.126761
+#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 3.063391
+#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 2.928524
+#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 2.895912
+#&gt;                     log_hp
+#&gt; Mazda RX4         4.700480
+#&gt; Mazda RX4 Wag     4.700480
+#&gt; Datsun 710        4.532599
+#&gt; Hornet 4 Drive    4.700480
+#&gt; Hornet Sportabout 5.164786
+#&gt; Valiant           4.653960</code></pre>
 </div>
 </div>
 </section>
-<section id="bisection-method-1" class="slide level2 scrollable">
-<h2>Bisection Method</h2>
-<ol type="1">
-<li>Begin with an interval <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and evaluate <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>.</li>
-<li>If <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> are opposite signs, calculate <span class="math inline">\(c = \frac{a+b}{2}\)</span> and <span class="math inline">\(f(c)\)</span>.</li>
-<li>If <span class="math inline">\(|f(c)|&lt;\varepsilon\)</span>, for a small <span class="math inline">\(\varepsilon\)</span>, then stop the algorithm and <span class="math inline">\(c\)</span> is the root.</li>
-<li>Replace <span class="math inline">\((a,f(a))\)</span> or <span class="math inline">\((b,f(b))\)</span> with <span class="math inline">\((c, f(c))\)</span> so that the signs of <span class="math inline">\(f( \cdot )\)</span> is 0.</li>
-</ol>
+<section id="example-4" class="slide level2">
+<h2>Example</h2>
+<p>Using the <code>penguins</code> dataset from <code>palmerpenguins</code>, create a new variable that is the ln of <code>flipper_length_mm</code>.</p>
 </section>
-<section id="bisection-code" class="slide level2">
-<h2>Bisection Code</h2>
+<section id="select" class="slide level2">
+<h2><code>select()</code></h2>
+<p>-This selects the variables to keep in the data frame</p>
+<p>-Example:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span>}</span>
-<span id="cb13-2"><a></a>aa <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb13-3"><a></a>bb <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-4"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb13-5"><a></a>i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a></a><span class="cf">while</span>(diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
-<span id="cb13-7"><a></a>  faa <span class="ot">&lt;-</span> <span class="fu">f</span>(aa)</span>
-<span id="cb13-8"><a></a>  cc <span class="ot">&lt;-</span> (aa <span class="sc">+</span> bb) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb13-9"><a></a>  fcc <span class="ot">&lt;-</span> <span class="fu">f</span>(cc)</span>
-<span id="cb13-10"><a></a>  <span class="cf">if</span> (faa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> fcc <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb13-11"><a></a>    bb <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-12"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-13"><a></a>    aa <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-14"><a></a>  }</span>
-<span id="cb13-15"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(fcc)</span>
-<span id="cb13-16"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a></a>}</span>
-<span id="cb13-18"><a></a>i</span>
-<span id="cb13-19"><a></a>cc</span>
-<span id="cb13-20"><a></a>fcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">mutate</span>(<span class="at">log_mpg =</span> <span class="fu">log</span>(mpg), <span class="at">log_hp =</span> <span class="fu">log</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">select</span>(mpg, log_mpg, hp, log_hp) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA
+#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA
+#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                    mpg  log_mpg  hp   log_hp
+#&gt; Mazda RX4         21.0 3.044522 110 4.700480
+#&gt; Mazda RX4 Wag     21.0 3.044522 110 4.700480
+#&gt; Datsun 710        22.8 3.126761  93 4.532599
+#&gt; Hornet 4 Drive    21.4 3.063391 110 4.700480
+#&gt; Hornet Sportabout 18.7 2.928524 175 5.164786
+#&gt; Valiant           18.1 2.895912 105 4.653960</code></pre>
+</div>
+</div>
+</section>
+<section id="example-5" class="slide level2">
+<h2>Example</h2>
+<p>Using the <code>penguins</code> dataset from <code>palmerpenguins</code>, only select the variables that are continuous data points.</p>
+</section>
+<section id="filter" class="slide level2">
+<h2><code>filter()</code></h2>
+<ul>
+<li><p>Selects observations that satisfy a condition</p></li>
+<li><p>Example:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">mutate</span>(<span class="at">log_mpg =</span> <span class="fu">log</span>(mpg), <span class="at">log_hp =</span> <span class="fu">log</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">select</span>(mpg, log_mpg, hp, log_hp) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">filter</span>(log_hp <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA
+#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA
+#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)
+#&gt; filter: removed 15 rows (47%), 17 rows remaining</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                 mpg  log_mpg  hp   log_hp
+#&gt; Mazda RX4      21.0 3.044522 110 4.700480
+#&gt; Mazda RX4 Wag  21.0 3.044522 110 4.700480
+#&gt; Datsun 710     22.8 3.126761  93 4.532599
+#&gt; Hornet 4 Drive 21.4 3.063391 110 4.700480
+#&gt; Valiant        18.1 2.895912 105 4.653960
+#&gt; Merc 240D      24.4 3.194583  62 4.127134</code></pre>
+</div>
+</div>
+</section>
+<section id="example-6" class="slide level2">
+<h2>Example</h2>
+<p>Using the <code>penguins</code> dataset from <code>palmerpenguins</code>, filter the data set to look at penguins that are a Gentoo species.</p>
+</section>
+<section id="if_else" class="slide level2">
+<h2><code>if_else()</code></h2>
+<ul>
+<li><p>A function that provides T (1) if the condition is met and F (0) otherwise</p></li>
+<li><p>Example:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a></a>  <span class="fu">mutate</span>(<span class="at">log_mpg =</span> <span class="fu">log</span>(mpg), <span class="at">log_hp =</span> <span class="fu">log</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a></a>  <span class="fu">select</span>(mpg, log_mpg, hp, log_hp) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">filter</span>(log_hp <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">mutate</span>(<span class="at">hilhp =</span> <span class="fu">if_else</span>(log_hp <span class="sc">&gt;</span> <span class="fu">mean</span>(log_hp), <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA
+#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA
+#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)
+#&gt; filter: removed 15 rows (47%), 17 rows remaining
+#&gt; mutate: new variable 'hilhp' (double) with 2 unique values and 0% NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;                 mpg  log_mpg  hp   log_hp hilhp
+#&gt; Mazda RX4      21.0 3.044522 110 4.700480     1
+#&gt; Mazda RX4 Wag  21.0 3.044522 110 4.700480     1
+#&gt; Datsun 710     22.8 3.126761  93 4.532599     1
+#&gt; Hornet 4 Drive 21.4 3.063391 110 4.700480     1
+#&gt; Valiant        18.1 2.895912 105 4.653960     1
+#&gt; Merc 240D      24.4 3.194583  62 4.127134     0</code></pre>
+</div>
+</div>
+</section>
+<section id="example-7" class="slide level2">
+<h2>Example</h2>
+<p>Using the <code>penguins</code> dataset from <code>palmerpenguins</code>, create a new variable that dichotomizes a penguin if their bill is longer than the average <code>bill_length_mm</code>.</p>
+</section>
+<section id="group_by" class="slide level2">
+<h2><code>group_by()</code></h2>
+<ul>
+<li><p>This groups the data frame</p></li>
+<li><p>Example:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a></a>  <span class="fu">mutate</span>(<span class="at">log_mpg =</span> <span class="fu">log</span>(mpg), <span class="at">log_hp =</span> <span class="fu">log</span>(hp)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a></a>  <span class="fu">select</span>(mpg, log_mpg, hp, log_hp) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a></a>  <span class="fu">filter</span>(log_hp <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a></a>  <span class="fu">mutate</span>(<span class="at">hilhp =</span> <span class="fu">if_else</span>(log_hp <span class="sc">&gt;</span> <span class="fu">mean</span>(log_hp), <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a></a>  <span class="fu">group_by</span>(hilhp) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA
+#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA
+#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)
+#&gt; filter: removed 15 rows (47%), 17 rows remaining
+#&gt; mutate: new variable 'hilhp' (double) with 2 unique values and 0% NA
+#&gt; group_by: one grouping variable (hilhp)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; # A tibble: 6 × 5
+#&gt; # Groups:   hilhp [2]
+#&gt;     mpg log_mpg    hp log_hp hilhp
+#&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1  21      3.04   110   4.70     1
+#&gt; 2  21      3.04   110   4.70     1
+#&gt; 3  22.8    3.13    93   4.53     1
+#&gt; 4  21.4    3.06   110   4.70     1
+#&gt; 5  18.1    2.90   105   4.65     1
+#&gt; 6  24.4    3.19    62   4.13     0</code></pre>
+</div>
+</div>
+</section>
+<section id="example-8" class="slide level2">
+<h2>Example</h2>
+<p>Using the <code>penguins</code> dataset from <code>palmerpenguins</code>, group by species and find the average ln <code>flipper_length_mm</code></p>
 
 
-<div class="reveal-header">
-<div class="header-logo">
-<img data-src="">
-</div>
-<div class="sc-title">
-<p> </p>
-</div>
-<div class="header-text">
-<p> </p>
-</div>
-<div class="sb-title">
-<p> </p>
-</div>
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

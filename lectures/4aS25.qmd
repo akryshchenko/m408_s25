@@ -19,6 +19,9 @@ knitr:
     comment: "#>" 
 
 editor: source
+
+revealjs-plugins:
+  - verticator
 ---
 
 ```{r}

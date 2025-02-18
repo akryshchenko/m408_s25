@@ -6,6 +6,7 @@
       "/lectures/2aS25.html",
       "/lectures/2bS25.html",
       "/lectures/3aS25.html",
+      "/lectures/5aS25.html",
       "/lectures/3bS25.html",
       "/lectures/4bS25.html",
       "/lectures/1bS25.html"
@@ -15,7 +16,8 @@
     "listing": "/hw.html",
     "items": [
       "/hw/hw1.html",
-      "/hw/hw2.html"
+      "/hw/hw2.html",
+      "/hw/hw3S25.html"
     ]
   }
 ]

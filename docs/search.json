@@ -4,7 +4,7 @@
     "href": "ec.html",
     "title": "Lectures",
     "section": "",
-    "text": "*apply Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "*apply Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/2aS25.html#anouncements",
@@ -165,14 +165,14 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.05129113"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] 0.08145111"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.008808"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.005674"
   },
   {
     "objectID": "lectures/1bS25.html#introduction-to-r",
@@ -271,6 +271,419 @@
     "title": "R Basics",
     "section": "Lists",
     "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/5aS25.html#learning-objectives",
+    "href": "lectures/5aS25.html#learning-objectives",
+    "title": "Data Manipulation",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nDirectories/R Projects\nReading/Writing Data\nMerging Data\ndplyr Functions"
+  },
+  {
+    "objectID": "lectures/5aS25.html#scripting-style-guide",
+    "href": "lectures/5aS25.html#scripting-style-guide",
+    "title": "Data Manipulation",
+    "section": "Scripting Style Guide",
+    "text": "Scripting Style Guide\nTidyverse Style Guide"
+  },
+  {
+    "objectID": "lectures/5aS25.html#directories",
+    "href": "lectures/5aS25.html#directories",
+    "title": "Data Manipulation",
+    "section": "Directories",
+    "text": "Directories\nDirectories is the file system located on your computer.\nA file path indicates the location of certain files relative to your main (home) folder."
+  },
+  {
+    "objectID": "lectures/5aS25.html#working-directory",
+    "href": "lectures/5aS25.html#working-directory",
+    "title": "Data Manipulation",
+    "section": "Working Directory",
+    "text": "Working Directory\nThis is the folder where R will save and read all the files when the file path is not specified.\nTo get the current working directory:\n\ngetwd()\n\nTo set the working directory:\n\nsetwd(\"new_file_path\")"
+  },
+  {
+    "objectID": "lectures/5aS25.html#r-projects",
+    "href": "lectures/5aS25.html#r-projects",
+    "title": "Data Manipulation",
+    "section": "R Projects",
+    "text": "R Projects\nR Projects are ways for RStudio to organize files together for specific"
+  },
+  {
+    "objectID": "lectures/5aS25.html#read-data",
+    "href": "lectures/5aS25.html#read-data",
+    "title": "Data Manipulation",
+    "section": "Read Data",
+    "text": "Read Data\n\nEasiest way is to have RStudio do it for you\nUse Base R functions\nUse readr package for tabular/text files\nUse readxl package for excel files\nUse haven package to read SAS, SPSS, or Stata files."
+  },
+  {
+    "objectID": "lectures/5aS25.html#example",
+    "href": "lectures/5aS25.html#example",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\n\ndata1 &lt;- read_csv(\"files/data/data_3_1.csv\")\ndata2 &lt;- read_csv(\"/home/inqs/Repos/M408_S23/data/data_3_2.csv\")"
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-1",
+    "href": "lectures/5aS25.html#example-1",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nDownload the following zip file: data\nLoad data data_3_1.csv and data_3_2.csv."
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-2",
+    "href": "lectures/5aS25.html#example-2",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nLoad the following data: https://m408.inqs.info/files/data/data_3_3.csv"
+  },
+  {
+    "objectID": "lectures/5aS25.html#write-data",
+    "href": "lectures/5aS25.html#write-data",
+    "title": "Data Manipulation",
+    "section": "Write Data",
+    "text": "Write Data\nSeveral functions that you can use to write functions from the readr and readxl.\nI recommend using the write_csv function and provide csv files."
+  },
+  {
+    "objectID": "lectures/5aS25.html#rdata",
+    "href": "lectures/5aS25.html#rdata",
+    "title": "Data Manipulation",
+    "section": "RData",
+    "text": "RData\nRData is the data file specific for R.\nLoad Data\n\nload(\"data.RData\")\n\nWrite Data\n\nsave(RObject, file = \"data.RData\")"
+  },
+  {
+    "objectID": "lectures/5aS25.html#join",
+    "href": "lectures/5aS25.html#join",
+    "title": "Data Manipulation",
+    "section": "*_join()",
+    "text": "*_join()\n\nThe *_join() functions are used to merge 2 data frames together."
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-3",
+    "href": "lectures/5aS25.html#example-3",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nMerge data sets data_3_1.csv and data_3_2.csv using the full_join()"
+  },
+  {
+    "objectID": "lectures/5aS25.html#mutate",
+    "href": "lectures/5aS25.html#mutate",
+    "title": "Data Manipulation",
+    "section": "mutate()",
+    "text": "mutate()\n\nAdds a new variable to a data frame\nExample:\n\n\nmtcars %&gt;%\n  mutate(log_mpg = log(mpg)) %&gt;%\n  head()\n\n#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA\n\n\n#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb  log_mpg\n#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 3.044522\n#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 3.044522\n#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 3.126761\n#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 3.063391\n#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 2.928524\n#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 2.895912"
+  },
+  {
+    "objectID": "lectures/5aS25.html#mutate-1",
+    "href": "lectures/5aS25.html#mutate-1",
+    "title": "Data Manipulation",
+    "section": "mutate()",
+    "text": "mutate()\n\nEach argument is a new variable added\nExample:\n\n\nmtcars %&gt;%\n  mutate(log_mpg = log(mpg), log_hp = log(hp)) %&gt;%\n  head()\n\n#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA\n#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA\n\n\n#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb  log_mpg\n#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 3.044522\n#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 3.044522\n#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 3.126761\n#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1 3.063391\n#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 2.928524\n#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 2.895912\n#&gt;                     log_hp\n#&gt; Mazda RX4         4.700480\n#&gt; Mazda RX4 Wag     4.700480\n#&gt; Datsun 710        4.532599\n#&gt; Hornet 4 Drive    4.700480\n#&gt; Hornet Sportabout 5.164786\n#&gt; Valiant           4.653960"
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-4",
+    "href": "lectures/5aS25.html#example-4",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nUsing the penguins dataset from palmerpenguins, create a new variable that is the ln of flipper_length_mm."
+  },
+  {
+    "objectID": "lectures/5aS25.html#select",
+    "href": "lectures/5aS25.html#select",
+    "title": "Data Manipulation",
+    "section": "select()",
+    "text": "select()\n-This selects the variables to keep in the data frame\n-Example:\n\nmtcars %&gt;%\n  mutate(log_mpg = log(mpg), log_hp = log(hp)) %&gt;%\n  select(mpg, log_mpg, hp, log_hp) %&gt;%\n  head()\n\n#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA\n#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA\n#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)\n\n\n#&gt;                    mpg  log_mpg  hp   log_hp\n#&gt; Mazda RX4         21.0 3.044522 110 4.700480\n#&gt; Mazda RX4 Wag     21.0 3.044522 110 4.700480\n#&gt; Datsun 710        22.8 3.126761  93 4.532599\n#&gt; Hornet 4 Drive    21.4 3.063391 110 4.700480\n#&gt; Hornet Sportabout 18.7 2.928524 175 5.164786\n#&gt; Valiant           18.1 2.895912 105 4.653960"
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-5",
+    "href": "lectures/5aS25.html#example-5",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nUsing the penguins dataset from palmerpenguins, only select the variables that are continuous data points."
+  },
+  {
+    "objectID": "lectures/5aS25.html#filter",
+    "href": "lectures/5aS25.html#filter",
+    "title": "Data Manipulation",
+    "section": "filter()",
+    "text": "filter()\n\nSelects observations that satisfy a condition\nExample:\n\n\nmtcars %&gt;%\n  mutate(log_mpg = log(mpg), log_hp = log(hp)) %&gt;%\n  select(mpg, log_mpg, hp, log_hp) %&gt;%\n  filter(log_hp &lt; 5) %&gt;%\n  head()\n\n#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA\n#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA\n#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)\n#&gt; filter: removed 15 rows (47%), 17 rows remaining\n\n\n#&gt;                 mpg  log_mpg  hp   log_hp\n#&gt; Mazda RX4      21.0 3.044522 110 4.700480\n#&gt; Mazda RX4 Wag  21.0 3.044522 110 4.700480\n#&gt; Datsun 710     22.8 3.126761  93 4.532599\n#&gt; Hornet 4 Drive 21.4 3.063391 110 4.700480\n#&gt; Valiant        18.1 2.895912 105 4.653960\n#&gt; Merc 240D      24.4 3.194583  62 4.127134"
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-6",
+    "href": "lectures/5aS25.html#example-6",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nUsing the penguins dataset from palmerpenguins, filter the data set to look at penguins that are a Gentoo species."
+  },
+  {
+    "objectID": "lectures/5aS25.html#if_else",
+    "href": "lectures/5aS25.html#if_else",
+    "title": "Data Manipulation",
+    "section": "if_else()",
+    "text": "if_else()\n\nA function that provides T (1) if the condition is met and F (0) otherwise\nExample:\n\n\nmtcars %&gt;%\n  mutate(log_mpg = log(mpg), log_hp = log(hp)) %&gt;%\n  select(mpg, log_mpg, hp, log_hp) %&gt;%\n  filter(log_hp &lt; 5) %&gt;%\n  mutate(hilhp = if_else(log_hp &gt; mean(log_hp), 1, 0)) %&gt;%\n  head()\n\n#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA\n#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA\n#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)\n#&gt; filter: removed 15 rows (47%), 17 rows remaining\n#&gt; mutate: new variable 'hilhp' (double) with 2 unique values and 0% NA\n\n\n#&gt;                 mpg  log_mpg  hp   log_hp hilhp\n#&gt; Mazda RX4      21.0 3.044522 110 4.700480     1\n#&gt; Mazda RX4 Wag  21.0 3.044522 110 4.700480     1\n#&gt; Datsun 710     22.8 3.126761  93 4.532599     1\n#&gt; Hornet 4 Drive 21.4 3.063391 110 4.700480     1\n#&gt; Valiant        18.1 2.895912 105 4.653960     1\n#&gt; Merc 240D      24.4 3.194583  62 4.127134     0"
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-7",
+    "href": "lectures/5aS25.html#example-7",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nUsing the penguins dataset from palmerpenguins, create a new variable that dichotomizes a penguin if their bill is longer than the average bill_length_mm."
+  },
+  {
+    "objectID": "lectures/5aS25.html#group_by",
+    "href": "lectures/5aS25.html#group_by",
+    "title": "Data Manipulation",
+    "section": "group_by()",
+    "text": "group_by()\n\nThis groups the data frame\nExample:\n\n\nmtcars %&gt;%\n  mutate(log_mpg = log(mpg), log_hp = log(hp)) %&gt;%\n  select(mpg, log_mpg, hp, log_hp) %&gt;%\n  filter(log_hp &lt; 5) %&gt;%\n  mutate(hilhp = if_else(log_hp &gt; mean(log_hp), 1, 0)) %&gt;%\n  group_by(hilhp) %&gt;%\n  head()\n\n#&gt; mutate: new variable 'log_mpg' (double) with 25 unique values and 0% NA\n#&gt;         new variable 'log_hp' (double) with 22 unique values and 0% NA\n#&gt; select: dropped 9 variables (cyl, disp, drat, wt, qsec, …)\n#&gt; filter: removed 15 rows (47%), 17 rows remaining\n#&gt; mutate: new variable 'hilhp' (double) with 2 unique values and 0% NA\n#&gt; group_by: one grouping variable (hilhp)\n\n\n#&gt; # A tibble: 6 × 5\n#&gt; # Groups:   hilhp [2]\n#&gt;     mpg log_mpg    hp log_hp hilhp\n#&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n#&gt; 1  21      3.04   110   4.70     1\n#&gt; 2  21      3.04   110   4.70     1\n#&gt; 3  22.8    3.13    93   4.53     1\n#&gt; 4  21.4    3.06   110   4.70     1\n#&gt; 5  18.1    2.90   105   4.65     1\n#&gt; 6  24.4    3.19    62   4.13     0"
+  },
+  {
+    "objectID": "lectures/5aS25.html#example-8",
+    "href": "lectures/5aS25.html#example-8",
+    "title": "Data Manipulation",
+    "section": "Example",
+    "text": "Example\nUsing the penguins dataset from palmerpenguins, group by species and find the average ln flipper_length_mm"
+  },
+  {
+    "objectID": "lectures/2bS25.html#learning-objectives",
+    "href": "lectures/2bS25.html#learning-objectives",
+    "title": "Control Flow 2",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nNested for Loops"
+  },
+  {
+    "objectID": "lectures/2bS25.html#nested-for-loops-1",
+    "href": "lectures/2bS25.html#nested-for-loops-1",
+    "title": "Control Flow 2",
+    "section": "Nested for Loops",
+    "text": "Nested for Loops\nNested for loops are for loops within another for loop. You can stack these loops as much as needed. Just make sure the index is different for each loop. The general format for a loop goes as follow:\n\nfor (i in vector_1){\n  for (ii in vector_2){\n    perform task\n  }\n}"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example",
+    "href": "lectures/2bS25.html#example",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nWithout using the sd() function, compute the standard deviation for each column of the matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 10)\n\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i=1}(x_i-\\bar x)^2\n\\]"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-1",
+    "href": "lectures/2bS25.html#example-1",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nThe median() function obtain the median value of a vector. Write code to obtain the median value for any vector.\n\nx &lt;- rnorm(500)\ny &lt;- rnorm(501)\nmedian(x)\nmedian(y)\n\nAnswer:\n\n\nCode\nwk &lt;- x \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)\n\nwk &lt;- y \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-2",
+    "href": "lectures/2bS25.html#example-2",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nUsing the code below:\n\nx &lt;- rnorm(5000)\n\nCreate a new vector containing all the positive values of x. The new vector should be less than 5000.\nAnswer:\n\n\nCode\nnn &lt;- length(x)\npos &lt;- c()\nfor (i in 1:nn){\n  if (x[i] &gt; 0) {\n    pos &lt;- c(pos, x[i])\n  }\n}\npos"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-3",
+    "href": "lectures/2bS25.html#example-3",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nCreate a vector reporting the data type of each variable in ISLR2::BrainCancer\n\nlibrary(ISLR2)\nBrainCancer\n\nAnswer:\n\n\nCode\nnn &lt;- ncol(BrainCancer)\ny &lt;- c()\nfor (i in 1:nn){\n  y &lt;- c(y, class(BrainCancer[,i]))\n}"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-4",
+    "href": "lectures/2bS25.html#example-4",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\n\\[\nf(x,y) = x^2 + y^2 + \\ln(x+y)\n\\]\nFind all the values of \\(f(x,y)\\) for every combination of \\(x \\in \\{1, 8, 13, 25, 42, 67, 95\\}\\) and \\(y \\in \\{6, 12, 18, 52, 61, 79, 83\\}\\)\nStore values in a \\(7\\times 7\\) matrix.\nAnswer:\n\n\nCode\nx &lt;- c(1, 8, 13, 25, 42, 67, 95)\ny &lt;- c(6, 12, 18, 52, 61, 79, 83)\nres &lt;- matrix(nrow = 7, ncol = 7)\ncolnames(res) &lt;- as.character(x)\nrownames(res) &lt;- as.character(y)\n\nfor (i in 1:7){\n  for (ii in 1:7){\n    res[ii,i] &lt;- x[i]^2 + y[ii]^2 + log(x[i] + y[ii])\n  }\n}\nprint(res)"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-5",
+    "href": "lectures/2bS25.html#example-5",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nFor each column in mtcars, take the mean for the even columns, and median for the odd columns. Store the values in a list containing 2 vectors.\nAnswer:\n\n\nCode\nx &lt;- c()\ny &lt;- c()\nnn &lt;- ncol(mtcars)\nfor (i in 1:nn){\n  if (i %% 2 == 0){\n    x &lt;- c(x, mean(mtcars[,i]))\n  } else {\n    y &lt;- c(y, median(mtcars[,i]))\n  }\n}\n\nxy &lt;- list(x,y)"
+  },
+  {
+    "objectID": "files/Hw.html",
+    "href": "files/Hw.html",
+    "title": "HW 1",
+    "section": "",
+    "text": "This is easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-1",
+    "href": "files/Hw.html#problem-1",
+    "title": "HW 1",
+    "section": "",
+    "text": "This is easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-2",
+    "href": "files/Hw.html#problem-2",
+    "title": "HW 1",
+    "section": "Problem 2",
+    "text": "Problem 2\nThis is also easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-3",
+    "href": "files/Hw.html#problem-3",
+    "title": "HW 1",
+    "section": "Problem 3 —",
+    "text": "Problem 3 —"
+  },
+  {
+    "objectID": "files/r-scripts/template.html#problem-2",
+    "href": "files/r-scripts/template.html#problem-2",
+    "title": "Title",
+    "section": "Problem 2",
+    "text": "Problem 2"
+  },
+  {
+    "objectID": "files/r-scripts/template.html#problem-3",
+    "href": "files/r-scripts/template.html#problem-3",
+    "title": "Title",
+    "section": "Problem 3",
+    "text": "Problem 3"
+  },
+  {
+    "objectID": "hw/hw2.html",
+    "href": "hw/hw2.html",
+    "title": "Homework 2",
+    "section": "",
+    "text": "Due 2/18/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-1",
+    "href": "hw/hw2.html#problem-1",
+    "title": "Homework 2",
+    "section": "Problem 1",
+    "text": "Problem 1\nWrite a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-2",
+    "href": "hw/hw2.html#problem-2",
+    "title": "Homework 2",
+    "section": "Problem 2",
+    "text": "Problem 2\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-3",
+    "href": "hw/hw2.html#problem-3",
+    "title": "Homework 2",
+    "section": "Problem 3",
+    "text": "Problem 3\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-4",
+    "href": "hw/hw2.html#problem-4",
+    "title": "Homework 2",
+    "section": "Problem 4",
+    "text": "Problem 4\nCreate a function that will randomly generate n numbers that are greater than x from a \\(Pois(\\lambda)\\)."
+  },
+  {
+    "objectID": "hw/hw3S25.html",
+    "href": "hw/hw3S25.html",
+    "title": "Homework 3",
+    "section": "",
+    "text": "Due 2/25/24 @ 11:59 PM\nUse an RMD or QMD file to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-1",
+    "href": "hw/hw3S25.html#problem-1",
+    "title": "Homework 3",
+    "section": "Problem 1",
+    "text": "Problem 1\nUsing the vectors below, use sapply() to determine if the numbers are even or odd.\n\nx &lt;- 1:20"
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-2",
+    "href": "hw/hw3S25.html#problem-2",
+    "title": "Homework 3",
+    "section": "Problem 2",
+    "text": "Problem 2\nEvaluate the following function:\n\\[\nk(j(i(h(g(f(x))))))\n\\]\n\n\\(f(x)=\\sin(x)\\)\n\\(g(x) = x^2 +5\\)\n\\(h(x) = \\exp{2x}\\)\n\\(i(x) = \\sin(\\pi x)\\)\n\\(j(x) = x^2 + 5\\)\n\\(k(x) = \\sqrt x\\)\n\nYou are not allowed to store values, but you may create and store functions."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-3",
+    "href": "hw/hw3S25.html#problem-3",
+    "title": "Homework 3",
+    "section": "Problem 3",
+    "text": "Problem 3\nFrom the penguins data set from palmerpenguins package, create a new variable indicating if the penguin’s flipper length (flipper_length_mm) is greater than the average flipper length. Afterwards, group by the new variable and find the mean body_mass_g."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-4",
+    "href": "hw/hw3S25.html#problem-4",
+    "title": "Homework 3",
+    "section": "Problem 4",
+    "text": "Problem 4\nFrom the penguins data set from palmerpenguins package, find the mean and standard deviation of flipper_length_mm by species."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-5",
+    "href": "hw/hw3S25.html#problem-5",
+    "title": "Homework 3",
+    "section": "Problem 5",
+    "text": "Problem 5\nUsing the vector random_dates generated from the code below:\n\n# Set the start and end dates\nstart_date &lt;- as.POSIXct(\"2022-01-01 00:00:00\")\nend_date &lt;- as.POSIXct(\"2022-12-31 23:59:59\")\n\n# Generate a vector of random dates and times between the start and end dates\nrandom_dates &lt;- as.POSIXct(runif(10, start_date, end_date), origin = \"1970-01-01\")\n\n# Print the vector of random dates and times\nrandom_dates\n\nUse sapply() to determine what day of the week (in words) does the date represent. Hint: Look at the wday function from lubridate."
+  },
+  {
+    "objectID": "hw/hw1.html",
+    "href": "hw/hw1.html",
+    "title": "Homework 1",
+    "section": "",
+    "text": "Due 2/6/25 @ 11:59 PM\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas.\nFor all problems, you must use at least one for or while loop."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-1",
+    "href": "hw/hw1.html#problem-1",
+    "title": "Homework 1",
+    "section": "Problem 1",
+    "text": "Problem 1\nUsing the following code:\n\nx &lt;- matrix(rnorm(1500), nrow = 10)\n\nWrite the code to produce the output if you use the rowMeans() on the R object x."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-2",
+    "href": "hw/hw1.html#problem-2",
+    "title": "Homework 1",
+    "section": "Problem 2",
+    "text": "Problem 2\nUsing the following code:\n\ny &lt;- matrix(sample(1:400, 100, replace = T), nrow = 10)\n\nFind the median value for each column of the matrix y."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-3",
+    "href": "hw/hw1.html#problem-3",
+    "title": "Homework 1",
+    "section": "Problem 3",
+    "text": "Problem 3\nWrite the code that will generate the first 1000 numbers of the Fibonacci Sequence."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-4",
+    "href": "hw/hw1.html#problem-4",
+    "title": "Homework 1",
+    "section": "Problem 4",
+    "text": "Problem 4\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-5",
+    "href": "hw/hw1.html#problem-5",
+    "title": "Homework 1",
+    "section": "Problem 5",
+    "text": "Problem 5\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+  },
+  {
+    "objectID": "files/r-scripts/test.html",
+    "href": "files/r-scripts/test.html",
+    "title": "test",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "files/r-scripts/test.html#r-markdown",
+    "href": "files/r-scripts/test.html#r-markdown",
+    "title": "test",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "files/r-scripts/test.html#including-plots",
+    "href": "files/r-scripts/test.html#including-plots",
+    "title": "test",
+    "section": "Including Plots",
+    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot."
+  },
+  {
+    "objectID": "hw.html",
+    "href": "hw.html",
+    "title": "Homework",
+    "section": "",
+    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\n\nFeb 18, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/4aS25.html#re-install",
@@ -392,188 +805,6 @@
     "text": "Example\nThe vectors below provide the heights of different trees in the sample. Compute the median for each type of tree.\n\nheights &lt;- c(70, 72, 68, 65, 80, 75, 60, 68, 90, 72)\nspecies &lt;- c(\"maple\", \"oak\", \"pine\", \"maple\", \"oak\", \"pine\", \"maple\", \"oak\", \"pine\", \"maple\")"
   },
   {
-    "objectID": "hw.html",
-    "href": "hw.html",
-    "title": "Homework",
-    "section": "",
-    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "files/r-scripts/template.html#problem-2",
-    "href": "files/r-scripts/template.html#problem-2",
-    "title": "Title",
-    "section": "Problem 2",
-    "text": "Problem 2"
-  },
-  {
-    "objectID": "files/r-scripts/template.html#problem-3",
-    "href": "files/r-scripts/template.html#problem-3",
-    "title": "Title",
-    "section": "Problem 3",
-    "text": "Problem 3"
-  },
-  {
-    "objectID": "hw/hw2.html",
-    "href": "hw/hw2.html",
-    "title": "Homework 2",
-    "section": "",
-    "text": "Due 2/18/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
-  },
-  {
-    "objectID": "hw/hw2.html#problem-1",
-    "href": "hw/hw2.html#problem-1",
-    "title": "Homework 2",
-    "section": "Problem 1",
-    "text": "Problem 1\nWrite a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector."
-  },
-  {
-    "objectID": "hw/hw2.html#problem-2",
-    "href": "hw/hw2.html#problem-2",
-    "title": "Homework 2",
-    "section": "Problem 2",
-    "text": "Problem 2\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
-  },
-  {
-    "objectID": "hw/hw2.html#problem-3",
-    "href": "hw/hw2.html#problem-3",
-    "title": "Homework 2",
-    "section": "Problem 3",
-    "text": "Problem 3\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
-  },
-  {
-    "objectID": "hw/hw2.html#problem-4",
-    "href": "hw/hw2.html#problem-4",
-    "title": "Homework 2",
-    "section": "Problem 4",
-    "text": "Problem 4\nCreate a function that will randomly generate n numbers that are greater than x from a \\(Pois(\\lambda)\\)."
-  },
-  {
-    "objectID": "hw/hw1.html",
-    "href": "hw/hw1.html",
-    "title": "Homework 1",
-    "section": "",
-    "text": "Due 2/6/25 @ 11:59 PM\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas.\nFor all problems, you must use at least one for or while loop."
-  },
-  {
-    "objectID": "hw/hw1.html#problem-1",
-    "href": "hw/hw1.html#problem-1",
-    "title": "Homework 1",
-    "section": "Problem 1",
-    "text": "Problem 1\nUsing the following code:\n\nx &lt;- matrix(rnorm(1500), nrow = 10)\n\nWrite the code to produce the output if you use the rowMeans() on the R object x."
-  },
-  {
-    "objectID": "hw/hw1.html#problem-2",
-    "href": "hw/hw1.html#problem-2",
-    "title": "Homework 1",
-    "section": "Problem 2",
-    "text": "Problem 2\nUsing the following code:\n\ny &lt;- matrix(sample(1:400, 100, replace = T), nrow = 10)\n\nFind the median value for each column of the matrix y."
-  },
-  {
-    "objectID": "hw/hw1.html#problem-3",
-    "href": "hw/hw1.html#problem-3",
-    "title": "Homework 1",
-    "section": "Problem 3",
-    "text": "Problem 3\nWrite the code that will generate the first 1000 numbers of the Fibonacci Sequence."
-  },
-  {
-    "objectID": "hw/hw1.html#problem-4",
-    "href": "hw/hw1.html#problem-4",
-    "title": "Homework 1",
-    "section": "Problem 4",
-    "text": "Problem 4\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
-  },
-  {
-    "objectID": "hw/hw1.html#problem-5",
-    "href": "hw/hw1.html#problem-5",
-    "title": "Homework 1",
-    "section": "Problem 5",
-    "text": "Problem 5\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
-  },
-  {
-    "objectID": "files/Hw.html",
-    "href": "files/Hw.html",
-    "title": "HW 1",
-    "section": "",
-    "text": "This is easy"
-  },
-  {
-    "objectID": "files/Hw.html#problem-1",
-    "href": "files/Hw.html#problem-1",
-    "title": "HW 1",
-    "section": "",
-    "text": "This is easy"
-  },
-  {
-    "objectID": "files/Hw.html#problem-2",
-    "href": "files/Hw.html#problem-2",
-    "title": "HW 1",
-    "section": "Problem 2",
-    "text": "Problem 2\nThis is also easy"
-  },
-  {
-    "objectID": "files/Hw.html#problem-3",
-    "href": "files/Hw.html#problem-3",
-    "title": "HW 1",
-    "section": "Problem 3 —",
-    "text": "Problem 3 —"
-  },
-  {
-    "objectID": "lectures/2bS25.html#learning-objectives",
-    "href": "lectures/2bS25.html#learning-objectives",
-    "title": "Control Flow 2",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nNested for Loops"
-  },
-  {
-    "objectID": "lectures/2bS25.html#nested-for-loops-1",
-    "href": "lectures/2bS25.html#nested-for-loops-1",
-    "title": "Control Flow 2",
-    "section": "Nested for Loops",
-    "text": "Nested for Loops\nNested for loops are for loops within another for loop. You can stack these loops as much as needed. Just make sure the index is different for each loop. The general format for a loop goes as follow:\n\nfor (i in vector_1){\n  for (ii in vector_2){\n    perform task\n  }\n}"
-  },
-  {
-    "objectID": "lectures/2bS25.html#example",
-    "href": "lectures/2bS25.html#example",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nWithout using the sd() function, compute the standard deviation for each column of the matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 10)\n\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i=1}(x_i-\\bar x)^2\n\\]"
-  },
-  {
-    "objectID": "lectures/2bS25.html#example-1",
-    "href": "lectures/2bS25.html#example-1",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nThe median() function obtain the median value of a vector. Write code to obtain the median value for any vector.\n\nx &lt;- rnorm(500)\ny &lt;- rnorm(501)\nmedian(x)\nmedian(y)\n\nAnswer:\n\n\nCode\nwk &lt;- x \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)\n\nwk &lt;- y \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)"
-  },
-  {
-    "objectID": "lectures/2bS25.html#example-2",
-    "href": "lectures/2bS25.html#example-2",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nUsing the code below:\n\nx &lt;- rnorm(5000)\n\nCreate a new vector containing all the positive values of x. The new vector should be less than 5000.\nAnswer:\n\n\nCode\nnn &lt;- length(x)\npos &lt;- c()\nfor (i in 1:nn){\n  if (x[i] &gt; 0) {\n    pos &lt;- c(pos, x[i])\n  }\n}\npos"
-  },
-  {
-    "objectID": "lectures/2bS25.html#example-3",
-    "href": "lectures/2bS25.html#example-3",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nCreate a vector reporting the data type of each variable in ISLR2::BrainCancer\n\nlibrary(ISLR2)\nBrainCancer\n\nAnswer:\n\n\nCode\nnn &lt;- ncol(BrainCancer)\ny &lt;- c()\nfor (i in 1:nn){\n  y &lt;- c(y, class(BrainCancer[,i]))\n}"
-  },
-  {
-    "objectID": "lectures/2bS25.html#example-4",
-    "href": "lectures/2bS25.html#example-4",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\n\\[\nf(x,y) = x^2 + y^2 + \\ln(x+y)\n\\]\nFind all the values of \\(f(x,y)\\) for every combination of \\(x \\in \\{1, 8, 13, 25, 42, 67, 95\\}\\) and \\(y \\in \\{6, 12, 18, 52, 61, 79, 83\\}\\)\nStore values in a \\(7\\times 7\\) matrix.\nAnswer:\n\n\nCode\nx &lt;- c(1, 8, 13, 25, 42, 67, 95)\ny &lt;- c(6, 12, 18, 52, 61, 79, 83)\nres &lt;- matrix(nrow = 7, ncol = 7)\ncolnames(res) &lt;- as.character(x)\nrownames(res) &lt;- as.character(y)\n\nfor (i in 1:7){\n  for (ii in 1:7){\n    res[ii,i] &lt;- x[i]^2 + y[ii]^2 + log(x[i] + y[ii])\n  }\n}\nprint(res)"
-  },
-  {
-    "objectID": "lectures/2bS25.html#example-5",
-    "href": "lectures/2bS25.html#example-5",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nFor each column in mtcars, take the mean for the even columns, and median for the odd columns. Store the values in a list containing 2 vectors.\nAnswer:\n\n\nCode\nx &lt;- c()\ny &lt;- c()\nnn &lt;- ncol(mtcars)\nfor (i in 1:nn){\n  if (i %% 2 == 0){\n    x &lt;- c(x, mean(mtcars[,i]))\n  } else {\n    y &lt;- c(y, median(mtcars[,i]))\n  }\n}\n\nxy &lt;- list(x,y)"
-  },
-  {
     "objectID": "lectures/3bS25.html#learning-objectives",
     "href": "lectures/3bS25.html#learning-objectives",
     "title": "Functions",
@@ -662,7 +893,7 @@
     "href": "lectures/3bS25.html#rcpp",
     "title": "Functions",
     "section": "Rcpp",
-    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x) 942.99ns   1.11µs   764874.    2.93KB     76.5\n#&gt; 2 var_r(x)     1.84µs   2.05µs   408264.   23.73KB     81.7\n#&gt; 3 var(x)       3.24µs   3.57µs   276093.   13.71KB    110.\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x1213012d0&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
+    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x)    984ns   1.27µs   629785.    2.93KB     63.0\n#&gt; 2 var_r(x)     1.76µs   2.01µs   434552.   23.73KB     86.9\n#&gt; 3 var(x)       2.95µs    3.2µs   304923.   13.71KB    122.\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x10cc87d48&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
   },
   {
     "objectID": "lectures/3bS25.html#motivating-example",
@@ -767,7 +998,7 @@
     "href": "lectures/4bS25.html#anonymous-functions-1",
     "title": "Intro to Data Manipulation",
     "section": "Anonymous Functions",
-    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1] 2.135785 3.131467 2.738879 3.555381 5.362869 6.077445 6.832874 7.705707\n#&gt;  [9] 8.205853 9.631355\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  2.344290  2.308422  1.599165  1.378670  5.877549  2.623114  3.838340\n#&gt;  [8] -3.054062 30.205497  4.481965"
+    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1]  1.462818  1.352861  2.029096  2.528808  4.695526  4.337756  9.307185\n#&gt;  [8]  7.048132 10.127074 11.301896\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]   1.6791616   1.4973521   0.1335393  -4.1201567   2.8549146  -9.3076824\n#&gt;  [7] -10.5535886   8.1302700   4.1471258  15.5093207"
   },
   {
     "objectID": "lectures/4bS25.html#example",
@@ -802,7 +1033,7 @@
     "href": "lectures/4bS25.html#section-1",
     "title": "Intro to Data Manipulation",
     "section": "%>%",
-    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 2.596282"
+    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 1.159417"
   },
   {
     "objectID": "lectures/4bS25.html#section-2",
