@@ -463,9 +463,9 @@ z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
 <pre><code>#&gt; # A tibble: 3 × 6
 #&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x) 614.99ns 778.99ns  1031951.      448B    103. 
-#&gt; 2 var_r(x)     1.68µs   2.01µs   434966.    23.7KB     87.0
-#&gt; 3 var(x)       2.21µs   2.42µs   401091.    15.3KB    120.</code></pre>
+#&gt; 1 var_cpp(x) 614.99ns 738.01ns  1078991.      448B    108. 
+#&gt; 2 var_r(x)     1.68µs   1.97µs   432672.    23.7KB     86.6
+#&gt; 3 var(x)       2.25µs   2.62µs   362640.    15.3KB    109.</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -491,7 +491,7 @@ z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
 #&gt;         stopifnot(is.atomic(y))
 #&gt;     .Call(C_cov, x, y, na.method, FALSE)
 #&gt; }
-#&gt; &lt;bytecode: 0x117ce5458&gt;
+#&gt; &lt;bytecode: 0x106995458&gt;
 #&gt; &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 </div>
