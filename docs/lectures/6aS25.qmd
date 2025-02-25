@@ -273,7 +273,7 @@ tab
 
 ```{r}
 #| echo: false
-#library(neuralnet)
+library(neuralnet)
 data(iris)
 iris$setosa <- iris$Species == "setosa"
 iris$virginica <- iris$Species == "virginica"
@@ -281,7 +281,7 @@ iris$versicolor <- iris$Species == "versicolor"
 iris.train.idx <- sample(x = nrow(iris), size = nrow(iris) * 0.5)
 iris.train <- iris[iris.train.idx, ]
 iris.valid <- iris[-iris.train.idx, ]
-#library(neuralnet)
+library(neuralnet)
 iris.net <- neuralnet(
   setosa + versicolor + virginica ~
     Sepal.Length + Sepal.Width + Petal.Length + Petal.Width,
