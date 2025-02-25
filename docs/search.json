@@ -18,7 +18,7 @@
     "href": "lectures/4bS25.html#anonymous-functions-1",
     "title": "Intro to Data Manipulation",
     "section": "Anonymous Functions",
-    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1] 0.02229461 2.91027789 3.04164434 4.09740517 3.56215653 6.76285885\n#&gt;  [7] 9.56776778 7.43671121 9.42385303 9.11887449\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  0.8160411  1.5286170  5.9576619  4.4102506  3.9966285 -3.3609650\n#&gt;  [7] -2.5582317 -5.4193761  5.2854590  9.3588489"
+    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1]  1.411757  1.005213  3.412857  3.651851  5.279499  7.158348  7.552118\n#&gt;  [8]  7.880601  9.935168 10.803044\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]   0.8813674   4.7906114  -0.3517968   2.5924949   8.3630106 -17.7578475\n#&gt;  [7]   4.1787597  -4.3274743  -4.5927669  -0.3822310"
   },
   {
     "objectID": "lectures/4bS25.html#example",
@@ -53,7 +53,7 @@
     "href": "lectures/4bS25.html#section-1",
     "title": "Intro to Data Manipulation",
     "section": "%>%",
-    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 3.507729"
+    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 3.283179"
   },
   {
     "objectID": "lectures/4bS25.html#section-2",
@@ -956,7 +956,7 @@
     "href": "lectures/3bS25.html#rcpp",
     "title": "Functions",
     "section": "Rcpp",
-    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x) 738.01ns 902.01ns   914942.      448B     91.5\n#&gt; 2 var_r(x)     1.72µs   2.01µs   429606.    23.7KB     85.9\n#&gt; 3 var(x)       2.25µs   2.42µs   398937.    15.3KB    120.\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else if (!is.null(x)) \n#&gt;         stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else if (!is.null(y)) \n#&gt;         stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x1178b6ed8&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
+    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x) 615.02ns 738.04ns  1138689.      448B    114. \n#&gt; 2 var_r(x)     1.72µs   2.01µs   425053.    23.7KB     85.0\n#&gt; 3 var(x)       2.21µs   2.42µs   403654.    15.3KB    121.\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else if (!is.null(x)) \n#&gt;         stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else if (!is.null(y)) \n#&gt;         stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x1236f1ed8&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
   },
   {
     "objectID": "lectures/3bS25.html#motivating-example",
@@ -1236,14 +1236,14 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.08966089"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.1517564"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 0.9319654"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.082895"
   },
   {
     "objectID": "Project.html",
