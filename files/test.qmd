@@ -1,0 +1,8 @@
+---
+title: "Semester Project"
+editor: visual
+---
+
+The best part of the semester: the awesome data-based group project!
+
+# Project Instructions
