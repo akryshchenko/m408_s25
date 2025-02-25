@@ -273,7 +273,7 @@ tab
 
 ```{r}
 #| echo: false
-library(neuralnet)
+#library(neuralnet)
 data(iris)
 iris$setosa <- iris$Species == "setosa"
 iris$virginica <- iris$Species == "virginica"
