@@ -6,17 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
-<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Functions</title>
+  <title>m408_s25 – Intro to Data Manipulation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -106,7 +99,6 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/verticator/verticator.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -202,7 +194,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Functions</h1>
+  <h1 class="title">Intro to Data Manipulation</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -211,404 +203,333 @@
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li><p>Built-in Functions</p></li>
-<li><p>User-built functions</p></li>
-<li><p>Extensions</p></li>
+<li><p>Anonymous Functions</p></li>
+<li><p>Pipes</p></li>
+<li><p>Scripting</p></li>
+<li><p>Data Manipulation</p></li>
 </ul>
-<p>There are several available functions in R to conduct specific statistical methods or tasks</p>
-</section>
-<section id="help-documentation" class="slide level2">
-<h2>Help Documentation</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Section</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Description</td>
-<td style="text-align: left;">Provides a brief introduction of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Usage</td>
-<td style="text-align: left;">Provides potential usage of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arguments</td>
-<td style="text-align: left;">Arguments that the function can take</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Details</td>
-<td style="text-align: left;">An in depth description of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Value</td>
-<td style="text-align: left;">Provides information of the output produced by the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Notes</td>
-<td style="text-align: left;">Any need to know information about the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Authors</td>
-<td style="text-align: left;">Developers of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">References</td>
-<td style="text-align: left;">References to the model and function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">See Also</td>
-<td style="text-align: left;">Provide information of supporting functions</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Examples</td>
-<td style="text-align: left;">Examples of the function</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="generic-functions" class="slide level2">
-<h2>Generic Functions</h2>
-<p>Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as <code>summary()</code> and <code>plot()</code>.</p>
-<p>For example, the <code>summary()</code> is a generic for several types of functions: <code>summary.aov()</code>, <code>summary.lm()</code>, <code>summary.glm()</code>, and many more.</p>
-</section>
-<section id="commonly-used-function" class="slide level2">
-<h2>Commonly-used Function</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functions</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>aov()</code></td>
-<td style="text-align: left;">Fits an ANOVA Model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>lm()</code></td>
-<td style="text-align: left;">Fits a linear model</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>glm()</code></td>
-<td style="text-align: left;">Fits a general linear model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>t.test()</code></td>
-<td style="text-align: left;">Conducts a t-test</td>
-</tr>
-</tbody>
-</table>
 </section>
 <section>
-<section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
-<h1>User-built functions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
+<section id="anonymous-functions" class="title-slide slide level1 center">
+<h1>Anonymous Functions</h1>
+
 </section>
-<section id="user-built-functions-1" class="slide level2">
-<h2>User-built functions</h2>
-<ul>
-<li><p>Functions created by the user for analysis</p></li>
-<li><p>Needs to be ran once to the R environment</p></li>
-<li><p>Will be lost when R session is closed</p></li>
-</ul>
-</section>
-<section id="anatomy" class="slide level2">
-<h2>Anatomy</h2>
+<section id="anonymous-functions-1" class="slide level2">
+<h2>Anonymous Functions</h2>
+<p>An anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an <code>*apply()</code> function<br>
+</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|4-5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>name_of_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data_1, <span class="at">data_2 =</span> <span class="cn">NULL</span>, </span>
-<span id="cb1-2"><a></a>                             argument_1, <span class="at">argument_2 =</span> <span class="cn">TRUE</span>, <span class="at">argument_3 =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a></a>                             ...){</span>
-<span id="cb1-4"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-5"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-6"><a></a>  output_object <span class="ot">&lt;-</span> Tasks</span>
-<span id="cb1-7"><a></a>  <span class="fu">return</span>(output_object)</span>
-<span id="cb1-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb1-2"><a></a><span class="fu">sapply</span>(x, <span class="cf">function</span>(x) <span class="fu">rnorm</span>(<span class="dv">1</span>,x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;  [1] 0.02229461 2.91027789 3.04164434 4.09740517 3.56215653 6.76285885
+#&gt;  [7] 9.56776778 7.43671121 9.42385303 9.11887449</code></pre>
 </div>
-<div class="fragment">
-<ul>
-<li><p><code>function</code>: used to construct the function</p></li>
-<li><p><code>data1</code>: first data argument that needs to supplied</p></li>
-<li><p><code>data2</code>: second data argument that does not need to be supplied</p></li>
-<li><p><code>argument1</code>: first argument must be supplied to alter function</p></li>
-<li><p><code>argument2</code>: second argument to alter function, set to <code>TRUE</code></p></li>
-<li><p><code>argument3</code>: third argument that does not need to be supplied</p></li>
-<li><p><code>…</code>: additional arguments supplied to other functions</p></li>
-</ul>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb3-2"><a></a><span class="fu">sapply</span>(x, \(x) <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="dv">1</span>,x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;  [1]  0.8160411  1.5286170  5.9576619  4.4102506  3.9966285 -3.3609650
+#&gt;  [7] -2.5582317 -5.4193761  5.2854590  9.3588489</code></pre>
+</div>
 </div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-y = \ln(x^2)
-\]</span></p>
+<p>Use an anonymous function to square all the values in the following vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Use an anonymous function to calculate the square of each element in a vector</span></span>
+<span id="cb5-2"><a></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
+<p>Use an anonymous function to convert the vector from Fahrenheit to Celsius:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Create a vector of temperatures in Fahrenheit</span></span>
+<span id="cb6-2"><a></a>temperatures_f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">68</span>, <span class="dv">104</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><span class="math display">\[
-f(x) = \left\{\begin{array}{cc}
-x^3 &amp; x&lt;0\\
-x^2 + 5 &amp; \mathrm{otherwise}
-\end{array} \right.
+C = \frac{5(F-32)}{9}
 \]</span></p>
+</section></section>
+<section>
+<section id="pipes" class="title-slide slide level1 center">
+<h1>Pipes</h1>
+
+</section>
+<section id="pipes-1" class="slide level2">
+<h2>Pipes</h2>
+<p>Pipes are used to pass the output from one function and use it as input for another function. The output is piped into the first argument of the next function. There are two main pipes: R’s base pipe and Magrittr’s pipes. You must download and install the <code>magrittr</code> package; and you will need to load it everytime:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Additionally, pipes can be used to chain functions together.</p>
+</section>
+<section id="section" class="slide level2">
+<h2><code>|&gt;</code></h2>
+<p>Before R 4.1, R did not have a pipe in its main program. The base pipe, <code>|&gt;</code>, will pipe the output of the first operation and use it as the input of the first argument of the next function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span>
+<span id="cb8-2"><a></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 20.5</code></pre>
+</div>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2><code>%&gt;%</code></h2>
+<p>The magrittr pipe, <code>%&gt;%</code>, operates the same way as <code>|&gt;</code>. Below are a couple of examples</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb10-2"><a></a>x <span class="sc">%&gt;%</span>  <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 5.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>x <span class="sc">%&gt;%</span> sd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3.02765</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>x <span class="sc">%&gt;%</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 3.507729</code></pre>
+</div>
+</div>
+</section>
+<section id="section-2" class="slide level2">
+<h2><code>%$%</code></h2>
+<p>The exposition pipe, <code>%$%</code>, will expose the named elements, from a list or data frame, to the next function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>mtcars <span class="sc">%$%</span> <span class="fu">plot</span>(mpg, hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="4bS25_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="t" class="slide level2">
+<h2><code>%T&gt;%</code></h2>
+<p>The Tee pipe, <code>%T&gt;%</code>, forward the output in the</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>sin_40 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span> <span class="sc">%&gt;%</span> mean <span class="sc">%T&gt;%</span> print <span class="sc">%&gt;%</span> sin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 20.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">print</span>(sin_40)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] 0.9968298</code></pre>
+</div>
+</div>
+</section>
+<section id="t-1" class="slide level2">
+<h2><code>%T&gt;%</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a></a>  <span class="fu">matrix</span>(<span class="at">ncol=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a></a>  <span class="fu">sin</span>() <span class="sc">%T&gt;%</span> </span>
+<span id="cb21-4"><a></a>  <span class="fu">plot</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a></a>  <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<p>Using the vector below, find the standard deviation using a pipe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb22-2"><a></a><span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="examples-1" class="slide level2">
+<h2>Examples</h2>
+<p>Chain pipe the previous results into the <span class="math inline">\(sin(x)\)</span>.</p>
+</section>
+<section id="examples-2" class="slide level2">
+<h2>Examples</h2>
+<p>Chain pipe the previous results into <span class="math inline">\(e^x\)</span>.</p>
+</section>
+<section id="examples-3" class="slide level2">
+<h2>Examples</h2>
+<p>Chain pipe the previous results into <span class="math inline">\(x^2+5x+4\)</span></p>
+</section></section>
+<section>
+<section id="data-projects" class="title-slide slide level1 center">
+<h1>Data Projects</h1>
+
+</section>
+<section id="scripting" class="slide level2">
+<h2>Scripting</h2>
+<p>The structure a programming is important to ensure that all methods are executed properly.</p>
+</section>
+<section id="beginning-of-script" class="slide level2">
+<h2>Beginning of Script</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a></a>## Todays data </span>
+<span id="cb23-2"><a></a>analysis_data &lt;- format(Sys.time(),"%Y-%m-%d-%H-%M")</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a>## R Packages</span>
+<span id="cb23-5"><a></a>library(tidyverse)</span>
+<span id="cb23-6"><a></a>library(magrittr)</span>
+<span id="cb23-7"><a></a></span>
+<span id="cb23-8"><a></a>## Functions</span>
+<span id="cb23-9"><a></a>source("fxs.R")</span>
+<span id="cb23-10"><a></a>Rcpp::sourceCpp("fxs.cpp")</span>
+<span id="cb23-11"><a></a></span>
+<span id="cb23-12"><a></a>## Data</span>
+<span id="cb23-13"><a></a>df1 &lt;- read_csv("file.csv")</span>
+<span id="cb23-14"><a></a>df2 &lt;- load("file.RData") %&gt;% get</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="middle-of-script" class="slide level2">
+<h2>Middle of Script</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a></a>## Pre Analysis</span>
+<span id="cb24-2"><a></a>df1_prep &lt;- Prep_data(df1)</span>
+<span id="cb24-3"><a></a>df2_prep &lt;- Prep_data(df2)</span>
+<span id="cb24-4"><a></a></span>
+<span id="cb24-5"><a></a>## Analysis</span>
+<span id="cb24-6"><a></a>df1_analysis &lt;- analyze(df1_prep)</span>
+<span id="cb24-7"><a></a>df2_analysis &lt;- analyze(df2_prep)</span>
+<span id="cb24-8"><a></a></span>
+<span id="cb24-9"><a></a>## Post Analysis</span>
+<span id="cb24-10"><a></a>df1_post &lt;- Prep_post(df1_anlysis)</span>
+<span id="cb24-11"><a></a>df2_post &lt;- Prep_post(df2_anlysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="end-of-script" class="slide level2">
+<h2>End of Script</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a></a>## Save Results</span>
+<span id="cb25-2"><a></a>res &lt;- list(df1 = list(pre = df1_prep,</span>
+<span id="cb25-3"><a></a>                       analysis = df1_analysis,</span>
+<span id="cb25-4"><a></a>                       post = df1_post),</span>
+<span id="cb25-5"><a></a>            df2 = list(pre = df2_prep,</span>
+<span id="cb25-6"><a></a>                       analysis = df2_analysis,</span>
+<span id="cb25-7"><a></a>                       post = df2_post))</span>
+<span id="cb25-8"><a></a>file_name &lt;- paste0("results_", analysis_data, ".RData")</span>
+<span id="cb25-9"><a></a>save(res, file = file_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="keyboard-shortcuts" class="slide level2">
+<h2>Keyboard Shortcuts</h2>
+<p>Below is a list of recommended keyboard shortcuts:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Shortcut</th>
+<th>Windows/Linux</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%&gt;%</code></td>
+<td>Ctrl+Shift+M</td>
+<td>Cmd+Shift+M</td>
+</tr>
+<tr class="even">
+<td>Run Current Line</td>
+<td>Ctrl+Enter</td>
+<td>Cmd+Return</td>
+</tr>
+<tr class="odd">
+<td>Run Current Chunk</td>
+<td>Ctrl+Shift+Enter</td>
+<td>Cmd+Shift+Enter</td>
+</tr>
+<tr class="even">
+<td>Knit Document</td>
+<td>Ctrl+Shift+K</td>
+<td>Cmd+Shift+K</td>
+</tr>
+<tr class="odd">
+<td>Add Cursor Below</td>
+<td>Ctrl+Alt+Down</td>
+<td>Cmd+Alt+Down</td>
+</tr>
+<tr class="even">
+<td>Comment Line</td>
+<td>Ctrl+Shift+C</td>
+<td>Cmd+Shift+C</td>
+</tr>
+</tbody>
+</table>
+<p>I recommend modify these keyboard shortcuts in RStudio</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Shortcut</th>
+<th>Windows/Linux</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%in%</code></td>
+<td>Ctrl+Shift+I</td>
+<td>Cmd+Shift+I</td>
+</tr>
+<tr class="even">
+<td><code>%$%</code></td>
+<td>Ctrl+Shift+D</td>
+<td>Cmd+Shift+D</td>
+</tr>
+<tr class="odd">
+<td><code>%T&gt;%</code></td>
+<td>Ctrl+Shift+T</td>
+<td>Cmd+Shift+T</td>
+</tr>
+</tbody>
+</table>
+<p>Note you will need to install the <code>extraInserts</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'konradzdeb/extraInserts'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="data-manipulation" class="title-slide slide level1 center">
+<h1>Data Manipulation</h1>
+
+</section>
+<section id="data-manipulation-1" class="slide level2">
+<h2>Data Manipulation</h2>
+</section>
+<section id="tidyverse" class="slide level2">
+<h2>Tidyverse</h2>
+<p>Tidyverse is a collection of R packages used for data manipulation. The <code>dplyr</code> package is known as the grammar of data manipulation with a set</p>
+</section>
+<section id="verbs" class="slide level2">
+<h2>Verbs</h2>
+<ul>
+<li><code>mutate()</code> adds new variables</li>
+<li><code>select()</code> selects variables</li>
+<li><code>filter()</code> filters data</li>
+<li><code>if_else()</code> conditional function that returns 2 values</li>
+<li><code>group_by()</code> a dataset is grouped by factors</li>
+<li><code>summarise()</code> provides summaries of data</li>
+</ul>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x,y) = \left\{\begin{array}{cc}
-x^3 e^y &amp;  x&lt;0\ \\
-x^2 + 5 + \ln(y) &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
-</section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<p>Create the function that allows your to compute the z-score of a specific value <code>x</code> using the sampling distribution from a set of data (<code>y</code> vector):</p>
-<p><span class="math display">\[
-z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
-\]</span></p>
-</section></section>
-<section>
-<section id="extensions" class="title-slide slide level1 agenda-slide center">
-<h1>Extensions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p>R Packages are used to utilize functions created from the community.</p>
-<h3 id="installation">Installation</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<h3 id="loading">Loading</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="reticulate" class="slide level2">
-<h2>Reticulate</h2>
-<p>Reticulate is an R package that allows you to utilize python within R.</p>
-</section>
-<section id="rcpp" class="slide level2">
-<h2>Rcpp</h2>
-<p>Rcpp is an R package that allows you to call C++ programs in R.</p>
-<p>We will compare variance functions written in cpp, user-built R, and built-in R.</p>
-<p>Rcpp code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-4"><a></a><span class="dt">double</span> var_cpp<span class="op">(</span>NumericVector x<span class="op">){</span></span>
-<span id="cb4-5"><a></a><span class="dt">int</span> n <span class="op">=</span> x<span class="op">.</span>length<span class="op">();</span></span>
-<span id="cb4-6"><a></a>NumericVector pre<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb4-7"><a></a><span class="dt">double</span> mean_x <span class="op">=</span> mean<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb4-8"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> <span class="op">++</span>i<span class="op">){</span></span>
-<span id="cb4-9"><a></a>   pre<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>x<span class="op">[</span>i<span class="op">]-</span>mean_x<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a><span class="dt">int</span> divisor <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-12"><a></a><span class="dt">double</span> post <span class="op">=</span> sum<span class="op">(</span>pre<span class="op">)</span> <span class="op">/</span> divisor<span class="op">;</span></span>
-<span id="cb4-13"><a></a><span class="cf">return</span> post<span class="op">;</span></span>
-<span id="cb4-14"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>R code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>var_r <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a></a>  <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Benchmark Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb6-2"><a></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-3"><a></a><span class="fu">var_cpp</span>(x),</span>
-<span id="cb6-4"><a></a><span class="fu">var_r</span>(x),</span>
-<span id="cb6-5"><a></a><span class="fu">var</span>(x)</span>
-<span id="cb6-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|2|3|4|5|6-9|10|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb27-2"><a></a>sum_stats <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a></a>  drop_na <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-5"><a></a>  <span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-6"><a></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_length_mm),</span>
+<span id="cb27-7"><a></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_length_mm),</span>
+<span id="cb27-8"><a></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_length_mm),</span>
+<span id="cb27-9"><a></a>            <span class="at">n =</span> <span class="fu">length</span>(bill_length_mm)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-10"><a></a>  print</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
-#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x) 738.01ns 902.01ns   914942.      448B     91.5
-#&gt; 2 var_r(x)     1.72µs   2.01µs   429606.    23.7KB     85.9
-#&gt; 3 var(x)       2.25µs   2.42µs   398937.    15.3KB    120.</code></pre>
+<pre><code>#&gt; # A tibble: 3 × 5
+#&gt;   island     mean    sd median     n
+#&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
+#&gt; 1 Biscoe     45.1  4.80   46.1    43
+#&gt; 2 Dream      44.7  5.64   45.4    45
+#&gt; 3 Torgersen  39.0  2.92   39.1    15</code></pre>
 </div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; function (x, y = NULL, na.rm = FALSE, use) 
-#&gt; {
-#&gt;     if (missing(use)) 
-#&gt;         use &lt;- if (na.rm) 
-#&gt;             "na.or.complete"
-#&gt;         else "everything"
-#&gt;     na.method &lt;- pmatch(use, c("all.obs", "complete.obs", "pairwise.complete.obs", 
-#&gt;         "everything", "na.or.complete"))
-#&gt;     if (is.na(na.method)) 
-#&gt;         stop("invalid 'use' argument")
-#&gt;     if (is.data.frame(x)) 
-#&gt;         x &lt;- as.matrix(x)
-#&gt;     else if (!is.null(x)) 
-#&gt;         stopifnot(is.atomic(x))
-#&gt;     if (is.data.frame(y)) 
-#&gt;         y &lt;- as.matrix(y)
-#&gt;     else if (!is.null(y)) 
-#&gt;         stopifnot(is.atomic(y))
-#&gt;     .Call(C_cov, x, y, na.method, FALSE)
-#&gt; }
-#&gt; &lt;bytecode: 0x1178b6ed8&gt;
-#&gt; &lt;environment: namespace:stats&gt;</code></pre>
-</div>
-</div>
-<p>This is an extremely advanced topic. Only do this if you need real speed and efficiency.</p>
-</section></section>
-<section>
-<section id="bisection-method" class="title-slide slide level1 agenda-slide center">
-<h1>Bisection Method</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
-<p><span class="math display">\[
-f(x) = 2 x^3 - 20x -43
-\]</span></p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb10-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb10-3"><a></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb10-4"><a></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="finding-the-root" class="slide level2">
-<h2>Finding the Root</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb11-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">uniroot</span>(f, <span class="at">lower =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; $root
-#&gt; [1] 3.932792
-#&gt; 
-#&gt; $f.root
-#&gt; [1] -2.30166e-05
-#&gt; 
-#&gt; $iter
-#&gt; [1] 7
-#&gt; 
-#&gt; $init.it
-#&gt; [1] NA
-#&gt; 
-#&gt; $estim.prec
-#&gt; [1] 6.103516e-05</code></pre>
-</div>
-</div>
-</section>
-<section id="bisection-method-1" class="slide level2 scrollable">
-<h2>Bisection Method</h2>
-<ol type="1">
-<li>Begin with an interval <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and evaluate <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>.</li>
-<li>If <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> are opposite signs, calculate <span class="math inline">\(c = \frac{a+b}{2}\)</span> and <span class="math inline">\(f(c)\)</span>.</li>
-<li>If <span class="math inline">\(|f(c)|&lt;\varepsilon\)</span>, for a small <span class="math inline">\(\varepsilon\)</span>, then stop the algorithm and <span class="math inline">\(c\)</span> is the root.</li>
-<li>Replace <span class="math inline">\((a,f(a))\)</span> or <span class="math inline">\((b,f(b))\)</span> with <span class="math inline">\((c, f(c))\)</span> so that the signs of <span class="math inline">\(f( \cdot )\)</span> is 0.</li>
-</ol>
-</section>
-<section id="bisection-code" class="slide level2">
-<h2>Bisection Code</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span>}</span>
-<span id="cb13-2"><a></a>aa <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb13-3"><a></a>bb <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-4"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb13-5"><a></a>i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a></a><span class="cf">while</span>(diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
-<span id="cb13-7"><a></a>  faa <span class="ot">&lt;-</span> <span class="fu">f</span>(aa)</span>
-<span id="cb13-8"><a></a>  cc <span class="ot">&lt;-</span> (aa <span class="sc">+</span> bb) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb13-9"><a></a>  fcc <span class="ot">&lt;-</span> <span class="fu">f</span>(cc)</span>
-<span id="cb13-10"><a></a>  <span class="cf">if</span> (faa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> fcc <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb13-11"><a></a>    bb <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-12"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-13"><a></a>    aa <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-14"><a></a>  }</span>
-<span id="cb13-15"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(fcc)</span>
-<span id="cb13-16"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a></a>}</span>
-<span id="cb13-18"><a></a>i</span>
-<span id="cb13-19"><a></a>cc</span>
-<span id="cb13-20"><a></a>fcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 
 
-<div class="reveal-header">
-<div class="header-logo">
-<img data-src="">
-</div>
-<div class="sc-title">
-<p> </p>
-</div>
-<div class="header-text">
-<p> </p>
-</div>
-<div class="sb-title">
-<p> </p>
-</div>
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -625,7 +546,6 @@ f(x) = 2 x^3 - 20x -43
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/verticator/verticator.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -649,7 +569,6 @@ f(x) = 2 x^3 - 20x -43
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
-'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -820,7 +739,7 @@ f(x) = 2 x^3 - 20x -43
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Verticator, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
