@@ -293,7 +293,7 @@ tab
 <!-- idx <- apply(iris.prediction$net.result, 1, which.max) -->
 <!-- predicted <- c("setosa", "versicolor", "virginica")[idx] -->
 <!-- table(predicted, iris.valid$Species) -->
-```
+<!-- ``` -->
 :::
 
 # Supervised vs Unsupervised Machine Learning
