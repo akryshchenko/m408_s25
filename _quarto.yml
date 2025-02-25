@@ -10,6 +10,7 @@ website:
         text: Home
       - ec.qmd
       - hw.qmd
+      - Project.qmd
 
 format:
   html:
