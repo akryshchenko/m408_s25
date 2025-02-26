@@ -1,0 +1,317 @@
+---
+title: "Functions"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+
+editor: source
+
+revealjs-plugins:
+  - verticator
+  
+filters: 
+  - reveal-header
+  - reveal-auto-agenda
+  - code-fullscreen
+  - webr
+
+webr: 
+  show-startup-message: true
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+```
+
+## Learning Objectives
+
+-   Built-in Functions
+
+-   User-built functions
+
+-   Extensions
+
+
+There are several available functions in R to conduct specific statistical methods or tasks
+
+## Help Documentation
+
+| Section     | Description                                                 |
+|:---------------------|:-------------------------------------------------|
+| Description | Provides a brief introduction of the function               |
+| Usage       | Provides potential usage of the function                    |
+| Arguments   | Arguments that the function can take                        |
+| Details     | An in depth description of the function                     |
+| Value       | Provides information of the output produced by the function |
+| Notes       | Any need to know information about the function             |
+| Authors     | Developers of the function                                  |
+| References  | References to the model and function                        |
+| See Also    | Provide information of supporting functions                 |
+| Examples    | Examples of the function                                    |
+
+## Generic Functions
+
+Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as `summary()` and `plot()`.
+
+For example, the `summary()` is a generic for several types of functions: `summary.aov()`, `summary.lm()`, `summary.glm()`, and many more.
+
+## Commonly-used Function
+
+| Functions  | Description                 |
+|:-----------|:----------------------------|
+| `aov()`    | Fits an ANOVA Model         |
+| `lm()`     | Fits a linear model         |
+| `glm()`    | Fits a general linear model |
+| `t.test()` | Conducts a t-test           |
+
+# User-built functions
+
+## User-built functions
+
+-   Functions created by the user for analysis
+
+-   Needs to be ran once to the R environment
+
+-   Will be lost when R session is closed
+
+## Anatomy
+
+```{r}
+#| eval: false
+#| code-line-numbers: "|1-3|4-5|6|7"
+
+name_of_function <- function(data_1, data_2 = NULL, 
+                             argument_1, argument_2 = TRUE, argument_3 = NULL,
+                             ...){
+  # Conduct Task
+  # Conduct Task
+  output_object <- Tasks
+  return(output_object)
+}
+
+```
+
+::: fragment
+-   `function`: used to construct the function
+
+-   `data1`: first data argument that needs to supplied
+
+-   `data2`: second data argument that does not need to be supplied
+
+-   `argument1`: first argument must be supplied to alter function
+
+-   `argument2`: second argument to alter function, set to `TRUE`
+
+-   `argument3`: third argument that does not need to be supplied
+
+-   `…`: additional arguments supplied to other functions
+:::
+
+## Example
+
+Create a function for
+
+$$
+y = \ln(x^2)
+$$
+
+## Example
+
+Create a function for
+
+$$
+f(x) = \left\{\begin{array}{cc}
+x^3 & x<0\\
+x^2 + 5 & \mathrm{otherwise}
+\end{array} \right.
+$$
+
+## Example
+
+Create a function for
+
+$$
+f(x,y) = \left\{\begin{array}{cc}
+x^3 e^y &  x<0\ \\
+x^2 + 5 + \ln(y) & \mathrm{otherwise}
+\end{array} \right.
+$$
+
+## Example
+
+Create the function that allows your to compute the z-score of a specific value `x` using the sampling distribution from a set of data (`y` vector):
+
+$$
+z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
+$$
+
+# Extensions
+
+## R Packages
+
+R Packages are used to utilize functions created from the community.
+
+### Installation
+
+```{r}
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+### Loading
+
+```{r}
+#| eval: false
+
+library(tidyverse)
+```
+
+## Reticulate
+
+Reticulate is an R package that allows you to utilize python within R.
+
+## Rcpp
+
+Rcpp is an R package that allows you to call C++ programs in R.
+
+We will compare variance functions written in cpp, user-built R, and built-in R.
+
+Rcpp code:
+
+```{Rcpp}
+#| eval: true
+#include <Rcpp.h>
+using namespace Rcpp;
+// [[Rcpp::export]]
+double var_cpp(NumericVector x){
+int n = x.length();
+NumericVector pre(n);
+double mean_x = mean(x);
+for (int i=0; i<n; ++i){
+   pre[i] = pow(x[i]-mean_x, 2);
+}
+int divisor = n - 1;
+double post = sum(pre) / divisor;
+return post;
+}
+```
+
+R code:
+
+```{r}
+#| eval: true
+var_r <- function(x){
+  sum((x-mean(x))^2) / (length(x)-1)
+}
+```
+
+Benchmark Analysis
+
+```{r}
+#| echo: true
+#| eval: true
+x <- rnorm(50)
+bench::mark(
+var_cpp(x),
+var_r(x),
+var(x)
+)
+```
+
+```{r}
+#| eval: true
+var
+```
+
+This is an extremely advanced topic. Only do this if you need real speed and efficiency.
+
+# Bisection Method
+
+```{r}
+
+```
+
+## Motivating Example
+
+$$
+f(x) = 2 x^3 - 20x -43
+$$
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+f <- function(x) 2*x^3 - 20 * x - 43
+x <- seq(-5,5, length.out = 100)
+plot(x, f(x), type = "l")
+abline(h=0)
+
+
+```
+
+## Finding the Root
+
+```{r}
+#| code-fold: true
+#| eval: true
+
+
+f <- function(x) 2*x^3 - 20 * x - 43
+x <- seq(-5,5, length.out = 100)
+uniroot(f, lower = -5, upper = 5)
+
+```
+
+## Bisection Method
+
+1.  Begin with an interval $a$ and $b$ and evaluate $f(a)$ and $f(b)$.
+2.  If $f(a)$ and $f(b)$ are opposite signs, calculate $c = \frac{a+b}{2}$ and $f(c)$.
+3.  If $|f(c)|<\varepsilon$, for a small $\varepsilon$, then stop the algorithm and $c$ is the root.
+4.  Replace $(a,f(a))$ or $(b,f(b))$ with $(c, f(c))$ so that the signs of $f( \cdot )$ is 0.
+
+## Bisection Code
+
+```{r}
+#| code-fold: true
+
+f <- function(x){2*x^3 - 20 * x - 43}
+aa <- -5
+bb <- 5
+diff <- 10
+i <- 0
+while(diff > 1e-6){
+  faa <- f(aa)
+  cc <- (aa + bb) / 2
+  fcc <- f(cc)
+  if (faa < 0 & fcc > 0){
+    bb <- cc
+  } else {
+    aa <- cc
+  }
+  diff <- abs(fcc)
+  i <- i + 1
+}
+i
+cc
+fcc
+```
