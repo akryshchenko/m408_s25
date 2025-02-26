@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# quarto render
+quarto render
 
 git add .
 
