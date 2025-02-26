@@ -16,7 +16,7 @@
 <link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Functions</title>
+  <title>m408_s25 – Control Flow 3</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -202,7 +202,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Functions</h1>
+  <h1 class="title">Control Flow 3</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -211,386 +211,229 @@
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li><p>Built-in Functions</p></li>
-<li><p>User-built functions</p></li>
-<li><p>Extensions</p></li>
+<li><code>next</code> Statements</li>
+<li><code>break</code> Statements</li>
+<li><code>while</code> Loops</li>
 </ul>
-<p>There are several available functions in R to conduct specific statistical methods or tasks</p>
-</section>
-<section id="help-documentation" class="slide level2">
-<h2>Help Documentation</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Section</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Description</td>
-<td style="text-align: left;">Provides a brief introduction of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Usage</td>
-<td style="text-align: left;">Provides potential usage of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arguments</td>
-<td style="text-align: left;">Arguments that the function can take</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Details</td>
-<td style="text-align: left;">An in depth description of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Value</td>
-<td style="text-align: left;">Provides information of the output produced by the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Notes</td>
-<td style="text-align: left;">Any need to know information about the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Authors</td>
-<td style="text-align: left;">Developers of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">References</td>
-<td style="text-align: left;">References to the model and function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">See Also</td>
-<td style="text-align: left;">Provide information of supporting functions</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Examples</td>
-<td style="text-align: left;">Examples of the function</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="generic-functions" class="slide level2">
-<h2>Generic Functions</h2>
-<p>Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as <code>summary()</code> and <code>plot()</code>.</p>
-<p>For example, the <code>summary()</code> is a generic for several types of functions: <code>summary.aov()</code>, <code>summary.lm()</code>, <code>summary.glm()</code>, and many more.</p>
-</section>
-<section id="commonly-used-function" class="slide level2">
-<h2>Commonly-used Function</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functions</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>aov()</code></td>
-<td style="text-align: left;">Fits an ANOVA Model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>lm()</code></td>
-<td style="text-align: left;">Fits a linear model</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>glm()</code></td>
-<td style="text-align: left;">Fits a general linear model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>t.test()</code></td>
-<td style="text-align: left;">Conducts a t-test</td>
-</tr>
-</tbody>
-</table>
 </section>
 <section>
-<section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
-<h1>User-built functions</h1>
+<section id="next-statements" class="title-slide slide level1 agenda-slide center">
+<h1><code>next</code> Statements</h1>
 <div class="agenda">
 <ul>
 <li><div class="agenda-active">
-<p>User-built functions</p>
+<p><code>next</code> Statements</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
+<p><code>break</code> Statements</p>
 </div></li>
 <li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
+<p><code>while</code> Loops</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p><code>for</code> Loop Examples</p>
 </div></li>
 </ul>
 </div>
 </section>
-<section id="user-built-functions-1" class="slide level2">
-<h2>User-built functions</h2>
-<ul>
-<li><p>Functions created by the user for analysis</p></li>
-<li><p>Needs to be ran once to the R environment</p></li>
-<li><p>Will be lost when R session is closed</p></li>
-</ul>
-</section>
-<section id="anatomy" class="slide level2">
-<h2>Anatomy</h2>
+<section id="next-statements-1" class="slide level2">
+<h2><code>next</code> Statements</h2>
+<p>The <code>next</code> statement is used to skip an iteration of a loop. This is used along an <code>if</code> statement.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|4-5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>name_of_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data_1, <span class="at">data_2 =</span> <span class="cn">NULL</span>, </span>
-<span id="cb1-2"><a></a>                             argument_1, <span class="at">argument_2 =</span> <span class="cn">TRUE</span>, <span class="at">argument_3 =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a></a>                             ...){</span>
-<span id="cb1-4"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-5"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-6"><a></a>  output_object <span class="ot">&lt;-</span> Tasks</span>
-<span id="cb1-7"><a></a>  <span class="fu">return</span>(output_object)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="cf">for</span> (i <span class="cf">in</span> vector){</span>
+<span id="cb1-2"><a></a>  perform task</span>
+<span id="cb1-3"><a></a>  <span class="cf">if</span> (condition){</span>
+<span id="cb1-4"><a></a>    <span class="cf">next</span></span>
+<span id="cb1-5"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-6"><a></a>    perform task</span>
+<span id="cb1-7"><a></a>  }</span>
 <span id="cb1-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
+</section></section>
+<section>
+<section id="break-statements" class="title-slide slide level1 agenda-slide center">
+<h1><code>break</code> Statements</h1>
+<div class="agenda">
 <ul>
-<li><p><code>function</code>: used to construct the function</p></li>
-<li><p><code>data1</code>: first data argument that needs to supplied</p></li>
-<li><p><code>data2</code>: second data argument that does not need to be supplied</p></li>
-<li><p><code>argument1</code>: first argument must be supplied to alter function</p></li>
-<li><p><code>argument2</code>: second argument to alter function, set to <code>TRUE</code></p></li>
-<li><p><code>argument3</code>: third argument that does not need to be supplied</p></li>
-<li><p><code>…</code>: additional arguments supplied to other functions</p></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p><code>next</code> Statements</p>
+</div></li>
+<li><div class="agenda-active">
+<p><code>break</code> Statements</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p><code>while</code> Loops</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p><code>for</code> Loop Examples</p>
+</div></li>
 </ul>
+</div>
+</section>
+<section id="break-statements-1" class="slide level2">
+<h2><code>break</code> Statements</h2>
+<p>The <code>break</code> statement is used to stop a loop if the condition is met. This is used along with an <code>if</code> statement.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="cf">for</span> (i <span class="cf">in</span> vector){</span>
+<span id="cb2-2"><a></a>  perform task</span>
+<span id="cb2-3"><a></a>  <span class="cf">if</span> (condition){</span>
+<span id="cb2-4"><a></a>    <span class="cf">break</span></span>
+<span id="cb2-5"><a></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-6"><a></a>    perform task</span>
+<span id="cb2-7"><a></a>  }</span>
+<span id="cb2-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="while-loops" class="title-slide slide level1 agenda-slide center">
+<h1><code>while</code> Loops</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p><code>next</code> Statements</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p><code>break</code> Statements</p>
+</div></li>
+<li><div class="agenda-active">
+<p><code>while</code> Loops</p>
+</div></li>
+<li><div class="agenda-inactive agenda-post-active">
+<p><code>for</code> Loop Examples</p>
+</div></li>
+</ul>
+</div>
+</section>
+<section id="while-loops-1" class="slide level2">
+<h2><code>while</code> Loops</h2>
+<p>A while loop is a combination of a <code>for</code> loop and a <code>break</code> statement. The loop will continue indefinitely until a condition becomes false.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Initial Condition</span></span>
+<span id="cb3-2"><a></a>condition <span class="ot">&lt;-</span> starting <span class="cn">TRUE</span> condition</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a><span class="cf">while</span> (condition){</span>
+<span id="cb3-5"><a></a>  perform task</span>
+<span id="cb3-6"><a></a>  condition <span class="ot">&lt;-</span> update condition</span>
+<span id="cb3-7"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-y = \ln(x^2)
-\]</span></p>
+<p>Simulate from a <span class="math inline">\(N(0,1)\)</span> distribution until you have 50 positive numbers.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>n <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a></a>pos_num <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb4-3"><a></a></span>
+<span id="cb4-4"><a></a><span class="cf">while</span> (n <span class="sc">&lt;</span> <span class="dv">51</span>){</span>
+<span id="cb4-5"><a></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb4-6"><a></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb4-7"><a></a>    pos_num <span class="ot">&lt;-</span> <span class="fu">c</span>(pos_num, x)</span>
+<span id="cb4-8"><a></a>    n <span class="ot">&lt;-</span> n <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb4-9"><a></a>  }</span>
+<span id="cb4-10"><a></a>}</span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>pos_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x) = \left\{\begin{array}{cc}
-x^3 &amp; x&lt;0\\
-x^2 + 5 &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
+<p>Find the value of <span class="math inline">\(x\)</span> where the function <span class="math inline">\(y=1/x\)</span> relative converges (<span class="math inline">\(\frac{|y_{old}-y_{new}|}{y_{old}}\)</span>) at a level of <span class="math inline">\(10^-6\)</span> as <span class="math inline">\(x\rightarrow \infty\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb5-2"><a></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb5-3"><a></a>y_old <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a></a><span class="cf">while</span> (diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
+<span id="cb5-5"><a></a>  y_new <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> x</span>
+<span id="cb5-6"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(y_old <span class="sc">-</span> y_new) <span class="sc">/</span> y_old</span>
+<span id="cb5-7"><a></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb5-8"><a></a>  y_old <span class="ot">&lt;-</span> y_new</span>
+<span id="cb5-9"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x,y) = \left\{\begin{array}{cc}
-x^3 e^y &amp;  x&lt;0\ \\
-x^2 + 5 + \ln(y) &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
+<p>Simulate from a <span class="math inline">\(Binom(1,.2)\)</span> distribution until the sum of the random variables generated is 50.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>sum_bin <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb6-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb6-3"><a></a><span class="cf">while</span> (sum_bin <span class="sc">&lt;</span><span class="dv">51</span>) {</span>
+<span id="cb6-4"><a></a>  x <span class="ot">&lt;-</span> <span class="fu">c</span>(x, <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.2</span>))</span>
+<span id="cb6-5"><a></a>  sum_bin <span class="ot">&lt;-</span> <span class="fu">sum</span>(x)</span>
+<span id="cb6-6"><a></a>}</span>
+<span id="cb6-7"><a></a>sum_bin</span>
+<span id="cb6-8"><a></a><span class="fu">length</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section>
+<section>
+<section id="for-loop-examples" class="title-slide slide level1 agenda-slide center">
+<h1><code>for</code> Loop Examples</h1>
+<div class="agenda">
+<ul>
+<li><div class="agenda-inactive agenda-pre-active">
+<p><code>next</code> Statements</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p><code>break</code> Statements</p>
+</div></li>
+<li><div class="agenda-inactive agenda-pre-active">
+<p><code>while</code> Loops</p>
+</div></li>
+<li><div class="agenda-active">
+<p><code>for</code> Loop Examples</p>
+</div></li>
+</ul>
+</div>
 </section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
-<p>Create the function that allows your to compute the z-score of a specific value <code>x</code> using the sampling distribution from a set of data (<code>y</code> vector):</p>
-<p><span class="math display">\[
-z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
-\]</span></p>
-</section></section>
-<section>
-<section id="extensions" class="title-slide slide level1 agenda-slide center">
-<h1>Extensions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p>R Packages are used to utilize functions created from the community.</p>
-<h3 id="installation">Installation</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<h3 id="loading">Loading</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="reticulate" class="slide level2">
-<h2>Reticulate</h2>
-<p>Reticulate is an R package that allows you to utilize python within R.</p>
-</section>
-<section id="rcpp" class="slide level2">
-<h2>Rcpp</h2>
-<p>Rcpp is an R package that allows you to call C++ programs in R.</p>
-<p>We will compare variance functions written in cpp, user-built R, and built-in R.</p>
-<p>Rcpp code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-4"><a></a><span class="dt">double</span> var_cpp<span class="op">(</span>NumericVector x<span class="op">){</span></span>
-<span id="cb4-5"><a></a><span class="dt">int</span> n <span class="op">=</span> x<span class="op">.</span>length<span class="op">();</span></span>
-<span id="cb4-6"><a></a>NumericVector pre<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb4-7"><a></a><span class="dt">double</span> mean_x <span class="op">=</span> mean<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb4-8"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> <span class="op">++</span>i<span class="op">){</span></span>
-<span id="cb4-9"><a></a>   pre<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>x<span class="op">[</span>i<span class="op">]-</span>mean_x<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a><span class="dt">int</span> divisor <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-12"><a></a><span class="dt">double</span> post <span class="op">=</span> sum<span class="op">(</span>pre<span class="op">)</span> <span class="op">/</span> divisor<span class="op">;</span></span>
-<span id="cb4-13"><a></a><span class="cf">return</span> post<span class="op">;</span></span>
-<span id="cb4-14"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>R code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>var_r <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a></a>  <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Benchmark Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb6-2"><a></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-3"><a></a><span class="fu">var_cpp</span>(x),</span>
-<span id="cb6-4"><a></a><span class="fu">var_r</span>(x),</span>
-<span id="cb6-5"><a></a><span class="fu">var</span>(x)</span>
-<span id="cb6-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
-#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x) 533.01ns    656ns  1280856.      448B    128. 
-#&gt; 2 var_r(x)     1.72µs   2.13µs   371660.    23.7KB     74.3
-#&gt; 3 var(x)       2.25µs   2.71µs   326375.    15.3KB     97.9</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; function (x, y = NULL, na.rm = FALSE, use) 
-#&gt; {
-#&gt;     if (missing(use)) 
-#&gt;         use &lt;- if (na.rm) 
-#&gt;             "na.or.complete"
-#&gt;         else "everything"
-#&gt;     na.method &lt;- pmatch(use, c("all.obs", "complete.obs", "pairwise.complete.obs", 
-#&gt;         "everything", "na.or.complete"))
-#&gt;     if (is.na(na.method)) 
-#&gt;         stop("invalid 'use' argument")
-#&gt;     if (is.data.frame(x)) 
-#&gt;         x &lt;- as.matrix(x)
-#&gt;     else if (!is.null(x)) 
-#&gt;         stopifnot(is.atomic(x))
-#&gt;     if (is.data.frame(y)) 
-#&gt;         y &lt;- as.matrix(y)
-#&gt;     else if (!is.null(y)) 
-#&gt;         stopifnot(is.atomic(y))
-#&gt;     .Call(C_cov, x, y, na.method, FALSE)
-#&gt; }
-#&gt; &lt;bytecode: 0x1150ca8d8&gt;
-#&gt; &lt;environment: namespace:stats&gt;</code></pre>
-</div>
-</div>
-<p>This is an extremely advanced topic. Only do this if you need real speed and efficiency.</p>
-</section></section>
-<section>
-<section id="bisection-method" class="title-slide slide level1 agenda-slide center">
-<h1>Bisection Method</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
-<p><span class="math display">\[
-f(x) = 2 x^3 - 20x -43
-\]</span></p>
+<p>Generate the 10th row of Pascal’s Triangle.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb10-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb10-3"><a></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb10-4"><a></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>i <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb7-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb7-3"><a></a><span class="cf">while</span> (i <span class="sc">&lt;</span> <span class="dv">11</span>){</span>
+<span id="cb7-4"><a></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(x) <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a></a>  y <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length =</span> n)</span>
+<span id="cb7-6"><a></a>  y[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-7"><a></a>  y[n] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-8"><a></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>(n<span class="dv">-1</span>)){</span>
+<span id="cb7-9"><a></a>    y[i] <span class="ot">&lt;-</span> x[i<span class="dv">-1</span>] <span class="sc">+</span> x[i]</span>
+<span id="cb7-10"><a></a>  }</span>
+<span id="cb7-11"><a></a>  x <span class="ot">&lt;-</span> y</span>
+<span id="cb7-12"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb7-13"><a></a>}</span>
+<span id="cb7-14"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
 </div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="finding-the-root" class="slide level2">
-<h2>Finding the Root</h2>
+</section>
+<section id="example-4" class="slide level2">
+<h2>Example</h2>
+<p>Generate the first 1000 prime numbers.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb11-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">uniroot</span>(f, <span class="at">lower =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; $root
-#&gt; [1] 3.932792
-#&gt; 
-#&gt; $f.root
-#&gt; [1] -2.30166e-05
-#&gt; 
-#&gt; $iter
-#&gt; [1] 7
-#&gt; 
-#&gt; $init.it
-#&gt; [1] NA
-#&gt; 
-#&gt; $estim.prec
-#&gt; [1] 6.103516e-05</code></pre>
-</div>
-</div>
-</section>
-<section id="bisection-method-1" class="slide level2 scrollable">
-<h2>Bisection Method</h2>
-<ol type="1">
-<li>Begin with an interval <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and evaluate <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>.</li>
-<li>If <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> are opposite signs, calculate <span class="math inline">\(c = \frac{a+b}{2}\)</span> and <span class="math inline">\(f(c)\)</span>.</li>
-<li>If <span class="math inline">\(|f(c)|&lt;\varepsilon\)</span>, for a small <span class="math inline">\(\varepsilon\)</span>, then stop the algorithm and <span class="math inline">\(c\)</span> is the root.</li>
-<li>Replace <span class="math inline">\((a,f(a))\)</span> or <span class="math inline">\((b,f(b))\)</span> with <span class="math inline">\((c, f(c))\)</span> so that the signs of <span class="math inline">\(f( \cdot )\)</span> is 0.</li>
-</ol>
-</section>
-<section id="bisection-code" class="slide level2">
-<h2>Bisection Code</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span>}</span>
-<span id="cb13-2"><a></a>aa <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb13-3"><a></a>bb <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-4"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb13-5"><a></a>i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a></a><span class="cf">while</span>(diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
-<span id="cb13-7"><a></a>  faa <span class="ot">&lt;-</span> <span class="fu">f</span>(aa)</span>
-<span id="cb13-8"><a></a>  cc <span class="ot">&lt;-</span> (aa <span class="sc">+</span> bb) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb13-9"><a></a>  fcc <span class="ot">&lt;-</span> <span class="fu">f</span>(cc)</span>
-<span id="cb13-10"><a></a>  <span class="cf">if</span> (faa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> fcc <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb13-11"><a></a>    bb <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-12"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-13"><a></a>    aa <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-14"><a></a>  }</span>
-<span id="cb13-15"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(fcc)</span>
-<span id="cb13-16"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a></a>}</span>
-<span id="cb13-18"><a></a>i</span>
-<span id="cb13-19"><a></a>cc</span>
-<span id="cb13-20"><a></a>fcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb8-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb8-3"><a></a>N <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a></a><span class="cf">while</span>(N <span class="sc">&lt;</span> <span class="dv">1001</span>){</span>
+<span id="cb8-5"><a></a>  y <span class="ot">&lt;-</span> y <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb8-6"><a></a>  nn <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(y <span class="sc">%%</span> x <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb8-7"><a></a>  <span class="cf">if</span> (nn <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb8-8"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">c</span>(x,y)</span>
+<span id="cb8-9"><a></a>  }</span>
+<span id="cb8-10"><a></a>  N <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb8-11"><a></a>}</span>
+<span id="cb8-12"><a></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
