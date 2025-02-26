@@ -354,7 +354,7 @@ Y = f(\boldsymbol X) + \varepsilon
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Data</a></li><li><a href="#tabset-2-2">KNN</a></li><li><a href="#tabset-2-3">SVM</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Data</a></li><li><a href="#tabset-2-2">KNN</a></li><li><a href="#tabset-2-3">SVM</a></li><li><a href="#tabset-2-4">NN</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
@@ -388,30 +388,17 @@ Y = f(\boldsymbol X) + \varepsilon
 #&gt;   virginica       0          2        48</code></pre>
 </div>
 </div>
-<!-- ## NN -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- library(neuralnet) -->
-<!-- data(iris) -->
-<!-- iris$setosa <- iris$Species == "setosa" -->
-<!-- iris$virginica <- iris$Species == "virginica" -->
-<!-- iris$versicolor <- iris$Species == "versicolor" -->
-<!-- iris.train.idx <- sample(x = nrow(iris), size = nrow(iris) * 0.5) -->
-<!-- iris.train <- iris[iris.train.idx, ] -->
-<!-- iris.valid <- iris[-iris.train.idx, ] -->
-<!-- library(neuralnet) -->
-<!-- iris.net <- neuralnet( -->
-<!--   setosa + versicolor + virginica ~ -->
-<!--     Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, -->
-<!--   data = iris.train, hidden = c(10, 10), rep = 5, err.fct = "ce", -->
-<!--   linear.output = F, lifesign = "minimal", stepmax = 1000000, -->
-<!--   threshold = 0.001 -->
-<!-- ) -->
-<!-- iris.prediction <- neuralnet::compute(iris.net, iris.valid[-5:-8]) -->
-<!-- idx <- apply(iris.prediction$net.result, 1, which.max) -->
-<!-- predicted <- c("setosa", "versicolor", "virginica")[idx] -->
-<!-- table(predicted, iris.valid$Species) -->
-<!-- ``` -->
+</div>
+<div id="tabset-2-4">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;             
+#&gt; predicted    setosa versicolor virginica
+#&gt;   setosa         25          0         0
+#&gt;   versicolor      0         25         3
+#&gt;   virginica       0          2        20</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -468,7 +455,7 @@ ER = \frac{1}{n}\sum^n_{i=1}I(y_i \ne \hat y_i)
 <section id="bias-variance-tradeoff" class="slide level2">
 <h2>Bias-Variance Tradeoff</h2>
 
-<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
 <section id="bias-variance-tradeoff-1" class="slide level2">
 <h2>Bias-Variance Tradeoff</h2>
 <p><span class="math display">\[
@@ -478,40 +465,40 @@ E(MSE) = E\left\{y-\hat f(x)\right\}^2 = Var\left\{\hat f(x)\right\} + Bias\left
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
 
-<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
 <section id="using-a-line" class="slide level2">
 <h2>Using a Line</h2>
 
-<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="using-a-highly-flexible-model" class="slide level2">
 <h2>Using a Highly Flexible Model</h2>
 
-<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
 <section id="semi-flexible" class="slide level2">
 <h2>Semi-Flexible</h2>
 
-<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<img data-src="6aS25_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
 <section id="all" class="slide level2">
 <h2>All</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb3-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span>x <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span>
-<span id="cb3-3"><a></a><span class="fu">data.frame</span>(x, y) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
-<span id="cb3-7"><a></a>              <span class="at">color =</span> <span class="st">"skyblue4"</span>, <span class="at">fill =</span> <span class="st">"skyblue2"</span>) <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">span =</span> <span class="fl">0.075</span>, </span>
-<span id="cb3-9"><a></a>              <span class="at">color =</span> <span class="st">"springgreen4"</span>, <span class="at">fill =</span> <span class="st">"springgreen2"</span>) <span class="sc">+</span></span>
-<span id="cb3-10"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">color =</span> <span class="st">"violetred"</span>, <span class="at">fill =</span> <span class="st">"violet"</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb4-2"><a></a>y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> x<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="dv">5</span><span class="sc">*</span>x <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>)</span>
+<span id="cb4-3"><a></a><span class="fu">data.frame</span>(x, y) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb4-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-6"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb4-7"><a></a>              <span class="at">color =</span> <span class="st">"skyblue4"</span>, <span class="at">fill =</span> <span class="st">"skyblue2"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">span =</span> <span class="fl">0.075</span>, </span>
+<span id="cb4-9"><a></a>              <span class="at">color =</span> <span class="st">"springgreen4"</span>, <span class="at">fill =</span> <span class="st">"springgreen2"</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a></a>  <span class="fu">stat_smooth</span>(<span class="at">color =</span> <span class="st">"violetred"</span>, <span class="at">fill =</span> <span class="st">"violet"</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="6aS25_files/figure-revealjs/unnamed-chunk-15-1.png" width="960"></p>
+<p><img data-src="6aS25_files/figure-revealjs/unnamed-chunk-16-1.png" width="960"></p>
 </figure>
 </div>
 </div>

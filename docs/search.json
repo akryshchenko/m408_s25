@@ -1075,7 +1075,7 @@
     "href": "lectures/6aS25.html#example-1",
     "title": "Introduction to Statistical Learning",
     "section": "Example",
-    "text": "Example\n\nDataKNNSVM\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#&gt;             iris_pred\n#&gt;              setosa versicolor virginica\n#&gt;   setosa         20          0         0\n#&gt;   versicolor      0         19         1\n#&gt;   virginica       0          0        20\n\n\n\n\n\n\n#&gt;             Actual\n#&gt; Predicted    setosa versicolor virginica\n#&gt;   setosa         50          0         0\n#&gt;   versicolor      0         48         2\n#&gt;   virginica       0          2        48"
+    "text": "Example\n\nDataKNNSVMNN\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#&gt;             iris_pred\n#&gt;              setosa versicolor virginica\n#&gt;   setosa         20          0         0\n#&gt;   versicolor      0         19         1\n#&gt;   virginica       0          0        20\n\n\n\n\n\n\n#&gt;             Actual\n#&gt; Predicted    setosa versicolor virginica\n#&gt;   setosa         50          0         0\n#&gt;   versicolor      0         48         2\n#&gt;   virginica       0          2        48\n\n\n\n\n\n\n#&gt;             \n#&gt; predicted    setosa versicolor virginica\n#&gt;   setosa         25          0         0\n#&gt;   versicolor      0         25         3\n#&gt;   virginica       0          2        20"
   },
   {
     "objectID": "lectures/6aS25.html#machine-learning",
