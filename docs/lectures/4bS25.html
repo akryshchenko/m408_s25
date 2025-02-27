@@ -222,16 +222,16 @@
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb1-2"><a></a><span class="fu">sapply</span>(x, <span class="cf">function</span>(x) <span class="fu">rnorm</span>(<span class="dv">1</span>,x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;  [1]  1.3467904  0.5795166  2.4287374  3.3289685  5.2687259  7.0625450
-#&gt;  [7]  7.3142802  6.9788204  9.2917782 10.0401139</code></pre>
+<pre><code>#&gt;  [1] 0.8664274 1.5575701 3.9082130 3.4780040 4.6986461 5.4224893 7.8525072
+#&gt;  [8] 6.8863618 9.3852142 8.8408088</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb3-2"><a></a><span class="fu">sapply</span>(x, \(x) <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="dv">1</span>,x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt;  [1]  1.092937 -1.257163  2.315138 -5.487877  6.146876 18.094915  7.203620
-#&gt;  [8]  2.777769 -1.672165 -2.247645</code></pre>
+<pre><code>#&gt;  [1]  0.01158387 -0.08959657 -0.13504880 -3.64871445  0.87244145  6.11159610
+#&gt;  [7] 10.62092553 -3.99735883 -7.91331991 -5.18558962</code></pre>
 </div>
 </div>
 </section>
@@ -293,7 +293,7 @@ C = \frac{5(F-32)}{9}
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>x <span class="sc">%&gt;%</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 1.897582</code></pre>
+<pre><code>#&gt; [1] 1.988536</code></pre>
 </div>
 </div>
 </section>

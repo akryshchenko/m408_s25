@@ -1,0 +1,14 @@
+---
+title: "Homework 4"
+date: 2/27/25
+editor: visual
+draft: false
+---
+
+**Due 3/10/24 \@ 11:59 PM**
+
+Submit the \*.html file to canvas.
+
+**Answer the following problems from the Statistical Learning Book:**
+
+From Section 2.4: 1, 2, 4, 5, 6
