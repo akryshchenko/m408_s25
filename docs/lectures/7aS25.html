@@ -6,17 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
-<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Functions</title>
+  <title>m408_s25 – Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -106,7 +99,6 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/verticator/verticator.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -202,7 +194,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Functions</h1>
+  <h1 class="title">Linear Regression</h1>
+  <p class="subtitle">Estimation Procedures</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -211,404 +204,228 @@
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li><p>Built-in Functions</p></li>
-<li><p>User-built functions</p></li>
-<li><p>Extensions</p></li>
+<li><p>Estimation</p></li>
+<li><p>Ordinary Least Squares</p></li>
+<li><p>Matrix Formulation</p></li>
+<li><p>Standard Errors</p></li>
+<li><p>Conduct in R</p></li>
 </ul>
-<p>There are several available functions in R to conduct specific statistical methods or tasks</p>
 </section>
-<section id="help-documentation" class="slide level2">
-<h2>Help Documentation</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Section</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Description</td>
-<td style="text-align: left;">Provides a brief introduction of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Usage</td>
-<td style="text-align: left;">Provides potential usage of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arguments</td>
-<td style="text-align: left;">Arguments that the function can take</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Details</td>
-<td style="text-align: left;">An in depth description of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Value</td>
-<td style="text-align: left;">Provides information of the output produced by the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Notes</td>
-<td style="text-align: left;">Any need to know information about the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Authors</td>
-<td style="text-align: left;">Developers of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">References</td>
-<td style="text-align: left;">References to the model and function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">See Also</td>
-<td style="text-align: left;">Provide information of supporting functions</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Examples</td>
-<td style="text-align: left;">Examples of the function</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="generic-functions" class="slide level2">
-<h2>Generic Functions</h2>
-<p>Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as <code>summary()</code> and <code>plot()</code>.</p>
-<p>For example, the <code>summary()</code> is a generic for several types of functions: <code>summary.aov()</code>, <code>summary.lm()</code>, <code>summary.glm()</code>, and many more.</p>
-</section>
-<section id="commonly-used-function" class="slide level2">
-<h2>Commonly-used Function</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functions</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>aov()</code></td>
-<td style="text-align: left;">Fits an ANOVA Model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>lm()</code></td>
-<td style="text-align: left;">Fits a linear model</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>glm()</code></td>
-<td style="text-align: left;">Fits a general linear model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>t.test()</code></td>
-<td style="text-align: left;">Conducts a t-test</td>
-</tr>
-</tbody>
-</table>
+<section id="resources" class="slide level2">
+<h2>Resources</h2>
+<p><a href="https://shainarace.github.io/LinearAlgebra/intro.html">Linear Algebra for Data Science</a></p>
 </section>
 <section>
-<section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
-<h1>User-built functions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
+<section id="estimation" class="title-slide slide level1 center">
+<h1>Estimation</h1>
+
 </section>
-<section id="user-built-functions-1" class="slide level2">
-<h2>User-built functions</h2>
+<section id="estimation-1" class="slide level2">
+<h2>Estimation</h2>
 <ul>
-<li><p>Functions created by the user for analysis</p></li>
-<li><p>Needs to be ran once to the R environment</p></li>
-<li><p>Will be lost when R session is closed</p></li>
+<li><p>Ordinary Least Squares</p></li>
+<li><p>Maximum Likelihood Approach</p></li>
+<li><p>Method of Moments</p></li>
 </ul>
 </section>
-<section id="anatomy" class="slide level2">
-<h2>Anatomy</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|4-5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>name_of_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data_1, <span class="at">data_2 =</span> <span class="cn">NULL</span>, </span>
-<span id="cb1-2"><a></a>                             argument_1, <span class="at">argument_2 =</span> <span class="cn">TRUE</span>, <span class="at">argument_3 =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a></a>                             ...){</span>
-<span id="cb1-4"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-5"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-6"><a></a>  output_object <span class="ot">&lt;-</span> Tasks</span>
-<span id="cb1-7"><a></a>  <span class="fu">return</span>(output_object)</span>
-<span id="cb1-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
+<section id="standard-errors" class="slide level2">
+<h2>Standard Errors</h2>
 <ul>
-<li><p><code>function</code>: used to construct the function</p></li>
-<li><p><code>data1</code>: first data argument that needs to supplied</p></li>
-<li><p><code>data2</code>: second data argument that does not need to be supplied</p></li>
-<li><p><code>argument1</code>: first argument must be supplied to alter function</p></li>
-<li><p><code>argument2</code>: second argument to alter function, set to <code>TRUE</code></p></li>
-<li><p><code>argument3</code>: third argument that does not need to be supplied</p></li>
-<li><p><code>…</code>: additional arguments supplied to other functions</p></li>
+<li><p>Find the variance of the estimate</p></li>
+<li><p>Find the information matrix</p></li>
+<li><p>Use for Inference</p></li>
 </ul>
-</div>
+</section></section>
+<section>
+<section id="ordinary-least-squares" class="title-slide slide level1 center">
+<h1>Ordinary Least Squares</h1>
+
 </section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<p>Create a function for</p>
+<section id="ordinary-least-squares-1" class="slide level2">
+<h2>Ordinary Least Squares</h2>
+<p>For a data pair <span class="math inline">\((x_i,y_i)_{i=1}^n\)</span>, the ordinary least squares estimator will find the estimates of <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span> that minimize the following function:</p>
 <p><span class="math display">\[
-y = \ln(x^2)
+\sum^n_{i=1}\{y_i-(\beta_0+\beta_1x_i)\}^2
 \]</span></p>
 </section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
-<p>Create a function for</p>
+<section id="estimates" class="slide level2">
+<h2>Estimates</h2>
 <p><span class="math display">\[
-f(x) = \left\{\begin{array}{cc}
-x^3 &amp; x&lt;0\\
-x^2 + 5 &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
-</section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x,y) = \left\{\begin{array}{cc}
-x^3 e^y &amp;  x&lt;0\ \\
-x^2 + 5 + \ln(y) &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
-</section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<p>Create the function that allows your to compute the z-score of a specific value <code>x</code> using the sampling distribution from a set of data (<code>y</code> vector):</p>
-<p><span class="math display">\[
-z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
+\hat\beta_0 = \bar y - \hat\beta_1\bar x
+\]</span> <span class="math display">\[
+\hat\beta_1 = \frac{\sum^n_{i=1}(y_i-\bar y)(x_i-\bar x)}{\sum^n_{i=1}(x_i-\bar x)^2}
+\]</span> <span class="math display">\[
+\hat\sigma^2 = \frac{1}{n-2}\sum^n_{i=1}(y_i-\hat y_i)^2
 \]</span></p>
 </section></section>
 <section>
-<section id="extensions" class="title-slide slide level1 agenda-slide center">
-<h1>Extensions</h1>
-<div class="agenda">
+<section id="matrix-formulation" class="title-slide slide level1 center">
+<h1>Matrix Formulation</h1>
+
+</section>
+<section id="matrix-version-of-model" class="slide level2">
+<h2>Matrix Version of Model</h2>
+<p><span class="math display">\[
+y_i = \boldsymbol X_i^\mathrm T \boldsymbol \beta + \epsilon_i
+\]</span></p>
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
+<li><p><span class="math inline">\(y_i\)</span>: Outcome Variable</p></li>
+<li><p><span class="math inline">\(\boldsymbol X_i=(1, x_i)^\mathrm T\)</span>: Predictors</p></li>
+<li><p><span class="math inline">\(\boldsymbol \beta = (\beta_0, \beta_1)^\mathrm T\)</span>: Coefficients</p></li>
+<li><p><span class="math inline">\(\epsilon_i\)</span>: error term</p></li>
 </ul>
-</div>
 </section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p>R Packages are used to utilize functions created from the community.</p>
-<h3 id="installation">Installation</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<h3 id="loading">Loading</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="data-matrix-formulation" class="slide level2">
+<h2>Data Matrix Formulation</h2>
+<p>For <span class="math inline">\(n\)</span> data points</p>
+<p><span class="math display">\[
+\boldsymbol Y = \boldsymbol X^\mathrm T\boldsymbol \beta + \boldsymbol \epsilon
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\boldsymbol Y = (y_1, \cdots, y_n)^\mathrm T\)</span>: Outcome Variable</p></li>
+<li><p><span class="math inline">\(\boldsymbol X=(\boldsymbol X_1, \cdots, \boldsymbol X_n)^\mathrm T\)</span>: Predictors</p></li>
+<li><p><span class="math inline">\(\boldsymbol \beta = (\beta_0, \beta_1)^\mathrm T\)</span>: Coefficients</p></li>
+<li><p><span class="math inline">\(\boldsymbol \epsilon = (\epsilon_1, \cdots, \epsilon_n)^\mathrm T\)</span>: Error terms</p></li>
+</ul>
 </section>
-<section id="reticulate" class="slide level2">
-<h2>Reticulate</h2>
-<p>Reticulate is an R package that allows you to utilize python within R.</p>
+<section id="least-squares-formula" class="slide level2">
+<h2>Least Squares Formula</h2>
+<p><span class="math display">\[
+(Y - \boldsymbol X ^\mathrm T\boldsymbol \beta)^\mathrm T(Y - \boldsymbol X ^\mathrm T\boldsymbol \beta)
+\]</span></p>
 </section>
-<section id="rcpp" class="slide level2">
-<h2>Rcpp</h2>
-<p>Rcpp is an R package that allows you to call C++ programs in R.</p>
-<p>We will compare variance functions written in cpp, user-built R, and built-in R.</p>
-<p>Rcpp code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-4"><a></a><span class="dt">double</span> var_cpp<span class="op">(</span>NumericVector x<span class="op">){</span></span>
-<span id="cb4-5"><a></a><span class="dt">int</span> n <span class="op">=</span> x<span class="op">.</span>length<span class="op">();</span></span>
-<span id="cb4-6"><a></a>NumericVector pre<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb4-7"><a></a><span class="dt">double</span> mean_x <span class="op">=</span> mean<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb4-8"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> <span class="op">++</span>i<span class="op">){</span></span>
-<span id="cb4-9"><a></a>   pre<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>x<span class="op">[</span>i<span class="op">]-</span>mean_x<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a><span class="dt">int</span> divisor <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-12"><a></a><span class="dt">double</span> post <span class="op">=</span> sum<span class="op">(</span>pre<span class="op">)</span> <span class="op">/</span> divisor<span class="op">;</span></span>
-<span id="cb4-13"><a></a><span class="cf">return</span> post<span class="op">;</span></span>
-<span id="cb4-14"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>R code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>var_r <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a></a>  <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Benchmark Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb6-2"><a></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-3"><a></a><span class="fu">var_cpp</span>(x),</span>
-<span id="cb6-4"><a></a><span class="fu">var_r</span>(x),</span>
-<span id="cb6-5"><a></a><span class="fu">var</span>(x)</span>
-<span id="cb6-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
-#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x) 738.01ns   1.07µs   752593.      448B     75.3
-#&gt; 2 var_r(x)     1.68µs   2.01µs   410660.    23.7KB     82.1
-#&gt; 3 var(x)       2.21µs   2.38µs   404691.    15.3KB     81.0</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; function (x, y = NULL, na.rm = FALSE, use) 
-#&gt; {
-#&gt;     if (missing(use)) 
-#&gt;         use &lt;- if (na.rm) 
-#&gt;             "na.or.complete"
-#&gt;         else "everything"
-#&gt;     na.method &lt;- pmatch(use, c("all.obs", "complete.obs", "pairwise.complete.obs", 
-#&gt;         "everything", "na.or.complete"))
-#&gt;     if (is.na(na.method)) 
-#&gt;         stop("invalid 'use' argument")
-#&gt;     if (is.data.frame(x)) 
-#&gt;         x &lt;- as.matrix(x)
-#&gt;     else if (!is.null(x)) 
-#&gt;         stopifnot(is.atomic(x))
-#&gt;     if (is.data.frame(y)) 
-#&gt;         y &lt;- as.matrix(y)
-#&gt;     else if (!is.null(y)) 
-#&gt;         stopifnot(is.atomic(y))
-#&gt;     .Call(C_cov, x, y, na.method, FALSE)
-#&gt; }
-#&gt; &lt;bytecode: 0x126952ea8&gt;
-#&gt; &lt;environment: namespace:stats&gt;</code></pre>
-</div>
-</div>
-<p>This is an extremely advanced topic. Only do this if you need real speed and efficiency.</p>
+<section id="estimates-1" class="slide level2">
+<h2>Estimates</h2>
+<p><span class="math display">\[
+\hat{\boldsymbol \beta} = (\boldsymbol X ^\mathrm T\boldsymbol X)^{-1}\boldsymbol X ^\mathrm T\boldsymbol Y
+\]</span></p>
 </section></section>
 <section>
-<section id="bisection-method" class="title-slide slide level1 agenda-slide center">
-<h1>Bisection Method</h1>
-<div class="agenda">
+<section id="standard-errors-1" class="title-slide slide level1 center">
+<h1>Standard Errors</h1>
+
+</section>
+<section id="estimate-for-sigma2" class="slide level2">
+<h2>Estimate for <span class="math inline">\(\sigma^2\)</span></h2>
+<p><span class="math display">\[
+\hat \sigma^2 = \frac{1}{n-2} \sum^n_{i=1} (y_i-\boldsymbol X_i^\mathrm T\hat{\boldsymbol \beta})^2
+\]</span></p>
+</section>
+<section id="standard-errors-of-betas" class="slide level2">
+<h2>Standard Errors of <span class="math inline">\(\beta\)</span>’s</h2>
+<p><span class="math display">\[
+SE(\hat\beta_0)=\sqrt{\frac{\sum^n_{i=1}x_i^2\hat\sigma^2}{n\sum^n_{i=1}(x_i-\bar x)^2}}
+\]</span></p>
+<p><span class="math display">\[
+SE(\hat\beta_1)=\sqrt\frac{\hat\sigma^2}{\sum^n_{i=1}(x_i-\bar x)^2}
+\]</span></p>
+</section>
+<section id="standard-errors-matrix-form" class="slide level2">
+<h2>Standard Errors Matrix Form</h2>
+<p><span class="math display">\[
+Var(\hat {\boldsymbol \beta}) = (\boldsymbol X ^\mathrm T\boldsymbol X)^{-1} \hat \sigma^2
+\]</span></p>
+</section></section>
+<section>
+<section id="r-approaches" class="title-slide slide level1 center">
+<h1>R approaches</h1>
+
+</section>
+<section id="built-in-functions" class="slide level2">
+<h2>Built in Functions</h2>
+<p>You can use the <code>lm</code> to fit a linear model and extract the estimated values and standard errors</p>
+</section>
+<section id="matrix-formulation-1" class="slide level2">
+<h2>Matrix Formulation</h2>
+<p>R is capable of conducting matrix operations with the following functions:</p>
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bisection Method</p>
-</div></li>
+<li><p><code>%*%</code>: matrix multiplication</p></li>
+<li><p><code>t()</code>: transpose a matrix</p></li>
+<li><p><code>solve()</code>: computes the inverse matrix</p></li>
 </ul>
+</section>
+<section id="minimization-problem" class="slide level2">
+<h2>Minimization Problem</h2>
+<p>Minimize the least squares using a numerical methods in R. The <code>optim()</code> function will minimize a function for set of parameters. We can minimize a function, least squares function, and supply initial values (0) for the parameters of interest.</p>
+</section>
+<section id="fit-a-line-using-lm-for-the-following-data" class="slide level2">
+<h2>Fit a Line using <code>lm</code> for the following data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">500</span>, <span class="dv">6</span>)</span>
+<span id="cb1-2"><a></a>y <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">9</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">32</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">500</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">2</span>))</span>
+<span id="cb1-3"><a></a>lm_res <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x) </span>
+<span id="cb1-4"><a></a><span class="fu">summary</span>(lm_res)</span>
+<span id="cb1-5"><a></a><span class="fu">sqrt</span>(<span class="fu">vcov</span>(lm_res))</span>
+<span id="cb1-6"><a></a><span class="fu">sigma</span>(lm_res)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
+<section id="fit-a-linear-model-using-matrix-operation" class="slide level2">
+<h2>Fit a linear model using matrix operation</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">500</span>), x)</span>
+<span id="cb2-2"><a></a><span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="minimizing-a-function-using-optim" class="slide level2">
+<h2>Minimizing a function using <code>optim</code></h2>
+<p>Find the value of x and y that will minimize the following function for any value a and b.</p>
 <p><span class="math display">\[
-f(x) = 2 x^3 - 20x -43
+f(x) = 2(x - 5)^2 + 11
 \]</span></p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb10-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb10-3"><a></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb10-4"><a></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="finding-the-root" class="slide level2">
-<h2>Finding the Root</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb11-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">uniroot</span>(f, <span class="at">lower =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; $root
-#&gt; [1] 3.932792
-#&gt; 
-#&gt; $f.root
-#&gt; [1] -2.30166e-05
-#&gt; 
-#&gt; $iter
-#&gt; [1] 7
-#&gt; 
-#&gt; $init.it
-#&gt; [1] NA
-#&gt; 
-#&gt; $estim.prec
-#&gt; [1] 6.103516e-05</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>d <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb3-2"><a></a>  <span class="dv">2</span> <span class="sc">*</span> (x <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">11</span></span>
+<span id="cb3-3"><a></a>}</span>
+<span id="cb3-4"><a></a><span class="fu">optim</span>(<span class="dv">0</span>, d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="bisection-method-1" class="slide level2 scrollable">
-<h2>Bisection Method</h2>
-<ol type="1">
-<li>Begin with an interval <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and evaluate <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>.</li>
-<li>If <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> are opposite signs, calculate <span class="math inline">\(c = \frac{a+b}{2}\)</span> and <span class="math inline">\(f(c)\)</span>.</li>
-<li>If <span class="math inline">\(|f(c)|&lt;\varepsilon\)</span>, for a small <span class="math inline">\(\varepsilon\)</span>, then stop the algorithm and <span class="math inline">\(c\)</span> is the root.</li>
-<li>Replace <span class="math inline">\((a,f(a))\)</span> or <span class="math inline">\((b,f(b))\)</span> with <span class="math inline">\((c, f(c))\)</span> so that the signs of <span class="math inline">\(f( \cdot )\)</span> is 0.</li>
-</ol>
-</section>
-<section id="bisection-code" class="slide level2">
-<h2>Bisection Code</h2>
+<section id="maximizing-a-function-using-optim" class="slide level2">
+<h2>Maximizing a function using <code>optim</code></h2>
+<p>Find the value of x and y that will minimize the following function for any value a and b.</p>
+<p><span class="math display">\[
+f(x) = - 3 (x - 8)^2 + 9
+\]</span></p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span>}</span>
-<span id="cb13-2"><a></a>aa <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb13-3"><a></a>bb <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-4"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb13-5"><a></a>i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a></a><span class="cf">while</span>(diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
-<span id="cb13-7"><a></a>  faa <span class="ot">&lt;-</span> <span class="fu">f</span>(aa)</span>
-<span id="cb13-8"><a></a>  cc <span class="ot">&lt;-</span> (aa <span class="sc">+</span> bb) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb13-9"><a></a>  fcc <span class="ot">&lt;-</span> <span class="fu">f</span>(cc)</span>
-<span id="cb13-10"><a></a>  <span class="cf">if</span> (faa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> fcc <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb13-11"><a></a>    bb <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-12"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-13"><a></a>    aa <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-14"><a></a>  }</span>
-<span id="cb13-15"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(fcc)</span>
-<span id="cb13-16"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a></a>}</span>
-<span id="cb13-18"><a></a>i</span>
-<span id="cb13-19"><a></a>cc</span>
-<span id="cb13-20"><a></a>fcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>d <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb4-2"><a></a>  <span class="dv">2</span> <span class="sc">*</span> (x <span class="sc">-</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">11</span></span>
+<span id="cb4-3"><a></a>}</span>
+<span id="cb4-4"><a></a><span class="fu">optim</span>(<span class="dv">0</span>, d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="minimizing-function-using-optim" class="slide level2">
+<h2>Minimizing function using <code>optim</code></h2>
+<p>Find the value of x and y that will minimize the following function for any value a and b.</p>
+<p><span class="math display">\[
+f(x,y) = \frac{(x-3)^2}{a^2} + \frac{(y+4)^2}{b^2}
+\]</span></p>
+</section>
+<section id="maximizing-function-using-optim" class="slide level2">
+<h2>Maximizing function using <code>optim</code></h2>
+<p>Find the value of <span class="math inline">\(\lambda\)</span> that maximize the following function:</p>
+<p><span class="math display">\[
+\ell(\lambda) = \sum^n_{i=1} -\lambda+X_i\log(\lambda) -\log(X_i!)
+\]</span></p>
+<p>with the following data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>z <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fit-a-linear-model-using-optim" class="slide level2">
+<h2>Fit a linear model using <code>optim</code></h2>
+<p>Minimize:</p>
+<p><span class="math display">\[
+\sum^n_{i=1}(y_i-\hat y_i)^2
+\]</span></p>
+<p><span class="math display">\[
+\hat y_i = \hat \beta_0 +\hat\beta_1 x_i
+\]</span></p>
+<p>Data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">500</span>, <span class="dv">6</span>)</span>
+<span id="cb6-2"><a></a>y <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">9</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">32</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">500</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-<div class="reveal-header">
-<div class="header-logo">
-<img data-src="">
-</div>
-<div class="sc-title">
-<p> </p>
-</div>
-<div class="header-text">
-<p> </p>
-</div>
-<div class="sb-title">
-<p> </p>
-</div>
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -625,7 +442,6 @@ f(x) = 2 x^3 - 20x -43
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/verticator/verticator.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -649,7 +465,6 @@ f(x) = 2 x^3 - 20x -43
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
-'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -820,7 +635,7 @@ f(x) = 2 x^3 - 20x -43
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Verticator, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
