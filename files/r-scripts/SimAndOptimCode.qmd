@@ -1,0 +1,38 @@
+---
+title: "LmOptim"
+editor: visual
+---
+
+
+## Fit a Line using `lm` for the following data
+
+```{r}
+x <- rpois(500, 6)
+hist(x)
+y <- -9 * x + 32 + rnorm(500, sd = sqrt(2))
+lm_res <- lm(y ~ x) 
+summary(lm_res)
+sqrt(vcov(lm_res))
+sigma(lm_res)^2
+```
+
+```{r}
+X <- cbind(rep(1, 500), x)
+#X[1:50,]
+solve(t(X)%*%X) %*% t(X) %*% y  
+```
+
+##Find the value of x that will minimize the following function.
+
+$$
+f(𝑥)=2*(𝑥−5)^2+11
+$$
+
+```{r}
+d <- function(x){
+  2 * (x - 5)^2 + 11
+}
+optim(0, d)
+```
+
+

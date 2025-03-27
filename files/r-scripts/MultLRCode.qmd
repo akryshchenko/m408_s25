@@ -1,0 +1,107 @@
+---
+title: "MultLR"
+editor: visual
+---
+
+## Example
+
+Looking at the `penguins` from `palmerpenguins`, fit a model between `body_mass_g` as an outcome variable and `flipper_length_mm` and `bill_length_mm` as predictor variables.
+
+```{r}
+library(palmerpenguins)
+penguins |>  lm(body_mass_g ~ flipper_length_mm + bill_length_mm, 
+                data = _)
+```
+
+```{r}
+unique(penguins$island)
+```
+
+## Fitting a model with categorical variables
+
+Looking at the `penguins` from `palmerpenguins`, fit a model between `body_mass_g` as an outcome variable and `flipper_length_mm` and `islands` as predictor variables.
+
+```{r}
+library(palmerpenguins)
+penguins |>  lm(body_mass_g ~ flipper_length_mm + island,
+                data = _)
+```
+
+```{r}
+penguins <- penguins |> 
+  mutate(island_dream = relevel(island , ref = "Dream"))
+penguins |> lm(body_mass_g ~ flipper_length_mm + island_dream, 
+               data = _)
+```
+
+```{r}
+library(tidyverse)
+penguins|>ggplot(aes(body_mass_g,island))+geom_boxplot()
+```
+
+```{r}
+x1 <- rnorm(1000, 2, 1)
+x2<- rnorm(1000,-4,1)
+error<-rnorm(1000,0,2)
+
+y<-rep(0,length(x1))
+y<-3+2*x1+4*x2+error
+
+
+```
+
+## Fit Model
+
+Fit a model between $Y$ and $X_1$.
+
+Repeat the process 1000 times. and answer the following questions:
+
+-   On average does $\beta_1$ get estimated correctly? Why?
+
+-   What is the average model variance?
+
+```{r}
+beta_1<-rep(0,1000)
+sd<-rep(0,1000)
+for (i in 1:1000){
+  x1 <- rnorm(1000, 2, 1)
+x2<- rnorm(1000,-4,1)
+error<-rnorm(1000,0,2)
+
+y<-rep(0,length(x1))
+y<-3+2*x1+4*x2+error
+slm<-lm(y~x1)
+beta_1[i]<-coef(slm)[2]
+sd[i]<-sigma(slm)}
+
+mean(beta_1)
+mean(sd)
+```
+
+## MLR Model
+
+Instead of fitting a simple linear regression model. Fit a model that will include predictor $X_2$. This can be done by adding $X_2$ in R:
+
+```{r}
+beta<-matrix(rep(0,3000),1000,3)
+dim(beta)
+  sd_mlr<-rep(0,1000)
+for(i in 1:1000){
+  x1 <- rnorm(1000, 2, 1)
+x2<- rnorm(1000,-4,1)
+error<-rnorm(1000,0,2)
+
+y<-rep(0,length(x1))
+y<-3+2*x1+4*x2+error
+mlr<-lm(y ~ x1 + x2)
+beta[i,] <- coef(mlr)
+#beta
+sd_mlr[i]<-sigma(mlr)
+#sd_mlr
+}
+  colMeans(beta)
+  mean(sd_mlr)
+
+```
+
+Modify your simulation study and see what happens to $\beta_1$ and the model variance.
