@@ -1,0 +1,234 @@
+---
+title: "R Basics"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+engine: knitr
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    comment: "#>" 
+
+
+revealjs-plugins:
+  - verticator
+  
+filters: 
+  - reveal-auto-agenda
+  - code-fullscreen
+  - webr
+
+webr: 
+  show-startup-message: true
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+```
+
+# Math 408: Lecture 2
+
+## Introduction to R
+
+## R Packages
+
+
+::: panel-tabset
+
+### Core Packages
+
+-   Tidyverse
+
+-   csucistats
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages('csucistats', 
+  repos = c('https://inqs909.r-universe.dev', 
+  'https://cloud.r-project.org'))
+```
+
+### Course Packages
+
+
+::: columns
+
+::: column
+
+- ISLR2
+
+- leaps
+
+- gam
+
+- tree
+
+
+:::
+
+::: column
+
+- gbm
+
+- e1071
+
+- glmnet
+
+- torch
+
+:::
+
+:::
+
+### Misc Packages
+
+- RMarkdown
+
+- Quarto
+
+- extraInserts (GitHub Package)
+
+:::
+
+## Load R Package
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(tidyverse)
+library(torch)
+```
+
+
+- You must load packages every new R Session
+
+# R Basics
+
+## R as a calculator
+
+R can evaluate different expressions in the console tab.
+
+Try the following:
+
+1.  $4(4+2)/34$
+2.  $6^3$
+3.  $3-1$
+4.  $4+4/3+45(32*34-54)$
+
+## R Calculator
+
+```{webr-r}
+
+```
+
+## R Functions
+
+R functions performs tasks to specific data values.
+
+Evaluate the following values in R:
+
+1.  $\sqrt{3}$
+2.  $e^3$
+3.  $\ln(53)$
+4.  $\log(324)$
+5.  $\sin(3)$
+6.  $\sin(3\pi)$
+
+## R Functions
+
+```{webr-r}
+
+```
+
+## Types of Data
+
+-   Numeric
+
+-   Character
+
+-   Logical
+
+-   Missing
+
+Evaluate the following code:
+
+```{r}
+#| eval: false
+
+is.numeric(1)
+is.numeric("1")
+is.numeric(T)
+is.numeric(NA)
+
+```
+
+## Types of Data
+
+```{webr-r}
+
+```
+
+
+## Types of Objects
+
+In R, an object contains a set of data. The most common types are `vectors` and `matrix`.
+
+Run this code and print out the objects in the console:
+
+```{r}
+x <- 3:34
+y <- matrix(1:20, nrow = 4)
+```
+
+## Types of objects
+
+```{webr-r}
+
+```
+
+
+## Data Frames
+
+Data frames can be thought of as R's version of a data set.
+
+Play around with mtcars:
+
+```{r}
+#| eval: true
+mtcars 
+```
+
+## Lists
+
+List can be thought as an extended vector, but each element is a different R object.
+
+Try playing with this R object:
+
+```{r}
+list_one <- list(mtcars, rep(0, 4),
+                 diag(rep(1, 3)))
+```
+
+## Lists
+
+```{webr-r}
+
+```
+

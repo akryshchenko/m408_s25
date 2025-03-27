@@ -1,0 +1,429 @@
+---
+title: "Linear Regression"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+
+editor: source
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+library(GLMsData)
+library(broom)
+library(palmerpenguins)
+library(magrittr)
+
+x <- rnorm(50, 4)
+y <- 3 + 2 * x + rnorm(50, sd = 2)
+df <- tibble(x, y)
+theme_set(theme_bw())
+
+
+```
+
+## Learning Objectives
+
+-   Associations
+
+-   Linear Regression
+
+-   Conducting it in R
+
+# Associations
+
+## Types of Associations
+
+-   Categorical vs Continuous
+
+-   Categorical vs Categorical
+
+-   Continuous vs Continuous
+
+## Categorical vs Continuous
+
+Describing the relationship between categorical and continuous variables can be done by stratifying by the categorical variable and finding the mean or median, or conducting a statistical test:
+
+-   t-tests
+
+-   ANOVA
+
+Measuring the association between species and flipper length from `palmerpenguins`:
+
+```{r}
+#| echo: true
+# Stratification
+penguins |>  drop_na()  |> 
+  group_by(species) |>  
+  summarise(mean = mean(flipper_length_mm),
+            median = median(flipper_length_mm))
+# ANOVA
+species_aov <- aov(flipper_length_mm ~ species, penguins)
+tidy(species_aov)
+```
+
+## Categorical vs Categorical
+
+Comparing 2 categorical variables can be done by computing proportions or conducting a chi-square test. Below is an example comparing
+
+```{r}
+#| echo: true
+
+# Count and Proportions
+penguins |>  group_by(species, island) |> 
+  summarise(count = n(), proportions = n() / nrow(penguins))
+
+# Chi-Square Test
+penguins |> with(chisq.test(species, island))
+
+```
+
+## Continuous vs Continuous
+
+To understand the relationship between two continuous random variables, we can use the following:
+
+-   Correlation
+
+-   Linear Regression
+
+## Correlation
+
+Correlations measures the association between 2 continuous random variables.
+
+-   Pearson's Correlation
+
+-   Spearman's Correlation
+
+-   Kendall's Tau
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+
+# Pearson's Correlation
+penguins |> drop_na() |> cor.test(~ body_mass_g + flipper_length_mm, 
+                                  data = _)
+
+# Spearman's Correlation 
+penguins |>  drop_na() |> cor.test(~ body_mass_g + flipper_length_mm,
+                                   data = _,
+                                   method = "spearman")
+
+# Kendall's Tau
+penguins |>  drop_na() |> cor.test(~ body_mass_g + flipper_length_mm,
+                                   data = _,
+                                   method = "kendall")
+
+```
+
+## Scatter Plot
+
+```{r}
+penguins |> 
+ggplot(aes(x = body_mass_g, y = flipper_length_mm)) + 
+  geom_point() 
+```
+
+# Linear Regression
+
+## Linear Regression
+
+Linear regression is used to model the association between a set of predictor variables (x's) and an outcome variable (y). Linear regression will fit a line that best describes the data points.
+
+## Scatter Plot
+
+```{r}
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point() 
+```
+
+## Simple Linear Regression
+
+Simple linear regression will model the association between one predictor variable and an outcome:
+
+$$
+Y = \beta_0 + \beta_1 X + \epsilon
+$$
+
+-   $\beta_0$: Intercept term
+
+-   $\beta_1$: Slope term
+
+-   $\epsilon\sim N(0,\sigma^2)$
+
+## Estimated Model
+
+$$
+\hat Y = \hat \beta_0 + \hat \beta_1 X
+$$
+
+## Process
+
+![](img/6b1.gif){fig-align="center"}
+
+## Process
+
+```{r}
+fit <- df |> lm(y ~ x, data = _)
+df$pred <- predict(fit, df)
+
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point(size = 2) +
+    geom_segment(aes(x=x,xend=x,y=y,yend=pred))+
+    stat_smooth(method = "lm", se = F)
+```
+
+
+## Sums of Error Squared
+
+$$
+RSS = \sum^n_{i=1}(Y_i-\hat Y_i)^2
+$$
+
+## Searching
+
+```{r}
+finderr <- function(x,m,b){
+  m*x + b
+}
+a <- 2.4395
+b <- 1.363008
+df$pred <- finderr(df$x, a, b) 
+rss <- sum((df$y - df$pred)^2)
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point(size = 2) +
+    geom_segment(aes(x=x,xend=x,y=y,yend=pred))+    
+    geom_abline(slope = a,
+                intercept = b) +
+    annotate("text", x = 2.75, y = 16, label = paste0("RSS: ", round(rss,2)))
+
+```
+
+## Searching
+
+```{r}
+finderr <- function(x,m,b){
+  m*x + b
+}
+
+a <- -0.15341
+b <- 10.9204
+
+df$pred <- finderr(df$x, a, b) 
+rss <- sum((df$y - df$pred)^2)
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point(size = 2) +
+    geom_segment(aes(x=x,xend=x,y=y,yend=pred))+    
+    geom_abline(slope = a,
+                intercept = b) +
+    annotate("text", x = 2.75, y = 16, label = paste0("RSS: ", round(rss,2)))
+
+```
+
+## Searching
+
+```{r}
+finderr <- function(x,m,b){
+  m*x + b
+}
+a <- 2.0073747
+b <- 2.955920
+df$pred <- finderr(df$x, a, b) 
+rss <- sum((df$y - df$pred)^2)
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point(size = 2) +
+    geom_segment(aes(x=x,xend=x,y=y,yend=pred))+    
+    geom_abline(slope = a,
+                intercept = b) +
+    annotate("text", x = 2.75, y = 16, label = paste0("RSS: ", round(rss,2)))
+
+```
+
+## Searching
+
+```{r}
+finderr <- function(x,m,b){
+  m*x + b
+}
+a <- 1.575194
+b <- 4.548833
+df$pred <- finderr(df$x, a, b) 
+rss <- sum((df$y - df$pred)^2)
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point(size = 2) +
+    geom_segment(aes(x=x,xend=x,y=y,yend=pred))+    
+    geom_abline(slope = a,
+                intercept = b) +
+    annotate("text", x = 2.75, y = 16, label = paste0("RSS: ", round(rss,2)))
+
+```
+
+## Final
+
+```{r}
+fit <- df |> lm(y ~ x, data = _)
+df$pred <- predict(fit, df)
+rss <- sum(resid(fit)^2)
+df |> 
+  ggplot(aes(x = x, y = y)) + 
+    geom_point(size = 2) +
+    geom_segment(aes(x=x,xend=x,y=y,yend=pred))+
+    stat_smooth(method = "lm", se = F) +
+    annotate("text", x = 2.75, y = 16, label = paste0("RSS: ", round(rss,2)))
+```
+
+
+# R Examples
+
+## R Formulas
+
+In R, we create a formula using the `tilde`
+
+Outcome Variable `tilde` Independent Variables
+
+```{r}
+#| echo: true
+#| eval: false
+ooutcome_variable_name ~ independent_variable_name
+```
+
+## R Example
+
+Applying a linear regression model to `body_mass_g` (Predictor) and `flipper_length_mm` (Outcome) from `penguins`:
+
+::: panel-tabset
+## R Output
+
+```{r}
+#| code-fold: true
+
+penguins |> 
+  lm(flipper_length_mm ~ body_mass_g, 
+     data = _) |> 
+  summary()
+```
+
+## Scatter Plot
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| message: false
+penguins |> 
+  ggplot(aes(y = flipper_length_mm, x = body_mass_g)) + 
+    geom_point() + 
+    geom_smooth(method = "lm")
+```
+
+### Interpretation
+
+$$
+\hat y = 136.73 + 0.015 x
+$$
+:::
+
+## Simulation Example
+
+## Generate X Values
+
+Simulate 250 independent values (x) from $N(3, 1)$ and plot a histogram
+
+```{r}
+#| echo: true
+x <- rnorm(250, 3, 1)
+```
+
+## Generate Y Values
+
+Create a new variable with the following formula:
+
+$$
+Y_i = 3 X_i + 20
+$$
+
+Create a Scatter Plot
+
+## Generate Error Term
+
+Generate $\epsilon_i\sim N(0, 2)$
+
+Create a histogram
+
+## Add error term
+
+Create final form of $Y_i$:
+
+$$
+Y_i = 3 X_i + 20 + \epsilon_i
+$$
+
+Create a scatter plot
+
+
+## Simulation Study
+
+To confirm that `lm` works, repeat the process 100 times and obtain the average $\beta$ estimates:
+
+1.  Generate 250 X values
+2.  Create Y Value
+3.  Add error term
+4.  Fit Model
+5.  Store Values
+6.  Find the means of the coefficient
+
+## R Code of Simulation Study
+
+```{r}
+#| echo: true
+
+## Original Code
+
+x <- rnorm(250, 3, 1)
+py <- 3 * x + 20
+err <- rnorm(250, 0, 2)
+y <- py + err
+res <- lm(y ~ x)
+coef(res)
+
+# Simulation Study
+sim <- \(i){
+  x <- rnorm(250, 3, 1)
+  py <- 3 * x + 20
+  err <- rnorm(250, 0, 2)
+  y <- py + err
+  res <- lm(y ~ x)
+  return(coef(res))
+}
+
+sim_results <- sapply(1:1000, sim)
+rowMeans(sim_results)
+```
+

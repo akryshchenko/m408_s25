@@ -28,15 +28,15 @@ penguins |>  lm(body_mass_g ~ flipper_length_mm + island,
 ```
 
 ```{r}
-penguins <- penguins |> 
-  mutate(island_dream = relevel(island , ref = "Dream"))
-penguins |> lm(body_mass_g ~ flipper_length_mm + island_dream, 
-               data = _)
+#penguins <- penguins |> 
+ # mutate(island_dream = relevel(island , ref = "Dream"))
+#penguins |> lm(body_mass_g ~ flipper_length_mm + island_dream, 
+#               data = _)
 ```
 
 ```{r}
-library(tidyverse)
-penguins|>ggplot(aes(body_mass_g,island))+geom_boxplot()
+#library(tidyverse)
+#penguins|>ggplot(aes(body_mass_g,island))+geom_boxplot()
 ```
 
 ```{r}
