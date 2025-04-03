@@ -6,10 +6,16 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
+<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Intro to Data Manipulation</title>
+  <title>m408_s25 – Hypothesis Testing</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -99,6 +105,8 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/verticator/verticator.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -194,342 +202,439 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Intro to Data Manipulation</h1>
+  <h1 class="title">Hypothesis Testing</h1>
+  <p class="subtitle">Model Inference</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="learning-objectives" class="slide level2">
-<h2>Learning Objectives</h2>
+<section id="learning-outcomes" class="slide level2">
+<h2>Learning Outcomes</h2>
 <ul>
-<li><p>Anonymous Functions</p></li>
-<li><p>Pipes</p></li>
-<li><p>Scripting</p></li>
-<li><p>Data Manipulation</p></li>
+<li><p>Hypothesis Tests</p></li>
+<li><p>Model Inference</p></li>
 </ul>
 </section>
 <section>
-<section id="anonymous-functions" class="title-slide slide level1 center">
-<h1>Anonymous Functions</h1>
+<section id="hypothesis-tests" class="title-slide slide level1 center">
+<h1>Hypothesis Tests</h1>
 
 </section>
-<section id="anonymous-functions-1" class="slide level2">
-<h2>Anonymous Functions</h2>
-<p>An anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an <code>*apply()</code> function<br>
-</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb1-2"><a></a><span class="fu">sapply</span>(x, <span class="cf">function</span>(x) <span class="fu">rnorm</span>(<span class="dv">1</span>,x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;  [1] 0.3027983 2.6845278 2.5530796 4.2453613 4.8225720 5.2952649 5.7625520
-#&gt;  [8] 8.1210135 8.0871350 9.2484315</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb3-2"><a></a><span class="fu">sapply</span>(x, \(x) <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="dv">1</span>,x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt;  [1]  1.369367  2.226004  4.213579  4.028454  2.789516 -7.099835  1.165553
-#&gt;  [8]  3.129345  4.984727 -4.520427</code></pre>
-</div>
-</div>
+<section id="hypothesis-tests-1" class="slide level2">
+<h2>Hypothesis Tests</h2>
+<p>Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the <strong>Null</strong> and <strong>Alternative</strong> Hypothesis.</p>
 </section>
-<section id="example" class="slide level2">
-<h2>Example</h2>
-<p>Use an anonymous function to square all the values in the following vector:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Use an anonymous function to calculate the square of each element in a vector</span></span>
-<span id="cb5-2"><a></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="null-hypothesis-h_0" class="slide level2">
+<h2>Null Hypothesis <span class="math inline">\(H_0\)</span></h2>
+<p>The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.</p>
 </section>
-<section id="example-1" class="slide level2">
-<h2>Example</h2>
-<p>Use an anonymous function to convert the vector from Fahrenheit to Celsius:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Create a vector of temperatures in Fahrenheit</span></span>
-<span id="cb6-2"><a></a>temperatures_f <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">68</span>, <span class="dv">104</span>, <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="alternative-hypothesis-h_a" class="slide level2">
+<h2>Alternative Hypothesis <span class="math inline">\(H_a\)</span></h2>
+<p>The alternative hypothesis contradicts the null hypothesis.</p>
+</section>
+<section id="example-of-null-and-alternative-hypothesis" class="slide level2">
+<h2>Example of Null and Alternative Hypothesis</h2>
+<p>We want to see if <span class="math inline">\(\mu\)</span> is different from <span class="math inline">\(\mu_0\)</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu=\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu\ne\mu_0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \mu\le\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu&gt;\mu_0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu\ge\mu_0\)</span></td>
+<td><span class="math inline">\(H_0: \mu&lt;\mu_0\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="one-side-vs-two-side-hypothesis-tests" class="slide level2">
+<h2>One-Side vs Two-Side Hypothesis Tests</h2>
+<p>Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (<span class="math inline">\(H_a:\mu\ne\mu_0\)</span>) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Null Hypothesis</th>
+<th>Alternative Hypothesis</th>
+<th>Side</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu=\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu\ne\mu_0\)</span></td>
+<td>2-sided</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H_0: \mu\le\mu_0\)</span></td>
+<td><span class="math inline">\(H_a: \mu&gt;\mu_0\)</span></td>
+<td>1-sided</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H_0: \mu\ge\mu_0\)</span></td>
+<td><span class="math inline">\(H_0: \mu&lt;\mu_0\)</span></td>
+<td>1-sided</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-hypothesis-tests" class="slide level2">
+<h2>Common Hypothesis Tests</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 30%">
+<col style="width: 21%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th># of Samples</th>
+<th>Null Hypothesis</th>
+<th>Distribution</th>
+<th>DF</th>
+<th>Test Statistics</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>t-test</td>
+<td>1</td>
+<td><span class="math inline">\(\mu=\mu_0\)</span></td>
+<td><span class="math inline">\(t_{DF}\)</span></td>
+<td><span class="math inline">\(DF=n-1\)</span></td>
+<td><span class="math inline">\(\frac{\bar X-\mu_0}{\sqrt{s^2/n}}\)</span></td>
+<td><span class="math inline">\(n&lt;30\)</span></td>
+</tr>
+<tr class="even">
+<td>z-test</td>
+<td>1</td>
+<td><span class="math inline">\(\mu=\mu_0\)</span></td>
+<td><span class="math inline">\(N(0,1)\)</span></td>
+<td>None</td>
+<td><span class="math inline">\(\frac{\bar X-\mu_0}{\sqrt{\sigma^2/n}}\)</span></td>
+<td><span class="math inline">\(n&gt;30\)</span> <span class="math inline">\(\sigma^2\)</span> known</td>
+</tr>
+<tr class="odd">
+<td>z-test</td>
+<td>1</td>
+<td><span class="math inline">\(\mu=\mu_0\)</span></td>
+<td><span class="math inline">\(N(0,1)\)</span></td>
+<td>None</td>
+<td><span class="math inline">\(\frac{\bar X-\mu_0}{\sqrt{s^2/n}}\)</span></td>
+<td><span class="math inline">\(n&gt;30\)</span> <span class="math inline">\(\sigma^2\)</span> unknown</td>
+</tr>
+<tr class="even">
+<td>paired t-test</td>
+<td>2</td>
+<td><span class="math inline">\(\mu_1-\mu_2=D\)</span></td>
+<td><span class="math inline">\(t_{DF}\)</span></td>
+<td><span class="math inline">\(DF=n-1\)</span></td>
+<td><span class="math inline">\(\frac{\bar X_d-D}{\sqrt{s_d^2/n}}\)</span></td>
+<td><span class="math inline">\(n\)</span> is the number of pairs</td>
+</tr>
+<tr class="odd">
+<td>independent t-test</td>
+<td>2</td>
+<td><span class="math inline">\(\mu_1-\mu_2=D\)</span></td>
+<td><span class="math inline">\(t_{DF}\)</span></td>
+<td><span class="math inline">\(DF=n_1+n_2-2\)</span></td>
+<td><span class="math inline">\(\frac{\bar X_1-\bar X_2-D}{\sqrt{s_p^2(1/n_1+1/n_2)}}\)</span></td>
+<td><span class="math inline">\(s_p^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\)</span></td>
+</tr>
+<tr class="even">
+<td>independent t-test</td>
+<td>2</td>
+<td><span class="math inline">\(\mu_1-\mu_2=D\)</span></td>
+<td><span class="math inline">\(t_{DF}\)</span></td>
+<td><span class="math inline">\(DF=\frac{(s^2_1/n_1+s^2_2/n_2)^2}{(s^2_1/n_1)^2/(n_1-1)+(s^2_2/n_2)^2/(n_2-1)}\)</span></td>
+<td><span class="math inline">\(\frac{\bar X_1-\bar X_2-D}{\sqrt{s_1^2/n_1+s^2_2/n_2}}\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ANOVA</td>
+<td>&gt;2</td>
+<td><span class="math inline">\(\mu_1=\mu_2=\cdots=\mu_k\)</span></td>
+<td><span class="math inline">\(F_{DF1,DF2}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="decision-making-p-value" class="slide level2">
+<h2>Decision Making: P-Value</h2>
+<p>The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true. Depending on the type of test, your p-value may be constructed as:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Alternative Hypothesis</th>
+<th>p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mu&gt;\mu_0\)</span></td>
+<td><span class="math inline">\(P(X&gt;T(x))=p\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu&lt;\mu_0\)</span></td>
+<td><span class="math inline">\(P(X&lt;T(x))=p\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu\ne\mu_0\)</span></td>
+<td><span class="math inline">\(2\times P(X&gt;|T(X)|)=p\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>If <span class="math inline">\(p &lt; \alpha\)</span>, then you reject <span class="math inline">\(H_0\)</span>; otherwise, you will fail to reject <span class="math inline">\(H_0\)</span>.</p>
+</section>
+<section id="decision-making-confidence-interval-approach" class="slide level2">
+<h2>Decision Making: Confidence Interval Approach</h2>
+<p>The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is <span class="math inline">\(\mu\ne\mu_0\)</span>. For this approach you will construct a <span class="math inline">\((1-\alpha)100\%\)</span> confidence interval as</p>
 <p><span class="math display">\[
-C = \frac{5(F-32)}{9}
+PE \pm CV *SE
+\]</span></p>
+<p>where PE is the point estimate, CV is the critical value based on <span class="math inline">\(\alpha\)</span> and SE is the standard error. This will result in a lower and upper bound denoted as: <span class="math inline">\((LB, UB)\)</span>. The confidence intervals provides a range values to capture the parameter <span class="math inline">\(\mu\)</span> such that if you repeat this process <span class="math inline">\(n\)</span> times, <span class="math inline">\((1-\alpha)100\%\)</span> of <span class="math inline">\(n\)</span> will capture the true value of <span class="math inline">\(\mu\)</span>. If <span class="math inline">\(\mu_0 \in (LB,UB)\)</span>, then you fail to reject <span class="math inline">\(H_0\)</span>. If <span class="math inline">\(\mu_0\notin (LB,UB)\)</span>, then you reject <span class="math inline">\(H_0\)</span>.</p>
+</section></section>
+<section>
+<section id="model-inference" class="title-slide slide level1 center">
+<h1>Model Inference</h1>
+
+</section>
+<section id="testing-beta_j" class="slide level2">
+<h2>Testing <span class="math inline">\(\beta_j\)</span></h2>
+<p><span class="math display">\[
+\frac{\hat\beta_j-\theta}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
+\]</span></p>
+</section>
+<section id="confidence-intervals" class="slide level2">
+<h2>Confidence Intervals</h2>
+<p><span class="math display">\[
+\hat \beta_j \pm CV \times se(\hat\beta_j)
+\]</span></p>
+<ul>
+<li><p>CV: Critical Value <span class="math inline">\(P(X&lt;CV) = 1-\alpha/2\)</span></p></li>
+<li><p><span class="math inline">\(\alpha\)</span>: significance level</p></li>
+<li><p>SE: Standard Error</p></li>
+</ul>
+</section>
+<section id="model-inference-1" class="slide level2">
+<h2>Model inference</h2>
+<p>We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (<span class="math inline">\(\hat Y=\hat\beta_0 + \hat\beta_1 X\)</span>) to the mean of Y (<span class="math inline">\(\hat \mu_y\)</span>). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.</p>
+</section>
+<section id="anova-table" class="slide level2">
+<h2>ANOVA Table</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 27%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>DF</th>
+<th>SS</th>
+<th>MS</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Model</td>
+<td><span class="math inline">\(DFR=k-1\)</span></td>
+<td><span class="math inline">\(SSR\)</span></td>
+<td><span class="math inline">\(MSR=\frac{SSM}{DFR}\)</span></td>
+<td><span class="math inline">\(\hat F=\frac{MSR}{MSE}\)</span></td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td><span class="math inline">\(DFE=n-k\)</span></td>
+<td><span class="math inline">\(SSE\)</span></td>
+<td><span class="math inline">\(MSE=\frac{SSE}{DFE}\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(TDF=n-1\)</span></td>
+<td><span class="math inline">\(TSS=SSR+SSE\)</span></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+\hat F \sim F(DFR, DFE)
+\]</span></p>
+</section>
+<section id="model-inference-2" class="slide level2">
+<h2>Model Inference</h2>
+<p>Given:</p>
+<p><span class="math display">\[
+M1:\ \hat y = \beta_0 + \beta_1 X_1 + \beta_2 X_2
+\]</span></p>
+<p><span class="math display">\[
+M2:\ \hat y = \beta_0 + \beta_1 X_1  
+\]</span></p>
+<p>Let <span class="math inline">\(M1\)</span> be the FULL (larger) model, and let <span class="math inline">\(M2\)</span> be the RED (Reduced, smaller) model.</p>
+</section>
+<section id="model-inference-3" class="slide level2">
+<h2>Model Inference</h2>
+<p>He can test the following Hypothesis:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: The error variations between the FULL and RED model are not different.</li>
+<li><span class="math inline">\(H_1\)</span>: The error variations between the FULL and RED model are different.</li>
+</ul>
+</section>
+<section id="test-statistic" class="slide level2">
+<h2>Test Statistic</h2>
+<p><span class="math display">\[
+\hat F = \frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}
+\]</span></p>
+<p><span class="math display">\[
+\hat F \sim F[DFE(RED) - DFE(FULL), DFE(FULL)]
 \]</span></p>
 </section></section>
 <section>
-<section id="pipes" class="title-slide slide level1 center">
-<h1>Pipes</h1>
+<section id="linear-models-equivalent-of-common-statistical-tests" class="title-slide slide level1 center">
+<h1>Linear Models Equivalent of Common Statistical Tests</h1>
 
 </section>
-<section id="pipes-1" class="slide level2">
-<h2>Pipes</h2>
-<p>Pipes are used to pass the output from one function and use it as input for another function. The output is piped into the first argument of the next function. There are two main pipes: R’s base pipe and Magrittr’s pipes. You must download and install the <code>magrittr</code> package; and you will need to load it everytime:</p>
+<section id="sample-t-test" class="slide level2">
+<h2>1-Sample t-test</h2>
+<p>This can be conducted as <span class="math inline">\(Y=\beta_0\)</span></p>
+<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_0 = 205\)</span> OR <span class="math inline">\(H_0: \mu = 205\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span>
+<span id="cb1-4"><a></a>xlm <span class="ot">&lt;-</span> penguins  <span class="sc">|&gt;</span>  <span class="fu">lm</span>(flipper_length_mm <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> _)</span>
+<span id="cb1-5"><a></a><span class="fu">coef</span>(xlm)</span>
+<span id="cb1-6"><a></a><span class="fu">confint</span>(xlm)</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a><span class="do">## OR</span></span>
+<span id="cb1-9"><a></a><span class="fu">t.test</span>(penguins<span class="sc">$</span>flipper_length_mm, <span class="at">mu =</span> <span class="dv">205</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Additionally, pipes can be used to chain functions together.</p>
 </section>
-<section id="section" class="slide level2">
-<h2><code>|&gt;</code></h2>
-<p>Before R 4.1, R did not have a pipe in its main program. The base pipe, <code>|&gt;</code>, will pipe the output of the first operation and use it as the input of the first argument of the next function.</p>
+<section id="sample-t-test-1" class="slide level2">
+<h2>2-Sample t-test</h2>
+<p>This can be conducted as <span class="math inline">\(Y=\beta_0 + \beta_1 X\)</span>, where <span class="math inline">\(X\)</span> is a binary variable for 2 samples.</p>
+<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_1 = 0\)</span> OR <span class="math inline">\(H_0: \mu_1-\mu_2 = 0\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span></span>
-<span id="cb8-2"><a></a>x <span class="sc">|&gt;</span> <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 20.5</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>mtcars <span class="sc">|&gt;</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> _) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a><span class="do">## OR</span></span>
+<span id="cb2-4"><a></a></span>
+<span id="cb2-5"><a></a>mtcars <span class="sc">|&gt;</span> <span class="fu">t.test</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
-<h2><code>%&gt;%</code></h2>
-<p>The magrittr pipe, <code>%&gt;%</code>, operates the same way as <code>|&gt;</code>. Below are a couple of examples</p>
+<section id="paired-t-test" class="slide level2">
+<h2>Paired t-test</h2>
+<p>This can be conducted as <span class="math inline">\(Y_1 - Y_2=\beta_0\)</span></p>
+<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_0 = 0\)</span> OR <span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb10-2"><a></a>x <span class="sc">%&gt;%</span>  <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 5.5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>x <span class="sc">%&gt;%</span> sd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 3.02765</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>x <span class="sc">%&gt;%</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] -0.813988</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># DATA PREP</span></span>
+<span id="cb3-2"><a></a>before <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">200.1</span>, <span class="fl">190.9</span>, <span class="fl">192.7</span>, <span class="dv">213</span>, <span class="fl">241.4</span>, <span class="fl">196.9</span>, <span class="fl">172.2</span>, <span class="fl">185.5</span>, <span class="fl">205.2</span>, <span class="fl">193.7</span>)</span>
+<span id="cb3-3"><a></a>after <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">392.9</span>, <span class="fl">393.2</span>, <span class="fl">345.1</span>, <span class="dv">393</span>, <span class="dv">434</span>, <span class="fl">427.9</span>, <span class="dv">422</span>, <span class="fl">383.9</span>, <span class="fl">392.3</span>, <span class="fl">352.2</span>)</span>
+<span id="cb3-4"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(before, after)</span>
+<span id="cb3-5"><a></a></span>
+<span id="cb3-6"><a></a>df <span class="sc">|&gt;</span> <span class="fu">lm</span>(after <span class="sc">-</span> before <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> _) <span class="sc">|&gt;</span> (\(x) <span class="fu">c</span>(<span class="fu">coef</span>(x), <span class="fu">confint</span>(x)))()</span>
+<span id="cb3-7"><a></a><span class="do">## OR</span></span>
+<span id="cb3-8"><a></a>df <span class="sc">|&gt;</span> <span class="fu">with</span>(<span class="fu">t.test</span>(before, after, <span class="at">paired =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-2" class="slide level2">
-<h2><code>%$%</code></h2>
-<p>The exposition pipe, <code>%$%</code>, will expose the named elements, from a list or data frame, to the next function.</p>
+<section id="anova" class="slide level2">
+<h2>ANOVA</h2>
+<p>This can be conducted as <span class="math inline">\(Y=\beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k\)</span>, where <span class="math inline">\(X_k\)</span> are binary variable for k samples.</p>
+<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_1 =\beta_2 =\cdots=\beta_k = 0\)</span> OR <span class="math inline">\(H_0: \mu_1 =\mu_2 =\cdots=\mu_k = 0\)</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>mtcars <span class="sc">%$%</span> <span class="fu">plot</span>(mpg, hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="4bS25_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
-<section id="t" class="slide level2">
-<h2><code>%T&gt;%</code></h2>
-<p>The Tee pipe, <code>%T&gt;%</code>, forward the output in the</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>sin_40 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">40</span> <span class="sc">%&gt;%</span> mean <span class="sc">%T&gt;%</span> print <span class="sc">%&gt;%</span> sin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 20.5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">print</span>(sin_40)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; [1] 0.9968298</code></pre>
-</div>
-</div>
-</section>
-<section id="t-1" class="slide level2">
-<h2><code>%T&gt;%</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-2"><a></a>  <span class="fu">matrix</span>(<span class="at">ncol=</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-3"><a></a>  <span class="fu">sin</span>() <span class="sc">%T&gt;%</span> </span>
-<span id="cb21-4"><a></a>  <span class="fu">plot</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb21-5"><a></a>  <span class="fu">colSums</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
-<p>Using the vector below, find the standard deviation using a pipe:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">100</span>, <span class="dv">1</span>)</span>
-<span id="cb22-2"><a></a><span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="examples-1" class="slide level2">
-<h2>Examples</h2>
-<p>Chain pipe the previous results into the <span class="math inline">\(sin(x)\)</span>.</p>
-</section>
-<section id="examples-2" class="slide level2">
-<h2>Examples</h2>
-<p>Chain pipe the previous results into <span class="math inline">\(e^x\)</span>.</p>
-</section>
-<section id="examples-3" class="slide level2">
-<h2>Examples</h2>
-<p>Chain pipe the previous results into <span class="math inline">\(x^2+5x+4\)</span></p>
-</section></section>
-<section>
-<section id="data-projects" class="title-slide slide level1 center">
-<h1>Data Projects</h1>
-
-</section>
-<section id="scripting" class="slide level2">
-<h2>Scripting</h2>
-<p>The structure a programming is important to ensure that all methods are executed properly.</p>
-</section>
-<section id="beginning-of-script" class="slide level2">
-<h2>Beginning of Script</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a></a>## Todays data </span>
-<span id="cb23-2"><a></a>analysis_data &lt;- format(Sys.time(),"%Y-%m-%d-%H-%M")</span>
-<span id="cb23-3"><a></a></span>
-<span id="cb23-4"><a></a>## R Packages</span>
-<span id="cb23-5"><a></a>library(tidyverse)</span>
-<span id="cb23-6"><a></a>library(magrittr)</span>
-<span id="cb23-7"><a></a></span>
-<span id="cb23-8"><a></a>## Functions</span>
-<span id="cb23-9"><a></a>source("fxs.R")</span>
-<span id="cb23-10"><a></a>Rcpp::sourceCpp("fxs.cpp")</span>
-<span id="cb23-11"><a></a></span>
-<span id="cb23-12"><a></a>## Data</span>
-<span id="cb23-13"><a></a>df1 &lt;- read_csv("file.csv")</span>
-<span id="cb23-14"><a></a>df2 &lt;- load("file.RData") %&gt;% get</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="middle-of-script" class="slide level2">
-<h2>Middle of Script</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a></a>## Pre Analysis</span>
-<span id="cb24-2"><a></a>df1_prep &lt;- Prep_data(df1)</span>
-<span id="cb24-3"><a></a>df2_prep &lt;- Prep_data(df2)</span>
-<span id="cb24-4"><a></a></span>
-<span id="cb24-5"><a></a>## Analysis</span>
-<span id="cb24-6"><a></a>df1_analysis &lt;- analyze(df1_prep)</span>
-<span id="cb24-7"><a></a>df2_analysis &lt;- analyze(df2_prep)</span>
-<span id="cb24-8"><a></a></span>
-<span id="cb24-9"><a></a>## Post Analysis</span>
-<span id="cb24-10"><a></a>df1_post &lt;- Prep_post(df1_anlysis)</span>
-<span id="cb24-11"><a></a>df2_post &lt;- Prep_post(df2_anlysis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="end-of-script" class="slide level2">
-<h2>End of Script</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a></a>## Save Results</span>
-<span id="cb25-2"><a></a>res &lt;- list(df1 = list(pre = df1_prep,</span>
-<span id="cb25-3"><a></a>                       analysis = df1_analysis,</span>
-<span id="cb25-4"><a></a>                       post = df1_post),</span>
-<span id="cb25-5"><a></a>            df2 = list(pre = df2_prep,</span>
-<span id="cb25-6"><a></a>                       analysis = df2_analysis,</span>
-<span id="cb25-7"><a></a>                       post = df2_post))</span>
-<span id="cb25-8"><a></a>file_name &lt;- paste0("results_", analysis_data, ".RData")</span>
-<span id="cb25-9"><a></a>save(res, file = file_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="keyboard-shortcuts" class="slide level2">
-<h2>Keyboard Shortcuts</h2>
-<p>Below is a list of recommended keyboard shortcuts:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Shortcut</th>
-<th>Windows/Linux</th>
-<th>Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>%&gt;%</code></td>
-<td>Ctrl+Shift+M</td>
-<td>Cmd+Shift+M</td>
-</tr>
-<tr class="even">
-<td>Run Current Line</td>
-<td>Ctrl+Enter</td>
-<td>Cmd+Return</td>
-</tr>
-<tr class="odd">
-<td>Run Current Chunk</td>
-<td>Ctrl+Shift+Enter</td>
-<td>Cmd+Shift+Enter</td>
-</tr>
-<tr class="even">
-<td>Knit Document</td>
-<td>Ctrl+Shift+K</td>
-<td>Cmd+Shift+K</td>
-</tr>
-<tr class="odd">
-<td>Add Cursor Below</td>
-<td>Ctrl+Alt+Down</td>
-<td>Cmd+Alt+Down</td>
-</tr>
-<tr class="even">
-<td>Comment Line</td>
-<td>Ctrl+Shift+C</td>
-<td>Cmd+Shift+C</td>
-</tr>
-</tbody>
-</table>
-<p>I recommend modify these keyboard shortcuts in RStudio</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Shortcut</th>
-<th>Windows/Linux</th>
-<th>Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>%in%</code></td>
-<td>Ctrl+Shift+I</td>
-<td>Cmd+Shift+I</td>
-</tr>
-<tr class="even">
-<td><code>%$%</code></td>
-<td>Ctrl+Shift+D</td>
-<td>Cmd+Shift+D</td>
-</tr>
-<tr class="odd">
-<td><code>%T&gt;%</code></td>
-<td>Ctrl+Shift+T</td>
-<td>Cmd+Shift+T</td>
-</tr>
-</tbody>
-</table>
-<p>Note you will need to install the <code>extraInserts</code> package:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">'konradzdeb/extraInserts'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">lm</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> _) <span class="sc">|&gt;</span> <span class="fu">anova</span>()</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a><span class="do">## OR</span></span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">aov</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> _) <span class="sc">|&gt;</span> <span class="fu">anova</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
-<section id="data-manipulation" class="title-slide slide level1 center">
-<h1>Data Manipulation</h1>
+<section id="applications-in-r" class="title-slide slide level1 center">
+<h1>Applications in R</h1>
 
 </section>
-<section id="data-manipulation-1" class="slide level2">
-<h2>Data Manipulation</h2>
-</section>
-<section id="tidyverse" class="slide level2">
-<h2>Tidyverse</h2>
-<p>Tidyverse is a collection of R packages used for data manipulation. The <code>dplyr</code> package is known as the grammar of data manipulation with a set</p>
-</section>
-<section id="verbs" class="slide level2">
-<h2>Verbs</h2>
-<ul>
-<li><code>mutate()</code> adds new variables</li>
-<li><code>select()</code> selects variables</li>
-<li><code>filter()</code> filters data</li>
-<li><code>if_else()</code> conditional function that returns 2 values</li>
-<li><code>group_by()</code> a dataset is grouped by factors</li>
-<li><code>summarise()</code> provides summaries of data</li>
-</ul>
-</section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
+<section id="individual-hypothesis-testing" class="slide level2">
+<h2>Individual Hypothesis Testing</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="|2|3|4|5|6-9|10|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb27-2"><a></a>sum_stats <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a></a>  drop_na <span class="sc">%&gt;%</span> </span>
-<span id="cb27-4"><a></a>  <span class="fu">filter</span>(year<span class="sc">==</span><span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-5"><a></a>  <span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-6"><a></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(bill_length_mm),</span>
-<span id="cb27-7"><a></a>            <span class="at">sd =</span> <span class="fu">sd</span>(bill_length_mm),</span>
-<span id="cb27-8"><a></a>            <span class="at">median =</span> <span class="fu">median</span>(bill_length_mm),</span>
-<span id="cb27-9"><a></a>            <span class="at">n =</span> <span class="fu">length</span>(bill_length_mm)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-10"><a></a>  print</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 5
-#&gt;   island     mean    sd median     n
-#&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt;
-#&gt; 1 Biscoe     45.1  4.80   46.1    43
-#&gt; 2 Dream      44.7  5.64   45.4    45
-#&gt; 3 Torgersen  39.0  2.92   39.1    15</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, <span class="at">data =</span> _) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="model-inference-4" class="slide level2">
+<h2>Model Inference</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>xlm <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, <span class="at">data =</span> _) </span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a><span class="fu">summary</span>(xlm)</span>
+<span id="cb6-5"><a></a><span class="fu">anova</span>(xlm)</span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a><span class="do">## OR</span></span>
+<span id="cb6-8"><a></a></span>
+<span id="cb6-9"><a></a>xlm_null <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> _)</span>
+<span id="cb6-10"><a></a><span class="fu">anova</span>(xlm_null, xlm)</span>
+<span id="cb6-11"><a></a></span>
+<span id="cb6-12"><a></a><span class="do">## OR</span></span>
+<span id="cb6-13"><a></a></span>
+<span id="cb6-14"><a></a><span class="fu">library</span>(supernova)</span>
+<span id="cb6-15"><a></a><span class="fu">supernova</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="comparing-different-models" class="slide level2">
+<h2>Comparing Different Models</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>xlm1 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, <span class="at">data =</span> _) </span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a>xlm2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> species, <span class="at">data =</span> _) </span>
+<span id="cb7-6"><a></a></span>
+<span id="cb7-7"><a></a><span class="fu">anova</span>(xlm2, xlm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
+<div class="reveal-header">
+<div class="header-logo">
+<img data-src="">
+</div>
+<div class="sc-title">
+<p> </p>
+</div>
+<div class="header-text">
+<p> </p>
+</div>
+<div class="sb-title">
+<p> </p>
+</div>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -546,6 +651,8 @@ C = \frac{5(F-32)}{9}
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
+  <script src="../site_libs/revealjs/plugin/verticator/verticator.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -569,6 +676,8 @@ C = \frac{5(F-32)}{9}
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
+'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -739,7 +848,7 @@ C = \frac{5(F-32)}{9}
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealPointer, Verticator, QuartoSupport,
 
           RevealMath,
           RevealNotes,

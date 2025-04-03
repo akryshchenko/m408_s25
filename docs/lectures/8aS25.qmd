@@ -408,12 +408,12 @@ Fit a model between $Y$ and $X_1$.
 Simulate 1000 random variables from the following model:
 
 $$
-Y =( 3 + 2X_1 )* \epsilon
+Y = 3 + 2X_1 + \epsilon
 $$
 
 -   $X_1\sim N(8,1)$
 
--   $\epsilon\sim N(0, 1)$
+-   $\epsilon\sim N(0,Y^2)$
 
 ```{r}
 #| echo: true
