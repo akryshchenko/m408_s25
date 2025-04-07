@@ -1,0 +1,71 @@
+---
+title: "Homework 5"
+date: 3/7/24
+editor: visual
+draft: false
+---
+
+**Due 3/17/24 \@ 11:59 PM**
+
+Submit the \*.html file to canvas.
+
+## Problem 1
+
+The `faithful` data set in R contains information on `eruptions` time and `waiting` time. Describe the relationship between `waiting` (independent) and `eruptions` (dependent).
+
+You must provide descriptive statistics, visuals, and model.
+
+## Problem 2
+
+When estimating the $\beta$ coefficients, we are minimizing the sum of error squares:
+
+$$
+\sum^n_{i=1}(y_i-(\beta_0+\beta_1x_i))^2
+$$
+
+We square the errors to make sure we do not lose information when summing up all the values. However, what if we try to use an absolute value:
+
+$$
+\sum^n_{i=1}|y_i-(\beta_0+\beta_1x_i)|
+$$
+
+Simulate a data set, estimate the coefficients, and compare the results. Are they the same or different?
+
+## Problem 3
+
+Conduct a simulation assessing which case from problem 3 is better.
+
+To assess which case is better compare the mean and standard deviations of the simulated-estimated coefficients.
+
+## Problem 4
+
+Run the code below to obtain the data:
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(tidyverse)
+anime <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-23/tidy_anime.csv") |> filter(!type == "Unknown") |> as.data.frame()
+
+```
+
+The `anime` data set from MyAnimeList contains information on rankings and popularity scores of different anime episodes.
+
+Fit a linear model showing the relationship between `score` (outcome; higher is better) and the predictors `type`, `popularity`, and `rank`. On average, what is the score for an anime that is a "Special", popularity score of 520, and rank of 3582?
+
+## Problem 5
+
+Run this code below to obtain the data (you may need to install `tidytuesdayR`):
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(tidyverse)
+tuesdata <- tidytuesdayR::tt_load(2021, week = 52)
+starbucks <- tuesdata$starbucks |> drop_na() |> filter(size %in% c("tall", "grande", "venti"))
+
+```
+
+Fit a linear model between the outcome `caffeine_mg` (outcome) and predictors `size`, `calories`, and `sugar_g` from the `starbucks` data set using the matrix formulation approach (do matrix algebra) by defining the $X$ matrix. Use `tall` as the reference value for the `size` variable.

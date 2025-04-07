@@ -105,3 +105,119 @@ sd_mlr[i]<-sigma(mlr)
 ```
 
 Modify your simulation study and see what happens to $\beta_1$ and the model variance.
+
+## Simulation Study 2
+
+Simulate 1000 random variables from the following model:
+
+Y=3+2log(X1)+ϵ
+
+-   X1∼N(8,1)
+
+-   ϵ∼N(0,2)
+
+```{r}
+x1 <- rnorm(1000, 8, 1)
+
+error<-rnorm(1000,0,2)
+
+y<-rep(0,length(x1))
+y<-3+2*log(x1)+error
+```
+
+## Fit Model
+
+Fit a model between Y and X1.
+
+Repeat the process 1000 times. and answer the following questions:
+
+-   On average does β1 get estimated correctly? Why?
+
+-   What is the average model variance?
+
+```{r}
+beta<-matrix(rep(0,2000),1000,2)
+dim(beta)
+  sd_mlr<-rep(0,1000)
+for(i in 1:1000){
+x1 <- rnorm(1000, 8, 1)
+error<-rnorm(1000,0,2)
+
+y<-rep(0,length(x1))
+y<-3+2*log(x1)+error
+mlr<-lm(y ~ x1)
+beta[i,] <- coef(mlr)
+#beta
+sd_mlr[i]<-sigma(mlr)
+#sd_mlr
+}
+  colMeans(beta)
+  mean(sd_mlr)
+
+```
+
+## SLR Model
+
+Fit a simple linear regression model using log(X1) instead.
+
+```         
+lm(y ~ log(x1))
+```
+
+Modify your simulation study and see what happens to β1β1 and the model variance.
+
+```{r}
+beta<-matrix(rep(0,2000),1000,2)
+dim(beta)
+  sd_mlr<-rep(0,1000)
+for(i in 1:1000){
+x1 <- rnorm(1000, 8, 1)
+error<-rnorm(1000,0,2)
+
+y<-rep(0,length(x1))
+y<-3+2*log(x1)+error
+mlr<-lm(y ~ log(x1))
+beta[i,] <- coef(mlr)
+#beta
+sd_mlr[i]<-sigma(mlr)
+#sd_mlr
+}
+  colMeans(beta)
+  mean(sd_mlr)
+```
+
+```{r}
+library(palmerpenguins)
+clean_penguins <- penguins|>drop_na()
+X <- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)
+
+head(X)
+
+beta<- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g
+beta
+
+penguins_lm<-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)
+
+coef(penguins_lm)
+```
+
+```{r}
+library(palmerpenguins)
+library(dplyr)
+clean_penguins <- penguins|>drop_na()
+
+clean_penguins_d<-dummy_columns(clean_penguins,select_columns = "island")
+
+head(clean_penguins_d)
+
+X <- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)
+
+head(X)
+
+beta<- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g
+beta
+
+penguins_lm<-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)
+
+coef(penguins_lm)
+```
