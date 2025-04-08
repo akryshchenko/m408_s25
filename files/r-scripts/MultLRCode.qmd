@@ -187,37 +187,38 @@ sd_mlr[i]<-sigma(mlr)
 ```
 
 ```{r}
-library(palmerpenguins)
-clean_penguins <- penguins|>drop_na()
-X <- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)
-
-head(X)
-
-beta<- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g
-beta
-
-penguins_lm<-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)
-
-coef(penguins_lm)
+# library(palmerpenguins)
+# clean_penguins <- penguins|>
+#   drop_na()
+# X <- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)
+# 
+# head(X)
+# 
+# beta<- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g
+# beta
+# 
+# penguins_lm<-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)
+# 
+# coef(penguins_lm)
 ```
 
 ```{r}
-library(palmerpenguins)
-library(dplyr)
-clean_penguins <- penguins|>drop_na()
-
-clean_penguins_d<-dummy_columns(clean_penguins,select_columns = "island")
-
-head(clean_penguins_d)
-
-X <- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)
-
-head(X)
-
-beta<- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g
-beta
-
-penguins_lm<-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)
-
-coef(penguins_lm)
+# library(palmerpenguins)
+# library(dplyr)
+# clean_penguins <- penguins|>drop_na()
+# 
+# clean_penguins_d<-dummy_columns(clean_penguins,select_columns = "island")
+# 
+# head(clean_penguins_d)
+# 
+# X <- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)
+# 
+# head(X)
+# 
+# beta<- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g
+# beta
+# 
+# penguins_lm<-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)
+# 
+# coef(penguins_lm)
 ```

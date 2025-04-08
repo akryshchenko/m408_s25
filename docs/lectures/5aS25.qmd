@@ -1,0 +1,262 @@
+---
+title: "Data Manipulation"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    message: false
+    comment: "#>" 
+
+editor: source
+
+revealjs-plugins:
+  - verticator
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+library(tidylog)
+```
+
+## Learning Objectives
+
+-   Directories/R Projects
+
+-   Reading/Writing Data
+
+-   Merging Data
+
+-   `dplyr` Functions
+
+# Directories/R Projects
+
+## Scripting Style Guide
+
+[Tidyverse Style Guide](https://style.tidyverse.org/index.html)
+
+## Directories
+
+Directories is the file system located on your computer.
+
+A file path indicates the location of certain files relative to your main (home) folder.
+
+## Working Directory
+
+This is the folder where R will save and read all the files when the file path is not specified.
+
+To get the current working directory:
+
+```{r}
+getwd()
+```
+
+To set the working directory:
+
+```{r}
+setwd("new_file_path")
+```
+
+## R Projects
+
+R Projects are ways for RStudio to organize files together for specific
+
+# Reading/Writing Data
+
+## Read Data
+
+-   Easiest way is to have RStudio do it for you
+
+-   Use Base R functions
+
+-   Use `readr` package for tabular/text files
+
+-   Use `readxl` package for excel files
+
+-   Use `haven` package to read SAS, SPSS, or Stata files.
+
+## Example
+
+```{r}
+data1 <- read_csv("files/data/data_3_1.csv")
+data2 <- read_csv("/home/inqs/Repos/M408_S23/data/data_3_2.csv")
+```
+
+## Example
+
+Download the following zip file: [data](https://m408.inqs.info/files/data.zip)
+
+Load data `data_3_1.csv` and `data_3_2.csv`.
+
+## Example
+
+Load the following data: <https://m408.inqs.info/files/data/data_3_3.csv>
+
+## Write Data
+
+Several functions that you can use to write functions from the `readr` and `readxl`.
+
+I recommend using the `write_csv` function and provide csv files.
+
+## RData
+
+RData is the data file specific for R.
+
+### Load Data
+
+```{r}
+load("data.RData")
+```
+
+### Write Data
+
+```{r}
+save(RObject, file = "data.RData")
+```
+
+# Merging Data
+
+## `*_join()`
+
+-   The `*_join()` functions are used to merge 2 data frames together.
+
+## Example
+
+Merge data sets `data_3_1.csv` and `data_3_2.csv` using the `full_join()`
+
+# `dplyr` Functions
+
+## `mutate()`
+
+-   Adds a new variable to a data frame
+
+-   Example:
+
+```{r}
+#| message: true
+#| eval: true
+mtcars %>%
+  mutate(log_mpg = log(mpg)) %>%
+  head()
+```
+
+## `mutate()`
+
+-   Each argument is a new variable added
+
+-   Example:
+
+```{r}
+#| message: true
+#| eval: true
+
+mtcars %>%
+  mutate(log_mpg = log(mpg), log_hp = log(hp)) %>%
+  head()
+```
+
+## Example
+
+Using the `penguins` dataset from `palmerpenguins`, create a new variable that is the ln of `flipper_length_mm`.
+
+## `select()`
+
+-This selects the variables to keep in the data frame
+
+-Example:
+
+```{r}
+#| message: true
+#| eval: true
+
+mtcars %>%
+  mutate(log_mpg = log(mpg), log_hp = log(hp)) %>%
+  select(mpg, log_mpg, hp, log_hp) %>%
+  head()
+```
+
+## Example
+
+Using the `penguins` dataset from `palmerpenguins`, only select the variables that are continuous data points.
+
+## `filter()`
+
+-   Selects observations that satisfy a condition
+
+-   Example:
+
+```{r}
+#| message: true
+#| eval: true
+
+mtcars %>%
+  mutate(log_mpg = log(mpg), log_hp = log(hp)) %>%
+  select(mpg, log_mpg, hp, log_hp) %>%
+  filter(log_hp < 5) %>%
+  head()
+```
+
+## Example
+
+Using the `penguins` dataset from `palmerpenguins`, filter the data set to look at penguins that are a Gentoo species.
+
+## `if_else()`
+
+-   A function that provides T (1) if the condition is met and F (0) otherwise
+
+-   Example:
+
+```{r}
+#| message: true
+#| eval: true
+
+mtcars %>%
+  mutate(log_mpg = log(mpg), log_hp = log(hp)) %>%
+  select(mpg, log_mpg, hp, log_hp) %>%
+  filter(log_hp < 5) %>%
+  mutate(hilhp = if_else(log_hp > mean(log_hp), 1, 0)) %>%
+  head()
+```
+
+## Example
+
+Using the `penguins` dataset from `palmerpenguins`, create a new variable that dichotomizes a penguin if their bill is longer than the average `bill_length_mm`.
+
+## `group_by()`
+
+-   This groups the data frame
+
+-   Example:
+
+```{r}
+#| message: true
+#| eval: true
+
+mtcars %>%
+  mutate(log_mpg = log(mpg), log_hp = log(hp)) %>%
+  select(mpg, log_mpg, hp, log_hp) %>%
+  filter(log_hp < 5) %>%
+  mutate(hilhp = if_else(log_hp > mean(log_hp), 1, 0)) %>%
+  group_by(hilhp) %>%
+  head()
+```
+
+## Example
+
+Using the `penguins` dataset from `palmerpenguins`, group by species and find the average ln `flipper_length_mm`

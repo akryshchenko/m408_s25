@@ -1,0 +1,442 @@
+---
+title: "Introduction to Statistical Learning"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+
+editor: source
+---
+
+## Learning Outcomes
+
+-   Introduction to Statistical Learning
+
+-   Classification vs Regression
+
+-   Supervised vs Unsupervised Machine Learning
+
+-   Model Adequacy
+
+## Book
+
+![](https://images.squarespace-cdn.com/content/v1/5ff2adbe3fe4fe33db902812/1611294680091-25SIDM9AHA8ECIFFST23/Screen+Shot+2021-01-21+at+11.02.06+AM.png){fig-align="center"}
+
+# Introduction to Statistical Learning
+
+## Introduction to Statistical Learning
+
+**What is Statistical Learning?**
+
+::: {#.fragment}
+Statistical learning is the task of predicting an outcome of interest given a set of predictor variables.
+:::
+
+## Motivating Example
+
+```{r}
+#| echo: false
+library(ggplot2)
+x <- runif(100, 0, 10)
+y <- 1.25 * x^2 + 5 + rnorm(100, sd = 15)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) +
+  geom_point() +
+  theme_bw()
+```
+
+## Statistical Learning Model
+
+$$
+Y = f(\boldsymbol X) + \varepsilon
+$$
+
+-   $Y$: Outcome variable
+
+-   $f(\cdot)$: systematic component explaining $Y$
+
+-   $\boldsymbol X$: vector of predictor variables
+
+-   $\varepsilon$: error term
+
+## Modeling $f(\cdot)$: Parametric
+
+-   Linear Models
+
+-   Generalized Linear Models (GLM)
+
+## Modeling $f(\cdot)$: Nonparametric
+
+-   Generalized Additive Models
+
+-   Local-Linear Models
+
+-   Smoothing Splines
+
+## Prediction
+
+-   Statistical Learning is only concerned with an accurate $Y$
+
+-   $f(\cdot)$ is considered a black box
+
+-   We will not know how $\boldsymbol X$ explains $Y$
+
+-   We choose flexible (nonparametric) models
+
+## Model Interpretability
+
+-   With a focus on prediction, model interpretability declines
+
+-   We will not know how changes in $\boldsymbol X$ will affect $Y$
+
+# Classification vs Regression
+
+## Regression
+
+Regression in statistical learning terms indicates predicting a continuous random variable.
+
+<div>
+
+What are the methods that we learned to model continuous random variables?
+
+</div>
+
+## Example
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(mgcv)
+n <- 1e3
+dat <- data.frame("x1" = rnorm(n), "x2" = rnorm(n), "x3" = rnorm(n))
+dat$y <- with(dat, sin(x1) + 0.5 * x2^2 + 0.2 * x3 + pmax(x2, 0.2) * rnorm(n))
+b <- gam(y ~ s(x1) + s(x2) + x3, data = dat, method = "REML")
+
+p_obj <- plot(b, residuals = TRUE)
+p_obj <- p_obj[[1]] # just one smooth so select the first component
+sm_df <- as.data.frame(p_obj[c("x", "se", "fit")])
+data_df <- as.data.frame(p_obj[c("raw", "p.resid")])
+```
+
+::: panel-tabset
+## Scatter Plot
+
+```{r}
+#| echo: false
+ggplot(sm_df, aes(x = x, y = fit)) +
+  geom_point(data = data_df, mapping = aes(x = raw, y = p.resid)) +
+  # geom_ribbon(aes(ymin = fit - se, ymax = fit + se, y = NULL),
+  #             alpha = 0.3) +
+  # geom_line() +
+  # labs(x = p_obj$xlab, y = p_obj$ylab) +
+  # geom_smooth(method = "lm") +
+  xlab("X") +
+  ylab("Y") +
+  theme_bw()
+```
+
+## Regression
+
+```{r}
+#| echo: false
+ggplot(sm_df, aes(x = x, y = fit)) +
+  geom_point(data = data_df, mapping = aes(x = raw, y = p.resid)) +
+  # geom_ribbon(aes(ymin = fit - se, ymax = fit + se, y = NULL),
+  #             alpha = 0.3) +
+  # geom_line() +
+  # labs(x = p_obj$xlab, y = p_obj$ylab) +
+  geom_smooth(method = "lm") +
+  xlab("X") +
+  ylab("Y") +
+  theme_bw()
+```
+
+## GAM
+
+```{r}
+#| echo: false
+ggplot(sm_df, aes(x = x, y = fit)) +
+  geom_point(data = data_df, mapping = aes(x = raw, y = p.resid)) +
+  geom_ribbon(aes(ymin = fit - se, ymax = fit + se, y = NULL),
+    alpha = 0.3
+  ) +
+  geom_line() +
+  labs(x = p_obj$xlab, y = p_obj$ylab) +
+  # geom_smooth(method = "lm") +
+  xlab("X") +
+  ylab("Y") +
+  theme_bw()
+```
+
+## Combined
+
+```{r}
+#| echo: false
+ggplot(sm_df, aes(x = x, y = fit)) +
+  geom_point(data = data_df, mapping = aes(x = raw, y = p.resid)) +
+  geom_ribbon(aes(ymin = fit - se, ymax = fit + se, y = NULL),
+    alpha = 0.3
+  ) +
+  geom_line() +
+  labs(x = p_obj$xlab, y = p_obj$ylab) +
+  geom_smooth(method = "lm") +
+  xlab("X") +
+  ylab("Y") +
+  theme_bw()
+```
+:::
+
+## Classification
+
+Classification in statistical learning terms indicates predicting a categorical random variable.
+
+<div>
+
+What are the methods that we learned to model categorical random variables?
+
+</div>
+
+## Example
+
+::: panel-tabset
+## Data
+
+```{r}
+#| echo: false
+ggplot(
+  data = iris,
+  aes(x = Petal.Length, y = Petal.Width, col = Species)
+) +
+  geom_point() +
+  theme_bw()
+```
+
+## KNN
+
+```{r}
+#| echo: false
+library(class)
+set.seed(1236894)
+setosa <- rbind(iris[iris$Species == "setosa", ])
+versicolor <- rbind(iris[iris$Species == "versicolor", ])
+virginica <- rbind(iris[iris$Species == "virginica", ])
+
+
+ind <- sample(1:nrow(setosa), nrow(setosa) * 0.6)
+
+iris.train <- rbind(setosa[ind, ], versicolor[ind, ], virginica[ind, ])
+iris.test <- rbind(setosa[-ind, ], versicolor[-ind, ], virginica[-ind, ])
+iris_pred <- knn(train = iris.train[, 1:4], test = iris.test[, 1:4], cl = iris.train$Species, k = 5)
+table(iris.test$Species, iris_pred)
+```
+
+## SVM
+
+```{r}
+#| echo: false
+
+library(e1071)
+svm_model <- svm(Species ~ .,
+  data = iris,
+  kernel = "radial"
+) # linear/polynomial/sigmoid
+pred <- predict(svm_model, iris)
+tab <- table(Predicted = pred, Actual = iris$Species)
+tab
+```
+
+## NN
+
+```{r}
+#| echo: false
+library(neuralnet)
+data(iris)
+iris$setosa <- iris$Species == "setosa"
+iris$virginica <- iris$Species == "virginica"
+iris$versicolor <- iris$Species == "versicolor"
+iris.train.idx <- sample(x = nrow(iris), size = nrow(iris) * 0.5)
+iris.train <- iris[iris.train.idx, ]
+iris.valid <- iris[-iris.train.idx, ]
+library(neuralnet)
+iris.net <- neuralnet(
+  setosa + versicolor + virginica ~
+    Sepal.Length + Sepal.Width + Petal.Length + Petal.Width,
+  data = iris.train, hidden = c(10, 10), rep = 5, err.fct = "ce",
+  linear.output = F, lifesign = "minimal", stepmax = 1000000,
+  threshold = 0.001
+)
+iris.prediction <- neuralnet::compute(iris.net, iris.valid[-5:-8])
+idx <- apply(iris.prediction$net.result, 1, which.max)
+predicted <- c("setosa", "versicolor", "virginica")[idx]
+table(predicted, iris.valid$Species)
+```
+:::
+
+# Supervised vs Unsupervised Machine Learning
+
+## Machine Learning
+
+Machine learning is a set of methods used for predicting and classifying data. Several statistical methods are considered machine learning techniques.
+
+::: {#.fragement}
+#### Common Methods
+
+-   Regression
+
+-   Mixed-Effects
+
+-   Nonparametric Regression
+
+-   Neural Networks
+
+-   Tree-based methods
+
+-   Bayesian Methods
+:::
+
+## Training Data
+
+Training Data is the data set used to construct a model.
+
+## Supervised
+
+Supervised Machine Learning techniques are techniques where the training data contains the outcome.
+
+## Unsupervised
+
+Unsupervised Machine Learning techniques are techniques where the training data **does not** contains the outcome.
+
+# Model Adequacy
+
+## Quality of Fit: Regression
+
+$$
+MSE = \frac{1}{n}\sum^n_{i=1}\{y_i - \hat f(\boldsymbol x_i)\}^2
+$$
+
+## Quality of Fit: Classification
+
+$$
+ER = \frac{1}{n}\sum^n_{i=1}I(y_i \ne \hat y_i)
+$$
+
+## Bias-Variance Tradeoff
+
+```{r}
+#| echo: false
+ggplot(sm_df, aes(x = x, y = fit)) +
+  geom_point(data = data_df, mapping = aes(x = raw, y = p.resid)) +
+  geom_ribbon(aes(ymin = fit - se, ymax = fit + se, y = NULL),
+    alpha = 0.3
+  ) +
+  geom_line() +
+  labs(x = p_obj$xlab, y = p_obj$ylab) +
+  geom_smooth(method = "lm") +
+  xlab("X") +
+  ylab("Y") +
+  theme_bw()
+```
+
+## Bias-Variance Tradeoff
+
+$$
+E(MSE) = E\left\{y-\hat f(x)\right\}^2 = Var\left\{\hat f(x)\right\} + Bias\left\{\hat f(x)\right\}^2 
+$$
+
+## Example
+
+```{r}
+#| echo: false
+x <- runif(100, 0, 10)
+y <- 3 * x^2 - 5*x + 3 + rnorm(100, sd = 15)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) +
+  geom_point() +
+  # stat_smooth() +
+  theme_bw()
+
+```
+
+## Using a Line
+
+```{r}
+#| echo: false
+x <- runif(100, 0, 10)
+y <- 3 * x^2 - 5*x + 3 + rnorm(100, sd = 15)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) +
+  geom_point() +
+  stat_smooth(method = "lm") +
+  theme_bw()
+
+```
+
+## Using a Highly Flexible Model
+
+```{r}
+#| echo: false
+x <- runif(100, 0, 10)
+y <- 3 * x^2 - 5*x + 3 + rnorm(100, sd = 15)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) +
+  geom_point() +
+  stat_smooth(method = "loess", span = 0.075) +
+  theme_bw()
+
+```
+
+## Semi-Flexible
+
+```{r}
+#| echo: false
+x <- runif(100, 0, 10)
+y <- 3 * x^2 - 5*x + 3 + rnorm(100, sd = 15)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) +
+  geom_point() +
+  stat_smooth() +
+  theme_bw()
+
+```
+
+## All
+
+```{r}
+#| code-fold: true
+x <- runif(100, 0, 10)
+y <- 3 * x^2 - 5*x + 3 + rnorm(100, sd = 15)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) +
+  geom_point() +
+  stat_smooth(method = "lm", 
+              color = "skyblue4", fill = "skyblue2") +
+  stat_smooth(method = "loess", span = 0.075, 
+              color = "springgreen4", fill = "springgreen2") +
+  stat_smooth(color = "violetred", fill = "violet") +
+  theme_bw()
+
+```

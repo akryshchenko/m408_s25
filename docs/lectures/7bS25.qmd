@@ -1,0 +1,281 @@
+---
+title: "Multivariable Linear Regression"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: false
+    message: false
+    warnings: false
+    comment: "#>" 
+
+editor: visual
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+library(GLMsData)
+library(broom)
+library(palmerpenguins)
+library(magrittr)
+
+x <- rnorm(50, 4)
+z <- rnorm(50, -2)
+y <- 3 + 2 * x + 4 * z + rnorm(50, sd = 2)
+df <- tibble(x, y, z)
+
+
+
+```
+
+## Learning Objectives
+
+-   Multivariable Linear Regression
+
+-   Simulation Study 1
+
+-   Simulation Study 2
+
+-   Matrix Formulation
+
+# Multivariable Linear Regression
+
+## MLR
+
+Multivariable linear regression models are used when more than one explanatory variable is used to explain the outcome of interest.
+
+## Continuous Variable
+
+To fit an additional continuous random variable to the model, we will only need to add it to the model:
+
+$$
+Y = \beta_0 +\beta_1 X_1 + \beta_2 X_2
+$$
+
+## Example
+
+Looking at the `penguins` from `palmerpenguins`, fit a model between `body_mass_g` as an outcome variable and `flipper_length_mm` and `bill_length_mm` as predictor variables.
+
+```{r}
+#| echo: true
+library(palmerpenguins)
+penguins |>  lm(body_mass_g ~ flipper_length_mm + bill_length_mm, 
+                data = _)
+```
+
+## Interpretation
+
+```{r}
+#| eval: true
+library(palmerpenguins)
+penguins |>  lm(body_mass_g ~ flipper_length_mm + bill_length_mm,
+                data = _)
+```
+
+## Categorical Variable
+
+A categorical variable can be included in a model, but a reference category must be specified.
+
+## Fitting a model with categorical variables
+
+To fit a model with categorical variables, we must utilize dummy (binary) variables that indicate which category is being referenced. We use $C-1$ dummy variables where $C$ indicates the number of categories. When coded correctly, each category will be represented by a combination of dummy variables.
+
+## Example
+
+If we have 4 categories, we will need 3 dummy variables:
+
+|         | Cat 1 | Cat 2 | Cat 3 | Cat 4 |
+|---------|-------|-------|-------|-------|
+| Dummy 1 | 1     | 0     | 0     | 0     |
+| Dummy 2 | 0     | 1     | 0     | 0     |
+| Dummy 3 | 0     | 0     | 1     | 0     |
+
+Which one is the reference category?
+
+## Fitting a model with categorical variables
+
+Looking at the `penguins` from `palmerpenguins`, fit a model between `body_mass_g` as an outcome variable and `flipper_length_mm` and `islands` as predictor variables.
+
+```{r}
+#| echo: true
+library(palmerpenguins)
+penguins |>  lm(body_mass_g ~ flipper_length_mm + island,
+                data = _)
+```
+
+## Interpreting Categorical Variable Results
+
+```{r}
+#| eval: true
+library(palmerpenguins)
+penguins |> lm(body_mass_g ~ flipper_length_mm + island,
+               data = _)
+penguins |>  with(levels(island))
+```
+
+## Relevel a factor variable in R
+
+```{r}
+#| echo: true
+penguins <- penguins |> 
+  mutate(island_dream = relevel(island , ref = "Dream"))
+penguins |> lm(body_mass_g ~ flipper_length_mm + island_dream, 
+               data = _)
+```
+
+# Simulation Study 1
+
+## Simulation Study 1
+
+Simulate 1000 random variables from the following model:
+
+$$
+Y = 3 + 2X_1 + 4X_2 + \epsilon
+$$
+
+-   $X_1\sim N(2,1)$
+
+-   $X_2\sim N(-4,1)$
+
+-   $\epsilon\sim N(0, 2)$
+
+```{r}
+x1 <- rnorm(1000, 2)
+x2 <- rnorm(1000, -4)
+y <- 3 + 2 * x1 + 4 * x2 + rnorm(1000, sd = sqrt(2))
+df <- tibble(x1, x2, y)
+```
+
+## Fit Model
+
+Fit a model between $Y$ and $X_1$.
+
+Repeat the process 1000 times. and answer the following questions:
+
+-   On average does $\beta_1$ get estimated correctly? Why?
+
+-   What is the average model variance?
+
+## MLR Model
+
+Instead of fitting a simple linear regression model. Fit a model that will include predictor $X_2$. This can be done by adding $X_2$ in R:
+
+```{r}
+#| echo: true
+
+lm(y ~ x1 + x2)
+
+```
+
+Modify your simulation study and see what happens to $\beta_1$ and the model variance.
+
+# Simulation Study 2
+
+## Simulation Study 2
+
+Simulate 1000 random variables from the following model:
+
+$$
+Y = 3 + 2log(X_1) + \epsilon
+$$
+
+-   $X_1\sim N(8,1)$
+
+-   $\epsilon\sim N(0, 2)$
+
+```{r}
+x <- rnorm(1000, 8)
+y <- 3 + 2 * log(x) + rnorm(1000, sd = sqrt(2))
+df <- tibble(x, y)
+lm(y~log(x))
+```
+
+## Fit Model
+
+Fit a model between $Y$ and $X_1$.
+
+Repeat the process 1000 times. and answer the following questions:
+
+-   On average does $\beta_1$ get estimated correctly? Why?
+
+-   What is the average model variance?
+
+## SLR Model
+
+Fit a simple linear regression model using $\log(X_1)$ instead.
+
+```{r}
+#| echo: true
+
+lm(y ~ log(x1))
+
+```
+
+Modify your simulation study and see what happens to $\beta_1$ and the model variance.
+
+# Matrix Formulation
+
+## Matrix Formulation
+
+$$
+Y_i = \boldsymbol X_i^\mathrm T \boldsymbol \beta + \epsilon_i
+$$
+
+-   $Y_i$: Outcome Variable
+
+-   $\boldsymbol X_i$: Predictors
+
+-   $\boldsymbol \beta$: Coefficients
+
+-   $\epsilon_i$: error term
+
+## Matrix Formulation
+
+Fit the following models using matrix formulas instead of the `lm` function.
+
+$$
+bmg = \beta_0+\beta_1 flipper\_length\_mm + \beta_2 bill\_length\_mm
+$$
+
+$$
+bmg = \beta_0 +\beta_1 flipper\_length\_mm + \beta_2 dream + \beta_3 biscoe  
+$$
+
+$$
+\boldsymbol\beta = (\boldsymbol X^\mathrm T \boldsymbol X)^{-1} \boldsymbol X^\mathrm T \boldsymbol Y
+$$
+
+Define $\boldsymbol X$ in each case.
+
+# R Tips
+
+## Create a Model Matrix X
+
+$$
+bmg = \\
+\beta_0+ \beta_1bill\_length\_mm +  \beta_2 dream +\beta_3 biscoe  
+$$
+
+## Model Matrix
+
+```{r}
+#| echo: true
+penguins |> model.matrix(~flipper_length_mm + bill_length_mm + islands, data = _)
+
+```

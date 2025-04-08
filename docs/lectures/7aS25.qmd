@@ -1,0 +1,294 @@
+---
+title: "Linear Regression"
+subtitle: "Estimation Procedures"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: false
+    eval: false
+    message: false
+    warnings: false
+    comment: "#>" 
+
+editor: visual
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: setup
+
+library(DT)
+library(tidyverse)
+library(GLMsData)
+library(broom)
+library(palmerpenguins)
+library(magrittr)
+
+x <- rnorm(50, 4)
+y <- 3 + 2 * x + rnorm(50, sd = 2)
+df <- tibble(x, y)
+
+
+
+```
+
+## Learning Objectives
+
+-   Estimation
+
+-   Ordinary Least Squares
+
+-   Matrix Formulation
+
+-   Standard Errors
+
+-   Conduct in R
+
+## Resources
+
+[Linear Algebra for Data Science](https://shainarace.github.io/LinearAlgebra/intro.html)
+
+# Estimation
+
+## Estimation
+
+-   Ordinary Least Squares
+
+-   Maximum Likelihood Approach
+
+-   Method of Moments
+
+## Standard Errors
+
+-   Find the variance of the estimate
+
+-   Find the information matrix
+
+-   Use for Inference
+
+# Ordinary Least Squares
+
+## Ordinary Least Squares
+
+For a data pair $(x_i,y_i)_{i=1}^n$, the ordinary least squares estimator will find the estimates of $\hat\beta_0$ and $\hat\beta_1$ that minimize the following function:
+
+$$
+\sum^n_{i=1}\{y_i-(\beta_0+\beta_1x_i)\}^2
+$$
+
+## Estimates
+
+$$
+\hat\beta_0 = \bar y - \hat\beta_1\bar x
+$$ $$
+\hat\beta_1 = \frac{\sum^n_{i=1}(y_i-\bar y)(x_i-\bar x)}{\sum^n_{i=1}(x_i-\bar x)^2}
+$$ $$
+\hat\sigma^2 = \frac{1}{n-2}\sum^n_{i=1}(y_i-\hat y_i)^2
+$$
+
+# Matrix Formulation
+
+## Matrix Version of Model
+
+$$
+y_i = \boldsymbol X_i^\mathrm T \boldsymbol \beta + \epsilon_i
+$$
+
+-   $y_i$: Outcome Variable
+
+-   $\boldsymbol X_i=(1, x_i)^\mathrm T$: Predictors
+
+-   $\boldsymbol \beta = (\beta_0, \beta_1)^\mathrm T$: Coefficients
+
+-   $\epsilon_i$: error term
+
+## Data Matrix Formulation
+
+For $n$ data points
+
+$$
+\boldsymbol Y = \boldsymbol X^\mathrm T\boldsymbol \beta + \boldsymbol \epsilon
+$$
+
+-   $\boldsymbol Y = (y_1, \cdots, y_n)^\mathrm T$: Outcome Variable
+
+-   $\boldsymbol X=(\boldsymbol X_1, \cdots, \boldsymbol X_n)^\mathrm T$: Predictors
+
+-   $\boldsymbol \beta = (\beta_0, \beta_1)^\mathrm T$: Coefficients
+
+-   $\boldsymbol \epsilon = (\epsilon_1, \cdots, \epsilon_n)^\mathrm T$: Error terms
+
+## Least Squares Formula
+
+$$
+(Y - \boldsymbol X ^\mathrm T\boldsymbol \beta)^\mathrm T(Y - \boldsymbol X ^\mathrm T\boldsymbol \beta)
+$$
+
+## Estimates
+
+$$
+\hat{\boldsymbol \beta} = (\boldsymbol X ^\mathrm T\boldsymbol X)^{-1}\boldsymbol X ^\mathrm T\boldsymbol Y
+$$
+
+# Standard Errors
+
+## Estimate for $\sigma^2$
+
+$$
+\hat \sigma^2 = \frac{1}{n-2} \sum^n_{i=1} (y_i-\boldsymbol X_i^\mathrm T\hat{\boldsymbol \beta})^2
+$$
+
+## Standard Errors of $\beta$'s
+
+$$
+SE(\hat\beta_0)=\sqrt{\frac{\sum^n_{i=1}x_i^2\hat\sigma^2}{n\sum^n_{i=1}(x_i-\bar x)^2}}
+$$
+
+$$
+SE(\hat\beta_1)=\sqrt\frac{\hat\sigma^2}{\sum^n_{i=1}(x_i-\bar x)^2}
+$$
+
+## Standard Errors Matrix Form
+
+$$
+Var(\hat {\boldsymbol \beta}) = (\boldsymbol X ^\mathrm T\boldsymbol X)^{-1} \hat \sigma^2
+$$
+
+# R approaches
+
+## Built in Functions
+
+You can use the `lm` to fit a linear model and extract the estimated values and standard errors
+
+## Matrix Formulation
+
+R is capable of conducting matrix operations with the following functions:
+
+-   `%*%`: matrix multiplication
+
+-   `t()`: transpose a matrix
+
+-   `solve()`: computes the inverse matrix
+
+## Minimization Problem
+
+Minimize the least squares using a numerical methods in R. The `optim()` function will minimize a function for set of parameters. We can minimize a function, least squares function, and supply initial values (0) for the parameters of interest.
+
+## Fit a Line using `lm` for the following data
+
+```{r}
+#| echo: true
+x <- rpois(500, 6)
+y <- -9 * x + 32 + rnorm(500, sd = sqrt(2))
+lm_res <- lm(y ~ x) 
+summary(lm_res)
+sqrt(vcov(lm_res))
+sigma(lm_res)^2
+
+```
+
+## Fit a linear model using matrix operation
+
+```{r}
+#| echo: true
+X <- cbind(rep(1, 500), x)
+solve(t(X)%*%X) %*% t(X) %*% y  
+```
+
+## Minimizing a function using `optim`
+
+Find the value of x and y that will minimize the following function for any value a and b.
+
+$$
+f(x) = 2(x - 5)^2 + 11 
+$$
+
+```{r}
+#| echo: true
+d <- function(x){
+  2 * (x - 5) + 11
+}
+optim(0, d)
+```
+
+## Maximizing a function using `optim`
+
+Find the value of x and y that will minimize the following function for any value a and b.
+
+$$
+f(x) = - 3 (x - 8)^2 + 9 
+$$
+
+```{r}
+#| echo: true
+d <- function(x){
+  2 * (x - 5) + 11
+}
+optim(0, d)
+```
+
+## Minimizing function using `optim`
+
+Find the value of x and y that will minimize the following function for any value a and b.
+
+$$
+f(x,y) = \frac{(x-3)^2}{a^2} + \frac{(y+4)^2}{b^2}
+$$
+
+```{r}
+#| code-fold: true
+para <- function(x,a,b){
+(x[1]-a)^2/a^2 + (x[2]-b)^2/b^2  
+}
+optim(c(0,0), para, a=3, b=-4)
+```
+
+## Maximizing function using `optim`
+
+Find the value of $\lambda$ that maximize the following function:
+
+$$
+\ell(\lambda) = \sum^n_{i=1} -\lambda+X_i\log(\lambda) -\log(X_i!)
+$$
+
+with the following data:
+
+```{r}
+#| echo: true
+z <- rpois(1000, lambda = 2)
+```
+
+## Fit a linear model using `optim`
+
+Minimize:
+
+$$
+\sum^n_{i=1}(y_i-\hat y_i)^2
+$$
+
+$$
+\hat y_i = \hat \beta_0 +\hat\beta_1 x_i
+$$
+
+Data:
+
+```{r}
+#| echo: true
+
+x <- rpois(500, 6)
+y <- -9 * x + 32 + rnorm(500, sd = sqrt(2))
+
+
+```
