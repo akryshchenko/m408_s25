@@ -480,7 +480,7 @@
     "href": "lectures/6bS25.html#r-code-of-simulation-study",
     "title": "Linear Regression",
     "section": "R Code of Simulation Study",
-    "text": "R Code of Simulation Study\n\n## Original Code\n\nx &lt;- rnorm(250, 3, 1)\npy &lt;- 3 * x + 20\nerr &lt;- rnorm(250, 0, 2)\ny &lt;- py + err\nres &lt;- lm(y ~ x)\ncoef(res)\n\n#&gt; (Intercept)           x \n#&gt;   19.530296    3.154117\n\n# Simulation Study\nsim &lt;- \\(i){\n  x &lt;- rnorm(250, 3, 1)\n  py &lt;- 3 * x + 20\n  err &lt;- rnorm(250, 0, 2)\n  y &lt;- py + err\n  res &lt;- lm(y ~ x)\n  return(coef(res))\n}\n\nsim_results &lt;- sapply(1:1000, sim)\nrowMeans(sim_results)\n\n#&gt; (Intercept)           x \n#&gt;    20.01153     2.99707"
+    "text": "R Code of Simulation Study\n\n## Original Code\n\nx &lt;- rnorm(250, 3, 1)\npy &lt;- 3 * x + 20\nerr &lt;- rnorm(250, 0, 2)\ny &lt;- py + err\nres &lt;- lm(y ~ x)\ncoef(res)\n\n#&gt; (Intercept)           x \n#&gt;   20.071630    2.953139\n\n# Simulation Study\nsim &lt;- \\(i){\n  x &lt;- rnorm(250, 3, 1)\n  py &lt;- 3 * x + 20\n  err &lt;- rnorm(250, 0, 2)\n  y &lt;- py + err\n  res &lt;- lm(y ~ x)\n  return(coef(res))\n}\n\nsim_results &lt;- sapply(1:1000, sim)\nrowMeans(sim_results)\n\n#&gt; (Intercept)           x \n#&gt;   20.013621    2.996194"
   },
   {
     "objectID": "lectures/2aS25.html#anouncements",
@@ -641,14 +641,14 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.1067161"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.07120463"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.003026"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 0.9122456"
   },
   {
     "objectID": "lectures/6aS25.html#learning-outcomes",
@@ -1019,7 +1019,7 @@
     "href": "lectures/3bS25.html#rcpp",
     "title": "Functions",
     "section": "Rcpp",
-    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x)    656ns    861ns   951779.      448B     95.2\n#&gt; 2 var_r(x)     1.72µs   2.05µs   420594.    23.7KB     84.1\n#&gt; 3 var(x)       2.25µs    2.5µs   393369.    15.3KB     78.7\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else if (!is.null(x)) \n#&gt;         stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else if (!is.null(y)) \n#&gt;         stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x12bc412c8&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
+    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x)    574ns    861ns  1049958.      448B    105. \n#&gt; 2 var_r(x)     1.68µs   2.01µs   419692.    23.7KB     84.0\n#&gt; 3 var(x)       2.25µs   2.42µs   406652.    15.3KB     81.3\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else if (!is.null(x)) \n#&gt;         stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else if (!is.null(y)) \n#&gt;         stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x11845c2c8&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
   },
   {
     "objectID": "lectures/3bS25.html#motivating-example",
@@ -1173,7 +1173,7 @@
     "href": "hw.html",
     "title": "Homework",
     "section": "",
-    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\n\nFeb 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 4\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5\n\n\n\n\n\n\n\n\n\n\n\nMar 7, 2024\n\n\n\n\n\n\nNo matching items"
+    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\n\nFeb 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 4\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5\n\n\n\n\n\n\n\n\n\n\n\nApr 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "files/Hw.html",
@@ -1243,14 +1243,14 @@
     "href": "files/r-scripts/MultLRCode.html#fit-model",
     "title": "MultLR",
     "section": "Fit Model",
-    "text": "Fit Model\nFit a model between \\(Y\\) and \\(X_1\\).\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does \\(\\beta_1\\) get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta_1&lt;-rep(0,1000)\nsd&lt;-rep(0,1000)\nfor (i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nslm&lt;-lm(y~x1)\nbeta_1[i]&lt;-coef(slm)[2]\nsd[i]&lt;-sigma(slm)}\n\nmean(beta_1)\n\n[1] 1.999135\n\nmean(sd)\n\n[1] 4.470996"
+    "text": "Fit Model\nFit a model between \\(Y\\) and \\(X_1\\).\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does \\(\\beta_1\\) get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta_1&lt;-rep(0,1000)\nsd&lt;-rep(0,1000)\nfor (i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nslm&lt;-lm(y~x1)\nbeta_1[i]&lt;-coef(slm)[2]\nsd[i]&lt;-sigma(slm)}\n\nmean(beta_1)\n\n[1] 2.003746\n\nmean(sd)\n\n[1] 4.468094"
   },
   {
     "objectID": "files/r-scripts/MultLRCode.html#mlr-model",
     "href": "files/r-scripts/MultLRCode.html#mlr-model",
     "title": "MultLR",
     "section": "MLR Model",
-    "text": "MLR Model\nInstead of fitting a simple linear regression model. Fit a model that will include predictor \\(X_2\\). This can be done by adding \\(X_2\\) in R:\n\nbeta&lt;-matrix(rep(0,3000),1000,3)\ndim(beta)\n\n[1] 1000    3\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nmlr&lt;-lm(y ~ x1 + x2)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 2.999609 1.998478 3.998451\n\n  mean(sd_mlr)\n\n[1] 1.999147\n\n\nModify your simulation study and see what happens to \\(\\beta_1\\) and the model variance."
+    "text": "MLR Model\nInstead of fitting a simple linear regression model. Fit a model that will include predictor \\(X_2\\). This can be done by adding \\(X_2\\) in R:\n\nbeta&lt;-matrix(rep(0,3000),1000,3)\ndim(beta)\n\n[1] 1000    3\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nmlr&lt;-lm(y ~ x1 + x2)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 2.986784 1.999570 3.996693\n\n  mean(sd_mlr)\n\n[1] 1.99913\n\n\nModify your simulation study and see what happens to \\(\\beta_1\\) and the model variance."
   },
   {
     "objectID": "files/r-scripts/MultLRCode.html#simulation-study-2",
@@ -1264,21 +1264,21 @@
     "href": "files/r-scripts/MultLRCode.html#fit-model-1",
     "title": "MultLR",
     "section": "Fit Model",
-    "text": "Fit Model\nFit a model between Y and X1.\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does β1 get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ x1)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 5.0934879 0.2558815\n\n  mean(sd_mlr)\n\n[1] 1.997654"
+    "text": "Fit Model\nFit a model between Y and X1.\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does β1 get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ x1)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 5.1434215 0.2500269\n\n  mean(sd_mlr)\n\n[1] 2.00053"
   },
   {
     "objectID": "files/r-scripts/MultLRCode.html#slr-model",
     "href": "files/r-scripts/MultLRCode.html#slr-model",
     "title": "MultLR",
     "section": "SLR Model",
-    "text": "SLR Model\nFit a simple linear regression model using log(X1) instead.\nlm(y ~ log(x1))\nModify your simulation study and see what happens to β1β1 and the model variance.\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ log(x1))\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 2.967037 2.016632\n\n  mean(sd_mlr)\n\n[1] 2.000634\n\n\n\n# library(palmerpenguins)\n# clean_penguins &lt;- penguins|&gt;\n#   drop_na()\n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)\n\n\n# library(palmerpenguins)\n# library(dplyr)\n# clean_penguins &lt;- penguins|&gt;drop_na()\n# \n# clean_penguins_d&lt;-dummy_columns(clean_penguins,select_columns = \"island\")\n# \n# head(clean_penguins_d)\n# \n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)"
+    "text": "SLR Model\nFit a simple linear regression model using log(X1) instead.\nlm(y ~ log(x1))\nModify your simulation study and see what happens to β1β1 and the model variance.\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ log(x1))\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 2.969472 2.016112\n\n  mean(sd_mlr)\n\n[1] 2.000491\n\n\n\n# library(palmerpenguins)\n# clean_penguins &lt;- penguins|&gt;\n#   drop_na()\n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)\n\n\n# library(palmerpenguins)\n# library(dplyr)\n# clean_penguins &lt;- penguins|&gt;drop_na()\n# \n# clean_penguins_d&lt;-dummy_columns(clean_penguins,select_columns = \"island\")\n# \n# head(clean_penguins_d)\n# \n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)"
   },
   {
     "objectID": "hw/hw5S25.html",
     "href": "hw/hw5S25.html",
     "title": "Homework 5",
     "section": "",
-    "text": "Due 3/17/24 @ 11:59 PM\nSubmit the *.html file to canvas."
+    "text": "Due 4/15/25 @ 11:59 PM\nSubmit the *.html file to canvas."
   },
   {
     "objectID": "hw/hw5S25.html#problem-1",
@@ -1292,14 +1292,14 @@
     "href": "hw/hw5S25.html#problem-2",
     "title": "Homework 5",
     "section": "Problem 2",
-    "text": "Problem 2\nWhen estimating the \\(\\beta\\) coefficients, we are minimizing the sum of error squares:\n\\[\n\\sum^n_{i=1}(y_i-(\\beta_0+\\beta_1x_i))^2\n\\]\nWe square the errors to make sure we do not lose information when summing up all the values. However, what if we try to use an absolute value:\n\\[\n\\sum^n_{i=1}|y_i-(\\beta_0+\\beta_1x_i)|\n\\]\nSimulate a data set, estimate the coefficients, and compare the results. Are they the same or different?"
+    "text": "Problem 2\nWhen estimating the \\(\\beta\\) coefficients, we are minimizing the sum of squared errors:\n\\[\n\\sum^n_{i=1}(y_i-(\\beta_0+\\beta_1x_i))^2\n\\]\nWe square the errors to make sure we do not lose information when summing up all the values. However, what if we try to use an absolute value:\n\\[\n\\sum^n_{i=1}|y_i-(\\beta_0+\\beta_1x_i)|\n\\]\nSimulate a data set, estimate the coefficients, and compare the results. Are they the same or different?"
   },
   {
     "objectID": "hw/hw5S25.html#problem-3",
     "href": "hw/hw5S25.html#problem-3",
     "title": "Homework 5",
     "section": "Problem 3",
-    "text": "Problem 3\nConduct a simulation assessing which case from problem 3 is better.\nTo assess which case is better compare the mean and standard deviations of the simulated-estimated coefficients."
+    "text": "Problem 3\nConduct a simulation assessing which case from problem 2 is better.\nTo assess which case is better compare the mean and standard deviations of the simulated-estimated coefficients."
   },
   {
     "objectID": "hw/hw5S25.html#problem-4",
@@ -1446,14 +1446,14 @@
     "href": "files/r-scripts/SimAndOptimCode.html",
     "title": "LmOptim",
     "section": "",
-    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.5066 -0.9230  0.0019  0.8357  4.1846 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.76273    0.16584   191.5   &lt;2e-16 ***\nx           -8.96678    0.02551  -351.6   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.364 on 498 degrees of freedom\nMultiple R-squared:  0.996, Adjusted R-squared:  0.996 \nF-statistic: 1.236e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1658403        NaN\nx                   NaN 0.02550545\n\nsigma(lm_res)^2\n\n[1] 1.861773\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.762726\nx -8.966777\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
+    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.0445 -0.9348  0.0197  0.9883  4.2454 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.98541    0.16598   192.7   &lt;2e-16 ***\nx           -9.01146    0.02528  -356.4   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.425 on 498 degrees of freedom\nMultiple R-squared:  0.9961,    Adjusted R-squared:  0.9961 \nF-statistic: 1.27e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1659806        NaN\nx                   NaN 0.02528183\n\nsigma(lm_res)^2\n\n[1] 2.030697\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.985408\nx -9.011459\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
   },
   {
     "objectID": "files/r-scripts/SimAndOptimCode.html#fit-a-line-using-lm-for-the-following-data",
     "href": "files/r-scripts/SimAndOptimCode.html#fit-a-line-using-lm-for-the-following-data",
     "title": "LmOptim",
     "section": "",
-    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.5066 -0.9230  0.0019  0.8357  4.1846 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.76273    0.16584   191.5   &lt;2e-16 ***\nx           -8.96678    0.02551  -351.6   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.364 on 498 degrees of freedom\nMultiple R-squared:  0.996, Adjusted R-squared:  0.996 \nF-statistic: 1.236e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1658403        NaN\nx                   NaN 0.02550545\n\nsigma(lm_res)^2\n\n[1] 1.861773\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.762726\nx -8.966777\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
+    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.0445 -0.9348  0.0197  0.9883  4.2454 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.98541    0.16598   192.7   &lt;2e-16 ***\nx           -9.01146    0.02528  -356.4   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.425 on 498 degrees of freedom\nMultiple R-squared:  0.9961,    Adjusted R-squared:  0.9961 \nF-statistic: 1.27e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1659806        NaN\nx                   NaN 0.02528183\n\nsigma(lm_res)^2\n\n[1] 2.030697\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.985408\nx -9.011459\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
   },
   {
     "objectID": "files/r-scripts/test.html",
@@ -2104,7 +2104,7 @@
     "href": "lectures/4bS25.html#anonymous-functions-1",
     "title": "Intro to Data Manipulation",
     "section": "Anonymous Functions",
-    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1] 1.347511 1.291894 2.636741 2.206954 5.288096 5.680125 6.349040 8.058773\n#&gt;  [9] 9.834960 8.806757\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  -0.8664276   5.1437096   2.9032921   0.5707858  -3.4126552 -10.5039774\n#&gt;  [7]   3.3944295   3.3677486   5.8542381  -2.7120679"
+    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1]  0.3474278  1.3516329  2.7302959  4.7416627  5.5041286  4.5334868\n#&gt;  [7]  9.2779792  6.5113940  9.5817154 11.3052289\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  3.108761  3.280852 -1.808623  3.484106 -5.411972  8.452056  5.243167\n#&gt;  [8]  6.689069 -2.734558  4.796901"
   },
   {
     "objectID": "lectures/4bS25.html#example",
@@ -2139,7 +2139,7 @@
     "href": "lectures/4bS25.html#section-1",
     "title": "Intro to Data Manipulation",
     "section": "%>%",
-    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 1.08533"
+    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 2.547709"
   },
   {
     "objectID": "lectures/4bS25.html#section-2",

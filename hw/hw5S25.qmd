@@ -1,11 +1,11 @@
 ---
 title: "Homework 5"
-date: 3/7/24
+date: 4/15/25
 editor: visual
 draft: false
 ---
 
-**Due 3/17/24 \@ 11:59 PM**
+**Due 4/15/25 \@ 11:59 PM**
 
 Submit the \*.html file to canvas.
 
@@ -17,7 +17,7 @@ You must provide descriptive statistics, visuals, and model.
 
 ## Problem 2
 
-When estimating the $\beta$ coefficients, we are minimizing the sum of error squares:
+When estimating the $\beta$ coefficients, we are minimizing the sum of squared errors:
 
 $$
 \sum^n_{i=1}(y_i-(\beta_0+\beta_1x_i))^2
@@ -33,7 +33,7 @@ Simulate a data set, estimate the coefficients, and compare the results. Are the
 
 ## Problem 3
 
-Conduct a simulation assessing which case from problem 3 is better.
+Conduct a simulation assessing which case from problem 2 is better.
 
 To assess which case is better compare the mean and standard deviations of the simulated-estimated coefficients.
 
