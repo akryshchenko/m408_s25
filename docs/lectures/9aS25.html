@@ -15,7 +15,7 @@
 <link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Hypothesis Testing</title>
+  <title>m408_s25 – Classification</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -202,8 +202,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Hypothesis Testing</h1>
-  <p class="subtitle">Model Inference</p>
+  <h1 class="title">Classification</h1>
+  <p class="subtitle">Logistic Regression</p>
 
 <div class="quarto-title-authors">
 </div>
@@ -212,412 +212,348 @@
 <section id="learning-outcomes" class="slide level2">
 <h2>Learning Outcomes</h2>
 <ul>
-<li><p>Hypothesis Tests</p></li>
-<li><p>Model Inference</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>Multinomial Regression</p></li>
 </ul>
 </section>
-<section>
-<section id="hypothesis-tests" class="title-slide slide level1 center">
-<h1>Hypothesis Tests</h1>
-
+<section id="classification" class="slide level2">
+<h2>Classification</h2>
+<p>The practice of classifying data points into different categories.</p>
 </section>
-<section id="hypothesis-tests-1" class="slide level2">
-<h2>Hypothesis Tests</h2>
-<p>Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the <strong>Null</strong> and <strong>Alternative</strong> Hypothesis.</p>
-</section>
-<section id="null-hypothesis-h_0" class="slide level2">
-<h2>Null Hypothesis <span class="math inline">\(H_0\)</span></h2>
-<p>The null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value.</p>
-</section>
-<section id="alternative-hypothesis-h_a" class="slide level2">
-<h2>Alternative Hypothesis <span class="math inline">\(H_a\)</span></h2>
-<p>The alternative hypothesis contradicts the null hypothesis.</p>
-</section>
-<section id="example-of-null-and-alternative-hypothesis" class="slide level2">
-<h2>Example of Null and Alternative Hypothesis</h2>
-<p>We want to see if <span class="math inline">\(\mu\)</span> is different from <span class="math inline">\(\mu_0\)</span></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Null Hypothesis</th>
-<th>Alternative Hypothesis</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0: \mu=\mu_0\)</span></td>
-<td><span class="math inline">\(H_a: \mu\ne\mu_0\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_0: \mu\le\mu_0\)</span></td>
-<td><span class="math inline">\(H_a: \mu&gt;\mu_0\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(H_0: \mu\ge\mu_0\)</span></td>
-<td><span class="math inline">\(H_0: \mu&lt;\mu_0\)</span></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="one-side-vs-two-side-hypothesis-tests" class="slide level2">
-<h2>One-Side vs Two-Side Hypothesis Tests</h2>
-<p>Notice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (<span class="math inline">\(H_a:\mu\ne\mu_0\)</span>) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Null Hypothesis</th>
-<th>Alternative Hypothesis</th>
-<th>Side</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(H_0: \mu=\mu_0\)</span></td>
-<td><span class="math inline">\(H_a: \mu\ne\mu_0\)</span></td>
-<td>2-sided</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(H_0: \mu\le\mu_0\)</span></td>
-<td><span class="math inline">\(H_a: \mu&gt;\mu_0\)</span></td>
-<td>1-sided</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(H_0: \mu\ge\mu_0\)</span></td>
-<td><span class="math inline">\(H_0: \mu&lt;\mu_0\)</span></td>
-<td>1-sided</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="common-hypothesis-tests" class="slide level2">
-<h2>Common Hypothesis Tests</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 17%">
-<col style="width: 13%">
-<col style="width: 13%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Test</th>
-<th># of Samples</th>
-<th>Null Hypothesis</th>
-<th>Distribution</th>
-<th>DF</th>
-<th>Test Statistics</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>t-test</td>
-<td>1</td>
-<td><span class="math inline">\(\mu=\mu_0\)</span></td>
-<td><span class="math inline">\(t_{DF}\)</span></td>
-<td><span class="math inline">\(DF=n-1\)</span></td>
-<td><span class="math inline">\(\frac{\bar X-\mu_0}{\sqrt{s^2/n}}\)</span></td>
-<td><span class="math inline">\(n&lt;30\)</span></td>
-</tr>
-<tr class="even">
-<td>z-test</td>
-<td>1</td>
-<td><span class="math inline">\(\mu=\mu_0\)</span></td>
-<td><span class="math inline">\(N(0,1)\)</span></td>
-<td>None</td>
-<td><span class="math inline">\(\frac{\bar X-\mu_0}{\sqrt{\sigma^2/n}}\)</span></td>
-<td><span class="math inline">\(n&gt;30\)</span> <span class="math inline">\(\sigma^2\)</span> known</td>
-</tr>
-<tr class="odd">
-<td>z-test</td>
-<td>1</td>
-<td><span class="math inline">\(\mu=\mu_0\)</span></td>
-<td><span class="math inline">\(N(0,1)\)</span></td>
-<td>None</td>
-<td><span class="math inline">\(\frac{\bar X-\mu_0}{\sqrt{s^2/n}}\)</span></td>
-<td><span class="math inline">\(n&gt;30\)</span> <span class="math inline">\(\sigma^2\)</span> unknown</td>
-</tr>
-<tr class="even">
-<td>paired t-test</td>
-<td>2</td>
-<td><span class="math inline">\(\mu_1-\mu_2=D\)</span></td>
-<td><span class="math inline">\(t_{DF}\)</span></td>
-<td><span class="math inline">\(DF=n-1\)</span></td>
-<td><span class="math inline">\(\frac{\bar X_d-D}{\sqrt{s_d^2/n}}\)</span></td>
-<td><span class="math inline">\(n\)</span> is the number of pairs</td>
-</tr>
-<tr class="odd">
-<td>independent t-test</td>
-<td>2</td>
-<td><span class="math inline">\(\mu_1-\mu_2=D\)</span></td>
-<td><span class="math inline">\(t_{DF}\)</span></td>
-<td><span class="math inline">\(DF=n_1+n_2-2\)</span></td>
-<td><span class="math inline">\(\frac{\bar X_1-\bar X_2-D}{\sqrt{s_p^2(1/n_1+1/n_2)}}\)</span></td>
-<td><span class="math inline">\(s_p^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\)</span></td>
-</tr>
-<tr class="even">
-<td>independent t-test</td>
-<td>2</td>
-<td><span class="math inline">\(\mu_1-\mu_2=D\)</span></td>
-<td><span class="math inline">\(t_{DF}\)</span></td>
-<td><span class="math inline">\(DF=\frac{(s^2_1/n_1+s^2_2/n_2)^2}{(s^2_1/n_1)^2/(n_1-1)+(s^2_2/n_2)^2/(n_2-1)}\)</span></td>
-<td><span class="math inline">\(\frac{\bar X_1-\bar X_2-D}{\sqrt{s_1^2/n_1+s^2_2/n_2}}\)</span></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ANOVA</td>
-<td>&gt;2</td>
-<td><span class="math inline">\(\mu_1=\mu_2=\cdots=\mu_k\)</span></td>
-<td><span class="math inline">\(F_{DF1,DF2}\)</span></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="decision-making-p-value" class="slide level2">
-<h2>Decision Making: P-Value</h2>
-<p>The p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true. Depending on the type of test, your p-value may be constructed as:</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Alternative Hypothesis</th>
-<th>p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\mu&gt;\mu_0\)</span></td>
-<td><span class="math inline">\(P(X&gt;T(x))=p\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\mu&lt;\mu_0\)</span></td>
-<td><span class="math inline">\(P(X&lt;T(x))=p\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\mu\ne\mu_0\)</span></td>
-<td><span class="math inline">\(2\times P(X&gt;|T(X)|)=p\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>If <span class="math inline">\(p &lt; \alpha\)</span>, then you reject <span class="math inline">\(H_0\)</span>; otherwise, you will fail to reject <span class="math inline">\(H_0\)</span>.</p>
-</section>
-<section id="decision-making-confidence-interval-approach" class="slide level2">
-<h2>Decision Making: Confidence Interval Approach</h2>
-<p>The confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is <span class="math inline">\(\mu\ne\mu_0\)</span>. For this approach you will construct a <span class="math inline">\((1-\alpha)100\%\)</span> confidence interval as</p>
-<p><span class="math display">\[
-PE \pm CV *SE
-\]</span></p>
-<p>where PE is the point estimate, CV is the critical value based on <span class="math inline">\(\alpha\)</span> and SE is the standard error. This will result in a lower and upper bound denoted as: <span class="math inline">\((LB, UB)\)</span>. The confidence intervals provides a range values to capture the parameter <span class="math inline">\(\mu\)</span> such that if you repeat this process <span class="math inline">\(n\)</span> times, <span class="math inline">\((1-\alpha)100\%\)</span> of <span class="math inline">\(n\)</span> will capture the true value of <span class="math inline">\(\mu\)</span>. If <span class="math inline">\(\mu_0 \in (LB,UB)\)</span>, then you fail to reject <span class="math inline">\(H_0\)</span>. If <span class="math inline">\(\mu_0\notin (LB,UB)\)</span>, then you reject <span class="math inline">\(H_0\)</span>.</p>
-</section></section>
-<section>
-<section id="model-inference" class="title-slide slide level1 center">
-<h1>Model Inference</h1>
-
-</section>
-<section id="testing-beta_j" class="slide level2">
-<h2>Testing <span class="math inline">\(\beta_j\)</span></h2>
-<p><span class="math display">\[
-\frac{\hat\beta_j-\theta}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
-\]</span></p>
-</section>
-<section id="confidence-intervals" class="slide level2">
-<h2>Confidence Intervals</h2>
-<p><span class="math display">\[
-\hat \beta_j \pm CV \times se(\hat\beta_j)
-\]</span></p>
-<ul>
-<li><p>CV: Critical Value <span class="math inline">\(P(X&lt;CV) = 1-\alpha/2\)</span></p></li>
-<li><p><span class="math inline">\(\alpha\)</span>: significance level</p></li>
-<li><p>SE: Standard Error</p></li>
-</ul>
-</section>
-<section id="model-inference-1" class="slide level2">
-<h2>Model inference</h2>
-<p>We conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (<span class="math inline">\(\hat Y=\hat\beta_0 + \hat\beta_1 X\)</span>) to the mean of Y (<span class="math inline">\(\hat \mu_y\)</span>). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test.</p>
-</section>
-<section id="anova-table" class="slide level2">
-<h2>ANOVA Table</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 18%">
-<col style="width: 20%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Source</th>
-<th>DF</th>
-<th>SS</th>
-<th>MS</th>
-<th>F</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Model</td>
-<td><span class="math inline">\(DFR=k-1\)</span></td>
-<td><span class="math inline">\(SSR\)</span></td>
-<td><span class="math inline">\(MSR=\frac{SSM}{DFR}\)</span></td>
-<td><span class="math inline">\(\hat F=\frac{MSR}{MSE}\)</span></td>
-</tr>
-<tr class="even">
-<td>Error</td>
-<td><span class="math inline">\(DFE=n-k\)</span></td>
-<td><span class="math inline">\(SSE\)</span></td>
-<td><span class="math inline">\(MSE=\frac{SSE}{DFE}\)</span></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>Total</td>
-<td><span class="math inline">\(TDF=n-1\)</span></td>
-<td><span class="math inline">\(TSS=SSR+SSE\)</span></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p><span class="math display">\[
-\hat F \sim F(DFR, DFE)
-\]</span></p>
-</section>
-<section id="model-inference-2" class="slide level2">
-<h2>Model Inference</h2>
-<p>Given:</p>
-<p><span class="math display">\[
-M1:\ \hat y = \beta_0 + \beta_1 X_1 + \beta_2 X_2
-\]</span></p>
-<p><span class="math display">\[
-M2:\ \hat y = \beta_0 + \beta_1 X_1  
-\]</span></p>
-<p>Let <span class="math inline">\(M1\)</span> be the FULL (larger) model, and let <span class="math inline">\(M2\)</span> be the RED (Reduced, smaller) model.</p>
-</section>
-<section id="model-inference-3" class="slide level2">
-<h2>Model Inference</h2>
-<p>He can test the following Hypothesis:</p>
-<ul>
-<li><span class="math inline">\(H_0\)</span>: The error variations between the FULL and RED model are not different.</li>
-<li><span class="math inline">\(H_1\)</span>: The error variations between the FULL and RED model are different.</li>
-</ul>
-</section>
-<section id="test-statistic" class="slide level2">
-<h2>Test Statistic</h2>
-<p><span class="math display">\[
-\hat F = \frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}
-\]</span></p>
-<p><span class="math display">\[
-\hat F \sim F[DFE(RED) - DFE(FULL), DFE(FULL)]
-\]</span></p>
-</section></section>
-<section>
-<section id="linear-models-equivalent-of-common-statistical-tests" class="title-slide slide level1 center">
-<h1>Linear Models Equivalent of Common Statistical Tests</h1>
-
-</section>
-<section id="sample-t-test" class="slide level2">
-<h2>1-Sample t-test</h2>
-<p>This can be conducted as <span class="math inline">\(Y=\beta_0\)</span></p>
-<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_0 = 205\)</span> OR <span class="math inline">\(H_0: \mu = 205\)</span></p>
+<section id="motivation" class="slide level2">
+<h2>Motivation</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb1-2"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span>
-<span id="cb1-4"><a></a>xlm <span class="ot">&lt;-</span> penguins  <span class="sc">|&gt;</span>  <span class="fu">lm</span>(flipper_length_mm <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> _)</span>
-<span id="cb1-5"><a></a><span class="fu">coef</span>(xlm)</span>
-<span id="cb1-6"><a></a><span class="fu">confint</span>(xlm)</span>
-<span id="cb1-7"><a></a></span>
-<span id="cb1-8"><a></a><span class="do">## OR</span></span>
-<span id="cb1-9"><a></a><span class="fu">t.test</span>(penguins<span class="sc">$</span>flipper_length_mm, <span class="at">mu =</span> <span class="dv">205</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</section>
-<section id="sample-t-test-1" class="slide level2">
-<h2>2-Sample t-test</h2>
-<p>This can be conducted as <span class="math inline">\(Y=\beta_0 + \beta_1 X\)</span>, where <span class="math inline">\(X\)</span> is a binary variable for 2 samples.</p>
-<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_1 = 0\)</span> OR <span class="math inline">\(H_0: \mu_1-\mu_2 = 0\)</span></p>
+<img data-src="9aS25_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="for-now" class="slide level2">
+<h2>For Now …</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>mtcars <span class="sc">|&gt;</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> _) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a><span class="do">## OR</span></span>
-<span id="cb2-4"><a></a></span>
-<span id="cb2-5"><a></a>mtcars <span class="sc">|&gt;</span> <span class="fu">t.test</span>(mpg <span class="sc">~</span> vs, <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">drop_na</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb2-2"><a></a>  <span class="fu">mutate</span>(<span class="at">gentoo =</span> <span class="fu">ifelse</span>(species <span class="sc">==</span> <span class="st">"Gentoo"</span>, <span class="st">"Gentoo"</span>, <span class="st">"Other"</span>))</span>
+<span id="cb2-3"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm, <span class="at">color =</span> gentoo)) <span class="sc">+</span></span>
+<span id="cb2-4"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
+<img data-src="9aS25_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="potential-model" class="slide level2">
+<h2>Potential Model</h2>
+<p><span class="math display">\[
+\left(\begin{array}{c}
+Gentoo \\
+Other
+\end{array}\right) = \boldsymbol X^\mathrm T \boldsymbol \beta
+\]</span></p>
 </section>
-<section id="paired-t-test" class="slide level2">
-<h2>Paired t-test</h2>
-<p>This can be conducted as <span class="math inline">\(Y_1 - Y_2=\beta_0\)</span></p>
-<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_0 = 0\)</span> OR <span class="math inline">\(H_0: \mu_1 - \mu_2 = 0\)</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># DATA PREP</span></span>
-<span id="cb3-2"><a></a>before <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">200.1</span>, <span class="fl">190.9</span>, <span class="fl">192.7</span>, <span class="dv">213</span>, <span class="fl">241.4</span>, <span class="fl">196.9</span>, <span class="fl">172.2</span>, <span class="fl">185.5</span>, <span class="fl">205.2</span>, <span class="fl">193.7</span>)</span>
-<span id="cb3-3"><a></a>after <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">392.9</span>, <span class="fl">393.2</span>, <span class="fl">345.1</span>, <span class="dv">393</span>, <span class="dv">434</span>, <span class="fl">427.9</span>, <span class="dv">422</span>, <span class="fl">383.9</span>, <span class="fl">392.3</span>, <span class="fl">352.2</span>)</span>
-<span id="cb3-4"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(before, after)</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a>df <span class="sc">|&gt;</span> <span class="fu">lm</span>(after <span class="sc">-</span> before <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> _) <span class="sc">|&gt;</span> (\(x) <span class="fu">c</span>(<span class="fu">coef</span>(x), <span class="fu">confint</span>(x)))()</span>
-<span id="cb3-7"><a></a><span class="do">## OR</span></span>
-<span id="cb3-8"><a></a>df <span class="sc">|&gt;</span> <span class="fu">with</span>(<span class="fu">t.test</span>(before, after, <span class="at">paired =</span> T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="anova" class="slide level2">
-<h2>ANOVA</h2>
-<p>This can be conducted as <span class="math inline">\(Y=\beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k\)</span>, where <span class="math inline">\(X_k\)</span> are binary variable for k samples.</p>
-<p>Test the following hypothesis: <span class="math inline">\(H_0:\ \beta_1 =\beta_2 =\cdots=\beta_k = 0\)</span> OR <span class="math inline">\(H_0: \mu_1 =\mu_2 =\cdots=\mu_k = 0\)</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">lm</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> _) <span class="sc">|&gt;</span> <span class="fu">anova</span>()</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="do">## OR</span></span>
-<span id="cb4-4"><a></a></span>
-<span id="cb4-5"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">aov</span>(flipper_length_mm <span class="sc">~</span> species, <span class="at">data =</span> _) <span class="sc">|&gt;</span> <span class="fu">anova</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section></section>
 <section>
-<section id="applications-in-r" class="title-slide slide level1 center">
-<h1>Applications in R</h1>
+<section id="logistic-regression" class="title-slide slide level1 center">
+<h1>Logistic Regression</h1>
 
 </section>
-<section id="individual-hypothesis-testing" class="slide level2">
-<h2>Individual Hypothesis Testing</h2>
+<section id="logistic-regression-1" class="slide level2">
+<h2>Logistic Regression</h2>
+<p>Logistic Regression is used to model the association between a set of predictors and a binary outcome.</p>
+</section>
+<section id="construct-model" class="slide level2">
+<h2>Construct Model</h2>
+<p><span class="math display">\[
+\left(\begin{array}{c}
+Gentoo \\
+Other
+\end{array}\right) = \boldsymbol X^\mathrm T \boldsymbol \beta
+\]</span></p>
+</section>
+<section id="let" class="slide level2">
+<h2>Let …</h2>
+<p><span class="math display">\[
+Y = \left\{\begin{array}{cc}
+1 &amp; Gentoo \\
+0 &amp; Other
+\end{array}\right.
+\]</span></p>
+</section>
+<section id="construct-a-model" class="slide level2">
+<h2>Construct a Model</h2>
+<p><span class="math display">\[
+P\left(Y = 1\right) = \boldsymbol X^\mathrm T \boldsymbol \beta
+\]</span></p>
+</section>
+<section id="construct-a-model-1" class="slide level2">
+<h2>Construct a Model</h2>
+<p><span class="math display">\[
+P\left(Y = 1\right) = \frac{\exp(\boldsymbol X^\mathrm T \boldsymbol \beta)}{1 + \exp(\boldsymbol X^\mathrm T \boldsymbol \beta)}
+\]</span></p>
+</section>
+<section id="construct-a-model-2" class="slide level2">
+<h2>Construct a Model</h2>
+<p><span class="math display">\[
+\frac{P(Y = 1)}{1-P(Y = 1)} = \exp(\boldsymbol X^\mathrm T \boldsymbol \beta)
+\]</span></p>
+</section>
+<section id="the-logistic-model" class="slide level2">
+<h2>The Logistic Model</h2>
+<p><span class="math display">\[
+\log\left\{\frac{P(Y = 1)}{1-P(Y = 1)}\right\} = \boldsymbol X^\mathrm T \boldsymbol \beta
+\]</span></p>
+</section>
+<section id="odds-and-log-odds" class="slide level2">
+<h2>Odds and Log-Odds</h2>
+<p><span class="math display">\[
+\frac{P(Y = 1)}{1-P(Y = 1)}
+\]</span></p>
+<p><span class="math display">\[
+\log\left\{\frac{P(Y = 1)}{1-P(Y = 1)}\right\}
+\]</span></p>
+</section>
+<section id="estimation" class="slide level2">
+<h2>Estimation</h2>
+<p>Estimation is done by finding the values of <span class="math inline">\(\boldsymbol \beta\)</span> that maximizes the likelihood function given the data pair <span class="math inline">\((\boldsymbol X_i, Y_i)\)</span></p>
+<p><span class="math display">\[
+L(\boldsymbol \beta) = \prod_{i=1}^n P(Y_i=1)^{Y_i}\left\{1-P(Y_i=1)\right\}^{1-Y_i}
+\]</span></p>
+</section>
+<section id="predicting-category" class="slide level2">
+<h2>Predicting Category</h2>
+<p>Once the estimates <span class="math inline">\(\hat \beta\)</span> are obtained, compute:</p>
+<p><span class="math display">\[
+P\left(Y_i = 1\right) = \frac{\exp(\boldsymbol X_i^\mathrm T \boldsymbol{\hat\beta})}{1 + \exp(\boldsymbol X^\mathrm T \boldsymbol{\hat\beta)}}
+\]</span></p>
+<p><span class="math display">\[
+Y_i = \left\{\begin{array}{cc}
+1 &amp; P(Y_i =1) \geq 0.5 \\
+0 &amp; Otherwise
+\end{array}\right.
+\]</span></p>
+</section></section>
+<section>
+<section id="ordinal-regression" class="title-slide slide level1 center">
+<h1>Ordinal Regression</h1>
+
+</section>
+<section id="ordinal-regression-1" class="slide level2">
+<h2>Ordinal Regression</h2>
+<p>Ordinal regression extends the logistic regression to more than one category (<span class="math inline">\(J\)</span> Categories) that has a natural order.</p>
+<p>An example can be thought of as Grade Levels: A, B, C, D, F</p>
+</section>
+<section id="modeling-ordinal-responses" class="slide level2">
+<h2>Modeling Ordinal Responses</h2>
+<p>We can model Ordinal responses using the the proportional odds model and a logit formula:</p>
+<p><span class="math display">\[
+\mathrm{logit}\{P(Y\leq j|X)\} = \boldsymbol X_{(j)} ^\mathrm T \boldsymbol \beta _{(j)}
+\]</span></p>
+</section>
+<section id="linear-model" class="slide level2">
+<h2>Linear Model</h2>
+<p><span class="math display">\[
+\boldsymbol X_{(j)}^\mathrm T \boldsymbol \beta_{(j)} = \beta_{0(j)} + \sum^p_{i=1}X_{i}\beta_i
+\]</span></p>
+</section></section>
+<section>
+<section id="multinomial-regression" class="title-slide slide level1 center">
+<h1>Multinomial Regression</h1>
+
+</section>
+<section id="multinomial-regression-1" class="slide level2">
+<h2>Multinomial Regression</h2>
+</section>
+<section id="model" class="slide level2">
+<h2>Model</h2>
+<p><span class="math display">\[
+\log\left\{\frac{P(Y = k)}{P(Y = \mathrm{REF})}\right\} = \boldsymbol X^\mathrm T \boldsymbol \beta_k
+\]</span></p>
+<p><span class="math inline">\(\mathrm{REF}\)</span> is a reference value to be modeled.</p>
+</section></section>
+<section>
+<section id="r-examples" class="title-slide slide level1 center">
+<h1>R Examples</h1>
+
+</section>
+<section id="r-preparation" class="slide level2">
+<h2>R Preparation</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, <span class="at">data =</span> _) <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="do">## Data</span></span>
+<span id="cb3-2"><a></a><span class="fu">library</span>(GLMsData)</span>
+<span id="cb3-3"><a></a><span class="fu">library</span>(carData)</span>
+<span id="cb3-4"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb3-5"><a></a></span>
+<span id="cb3-6"><a></a><span class="do">## Ordinal and Multinomial Models</span></span>
+<span id="cb3-7"><a></a><span class="fu">library</span>(VGAM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="model-inference-4" class="slide level2">
-<h2>Model Inference</h2>
+<section id="logistic-regression-2" class="slide level2">
+<h2>Logistic Regression</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>xlm <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, <span class="at">data =</span> _) </span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a><span class="fu">summary</span>(xlm)</span>
-<span id="cb6-5"><a></a><span class="fu">anova</span>(xlm)</span>
-<span id="cb6-6"><a></a></span>
-<span id="cb6-7"><a></a><span class="do">## OR</span></span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a>xlm_null <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> _)</span>
-<span id="cb6-10"><a></a><span class="fu">anova</span>(xlm_null, xlm)</span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a><span class="do">## OR</span></span>
-<span id="cb6-13"><a></a></span>
-<span id="cb6-14"><a></a><span class="fu">library</span>(supernova)</span>
-<span id="cb6-15"><a></a><span class="fu">supernova</span>(xlm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">glm</span>(y <span class="sc">~</span> x,</span>
+<span id="cb4-2"><a></a>    data,</span>
+<span id="cb4-3"><a></a>    <span class="at">family =</span> <span class="fu">binomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="comparing-different-models" class="slide level2">
-<h2>Comparing Different Models</h2>
+<section id="logistic-regression-3" class="slide level2">
+<h2>Logistic Regression</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>xlm1 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> species, <span class="at">data =</span> _) </span>
-<span id="cb7-3"><a></a></span>
-<span id="cb7-4"><a></a>xlm2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb7-5"><a></a>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> species, <span class="at">data =</span> _) </span>
-<span id="cb7-6"><a></a></span>
-<span id="cb7-7"><a></a><span class="fu">anova</span>(xlm2, xlm1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">gentoo =</span> <span class="fu">ifelse</span>(gentoo <span class="sc">==</span> <span class="st">"Gentoo"</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb5-2"><a></a>res <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">glm</span>(gentoo <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> body_mass_g, </span>
+<span id="cb5-3"><a></a>                       <span class="at">data =</span> _,</span>
+<span id="cb5-4"><a></a>                       <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb5-5"><a></a><span class="fu">summary</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = gentoo ~ flipper_length_mm + body_mass_g, family = binomial(), 
+#&gt;     data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;                     Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept)       -1.316e+02  3.094e+01  -4.254 2.10e-05 ***
+#&gt; flipper_length_mm  5.447e-01  1.384e-01   3.935 8.32e-05 ***
+#&gt; body_mass_g        4.312e-03  1.648e-03   2.616  0.00889 ** 
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 434.15  on 332  degrees of freedom
+#&gt; Residual deviance:  38.75  on 330  degrees of freedom
+#&gt; AIC: 44.75
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 10</code></pre>
+</div>
+</div>
+</section>
+<section id="prediction-logistic-regression" class="slide level2">
+<h2>Prediction Logistic Regression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">predict</span>(res, </span>
+<span id="cb7-2"><a></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">200</span>, <span class="at">body_mass_g =</span> <span class="dv">4005</span>),</span>
+<span id="cb7-3"><a></a>        <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;          1 
+#&gt; 0.00441012</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">predict</span>(res, </span>
+<span id="cb9-2"><a></a>        <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">flipper_length_mm =</span> <span class="dv">220</span>, <span class="at">body_mass_g =</span> <span class="dv">4775</span>),</span>
+<span id="cb9-3"><a></a>        <span class="at">type =</span> <span class="st">"response"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;         1 
+#&gt; 0.9998484</code></pre>
+</div>
+</div>
+</section>
+<section id="ordinal-regression-2" class="slide level2">
+<h2>Ordinal Regression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">vglm</span>(y <span class="sc">~</span> x,</span>
+<span id="cb11-2"><a></a>    data,</span>
+<span id="cb11-3"><a></a>    <span class="at">family =</span> <span class="fu">propodds</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ordinal-regression-3" class="slide level2">
+<h2>Ordinal Regression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>res <span class="ot">&lt;-</span> <span class="fu">vglm</span>(poverty<span class="sc">~</span>religion<span class="sc">+</span>degree<span class="sc">+</span>country<span class="sc">+</span>age<span class="sc">+</span>gender,</span>
+<span id="cb12-2"><a></a>            <span class="at">family =</span> <span class="fu">propodds</span>(),</span>
+<span id="cb12-3"><a></a>            <span class="at">data =</span> WVS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">summary</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; vglm(formula = poverty ~ religion + degree + country + age + 
+#&gt;     gender, family = propodds(), data = WVS)
+#&gt; 
+#&gt; Coefficients: 
+#&gt;                Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept):1 -0.729769   0.104044  -7.014 2.32e-12 ***
+#&gt; (Intercept):2 -2.532483   0.110154 -22.990  &lt; 2e-16 ***
+#&gt; religionyes    0.179733   0.076565   2.347 0.018902 *  
+#&gt; degreeyes      0.140918   0.066714   2.112 0.034663 *  
+#&gt; countryNorway -0.322353   0.075444  -4.273 1.93e-05 ***
+#&gt; countrySweden -0.603300   0.080895  -7.458 8.79e-14 ***
+#&gt; countryUSA     0.617773   0.068391   9.033  &lt; 2e-16 ***
+#&gt; age            0.011141   0.001557   7.157 8.24e-13 ***
+#&gt; gendermale     0.176370   0.052877   3.335 0.000851 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Names of linear predictors: logitlink(P[Y&gt;=2]), logitlink(P[Y&gt;=3])
+#&gt; 
+#&gt; Residual deviance: 10402.59 on 10753 degrees of freedom
+#&gt; 
+#&gt; Log-likelihood: -5201.296 on 10753 degrees of freedom
+#&gt; 
+#&gt; Number of Fisher scoring iterations: 5 
+#&gt; 
+#&gt; No Hauck-Donner effect found in any of the estimates
+#&gt; 
+#&gt; 
+#&gt; Exponentiated coefficients:
+#&gt;   religionyes     degreeyes countryNorway countrySweden    countryUSA 
+#&gt;     1.1968983     1.1513306     0.7244422     0.5470035     1.8547931 
+#&gt;           age    gendermale 
+#&gt;     1.0112033     1.1928793</code></pre>
+</div>
+</div>
+</section>
+<section id="multinomial-regression-2" class="slide level2">
+<h2>Multinomial Regression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">vglm</span>(y <span class="sc">~</span> x,</span>
+<span id="cb15-2"><a></a>    data,</span>
+<span id="cb15-3"><a></a>    <span class="at">family =</span> <span class="fu">multinomial</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="multinomial-regression-3" class="slide level2">
+<h2>Multinomial Regression</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>res <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a></a>  <span class="fu">vglm</span>(species <span class="sc">~</span> body_mass_g <span class="sc">+</span> flipper_length_mm,</span>
+<span id="cb16-3"><a></a>       <span class="at">family =</span> <span class="fu">multinomial</span>(),</span>
+<span id="cb16-4"><a></a>       <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary-1" class="slide level2">
+<h2>Summary</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">summary</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; vglm(formula = species ~ body_mass_g + flipper_length_mm, family = multinomial(), 
+#&gt;     data = penguins)
+#&gt; 
+#&gt; Coefficients: 
+#&gt;                       Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept):1       149.242738  31.696208   4.709 2.50e-06 ***
+#&gt; (Intercept):2       119.978676  31.301127   3.833 0.000127 ***
+#&gt; body_mass_g:1        -0.003430   0.001669  -2.055 0.039874 *  
+#&gt; body_mass_g:2        -0.004692   0.001649      NA       NA    
+#&gt; flipper_length_mm:1  -0.654416   0.143847  -4.549 5.38e-06 ***
+#&gt; flipper_length_mm:2  -0.482421   0.141237  -3.416 0.000636 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Names of linear predictors: log(mu[,1]/mu[,3]), log(mu[,2]/mu[,3])
+#&gt; 
+#&gt; Residual deviance: 266.6108 on 660 degrees of freedom
+#&gt; 
+#&gt; Log-likelihood: -133.3054 on 660 degrees of freedom
+#&gt; 
+#&gt; Number of Fisher scoring iterations: 10 
+#&gt; 
+#&gt; Warning: Hauck-Donner effect detected in the following estimate(s):
+#&gt; '(Intercept):1', 'body_mass_g:2', 'flipper_length_mm:2'
+#&gt; 
+#&gt; 
+#&gt; Reference group is level  3  of the response</code></pre>
+</div>
 </div>
 
 

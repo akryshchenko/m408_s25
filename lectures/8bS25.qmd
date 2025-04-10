@@ -75,7 +75,7 @@ Notice how there are 3 types of null and alternative hypothesis, The first type 
 ## Common Hypothesis Tests
 
 | Test               | \# of Samples | Null Hypothesis            | Distribution  | DF                                                                               | Test Statistics                                          | Notes                                               |
-|--------------------|---------------|----------------------------|---------------|----------------------------------------------------------------------------------|----------------------------------------------------------|-----------------------------------------------------|
+|----------|----------|----------|----------|-------------|----------|----------|
 | t-test             | 1             | $\mu=\mu_0$                | $t_{DF}$      | $DF=n-1$                                                                         | $\frac{\bar X-\mu_0}{\sqrt{s^2/n}}$                      | $n<30$                                              |
 | z-test             | 1             | $\mu=\mu_0$                | $N(0,1)$      | None                                                                             | $\frac{\bar X-\mu_0}{\sqrt{\sigma^2/n}}$                 | $n>30$ $\sigma^2$ known                             |
 | z-test             | 1             | $\mu=\mu_0$                | $N(0,1)$      | None                                                                             | $\frac{\bar X-\mu_0}{\sqrt{s^2/n}}$                      | $n>30$ $\sigma^2$ unknown                           |
@@ -133,7 +133,7 @@ We conduct model inference to determine if different models are better at explai
 ## ANOVA Table
 
 | Source | DF        | SS            | MS                    | F                        |
-|--------|-----------|---------------|-----------------------|--------------------------|
+|-------------|-------------|-------------|---------------|------------------|
 | Model  | $DFR=k-1$ | $SSR$         | $MSR=\frac{SSM}{DFR}$ | $\hat F=\frac{MSR}{MSE}$ |
 | Error  | $DFE=n-k$ | $SSE$         | $MSE=\frac{SSE}{DFE}$ |                          |
 | Total  | $TDF=n-1$ | $TSS=SSR+SSE$ |                       |                          |
