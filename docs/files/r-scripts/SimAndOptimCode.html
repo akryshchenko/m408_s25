@@ -231,18 +231,18 @@ lm(formula = y ~ x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--5.0453 -0.8601 -0.0615  0.9636  4.2511 
+-4.4728 -0.9450 -0.0188  0.9934  4.6499 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 31.80725    0.17461   182.2   &lt;2e-16 ***
-x           -8.97836    0.02723  -329.7   &lt;2e-16 ***
+(Intercept) 31.86738    0.17079   186.6   &lt;2e-16 ***
+x           -8.98821    0.02695  -333.5   &lt;2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 1.432 on 498 degrees of freedom
-Multiple R-squared:  0.9954,    Adjusted R-squared:  0.9954 
-F-statistic: 1.087e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 1.448 on 498 degrees of freedom
+Multiple R-squared:  0.9955,    Adjusted R-squared:  0.9955 
+F-statistic: 1.112e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">vcov</span>(lm_res))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -250,12 +250,12 @@ F-statistic: 1.087e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            (Intercept)          x
-(Intercept)   0.1746062        NaN
-x                   NaN 0.02722842</code></pre>
+(Intercept)   0.1707861        NaN
+x                   NaN 0.02694981</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sigma</span>(lm_res)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.049506</code></pre>
+<pre><code>[1] 2.096625</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -264,8 +264,8 @@ x                   NaN 0.02722842</code></pre>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X)<span class="sc">%*%</span>X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       [,1]
-  31.807248
-x -8.978357</code></pre>
+  31.867384
+x -8.988209</code></pre>
 </div>
 </div>
 <p>##Find the value of x that will minimize the following function.</p>

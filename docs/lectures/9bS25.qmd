@@ -1,0 +1,384 @@
+---
+title: "Classification"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+
+editor: source
+---
+
+## Learning Outcomes
+
+-   K-Nearest Neighbors
+
+-   Bayes' Classifier
+
+-   Linear and Quadratic Discriminant Analysis
+
+-   Naive Bayes
+
+## Classification
+
+The practice of classifying data points into different categories.
+
+# K-Nearest Neighbors
+
+## K-Nearest Neighbors
+
+K-Nearest Neighbors will assign a category to a new data point based on the majority category of its **K** nearest neighbors.
+
+## KNN
+
+```{r}
+library(magrittr)
+library(tidyverse)
+library(palmerpenguins)
+
+penguins %>% sample_n(100) %>%  
+  ggplot(aes(x = flipper_length_mm, y = bill_length_mm, color = species)) +
+  geom_point() +
+  xlab("X") + ylab("Y") +
+  guides(color = FALSE) +
+  theme_bw()
+
+```
+
+## Distances
+
+The distance between a given point and the training data must be computed. These are the most commonly used distances:
+
+-   Manhattan
+
+-   Euclidean
+
+-   Minkowski
+
+## Manhattan Distance
+
+$$
+d(x,y) = \sum_{i=1}^{p} |x_i - y_i|
+$$
+
+-   $x$: vector values of individual point
+
+-   $y$: vector values of new point
+
+-   $p$: length of vector
+
+## Euclidean Distance
+
+$$
+d(x,y) = \sqrt{\sum_{i=1}^{p} (x_i - y_i)^2}
+$$
+
+## Minkowski Distance
+
+$$
+d(x,y) = \left( \sum_{i=1}^{p} |x_i - y_i|^w \right)^{\frac{1}{w}}
+$$
+
+## Algorithm
+
+Given a training data set, conduct the following steps:
+
+-   Compute the distance between a new data point and every point in the training data set.
+
+-   Choose the $K$ nearest training data points to the new point using the smallest distance.
+
+-   Categorize the new data point based on the majority of category from the $K$ nearest training data points.
+
+# Bayes Classifier
+
+## Bayes Classifier
+
+Bayes Classifier is used to classify a data point to a category $c$
+
+$$
+f(\boldsymbol x) = argmax_{c \in C} f(C|\boldsymbol X)
+$$
+
+## Probability
+
+$$
+f(C = c|\boldsymbol X = x) = \frac{f(\boldsymbol X | C)\pi_c}{f(\boldsymbol X)}
+$$
+
+-   $f(\boldsymbol X| C)$: conditional distribution of $\boldsymbol X$
+
+-   $\pi_c$: probability of observing category $C$
+
+-   $f(\boldsymbol X)$: marginal distribution of $\boldsymbol X$
+
+## Distribution of $f(\boldsymbol X|C)$ and $f(\boldsymbol X)$
+
+To apply Bayes classifier, we must specify the form of $f(\boldsymbol X| C)$ and $f(\boldsymbol X)$. Common distributions are:
+
+-   Normal
+
+-   Bernoulli
+
+-   Multinomial
+
+# Linear Discriminant Analysis
+
+## LDA
+
+Linear Discriminant Analysis is used to classify a new data point, from a set of classifications, given information from a set of predictors.
+
+LDA classifies data using a Bayes classifier and imposing a normal distribution to the model.
+
+## LDA (p=1)
+
+$$
+f_k(\boldsymbol X) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{\frac{(x-\mu_k)^2}{2\sigma^2}\right\}
+$$
+
+$$
+f(X) = \sum^K_{l=1} \pi_l f_l(X)
+$$
+
+## LDA (p=1)
+
+$$
+\delta_k = f_k(c_k|\boldsymbol X ) = \frac{f_k(\boldsymbol X)\pi_k}{f(\boldsymbol X)}
+$$
+
+$$
+\delta_k(x) = x\frac{\mu_k}{\sigma^2}-\frac{\mu_k^2}{\sigma^2} + \ln(\pi_k) 
+$$
+
+## LDA (p=1) Estimates
+
+Let $Y_i=c_l$, $l=1\ldots, K$, and $X_i=x_i$ bet the data from n observations:
+
+$$
+\hat\mu_k = \frac{1}{n_k}\sum^n_{i=1(Y_i=c_k)} x_i
+$$
+
+$$
+\hat\sigma^2=\frac{1}{n-K}\sum^K_{l=1}\sum_{i=1(Y_i=c_l)}^n(x_i-\hat\mu_l)^2 
+$$
+
+-   $n_k$: number of observations in class $k$
+
+## LDA (p\>1)
+
+$$
+f_k(\boldsymbol X) = \frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}\exp\left\{(\boldsymbol x-\boldsymbol{\mu_k})^{\mathrm T}\Sigma^{-1}(\boldsymbol x-\boldsymbol \mu_k)\right\}
+$$
+
+$$
+f(\boldsymbol X) = \sum^K_{l=1} \pi_l f_l(\boldsymbol X)
+$$
+
+## LDA (p\>1)
+
+$$
+\delta_k(\boldsymbol x) = \boldsymbol x^{\mathrm T}\Sigma^{-1}\boldsymbol \mu_k-\frac{1}{2}\boldsymbol \mu_k^{\mathrm T}\Sigma^{-1}\boldsymbol \mu_k + \ln(\pi_k) 
+$$
+
+## LDA Classification
+
+Classify each new data point as class $c_k$ based on the largest $\delta_k(\boldsymbol X)$.
+
+# Quadratic Discriminant Analysis
+
+## QDA
+
+In LDA, it is assumed that $\Sigma$ from $\boldsymbol X$ is the same for all classification groups. In Quadratic Discriminant Analysis, this assumption is relaxed, resulting in $\Sigma_k$ for each classification.
+
+## QDA
+
+$$
+f_k(\boldsymbol X) = \frac{1}{(2\pi)^{p/2}|\Sigma_k|^{1/2}}\exp\left\{(\boldsymbol x-\boldsymbol{\mu_k})^{\mathrm T}\Sigma_k^{-1}(\boldsymbol x-\boldsymbol \mu_k)\right\}
+$$
+
+## QDA
+
+$$
+\delta_k(\boldsymbol x) = -\frac{1}{2}\boldsymbol x^{\mathrm T}\Sigma_k^{-1}\boldsymbol x + \boldsymbol x^{\mathrm T}\Sigma_k^{-1}\boldsymbol \mu_k-\frac{1}{2}\boldsymbol \mu_k^{\mathrm T}\Sigma_k^{-1}\boldsymbol \mu_k - \frac{1}{2}\ln|\Sigma_k| + \ln(\pi_k) 
+$$
+
+# Naive Bayes
+
+## Naive Bayes
+
+A Naive Bayes classifier, assumes the predictors in $\boldsymbol X$ are independent of each other.
+
+## Naive Bayes
+
+$$
+f_k(\boldsymbol X) = \prod^p_{j} f_{jk}(x_j|c_k)
+$$
+
+## Naive Bayes
+
+::: columns
+::: {.column width="50%"}
+### Quantitative
+
+-   Normal: $N(\mu_{jk}, \sigma^2_{jk})$
+
+-   Nonparametric
+
+    -   Kernel Density
+:::
+
+::: {.column width="50%"}
+### Qualitative
+
+-   Nonparametric
+:::
+:::
+
+# R Code
+
+## LDA
+
+```{r}
+library(palmerpenguins)
+library(MASS)
+library(tidyverse)
+select <- dplyr::select
+penguins <- penguins |> drop_na()
+x_lda <- penguins |> lda(species ~ bill_length_mm + 
+                                   bill_depth_mm + 
+                                   flipper_length_mm + 
+                                   body_mass_g,
+                         data = _)
+
+
+```
+
+## LDA Prediction
+
+```{r}
+
+new_df <- penguins |> select(bill_length_mm,
+                           bill_depth_mm,
+                          flipper_length_mm,
+                         body_mass_g)
+x_lda_predict <- x_lda |> predict(new_df)
+
+```
+
+## LDA Confusion Matrix
+
+```{r}
+table(penguins$species, x_lda_predict$class)
+```
+
+## QDA
+
+```{r}
+x_qda <- penguins |> qda(species ~ bill_length_mm + 
+                                   bill_depth_mm + 
+                                   flipper_length_mm + 
+                                   body_mass_g,
+                         data = _)
+
+```
+
+## QDA Prediction
+
+```{r}
+x_qda_predict <- x_qda |>  predict(penguins |>
+                                     select(bill_length_mm, 
+                                            bill_depth_mm,
+                                            flipper_length_mm,
+                                            body_mass_g))
+```
+
+## QDA Confusion Matrix
+
+```{r}
+table(penguins$species, x_qda_predict$class)
+```
+
+## Naive Bayes
+
+```{r}
+library(e1071)
+x_nb <- penguins |>  naiveBayes(species ~ bill_length_mm +
+                                             bill_depth_mm + 
+                                             flipper_length_mm + 
+                                             body_mass_g, 
+                                   data = _)
+```
+
+## Naive Bayes Prediction
+
+```{r}
+x_nb_predict <- x_nb  |>  predict(penguins |>
+                                     select(bill_length_mm, 
+                                            bill_depth_mm,
+                                            flipper_length_mm,
+                                            body_mass_g))
+```
+
+## Naive Bayes Confusion Matrix
+
+```{r}
+table(penguins$species, x_nb_predict)
+```
+
+# Example
+
+## Create the KNN algorithm in R
+
+-   Manhattan
+
+-   Euclidean
+
+-   Minkowski ($w=5$)
+
+Use the `penguins` data set from `palmerpenguins` and categorize the following data: `bill_depth = 19`, `bill_length = 40`, `flipper_length = 185`, and `body_mass = 3345`.
+
+```{r}
+manhattan <- function(x, y){
+  sum(abs(x-y))
+}
+euclidean <- function(x, y){
+  sqrt(sum((x-y)^2))
+}
+minkowski_5 <- function(x, y){
+  (sum(abs(x-y)^5))^{1/5}
+}
+
+x <- penguins |> select(bill_depth_mm, bill_length_mm, flipper_length_mm, body_mass_g) |> as.matrix()
+y <- c(19, 40, 185, 3345)
+
+manx <- apply(x, 1, manhattan, y = y) |> rank()
+eucx <- apply(x, 1, euclidean, y = y) |> rank()
+minx <- apply(x, 1, minkowski_5, y = y) |> rank()
+
+penguins_rank <- penguins |> mutate(manx = manx, eucx = eucx, minx = minx)
+penguins_rank |> arrange(manx) |> select(species)
+penguins_rank |> arrange(eucx) |> select(species)
+penguins_rank |> arrange(minx) |> select(species)
+  
+```

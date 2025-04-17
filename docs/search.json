@@ -4,7 +4,7 @@
     "href": "ec.html",
     "title": "Lectures",
     "section": "",
-    "text": "*apply Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassification\n\n\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHypothesis Testing\n\n\nModel Inference\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Statistical Learning\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Regression\n\n\nEstimation Procedures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultivariable Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResidual Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "*apply Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassification\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassification\n\n\nLogistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nControl Flow 3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFunctions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHypothesis Testing\n\n\nModel Inference\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntro to Data Manipulation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Statistical Learning\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Regression\n\n\nEstimation Procedures\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultivariable Linear Regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Basics\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nResidual Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "lectures/8aS25.html#learning-objective",
@@ -480,7 +480,7 @@
     "href": "lectures/6bS25.html#r-code-of-simulation-study",
     "title": "Linear Regression",
     "section": "R Code of Simulation Study",
-    "text": "R Code of Simulation Study\n\n## Original Code\n\nx &lt;- rnorm(250, 3, 1)\npy &lt;- 3 * x + 20\nerr &lt;- rnorm(250, 0, 2)\ny &lt;- py + err\nres &lt;- lm(y ~ x)\ncoef(res)\n\n#&gt; (Intercept)           x \n#&gt;   19.618770    3.131296\n\n# Simulation Study\nsim &lt;- \\(i){\n  x &lt;- rnorm(250, 3, 1)\n  py &lt;- 3 * x + 20\n  err &lt;- rnorm(250, 0, 2)\n  y &lt;- py + err\n  res &lt;- lm(y ~ x)\n  return(coef(res))\n}\n\nsim_results &lt;- sapply(1:1000, sim)\nrowMeans(sim_results)\n\n#&gt; (Intercept)           x \n#&gt;   19.989414    3.004259"
+    "text": "R Code of Simulation Study\n\n## Original Code\n\nx &lt;- rnorm(250, 3, 1)\npy &lt;- 3 * x + 20\nerr &lt;- rnorm(250, 0, 2)\ny &lt;- py + err\nres &lt;- lm(y ~ x)\ncoef(res)\n\n#&gt; (Intercept)           x \n#&gt;   20.426830    2.885406\n\n# Simulation Study\nsim &lt;- \\(i){\n  x &lt;- rnorm(250, 3, 1)\n  py &lt;- 3 * x + 20\n  err &lt;- rnorm(250, 0, 2)\n  y &lt;- py + err\n  res &lt;- lm(y ~ x)\n  return(coef(res))\n}\n\nsim_results &lt;- sapply(1:1000, sim)\nrowMeans(sim_results)\n\n#&gt; (Intercept)           x \n#&gt;   19.982039    3.006074"
   },
   {
     "objectID": "lectures/4bS25.html#learning-objectives",
@@ -494,7 +494,7 @@
     "href": "lectures/4bS25.html#anonymous-functions-1",
     "title": "Intro to Data Manipulation",
     "section": "Anonymous Functions",
-    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1]  2.2653465 -0.5048565  4.2586270  2.6618869  5.4622127  6.8835619\n#&gt;  [7]  5.7490935  7.0715846  9.4203490  9.2510733\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  0.4042637  1.3927996  2.4757406  2.8076814 -1.4027106 -7.2150048\n#&gt;  [7]  9.6295172 -4.9758522  0.3321756  1.6190460"
+    "text": "Anonymous Functions\nAn anonymous function is a function that is not stored in an R object for the global environment. It can be thought of as a temporary function to complete a task. A common way to used an anonymous function is with an *apply() function\n\n\nx &lt;- 1:10\nsapply(x, function(x) rnorm(1,x))\n\n#&gt;  [1]  0.1067381  0.6823923  2.4160664  3.7128315  3.9479176  6.2677073\n#&gt;  [7]  7.7741466  8.0820645  9.0607007 12.4088253\n\n\n\nx &lt;- 1:10\nsapply(x, \\(x) rnorm(1,1,x))\n\n#&gt;  [1]  2.37998762 -0.07726743 -2.88825306 -9.36399762  3.58358457  6.64722021\n#&gt;  [7]  0.08311229 -2.95690007  7.52941670 21.91249199"
   },
   {
     "objectID": "lectures/4bS25.html#example",
@@ -529,7 +529,7 @@
     "href": "lectures/4bS25.html#section-1",
     "title": "Intro to Data Manipulation",
     "section": "%>%",
-    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] 0.3779901"
+    "text": "%&gt;%\nThe magrittr pipe, %&gt;%, operates the same way as |&gt;. Below are a couple of examples\n\nx &lt;- 1:10\nx %&gt;%  mean()\n\n#&gt; [1] 5.5\n\nx %&gt;% sd\n\n#&gt; [1] 3.02765\n\nx %&gt;% rnorm(1, .)\n\n#&gt; [1] -0.0146331"
   },
   {
     "objectID": "lectures/4bS25.html#section-2",
@@ -707,326 +707,956 @@
     "text": "Example\nGenerate the first 1000 prime numbers.\n\n\nCode\nx &lt;- 2\ny &lt;- 2\nN &lt;- 1\nwhile(N &lt; 1001){\n  y &lt;- y + 1\n  nn &lt;- length(which(y %% x == 0))\n  if (nn == 0){\n    x &lt;- c(x,y)\n  }\n  N &lt;- length(x)\n}\nx"
   },
   {
-    "objectID": "lectures/8bS25.html#learning-outcomes",
-    "href": "lectures/8bS25.html#learning-outcomes",
-    "title": "Hypothesis Testing",
+    "objectID": "lectures/9bS25.html#learning-outcomes",
+    "href": "lectures/9bS25.html#learning-outcomes",
+    "title": "Classification",
     "section": "Learning Outcomes",
-    "text": "Learning Outcomes\n\nHypothesis Tests\nModel Inference"
+    "text": "Learning Outcomes\n\nK-Nearest Neighbors\nBayes’ Classifier\nLinear and Quadratic Discriminant Analysis\nNaive Bayes"
   },
   {
-    "objectID": "lectures/8bS25.html#hypothesis-tests-1",
-    "href": "lectures/8bS25.html#hypothesis-tests-1",
-    "title": "Hypothesis Testing",
-    "section": "Hypothesis Tests",
-    "text": "Hypothesis Tests\nHypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the Null and Alternative Hypothesis."
+    "objectID": "lectures/9bS25.html#classification",
+    "href": "lectures/9bS25.html#classification",
+    "title": "Classification",
+    "section": "Classification",
+    "text": "Classification\nThe practice of classifying data points into different categories."
   },
   {
-    "objectID": "lectures/8bS25.html#null-hypothesis-h_0",
-    "href": "lectures/8bS25.html#null-hypothesis-h_0",
-    "title": "Hypothesis Testing",
-    "section": "Null Hypothesis \\(H_0\\)",
-    "text": "Null Hypothesis \\(H_0\\)\nThe null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value."
+    "objectID": "lectures/9bS25.html#k-nearest-neighbors-1",
+    "href": "lectures/9bS25.html#k-nearest-neighbors-1",
+    "title": "Classification",
+    "section": "K-Nearest Neighbors",
+    "text": "K-Nearest Neighbors\nK-Nearest Neighbors will assign a category to a new data point based on the majority category of its K nearest neighbors."
   },
   {
-    "objectID": "lectures/8bS25.html#alternative-hypothesis-h_a",
-    "href": "lectures/8bS25.html#alternative-hypothesis-h_a",
-    "title": "Hypothesis Testing",
-    "section": "Alternative Hypothesis \\(H_a\\)",
-    "text": "Alternative Hypothesis \\(H_a\\)\nThe alternative hypothesis contradicts the null hypothesis."
+    "objectID": "lectures/9bS25.html#knn",
+    "href": "lectures/9bS25.html#knn",
+    "title": "Classification",
+    "section": "KNN",
+    "text": "KNN\n\nlibrary(magrittr)\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\npenguins %&gt;% sample_n(100) %&gt;%  \n  ggplot(aes(x = flipper_length_mm, y = bill_length_mm, color = species)) +\n  geom_point() +\n  xlab(\"X\") + ylab(\"Y\") +\n  guides(color = FALSE) +\n  theme_bw()"
   },
   {
-    "objectID": "lectures/8bS25.html#example-of-null-and-alternative-hypothesis",
-    "href": "lectures/8bS25.html#example-of-null-and-alternative-hypothesis",
-    "title": "Hypothesis Testing",
-    "section": "Example of Null and Alternative Hypothesis",
-    "text": "Example of Null and Alternative Hypothesis\nWe want to see if \\(\\mu\\) is different from \\(\\mu_0\\)\n\n\n\nNull Hypothesis\nAlternative Hypothesis\n\n\n\n\n\\(H_0: \\mu=\\mu_0\\)\n\\(H_a: \\mu\\ne\\mu_0\\)\n\n\n\\(H_0: \\mu\\le\\mu_0\\)\n\\(H_a: \\mu&gt;\\mu_0\\)\n\n\n\\(H_0: \\mu\\ge\\mu_0\\)\n\\(H_0: \\mu&lt;\\mu_0\\)"
+    "objectID": "lectures/9bS25.html#distances",
+    "href": "lectures/9bS25.html#distances",
+    "title": "Classification",
+    "section": "Distances",
+    "text": "Distances\nThe distance between a given point and the training data must be computed. These are the most commonly used distances:\n\nManhattan\nEuclidean\nMinkowski"
   },
   {
-    "objectID": "lectures/8bS25.html#one-side-vs-two-side-hypothesis-tests",
-    "href": "lectures/8bS25.html#one-side-vs-two-side-hypothesis-tests",
-    "title": "Hypothesis Testing",
-    "section": "One-Side vs Two-Side Hypothesis Tests",
-    "text": "One-Side vs Two-Side Hypothesis Tests\nNotice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (\\(H_a:\\mu\\ne\\mu_0\\)) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.\n\n\n\nNull Hypothesis\nAlternative Hypothesis\nSide\n\n\n\n\n\\(H_0: \\mu=\\mu_0\\)\n\\(H_a: \\mu\\ne\\mu_0\\)\n2-sided\n\n\n\\(H_0: \\mu\\le\\mu_0\\)\n\\(H_a: \\mu&gt;\\mu_0\\)\n1-sided\n\n\n\\(H_0: \\mu\\ge\\mu_0\\)\n\\(H_0: \\mu&lt;\\mu_0\\)\n1-sided"
+    "objectID": "lectures/9bS25.html#manhattan-distance",
+    "href": "lectures/9bS25.html#manhattan-distance",
+    "title": "Classification",
+    "section": "Manhattan Distance",
+    "text": "Manhattan Distance\n\\[\nd(x,y) = \\sum_{i=1}^{p} |x_i - y_i|\n\\]\n\n\\(x\\): vector values of individual point\n\\(y\\): vector values of new point\n\\(p\\): length of vector"
   },
   {
-    "objectID": "lectures/8bS25.html#common-hypothesis-tests",
-    "href": "lectures/8bS25.html#common-hypothesis-tests",
-    "title": "Hypothesis Testing",
-    "section": "Common Hypothesis Tests",
-    "text": "Common Hypothesis Tests\n\n\n\n\n\n\n\n\n\n\n\n\nTest\n# of Samples\nNull Hypothesis\nDistribution\nDF\nTest Statistics\nNotes\n\n\n\n\nt-test\n1\n\\(\\mu=\\mu_0\\)\n\\(t_{DF}\\)\n\\(DF=n-1\\)\n\\(\\frac{\\bar X-\\mu_0}{\\sqrt{s^2/n}}\\)\n\\(n&lt;30\\)\n\n\nz-test\n1\n\\(\\mu=\\mu_0\\)\n\\(N(0,1)\\)\nNone\n\\(\\frac{\\bar X-\\mu_0}{\\sqrt{\\sigma^2/n}}\\)\n\\(n&gt;30\\) \\(\\sigma^2\\) known\n\n\nz-test\n1\n\\(\\mu=\\mu_0\\)\n\\(N(0,1)\\)\nNone\n\\(\\frac{\\bar X-\\mu_0}{\\sqrt{s^2/n}}\\)\n\\(n&gt;30\\) \\(\\sigma^2\\) unknown\n\n\npaired t-test\n2\n\\(\\mu_1-\\mu_2=D\\)\n\\(t_{DF}\\)\n\\(DF=n-1\\)\n\\(\\frac{\\bar X_d-D}{\\sqrt{s_d^2/n}}\\)\n\\(n\\) is the number of pairs\n\n\nindependent t-test\n2\n\\(\\mu_1-\\mu_2=D\\)\n\\(t_{DF}\\)\n\\(DF=n_1+n_2-2\\)\n\\(\\frac{\\bar X_1-\\bar X_2-D}{\\sqrt{s_p^2(1/n_1+1/n_2)}}\\)\n\\(s_p^2=\\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\\)\n\n\nindependent t-test\n2\n\\(\\mu_1-\\mu_2=D\\)\n\\(t_{DF}\\)\n\\(DF=\\frac{(s^2_1/n_1+s^2_2/n_2)^2}{(s^2_1/n_1)^2/(n_1-1)+(s^2_2/n_2)^2/(n_2-1)}\\)\n\\(\\frac{\\bar X_1-\\bar X_2-D}{\\sqrt{s_1^2/n_1+s^2_2/n_2}}\\)\n\n\n\nANOVA\n&gt;2\n\\(\\mu_1=\\mu_2=\\cdots=\\mu_k\\)\n\\(F_{DF1,DF2}\\)"
+    "objectID": "lectures/9bS25.html#euclidean-distance",
+    "href": "lectures/9bS25.html#euclidean-distance",
+    "title": "Classification",
+    "section": "Euclidean Distance",
+    "text": "Euclidean Distance\n\\[\nd(x,y) = \\sqrt{\\sum_{i=1}^{p} (x_i - y_i)^2}\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#decision-making-p-value",
-    "href": "lectures/8bS25.html#decision-making-p-value",
-    "title": "Hypothesis Testing",
-    "section": "Decision Making: P-Value",
-    "text": "Decision Making: P-Value\nThe p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true. Depending on the type of test, your p-value may be constructed as:\n\n\n\nAlternative Hypothesis\np-value\n\n\n\n\n\\(\\mu&gt;\\mu_0\\)\n\\(P(X&gt;T(x))=p\\)\n\n\n\\(\\mu&lt;\\mu_0\\)\n\\(P(X&lt;T(x))=p\\)\n\n\n\\(\\mu\\ne\\mu_0\\)\n\\(2\\times P(X&gt;|T(X)|)=p\\)\n\n\n\nIf \\(p &lt; \\alpha\\), then you reject \\(H_0\\); otherwise, you will fail to reject \\(H_0\\)."
+    "objectID": "lectures/9bS25.html#minkowski-distance",
+    "href": "lectures/9bS25.html#minkowski-distance",
+    "title": "Classification",
+    "section": "Minkowski Distance",
+    "text": "Minkowski Distance\n\\[\nd(x,y) = \\left( \\sum_{i=1}^{p} |x_i - y_i|^w \\right)^{\\frac{1}{w}}\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#decision-making-confidence-interval-approach",
-    "href": "lectures/8bS25.html#decision-making-confidence-interval-approach",
-    "title": "Hypothesis Testing",
-    "section": "Decision Making: Confidence Interval Approach",
-    "text": "Decision Making: Confidence Interval Approach\nThe confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is \\(\\mu\\ne\\mu_0\\). For this approach you will construct a \\((1-\\alpha)100\\%\\) confidence interval as\n\\[\nPE \\pm CV *SE\n\\]\nwhere PE is the point estimate, CV is the critical value based on \\(\\alpha\\) and SE is the standard error. This will result in a lower and upper bound denoted as: \\((LB, UB)\\). The confidence intervals provides a range values to capture the parameter \\(\\mu\\) such that if you repeat this process \\(n\\) times, \\((1-\\alpha)100\\%\\) of \\(n\\) will capture the true value of \\(\\mu\\). If \\(\\mu_0 \\in (LB,UB)\\), then you fail to reject \\(H_0\\). If \\(\\mu_0\\notin (LB,UB)\\), then you reject \\(H_0\\)."
+    "objectID": "lectures/9bS25.html#algorithm",
+    "href": "lectures/9bS25.html#algorithm",
+    "title": "Classification",
+    "section": "Algorithm",
+    "text": "Algorithm\nGiven a training data set, conduct the following steps:\n\nCompute the distance between a new data point and every point in the training data set.\nChoose the \\(K\\) nearest training data points to the new point using the smallest distance.\nCategorize the new data point based on the majority of category from the \\(K\\) nearest training data points."
   },
   {
-    "objectID": "lectures/8bS25.html#testing-beta_j",
-    "href": "lectures/8bS25.html#testing-beta_j",
-    "title": "Hypothesis Testing",
-    "section": "Testing \\(\\beta_j\\)",
-    "text": "Testing \\(\\beta_j\\)\n\\[\n\\frac{\\hat\\beta_j-\\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim t_{n-p^\\prime}\n\\]"
+    "objectID": "lectures/9bS25.html#bayes-classifier-1",
+    "href": "lectures/9bS25.html#bayes-classifier-1",
+    "title": "Classification",
+    "section": "Bayes Classifier",
+    "text": "Bayes Classifier\nBayes Classifier is used to classify a data point to a category \\(c\\)\n\\[\nf(\\boldsymbol x) = argmax_{c \\in C} f(C|\\boldsymbol X)\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#confidence-intervals",
-    "href": "lectures/8bS25.html#confidence-intervals",
-    "title": "Hypothesis Testing",
-    "section": "Confidence Intervals",
-    "text": "Confidence Intervals\n\\[\n\\hat \\beta_j \\pm CV \\times se(\\hat\\beta_j)\n\\]\n\nCV: Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\nSE: Standard Error"
+    "objectID": "lectures/9bS25.html#probability",
+    "href": "lectures/9bS25.html#probability",
+    "title": "Classification",
+    "section": "Probability",
+    "text": "Probability\n\\[\nf(C = c|\\boldsymbol X = x) = \\frac{f(\\boldsymbol X | C)\\pi_c}{f(\\boldsymbol X)}\n\\]\n\n\\(f(\\boldsymbol X| C)\\): conditional distribution of \\(\\boldsymbol X\\)\n\\(\\pi_c\\): probability of observing category \\(C\\)\n\\(f(\\boldsymbol X)\\): marginal distribution of \\(\\boldsymbol X\\)"
   },
   {
-    "objectID": "lectures/8bS25.html#model-inference-1",
-    "href": "lectures/8bS25.html#model-inference-1",
-    "title": "Hypothesis Testing",
-    "section": "Model inference",
-    "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(\\hat Y=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
+    "objectID": "lectures/9bS25.html#distribution-of-fboldsymbol-xc-and-fboldsymbol-x",
+    "href": "lectures/9bS25.html#distribution-of-fboldsymbol-xc-and-fboldsymbol-x",
+    "title": "Classification",
+    "section": "Distribution of \\(f(\\boldsymbol X|C)\\) and \\(f(\\boldsymbol X)\\)",
+    "text": "Distribution of \\(f(\\boldsymbol X|C)\\) and \\(f(\\boldsymbol X)\\)\nTo apply Bayes classifier, we must specify the form of \\(f(\\boldsymbol X| C)\\) and \\(f(\\boldsymbol X)\\). Common distributions are:\n\nNormal\nBernoulli\nMultinomial"
   },
   {
-    "objectID": "lectures/8bS25.html#anova-table",
-    "href": "lectures/8bS25.html#anova-table",
-    "title": "Hypothesis Testing",
-    "section": "ANOVA Table",
-    "text": "ANOVA Table\n\n\n\n\n\n\n\n\n\n\nSource\nDF\nSS\nMS\nF\n\n\n\n\nModel\n\\(DFR=k-1\\)\n\\(SSR\\)\n\\(MSR=\\frac{SSM}{DFR}\\)\n\\(\\hat F=\\frac{MSR}{MSE}\\)\n\n\nError\n\\(DFE=n-k\\)\n\\(SSE\\)\n\\(MSE=\\frac{SSE}{DFE}\\)\n\n\n\nTotal\n\\(TDF=n-1\\)\n\\(TSS=SSR+SSE\\)\n\n\n\n\n\n\\[\n\\hat F \\sim F(DFR, DFE)\n\\]"
+    "objectID": "lectures/9bS25.html#lda",
+    "href": "lectures/9bS25.html#lda",
+    "title": "Classification",
+    "section": "LDA",
+    "text": "LDA\nLinear Discriminant Analysis is used to classify a new data point, from a set of classifications, given information from a set of predictors.\nLDA classifies data using a Bayes classifier and imposing a normal distribution to the model."
   },
   {
-    "objectID": "lectures/8bS25.html#model-inference-2",
-    "href": "lectures/8bS25.html#model-inference-2",
-    "title": "Hypothesis Testing",
-    "section": "Model Inference",
-    "text": "Model Inference\nGiven:\n\\[\nM1:\\ \\hat y = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ \\hat y = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
+    "objectID": "lectures/9bS25.html#lda-p1",
+    "href": "lectures/9bS25.html#lda-p1",
+    "title": "Classification",
+    "section": "LDA (p=1)",
+    "text": "LDA (p=1)\n\\[\nf_k(\\boldsymbol X) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}}\\exp\\left\\{\\frac{(x-\\mu_k)^2}{2\\sigma^2}\\right\\}\n\\]\n\\[\nf(X) = \\sum^K_{l=1} \\pi_l f_l(X)\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#model-inference-3",
-    "href": "lectures/8bS25.html#model-inference-3",
-    "title": "Hypothesis Testing",
-    "section": "Model Inference",
-    "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
+    "objectID": "lectures/9bS25.html#lda-p1-1",
+    "href": "lectures/9bS25.html#lda-p1-1",
+    "title": "Classification",
+    "section": "LDA (p=1)",
+    "text": "LDA (p=1)\n\\[\n\\delta_k = f_k(c_k|\\boldsymbol X ) = \\frac{f_k(\\boldsymbol X)\\pi_k}{f(\\boldsymbol X)}\n\\]\n\\[\n\\delta_k(x) = x\\frac{\\mu_k}{\\sigma^2}-\\frac{\\mu_k^2}{\\sigma^2} + \\ln(\\pi_k)\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#test-statistic",
-    "href": "lectures/8bS25.html#test-statistic",
-    "title": "Hypothesis Testing",
-    "section": "Test Statistic",
-    "text": "Test Statistic\n\\[\n\\hat F = \\frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}\n\\]\n\\[\n\\hat F \\sim F[DFE(RED) - DFE(FULL), DFE(FULL)]\n\\]"
+    "objectID": "lectures/9bS25.html#lda-p1-estimates",
+    "href": "lectures/9bS25.html#lda-p1-estimates",
+    "title": "Classification",
+    "section": "LDA (p=1) Estimates",
+    "text": "LDA (p=1) Estimates\nLet \\(Y_i=c_l\\), \\(l=1\\ldots, K\\), and \\(X_i=x_i\\) bet the data from n observations:\n\\[\n\\hat\\mu_k = \\frac{1}{n_k}\\sum^n_{i=1(Y_i=c_k)} x_i\n\\]\n\\[\n\\hat\\sigma^2=\\frac{1}{n-K}\\sum^K_{l=1}\\sum_{i=1(Y_i=c_l)}^n(x_i-\\hat\\mu_l)^2\n\\]\n\n\\(n_k\\): number of observations in class \\(k\\)"
   },
   {
-    "objectID": "lectures/8bS25.html#sample-t-test",
-    "href": "lectures/8bS25.html#sample-t-test",
-    "title": "Hypothesis Testing",
-    "section": "1-Sample t-test",
-    "text": "1-Sample t-test\nThis can be conducted as \\(Y=\\beta_0\\)\nTest the following hypothesis: \\(H_0:\\ \\beta_0 = 205\\) OR \\(H_0: \\mu = 205\\)\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\npenguins &lt;- penguins |&gt; drop_na()\nxlm &lt;- penguins  |&gt;  lm(flipper_length_mm ~ 1, data = _)\ncoef(xlm)\nconfint(xlm)\n\n## OR\nt.test(penguins$flipper_length_mm, mu = 205)"
+    "objectID": "lectures/9bS25.html#lda-p1-2",
+    "href": "lectures/9bS25.html#lda-p1-2",
+    "title": "Classification",
+    "section": "LDA (p>1)",
+    "text": "LDA (p&gt;1)\n\\[\nf_k(\\boldsymbol X) = \\frac{1}{(2\\pi)^{p/2}|\\Sigma|^{1/2}}\\exp\\left\\{(\\boldsymbol x-\\boldsymbol{\\mu_k})^{\\mathrm T}\\Sigma^{-1}(\\boldsymbol x-\\boldsymbol \\mu_k)\\right\\}\n\\]\n\\[\nf(\\boldsymbol X) = \\sum^K_{l=1} \\pi_l f_l(\\boldsymbol X)\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#sample-t-test-1",
-    "href": "lectures/8bS25.html#sample-t-test-1",
-    "title": "Hypothesis Testing",
-    "section": "2-Sample t-test",
-    "text": "2-Sample t-test\nThis can be conducted as \\(Y=\\beta_0 + \\beta_1 X\\), where \\(X\\) is a binary variable for 2 samples.\nTest the following hypothesis: \\(H_0:\\ \\beta_1 = 0\\) OR \\(H_0: \\mu_1-\\mu_2 = 0\\)\n\nmtcars |&gt; lm(mpg ~ vs, data = _) |&gt; summary()\n\n## OR\n\nmtcars |&gt; t.test(mpg ~ vs, data = _)"
+    "objectID": "lectures/9bS25.html#lda-p1-3",
+    "href": "lectures/9bS25.html#lda-p1-3",
+    "title": "Classification",
+    "section": "LDA (p>1)",
+    "text": "LDA (p&gt;1)\n\\[\n\\delta_k(\\boldsymbol x) = \\boldsymbol x^{\\mathrm T}\\Sigma^{-1}\\boldsymbol \\mu_k-\\frac{1}{2}\\boldsymbol \\mu_k^{\\mathrm T}\\Sigma^{-1}\\boldsymbol \\mu_k + \\ln(\\pi_k)\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#paired-t-test",
-    "href": "lectures/8bS25.html#paired-t-test",
-    "title": "Hypothesis Testing",
-    "section": "Paired t-test",
-    "text": "Paired t-test\nThis can be conducted as \\(Y_1 - Y_2=\\beta_0\\)\nTest the following hypothesis: \\(H_0:\\ \\beta_0 = 0\\) OR \\(H_0: \\mu_1 - \\mu_2 = 0\\)\n\n# DATA PREP\nbefore &lt;-c(200.1, 190.9, 192.7, 213, 241.4, 196.9, 172.2, 185.5, 205.2, 193.7)\nafter &lt;-c(392.9, 393.2, 345.1, 393, 434, 427.9, 422, 383.9, 392.3, 352.2)\ndf &lt;- data.frame(before, after)\n\ndf |&gt; lm(after - before ~ 1, data = _) |&gt; (\\(x) c(coef(x), confint(x)))()\n## OR\ndf |&gt; with(t.test(before, after, paired = T))"
+    "objectID": "lectures/9bS25.html#lda-classification",
+    "href": "lectures/9bS25.html#lda-classification",
+    "title": "Classification",
+    "section": "LDA Classification",
+    "text": "LDA Classification\nClassify each new data point as class \\(c_k\\) based on the largest \\(\\delta_k(\\boldsymbol X)\\)."
   },
   {
-    "objectID": "lectures/8bS25.html#anova",
-    "href": "lectures/8bS25.html#anova",
-    "title": "Hypothesis Testing",
-    "section": "ANOVA",
-    "text": "ANOVA\nThis can be conducted as \\(Y=\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_k X_k\\), where \\(X_k\\) are binary variable for k samples.\nTest the following hypothesis: \\(H_0:\\ \\beta_1 =\\beta_2 =\\cdots=\\beta_k = 0\\) OR \\(H_0: \\mu_1 =\\mu_2 =\\cdots=\\mu_k = 0\\)\n\npenguins |&gt; lm(flipper_length_mm ~ species, data = _) |&gt; anova()\n\n## OR\n\npenguins |&gt; aov(flipper_length_mm ~ species, data = _) |&gt; anova()"
+    "objectID": "lectures/9bS25.html#qda",
+    "href": "lectures/9bS25.html#qda",
+    "title": "Classification",
+    "section": "QDA",
+    "text": "QDA\nIn LDA, it is assumed that \\(\\Sigma\\) from \\(\\boldsymbol X\\) is the same for all classification groups. In Quadratic Discriminant Analysis, this assumption is relaxed, resulting in \\(\\Sigma_k\\) for each classification."
   },
   {
-    "objectID": "lectures/8bS25.html#individual-hypothesis-testing",
-    "href": "lectures/8bS25.html#individual-hypothesis-testing",
-    "title": "Hypothesis Testing",
-    "section": "Individual Hypothesis Testing",
-    "text": "Individual Hypothesis Testing\n\npenguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm + species, data = _) |&gt; \n  summary()"
+    "objectID": "lectures/9bS25.html#qda-1",
+    "href": "lectures/9bS25.html#qda-1",
+    "title": "Classification",
+    "section": "QDA",
+    "text": "QDA\n\\[\nf_k(\\boldsymbol X) = \\frac{1}{(2\\pi)^{p/2}|\\Sigma_k|^{1/2}}\\exp\\left\\{(\\boldsymbol x-\\boldsymbol{\\mu_k})^{\\mathrm T}\\Sigma_k^{-1}(\\boldsymbol x-\\boldsymbol \\mu_k)\\right\\}\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#model-inference-4",
-    "href": "lectures/8bS25.html#model-inference-4",
-    "title": "Hypothesis Testing",
-    "section": "Model Inference",
-    "text": "Model Inference\n\nxlm &lt;- penguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm + species, data = _) \n\nsummary(xlm)\nanova(xlm)\n\n## OR\n\nxlm_null &lt;- penguins |&gt; lm(body_mass_g ~ 1, data = _)\nanova(xlm_null, xlm)\n\n## OR\n\nlibrary(supernova)\nsupernova(xlm)"
+    "objectID": "lectures/9bS25.html#qda-2",
+    "href": "lectures/9bS25.html#qda-2",
+    "title": "Classification",
+    "section": "QDA",
+    "text": "QDA\n\\[\n\\delta_k(\\boldsymbol x) = -\\frac{1}{2}\\boldsymbol x^{\\mathrm T}\\Sigma_k^{-1}\\boldsymbol x + \\boldsymbol x^{\\mathrm T}\\Sigma_k^{-1}\\boldsymbol \\mu_k-\\frac{1}{2}\\boldsymbol \\mu_k^{\\mathrm T}\\Sigma_k^{-1}\\boldsymbol \\mu_k - \\frac{1}{2}\\ln|\\Sigma_k| + \\ln(\\pi_k)\n\\]"
   },
   {
-    "objectID": "lectures/8bS25.html#comparing-different-models",
-    "href": "lectures/8bS25.html#comparing-different-models",
-    "title": "Hypothesis Testing",
-    "section": "Comparing Different Models",
-    "text": "Comparing Different Models\n\nxlm1 &lt;- penguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm + species, data = _) \n\nxlm2 &lt;- penguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + species, data = _) \n\nanova(xlm2, xlm1)"
+    "objectID": "lectures/9bS25.html#naive-bayes-1",
+    "href": "lectures/9bS25.html#naive-bayes-1",
+    "title": "Classification",
+    "section": "Naive Bayes",
+    "text": "Naive Bayes\nA Naive Bayes classifier, assumes the predictors in \\(\\boldsymbol X\\) are independent of each other."
   },
   {
-    "objectID": "lectures/7aS25.html#learning-objectives",
-    "href": "lectures/7aS25.html#learning-objectives",
-    "title": "Linear Regression",
+    "objectID": "lectures/9bS25.html#naive-bayes-2",
+    "href": "lectures/9bS25.html#naive-bayes-2",
+    "title": "Classification",
+    "section": "Naive Bayes",
+    "text": "Naive Bayes\n\\[\nf_k(\\boldsymbol X) = \\prod^p_{j} f_{jk}(x_j|c_k)\n\\]"
+  },
+  {
+    "objectID": "lectures/9bS25.html#naive-bayes-3",
+    "href": "lectures/9bS25.html#naive-bayes-3",
+    "title": "Classification",
+    "section": "Naive Bayes",
+    "text": "Naive Bayes\n\n\nQuantitative\n\nNormal: \\(N(\\mu_{jk}, \\sigma^2_{jk})\\)\nNonparametric\n\nKernel Density\n\n\n\nQualitative\n\nNonparametric"
+  },
+  {
+    "objectID": "lectures/9bS25.html#lda-1",
+    "href": "lectures/9bS25.html#lda-1",
+    "title": "Classification",
+    "section": "LDA",
+    "text": "LDA\n\nlibrary(palmerpenguins)\nlibrary(MASS)\nlibrary(tidyverse)\nselect &lt;- dplyr::select\npenguins &lt;- penguins |&gt; drop_na()\nx_lda &lt;- penguins |&gt; lda(species ~ bill_length_mm + \n                                   bill_depth_mm + \n                                   flipper_length_mm + \n                                   body_mass_g,\n                         data = _)"
+  },
+  {
+    "objectID": "lectures/9bS25.html#lda-prediction",
+    "href": "lectures/9bS25.html#lda-prediction",
+    "title": "Classification",
+    "section": "LDA Prediction",
+    "text": "LDA Prediction\n\nnew_df &lt;- penguins |&gt; select(bill_length_mm,\n                           bill_depth_mm,\n                          flipper_length_mm,\n                         body_mass_g)\nx_lda_predict &lt;- x_lda |&gt; predict(new_df)"
+  },
+  {
+    "objectID": "lectures/9bS25.html#lda-confusion-matrix",
+    "href": "lectures/9bS25.html#lda-confusion-matrix",
+    "title": "Classification",
+    "section": "LDA Confusion Matrix",
+    "text": "LDA Confusion Matrix\n\ntable(penguins$species, x_lda_predict$class)\n\n#&gt;            \n#&gt;             Adelie Chinstrap Gentoo\n#&gt;   Adelie       145         1      0\n#&gt;   Chinstrap      3        65      0\n#&gt;   Gentoo         0         0    119"
+  },
+  {
+    "objectID": "lectures/9bS25.html#qda-3",
+    "href": "lectures/9bS25.html#qda-3",
+    "title": "Classification",
+    "section": "QDA",
+    "text": "QDA\n\nx_qda &lt;- penguins |&gt; qda(species ~ bill_length_mm + \n                                   bill_depth_mm + \n                                   flipper_length_mm + \n                                   body_mass_g,\n                         data = _)"
+  },
+  {
+    "objectID": "lectures/9bS25.html#qda-prediction",
+    "href": "lectures/9bS25.html#qda-prediction",
+    "title": "Classification",
+    "section": "QDA Prediction",
+    "text": "QDA Prediction\n\nx_qda_predict &lt;- x_qda |&gt;  predict(penguins |&gt;\n                                     select(bill_length_mm, \n                                            bill_depth_mm,\n                                            flipper_length_mm,\n                                            body_mass_g))"
+  },
+  {
+    "objectID": "lectures/9bS25.html#qda-confusion-matrix",
+    "href": "lectures/9bS25.html#qda-confusion-matrix",
+    "title": "Classification",
+    "section": "QDA Confusion Matrix",
+    "text": "QDA Confusion Matrix\n\ntable(penguins$species, x_qda_predict$class)\n\n#&gt;            \n#&gt;             Adelie Chinstrap Gentoo\n#&gt;   Adelie       144         2      0\n#&gt;   Chinstrap      2        66      0\n#&gt;   Gentoo         0         0    119"
+  },
+  {
+    "objectID": "lectures/9bS25.html#naive-bayes-4",
+    "href": "lectures/9bS25.html#naive-bayes-4",
+    "title": "Classification",
+    "section": "Naive Bayes",
+    "text": "Naive Bayes\n\nlibrary(e1071)\nx_nb &lt;- penguins |&gt;  naiveBayes(species ~ bill_length_mm +\n                                             bill_depth_mm + \n                                             flipper_length_mm + \n                                             body_mass_g, \n                                   data = _)"
+  },
+  {
+    "objectID": "lectures/9bS25.html#naive-bayes-prediction",
+    "href": "lectures/9bS25.html#naive-bayes-prediction",
+    "title": "Classification",
+    "section": "Naive Bayes Prediction",
+    "text": "Naive Bayes Prediction\n\nx_nb_predict &lt;- x_nb  |&gt;  predict(penguins |&gt;\n                                     select(bill_length_mm, \n                                            bill_depth_mm,\n                                            flipper_length_mm,\n                                            body_mass_g))"
+  },
+  {
+    "objectID": "lectures/9bS25.html#naive-bayes-confusion-matrix",
+    "href": "lectures/9bS25.html#naive-bayes-confusion-matrix",
+    "title": "Classification",
+    "section": "Naive Bayes Confusion Matrix",
+    "text": "Naive Bayes Confusion Matrix\n\ntable(penguins$species, x_nb_predict)\n\n#&gt;            x_nb_predict\n#&gt;             Adelie Chinstrap Gentoo\n#&gt;   Adelie       141         5      0\n#&gt;   Chinstrap      5        63      0\n#&gt;   Gentoo         0         0    119"
+  },
+  {
+    "objectID": "lectures/9bS25.html#create-the-knn-algorithm-in-r",
+    "href": "lectures/9bS25.html#create-the-knn-algorithm-in-r",
+    "title": "Classification",
+    "section": "Create the KNN algorithm in R",
+    "text": "Create the KNN algorithm in R\n\nManhattan\nEuclidean\nMinkowski (\\(w=5\\))\n\nUse the penguins data set from palmerpenguins and categorize the following data: bill_depth = 19, bill_length = 40, flipper_length = 185, and body_mass = 3345.\n\nmanhattan &lt;- function(x, y){\n  sum(abs(x-y))\n}\neuclidean &lt;- function(x, y){\n  sqrt(sum((x-y)^2))\n}\nminkowski_5 &lt;- function(x, y){\n  (sum(abs(x-y)^5))^{1/5}\n}\n\nx &lt;- penguins |&gt; select(bill_depth_mm, bill_length_mm, flipper_length_mm, body_mass_g) |&gt; as.matrix()\ny &lt;- c(19, 40, 185, 3345)\n\nmanx &lt;- apply(x, 1, manhattan, y = y) |&gt; rank()\neucx &lt;- apply(x, 1, euclidean, y = y) |&gt; rank()\nminx &lt;- apply(x, 1, minkowski_5, y = y) |&gt; rank()\n\npenguins_rank &lt;- penguins |&gt; mutate(manx = manx, eucx = eucx, minx = minx)\npenguins_rank |&gt; arrange(manx) |&gt; select(species)\n\n#&gt; # A tibble: 333 × 1\n#&gt;    species  \n#&gt;    &lt;fct&gt;    \n#&gt;  1 Chinstrap\n#&gt;  2 Chinstrap\n#&gt;  3 Adelie   \n#&gt;  4 Adelie   \n#&gt;  5 Adelie   \n#&gt;  6 Adelie   \n#&gt;  7 Adelie   \n#&gt;  8 Adelie   \n#&gt;  9 Adelie   \n#&gt; 10 Chinstrap\n#&gt; # ℹ 323 more rows\n\npenguins_rank |&gt; arrange(eucx) |&gt; select(species)\n\n#&gt; # A tibble: 333 × 1\n#&gt;    species  \n#&gt;    &lt;fct&gt;    \n#&gt;  1 Chinstrap\n#&gt;  2 Chinstrap\n#&gt;  3 Adelie   \n#&gt;  4 Adelie   \n#&gt;  5 Adelie   \n#&gt;  6 Adelie   \n#&gt;  7 Adelie   \n#&gt;  8 Adelie   \n#&gt;  9 Adelie   \n#&gt; 10 Chinstrap\n#&gt; # ℹ 323 more rows\n\npenguins_rank |&gt; arrange(minx) |&gt; select(species)\n\n#&gt; # A tibble: 333 × 1\n#&gt;    species  \n#&gt;    &lt;fct&gt;    \n#&gt;  1 Chinstrap\n#&gt;  2 Chinstrap\n#&gt;  3 Adelie   \n#&gt;  4 Adelie   \n#&gt;  5 Adelie   \n#&gt;  6 Adelie   \n#&gt;  7 Adelie   \n#&gt;  8 Adelie   \n#&gt;  9 Adelie   \n#&gt; 10 Chinstrap\n#&gt; # ℹ 323 more rows"
+  },
+  {
+    "objectID": "lectures/1bS25.html#introduction-to-r",
+    "href": "lectures/1bS25.html#introduction-to-r",
+    "title": "R Basics",
+    "section": "Introduction to R",
+    "text": "Introduction to R"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-packages",
+    "href": "lectures/1bS25.html#r-packages",
+    "title": "R Basics",
+    "section": "R Packages",
+    "text": "R Packages\n\nCore PackagesCourse PackagesMisc Packages\n\n\n\nTidyverse\ncsucistats\n\n\ninstall.packages('csucistats', \n  repos = c('https://inqs909.r-universe.dev', \n  'https://cloud.r-project.org'))\n\n\n\n\n\n\nISLR2\nleaps\ngam\ntree\n\n\n\ngbm\ne1071\nglmnet\ntorch\n\n\n\n\n\nRMarkdown\nQuarto\nextraInserts (GitHub Package)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#load-r-package",
+    "href": "lectures/1bS25.html#load-r-package",
+    "title": "R Basics",
+    "section": "Load R Package",
+    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(torch)\n\n\nYou must load packages every new R Session"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-as-a-calculator",
+    "href": "lectures/1bS25.html#r-as-a-calculator",
+    "title": "R Basics",
+    "section": "R as a calculator",
+    "text": "R as a calculator\nR can evaluate different expressions in the console tab.\nTry the following:\n\n\\(4(4+2)/34\\)\n\\(6^3\\)\n\\(3-1\\)\n\\(4+4/3+45(32*34-54)\\)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-calculator",
+    "href": "lectures/1bS25.html#r-calculator",
+    "title": "R Basics",
+    "section": "R Calculator",
+    "text": "R Calculator\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-functions",
+    "href": "lectures/1bS25.html#r-functions",
+    "title": "R Basics",
+    "section": "R Functions",
+    "text": "R Functions\nR functions performs tasks to specific data values.\nEvaluate the following values in R:\n\n\\(\\sqrt{3}\\)\n\\(e^3\\)\n\\(\\ln(53)\\)\n\\(\\log(324)\\)\n\\(\\sin(3)\\)\n\\(\\sin(3\\pi)\\)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#r-functions-1",
+    "href": "lectures/1bS25.html#r-functions-1",
+    "title": "R Basics",
+    "section": "R Functions",
+    "text": "R Functions\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-data",
+    "href": "lectures/1bS25.html#types-of-data",
+    "title": "R Basics",
+    "section": "Types of Data",
+    "text": "Types of Data\n\nNumeric\nCharacter\nLogical\nMissing\n\nEvaluate the following code:\n\nis.numeric(1)\nis.numeric(\"1\")\nis.numeric(T)\nis.numeric(NA)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-data-1",
+    "href": "lectures/1bS25.html#types-of-data-1",
+    "title": "R Basics",
+    "section": "Types of Data",
+    "text": "Types of Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-objects",
+    "href": "lectures/1bS25.html#types-of-objects",
+    "title": "R Basics",
+    "section": "Types of Objects",
+    "text": "Types of Objects\nIn R, an object contains a set of data. The most common types are vectors and matrix.\nRun this code and print out the objects in the console:\n\nx &lt;- 3:34\ny &lt;- matrix(1:20, nrow = 4)"
+  },
+  {
+    "objectID": "lectures/1bS25.html#types-of-objects-1",
+    "href": "lectures/1bS25.html#types-of-objects-1",
+    "title": "R Basics",
+    "section": "Types of objects",
+    "text": "Types of objects\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/1bS25.html#data-frames",
+    "href": "lectures/1bS25.html#data-frames",
+    "title": "R Basics",
+    "section": "Data Frames",
+    "text": "Data Frames\nData frames can be thought of as R’s version of a data set.\nPlay around with mtcars:\n\nmtcars \n\n#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb\n#&gt; Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4\n#&gt; Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4\n#&gt; Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1\n#&gt; Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1\n#&gt; Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2\n#&gt; Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1\n#&gt; Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4\n#&gt; Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2\n#&gt; Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2\n#&gt; Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4\n#&gt; Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4\n#&gt; Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3\n#&gt; Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3\n#&gt; Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3\n#&gt; Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4\n#&gt; Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4\n#&gt; Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4\n#&gt; Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1\n#&gt; Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2\n#&gt; Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1\n#&gt; Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1\n#&gt; Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2\n#&gt; AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2\n#&gt; Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4\n#&gt; Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2\n#&gt; Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1\n#&gt; Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2\n#&gt; Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2\n#&gt; Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4\n#&gt; Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6\n#&gt; Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8\n#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2"
+  },
+  {
+    "objectID": "lectures/1bS25.html#lists",
+    "href": "lectures/1bS25.html#lists",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\nList can be thought as an extended vector, but each element is a different R object.\nTry playing with this R object:\n\nlist_one &lt;- list(mtcars, rep(0, 4),\n                 diag(rep(1, 3)))"
+  },
+  {
+    "objectID": "lectures/1bS25.html#lists-1",
+    "href": "lectures/1bS25.html#lists-1",
+    "title": "R Basics",
+    "section": "Lists",
+    "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "lectures/3bS25.html#learning-objectives",
+    "href": "lectures/3bS25.html#learning-objectives",
+    "title": "Functions",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nEstimation\nOrdinary Least Squares\nMatrix Formulation\nStandard Errors\nConduct in R"
+    "text": "Learning Objectives\n\nBuilt-in Functions\nUser-built functions\nExtensions\n\nThere are several available functions in R to conduct specific statistical methods or tasks"
   },
   {
-    "objectID": "lectures/7aS25.html#resources",
-    "href": "lectures/7aS25.html#resources",
-    "title": "Linear Regression",
-    "section": "Resources",
-    "text": "Resources\nLinear Algebra for Data Science"
+    "objectID": "lectures/3bS25.html#help-documentation",
+    "href": "lectures/3bS25.html#help-documentation",
+    "title": "Functions",
+    "section": "Help Documentation",
+    "text": "Help Documentation\n\n\n\n\n\n\n\nSection\nDescription\n\n\n\n\nDescription\nProvides a brief introduction of the function\n\n\nUsage\nProvides potential usage of the function\n\n\nArguments\nArguments that the function can take\n\n\nDetails\nAn in depth description of the function\n\n\nValue\nProvides information of the output produced by the function\n\n\nNotes\nAny need to know information about the function\n\n\nAuthors\nDevelopers of the function\n\n\nReferences\nReferences to the model and function\n\n\nSee Also\nProvide information of supporting functions\n\n\nExamples\nExamples of the function"
   },
   {
-    "objectID": "lectures/7aS25.html#estimation-1",
-    "href": "lectures/7aS25.html#estimation-1",
-    "title": "Linear Regression",
-    "section": "Estimation",
-    "text": "Estimation\n\nOrdinary Least Squares\nMaximum Likelihood Approach\nMethod of Moments"
+    "objectID": "lectures/3bS25.html#generic-functions",
+    "href": "lectures/3bS25.html#generic-functions",
+    "title": "Functions",
+    "section": "Generic Functions",
+    "text": "Generic Functions\nSeveral R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as summary() and plot().\nFor example, the summary() is a generic for several types of functions: summary.aov(), summary.lm(), summary.glm(), and many more."
   },
   {
-    "objectID": "lectures/7aS25.html#standard-errors",
-    "href": "lectures/7aS25.html#standard-errors",
-    "title": "Linear Regression",
-    "section": "Standard Errors",
-    "text": "Standard Errors\n\nFind the variance of the estimate\nFind the information matrix\nUse for Inference"
+    "objectID": "lectures/3bS25.html#commonly-used-function",
+    "href": "lectures/3bS25.html#commonly-used-function",
+    "title": "Functions",
+    "section": "Commonly-used Function",
+    "text": "Commonly-used Function\n\n\n\nFunctions\nDescription\n\n\n\n\naov()\nFits an ANOVA Model\n\n\nlm()\nFits a linear model\n\n\nglm()\nFits a general linear model\n\n\nt.test()\nConducts a t-test"
   },
   {
-    "objectID": "lectures/7aS25.html#ordinary-least-squares-1",
-    "href": "lectures/7aS25.html#ordinary-least-squares-1",
-    "title": "Linear Regression",
-    "section": "Ordinary Least Squares",
-    "text": "Ordinary Least Squares\nFor a data pair \\((x_i,y_i)_{i=1}^n\\), the ordinary least squares estimator will find the estimates of \\(\\hat\\beta_0\\) and \\(\\hat\\beta_1\\) that minimize the following function:\n\\[\n\\sum^n_{i=1}\\{y_i-(\\beta_0+\\beta_1x_i)\\}^2\n\\]"
+    "objectID": "lectures/3bS25.html#user-built-functions-1",
+    "href": "lectures/3bS25.html#user-built-functions-1",
+    "title": "Functions",
+    "section": "User-built functions",
+    "text": "User-built functions\n\nFunctions created by the user for analysis\nNeeds to be ran once to the R environment\nWill be lost when R session is closed"
   },
   {
-    "objectID": "lectures/7aS25.html#estimates",
-    "href": "lectures/7aS25.html#estimates",
-    "title": "Linear Regression",
-    "section": "Estimates",
-    "text": "Estimates\n\\[\n\\hat\\beta_0 = \\bar y - \\hat\\beta_1\\bar x\n\\] \\[\n\\hat\\beta_1 = \\frac{\\sum^n_{i=1}(y_i-\\bar y)(x_i-\\bar x)}{\\sum^n_{i=1}(x_i-\\bar x)^2}\n\\] \\[\n\\hat\\sigma^2 = \\frac{1}{n-2}\\sum^n_{i=1}(y_i-\\hat y_i)^2\n\\]"
+    "objectID": "lectures/3bS25.html#anatomy",
+    "href": "lectures/3bS25.html#anatomy",
+    "title": "Functions",
+    "section": "Anatomy",
+    "text": "Anatomy\n\nname_of_function &lt;- function(data_1, data_2 = NULL, \n                             argument_1, argument_2 = TRUE, argument_3 = NULL,\n                             ...){\n  # Conduct Task\n  # Conduct Task\n  output_object &lt;- Tasks\n  return(output_object)\n}\n\n\n\nfunction: used to construct the function\ndata1: first data argument that needs to supplied\ndata2: second data argument that does not need to be supplied\nargument1: first argument must be supplied to alter function\nargument2: second argument to alter function, set to TRUE\nargument3: third argument that does not need to be supplied\n…: additional arguments supplied to other functions"
   },
   {
-    "objectID": "lectures/7aS25.html#matrix-version-of-model",
-    "href": "lectures/7aS25.html#matrix-version-of-model",
-    "title": "Linear Regression",
-    "section": "Matrix Version of Model",
-    "text": "Matrix Version of Model\n\\[\ny_i = \\boldsymbol X_i^\\mathrm T \\boldsymbol \\beta + \\epsilon_i\n\\]\n\n\\(y_i\\): Outcome Variable\n\\(\\boldsymbol X_i=(1, x_i)^\\mathrm T\\): Predictors\n\\(\\boldsymbol \\beta = (\\beta_0, \\beta_1)^\\mathrm T\\): Coefficients\n\\(\\epsilon_i\\): error term"
+    "objectID": "lectures/3bS25.html#example",
+    "href": "lectures/3bS25.html#example",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function for\n\\[\ny = \\ln(x^2)\n\\]"
   },
   {
-    "objectID": "lectures/7aS25.html#data-matrix-formulation",
-    "href": "lectures/7aS25.html#data-matrix-formulation",
-    "title": "Linear Regression",
-    "section": "Data Matrix Formulation",
-    "text": "Data Matrix Formulation\nFor \\(n\\) data points\n\\[\n\\boldsymbol Y = \\boldsymbol X^\\mathrm T\\boldsymbol \\beta + \\boldsymbol \\epsilon\n\\]\n\n\\(\\boldsymbol Y = (y_1, \\cdots, y_n)^\\mathrm T\\): Outcome Variable\n\\(\\boldsymbol X=(\\boldsymbol X_1, \\cdots, \\boldsymbol X_n)^\\mathrm T\\): Predictors\n\\(\\boldsymbol \\beta = (\\beta_0, \\beta_1)^\\mathrm T\\): Coefficients\n\\(\\boldsymbol \\epsilon = (\\epsilon_1, \\cdots, \\epsilon_n)^\\mathrm T\\): Error terms"
+    "objectID": "lectures/3bS25.html#example-1",
+    "href": "lectures/3bS25.html#example-1",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function for\n\\[\nf(x) = \\left\\{\\begin{array}{cc}\nx^3 & x&lt;0\\\\\nx^2 + 5 & \\mathrm{otherwise}\n\\end{array} \\right.\n\\]"
   },
   {
-    "objectID": "lectures/7aS25.html#least-squares-formula",
-    "href": "lectures/7aS25.html#least-squares-formula",
-    "title": "Linear Regression",
-    "section": "Least Squares Formula",
-    "text": "Least Squares Formula\n\\[\n(Y - \\boldsymbol X ^\\mathrm T\\boldsymbol \\beta)^\\mathrm T(Y - \\boldsymbol X ^\\mathrm T\\boldsymbol \\beta)\n\\]"
+    "objectID": "lectures/3bS25.html#example-2",
+    "href": "lectures/3bS25.html#example-2",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function for\n\\[\nf(x,y) = \\left\\{\\begin{array}{cc}\nx^3 e^y &  x&lt;0\\ \\\\\nx^2 + 5 + \\ln(y) & \\mathrm{otherwise}\n\\end{array} \\right.\n\\]"
   },
   {
-    "objectID": "lectures/7aS25.html#estimates-1",
-    "href": "lectures/7aS25.html#estimates-1",
-    "title": "Linear Regression",
-    "section": "Estimates",
-    "text": "Estimates\n\\[\n\\hat{\\boldsymbol \\beta} = (\\boldsymbol X ^\\mathrm T\\boldsymbol X)^{-1}\\boldsymbol X ^\\mathrm T\\boldsymbol Y\n\\]"
+    "objectID": "lectures/3bS25.html#example-3",
+    "href": "lectures/3bS25.html#example-3",
+    "title": "Functions",
+    "section": "Example",
+    "text": "Example\nCreate the function that allows your to compute the z-score of a specific value x using the sampling distribution from a set of data (y vector):\n\\[\nz =  \\frac{x-\\bar y}{\\sqrt{s^2_{y}/n_y}}\n\\]"
   },
   {
-    "objectID": "lectures/7aS25.html#estimate-for-sigma2",
-    "href": "lectures/7aS25.html#estimate-for-sigma2",
-    "title": "Linear Regression",
-    "section": "Estimate for \\(\\sigma^2\\)",
-    "text": "Estimate for \\(\\sigma^2\\)\n\\[\n\\hat \\sigma^2 = \\frac{1}{n-2} \\sum^n_{i=1} (y_i-\\boldsymbol X_i^\\mathrm T\\hat{\\boldsymbol \\beta})^2\n\\]"
+    "objectID": "lectures/3bS25.html#r-packages",
+    "href": "lectures/3bS25.html#r-packages",
+    "title": "Functions",
+    "section": "R Packages",
+    "text": "R Packages\nR Packages are used to utilize functions created from the community.\nInstallation\n\ninstall.packages(\"tidyverse\")\n\nLoading\n\nlibrary(tidyverse)"
   },
   {
-    "objectID": "lectures/7aS25.html#standard-errors-of-betas",
-    "href": "lectures/7aS25.html#standard-errors-of-betas",
-    "title": "Linear Regression",
-    "section": "Standard Errors of \\(\\beta\\)’s",
-    "text": "Standard Errors of \\(\\beta\\)’s\n\\[\nSE(\\hat\\beta_0)=\\sqrt{\\frac{\\sum^n_{i=1}x_i^2\\hat\\sigma^2}{n\\sum^n_{i=1}(x_i-\\bar x)^2}}\n\\]\n\\[\nSE(\\hat\\beta_1)=\\sqrt\\frac{\\hat\\sigma^2}{\\sum^n_{i=1}(x_i-\\bar x)^2}\n\\]"
+    "objectID": "lectures/3bS25.html#reticulate",
+    "href": "lectures/3bS25.html#reticulate",
+    "title": "Functions",
+    "section": "Reticulate",
+    "text": "Reticulate\nReticulate is an R package that allows you to utilize python within R."
   },
   {
-    "objectID": "lectures/7aS25.html#standard-errors-matrix-form",
-    "href": "lectures/7aS25.html#standard-errors-matrix-form",
-    "title": "Linear Regression",
-    "section": "Standard Errors Matrix Form",
-    "text": "Standard Errors Matrix Form\n\\[\nVar(\\hat {\\boldsymbol \\beta}) = (\\boldsymbol X ^\\mathrm T\\boldsymbol X)^{-1} \\hat \\sigma^2\n\\]"
+    "objectID": "lectures/3bS25.html#rcpp",
+    "href": "lectures/3bS25.html#rcpp",
+    "title": "Functions",
+    "section": "Rcpp",
+    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x) 533.01ns 615.02ns  1363237.      448B    136. \n#&gt; 2 var_r(x)     1.84µs   2.01µs   433276.    23.7KB     86.7\n#&gt; 3 var(x)       2.46µs   2.67µs   363370.    15.3KB     72.7\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else if (!is.null(x)) \n#&gt;         stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else if (!is.null(y)) \n#&gt;         stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x10c7f1118&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
   },
   {
-    "objectID": "lectures/7aS25.html#built-in-functions",
-    "href": "lectures/7aS25.html#built-in-functions",
-    "title": "Linear Regression",
-    "section": "Built in Functions",
-    "text": "Built in Functions\nYou can use the lm to fit a linear model and extract the estimated values and standard errors"
+    "objectID": "lectures/3bS25.html#motivating-example",
+    "href": "lectures/3bS25.html#motivating-example",
+    "title": "Functions",
+    "section": "Motivating Example",
+    "text": "Motivating Example\n\\[\nf(x) = 2 x^3 - 20x -43\n\\]\n\n\nCode\nf &lt;- function(x) 2*x^3 - 20 * x - 43\nx &lt;- seq(-5,5, length.out = 100)\nplot(x, f(x), type = \"l\")\nabline(h=0)"
   },
   {
-    "objectID": "lectures/7aS25.html#matrix-formulation-1",
-    "href": "lectures/7aS25.html#matrix-formulation-1",
-    "title": "Linear Regression",
-    "section": "Matrix Formulation",
-    "text": "Matrix Formulation\nR is capable of conducting matrix operations with the following functions:\n\n%*%: matrix multiplication\nt(): transpose a matrix\nsolve(): computes the inverse matrix"
+    "objectID": "lectures/3bS25.html#finding-the-root",
+    "href": "lectures/3bS25.html#finding-the-root",
+    "title": "Functions",
+    "section": "Finding the Root",
+    "text": "Finding the Root\n\n\nCode\nf &lt;- function(x) 2*x^3 - 20 * x - 43\nx &lt;- seq(-5,5, length.out = 100)\nuniroot(f, lower = -5, upper = 5)\n\n\n#&gt; $root\n#&gt; [1] 3.932792\n#&gt; \n#&gt; $f.root\n#&gt; [1] -2.30166e-05\n#&gt; \n#&gt; $iter\n#&gt; [1] 7\n#&gt; \n#&gt; $init.it\n#&gt; [1] NA\n#&gt; \n#&gt; $estim.prec\n#&gt; [1] 6.103516e-05"
   },
   {
-    "objectID": "lectures/7aS25.html#minimization-problem",
-    "href": "lectures/7aS25.html#minimization-problem",
-    "title": "Linear Regression",
-    "section": "Minimization Problem",
-    "text": "Minimization Problem\nMinimize the least squares using a numerical methods in R. The optim() function will minimize a function for set of parameters. We can minimize a function, least squares function, and supply initial values (0) for the parameters of interest."
+    "objectID": "lectures/3bS25.html#bisection-method-1",
+    "href": "lectures/3bS25.html#bisection-method-1",
+    "title": "Functions",
+    "section": "Bisection Method",
+    "text": "Bisection Method\n\nBegin with an interval \\(a\\) and \\(b\\) and evaluate \\(f(a)\\) and \\(f(b)\\).\nIf \\(f(a)\\) and \\(f(b)\\) are opposite signs, calculate \\(c = \\frac{a+b}{2}\\) and \\(f(c)\\).\nIf \\(|f(c)|&lt;\\varepsilon\\), for a small \\(\\varepsilon\\), then stop the algorithm and \\(c\\) is the root.\nReplace \\((a,f(a))\\) or \\((b,f(b))\\) with \\((c, f(c))\\) so that the signs of \\(f( \\cdot )\\) is 0."
   },
   {
-    "objectID": "lectures/7aS25.html#fit-a-line-using-lm-for-the-following-data",
-    "href": "lectures/7aS25.html#fit-a-line-using-lm-for-the-following-data",
-    "title": "Linear Regression",
-    "section": "Fit a Line using lm for the following data",
-    "text": "Fit a Line using lm for the following data\n\nx &lt;- rpois(500, 6)\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\nsqrt(vcov(lm_res))\nsigma(lm_res)^2"
+    "objectID": "lectures/3bS25.html#bisection-code",
+    "href": "lectures/3bS25.html#bisection-code",
+    "title": "Functions",
+    "section": "Bisection Code",
+    "text": "Bisection Code\n\n\nCode\nf &lt;- function(x){2*x^3 - 20 * x - 43}\naa &lt;- -5\nbb &lt;- 5\ndiff &lt;- 10\ni &lt;- 0\nwhile(diff &gt; 1e-6){\n  faa &lt;- f(aa)\n  cc &lt;- (aa + bb) / 2\n  fcc &lt;- f(cc)\n  if (faa &lt; 0 & fcc &gt; 0){\n    bb &lt;- cc\n  } else {\n    aa &lt;- cc\n  }\n  diff &lt;- abs(fcc)\n  i &lt;- i + 1\n}\ni\ncc\nfcc"
   },
   {
-    "objectID": "lectures/7aS25.html#fit-a-linear-model-using-matrix-operation",
-    "href": "lectures/7aS25.html#fit-a-linear-model-using-matrix-operation",
-    "title": "Linear Regression",
-    "section": "Fit a linear model using matrix operation",
-    "text": "Fit a linear model using matrix operation\n\nX &lt;- cbind(rep(1, 500), x)\nsolve(t(X)%*%X) %*% t(X) %*% y"
+    "objectID": "lectures/4aS25.html#re-install",
+    "href": "lectures/4aS25.html#re-install",
+    "title": "*apply Functions",
+    "section": "Re Install",
+    "text": "Re Install\n\ncsucistats\n\n\ninstall.packages('csucistats', \n  repos = c('https://inqs909.r-universe.dev', \n  'https://cloud.r-project.org'))"
   },
   {
-    "objectID": "lectures/7aS25.html#minimizing-a-function-using-optim",
-    "href": "lectures/7aS25.html#minimizing-a-function-using-optim",
-    "title": "Linear Regression",
-    "section": "Minimizing a function using optim",
-    "text": "Minimizing a function using optim\nFind the value of x and y that will minimize the following function for any value a and b.\n\\[\nf(x) = 2(x - 5)^2 + 11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5) + 11\n}\noptim(0, d)"
+    "objectID": "lectures/4aS25.html#learning-objectives",
+    "href": "lectures/4aS25.html#learning-objectives",
+    "title": "*apply Functions",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\n*apply()\napply()\nlapply()\nsapply\nmapply()\ntapply()"
   },
   {
-    "objectID": "lectures/7aS25.html#maximizing-a-function-using-optim",
-    "href": "lectures/7aS25.html#maximizing-a-function-using-optim",
-    "title": "Linear Regression",
-    "section": "Maximizing a function using optim",
-    "text": "Maximizing a function using optim\nFind the value of x and y that will minimize the following function for any value a and b.\n\\[\nf(x) = - 3 (x - 8)^2 + 9\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5) + 11\n}\noptim(0, d)"
+    "objectID": "lectures/4aS25.html#apply-1",
+    "href": "lectures/4aS25.html#apply-1",
+    "title": "*apply Functions",
+    "section": "*apply()",
+    "text": "*apply()\nThe *apply() functions are a set of functions that completes iterative tasks to each element of an R object."
   },
   {
-    "objectID": "lectures/7aS25.html#minimizing-function-using-optim",
-    "href": "lectures/7aS25.html#minimizing-function-using-optim",
-    "title": "Linear Regression",
-    "section": "Minimizing function using optim",
-    "text": "Minimizing function using optim\nFind the value of x and y that will minimize the following function for any value a and b.\n\\[\nf(x,y) = \\frac{(x-3)^2}{a^2} + \\frac{(y+4)^2}{b^2}\n\\]"
+    "objectID": "lectures/4aS25.html#apply-3",
+    "href": "lectures/4aS25.html#apply-3",
+    "title": "*apply Functions",
+    "section": "apply()",
+    "text": "apply()\nThe apply function returns a vector, array, or list of values by applying a function to the margins of an array. You will need to specify the following arguments:\n\nX: an array to be indexed and applied\nMARGIN: specifyng which index(es) to subset by\nFUN: function to be applied\n…: further arguments to be applied to FUN, must be labeled\n\n\napply(X, MARGIN, FUN, ...)"
   },
   {
-    "objectID": "lectures/7aS25.html#maximizing-function-using-optim",
-    "href": "lectures/7aS25.html#maximizing-function-using-optim",
-    "title": "Linear Regression",
-    "section": "Maximizing function using optim",
-    "text": "Maximizing function using optim\nFind the value of \\(\\lambda\\) that maximize the following function:\n\\[\n\\ell(\\lambda) = \\sum^n_{i=1} -\\lambda+X_i\\log(\\lambda) -\\log(X_i!)\n\\]\nwith the following data:\n\nz &lt;- rpois(1000, lambda = 2)"
+    "objectID": "lectures/4aS25.html#example",
+    "href": "lectures/4aS25.html#example",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nFind the standard deviation of all the columns of the following matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 10)"
   },
   {
-    "objectID": "lectures/7aS25.html#fit-a-linear-model-using-optim",
-    "href": "lectures/7aS25.html#fit-a-linear-model-using-optim",
-    "title": "Linear Regression",
-    "section": "Fit a linear model using optim",
-    "text": "Fit a linear model using optim\nMinimize:\n\\[\n\\sum^n_{i=1}(y_i-\\hat y_i)^2\n\\]\n\\[\n\\hat y_i = \\hat \\beta_0 +\\hat\\beta_1 x_i\n\\]\nData:\n\nx &lt;- rpois(500, 6)\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))"
+    "objectID": "lectures/4aS25.html#example-1",
+    "href": "lectures/4aS25.html#example-1",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nFind the \\(25th\\), \\(50th\\), and \\(75th\\) quartiles for each row of the following matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 20)"
+  },
+  {
+    "objectID": "lectures/4aS25.html#lapply-1",
+    "href": "lectures/4aS25.html#lapply-1",
+    "title": "*apply Functions",
+    "section": "lapply()",
+    "text": "lapply()\nThe lapply function applies a function to all the elements of a vector or matrix, and it will return a list. You will need to specify the following arguments:\n\nX: object to be iterated\nFUN: a function to be applied\n…: further arguments to be passed along to FUN\n\n\nlapply(X, FUN, ...)"
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-2",
+    "href": "lectures/4aS25.html#example-2",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nCreate a function that returns a labeled list for with the following values: mean, standard deviation, median, max, and min."
+  },
+  {
+    "objectID": "lectures/4aS25.html#sapply-1",
+    "href": "lectures/4aS25.html#sapply-1",
+    "title": "*apply Functions",
+    "section": "sapply()",
+    "text": "sapply()\nThe sapply() function will apply a function to each element of a list or vector, and it will return a simplified object, vector, matrix, or array. The sapply() function uses 4 main arguments:\n\nX: a vector or list to be iterated\nFUN: a function to be applied\n…: arguments passed along to FUN, must be labeled\nsimplify: indicates how to simplify the function, defaults to n-dimensional array based on output\n\n\nsapply(X, FUN, ..., simplify = TRUE)"
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-3",
+    "href": "lectures/4aS25.html#example-3",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nUsing the vector below, compute the length of each string using sapply and str_length() from tidyverse\n\nfruits &lt;- c(\"apple\", \"banana\", \"cherry\", \"date\", \"elderberry\", \"fig\", \"grape\", \"honeydew\", \"kiwi\", \"lemon\")"
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-4",
+    "href": "lectures/4aS25.html#example-4",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nUsing the list generated below, compute the mean of each element of the list using sapply.\n\n# Generate a list of 10 lists, each containing 5 random numbers\nlists &lt;- lapply(1:10, function(i) {\n  means &lt;- rpois(1, 3)\n  rnorm(5, means)\n})"
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-5",
+    "href": "lectures/4aS25.html#example-5",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nUsing the vector below, use the sapply() to find \\(\\log(x)\\) for each value and return a matrix:\n\nnumbers &lt;- 4:400"
+  },
+  {
+    "objectID": "lectures/4aS25.html#mapply-1",
+    "href": "lectures/4aS25.html#mapply-1",
+    "title": "*apply Functions",
+    "section": "mapply()",
+    "text": "mapply()\nThe mapply() is the multivariate function of sapply(). The mapply() function has 3 major arguments:\n\nFUN: function applied to data\n…: arguments to be iterated, must be labeled.\nMoreArgs: A list containing other arguments that are necessary to FUN\n\n\nmapply(FUN, ..., MoreArgs = NULL)"
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-6",
+    "href": "lectures/4aS25.html#example-6",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nLet x and y be two vectors, shown below, represent the x and y coordinates of a point. Using mapply(), compute the the distance between the points and the origin.\n\nx &lt;- c(2, 3, 4, 5)\ny &lt;- c(4, 6, 8, 10)"
+  },
+  {
+    "objectID": "lectures/4aS25.html#tapply-1",
+    "href": "lectures/4aS25.html#tapply-1",
+    "title": "*apply Functions",
+    "section": "tapply()",
+    "text": "tapply()\nThe tapply() function will apply function to a group of values based on and indexed lists. It takes 3 arguments:\n\nX: a vector that can split\nINDEX: the index list made up of factors\nFUN: the function that will be applied\n…: further arguments to be passed to FUN\n\n\ntapply(X, INDEX, FUN = NULL, ...)"
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-7",
+    "href": "lectures/4aS25.html#example-7",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nUsing the penguins data set from the palmerpenguins package, compute the average bill_length_mm for each island."
+  },
+  {
+    "objectID": "lectures/4aS25.html#example-8",
+    "href": "lectures/4aS25.html#example-8",
+    "title": "*apply Functions",
+    "section": "Example",
+    "text": "Example\nThe vectors below provide the heights of different trees in the sample. Compute the median for each type of tree.\n\nheights &lt;- c(70, 72, 68, 65, 80, 75, 60, 68, 90, 72)\nspecies &lt;- c(\"maple\", \"oak\", \"pine\", \"maple\", \"oak\", \"pine\", \"maple\", \"oak\", \"pine\", \"maple\")"
+  },
+  {
+    "objectID": "hw.html",
+    "href": "hw.html",
+    "title": "Homework",
+    "section": "",
+    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\n\nFeb 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 4\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5\n\n\n\n\n\n\n\n\n\n\n\nApr 15, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "files/Hw.html",
+    "href": "files/Hw.html",
+    "title": "HW 1",
+    "section": "",
+    "text": "This is easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-1",
+    "href": "files/Hw.html#problem-1",
+    "title": "HW 1",
+    "section": "",
+    "text": "This is easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-2",
+    "href": "files/Hw.html#problem-2",
+    "title": "HW 1",
+    "section": "Problem 2",
+    "text": "Problem 2\nThis is also easy"
+  },
+  {
+    "objectID": "files/Hw.html#problem-3",
+    "href": "files/Hw.html#problem-3",
+    "title": "HW 1",
+    "section": "Problem 3 —",
+    "text": "Problem 3 —"
+  },
+  {
+    "objectID": "files/r-scripts/template.html#problem-2",
+    "href": "files/r-scripts/template.html#problem-2",
+    "title": "Title",
+    "section": "Problem 2",
+    "text": "Problem 2"
+  },
+  {
+    "objectID": "files/r-scripts/template.html#problem-3",
+    "href": "files/r-scripts/template.html#problem-3",
+    "title": "Title",
+    "section": "Problem 3",
+    "text": "Problem 3"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html",
+    "href": "files/r-scripts/MultLRCode.html",
+    "title": "MultLR",
+    "section": "",
+    "text": "Looking at the penguins from palmerpenguins, fit a model between body_mass_g as an outcome variable and flipper_length_mm and bill_length_mm as predictor variables.\n\nlibrary(palmerpenguins)\npenguins |&gt;  lm(body_mass_g ~ flipper_length_mm + bill_length_mm, \n                data = _)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + bill_length_mm, \n    data = penguins)\n\nCoefficients:\n      (Intercept)  flipper_length_mm     bill_length_mm  \n        -5736.897             48.145              6.047  \n\n\n\nunique(penguins$island)\n\n[1] Torgersen Biscoe    Dream    \nLevels: Biscoe Dream Torgersen"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#example",
+    "href": "files/r-scripts/MultLRCode.html#example",
+    "title": "MultLR",
+    "section": "",
+    "text": "Looking at the penguins from palmerpenguins, fit a model between body_mass_g as an outcome variable and flipper_length_mm and bill_length_mm as predictor variables.\n\nlibrary(palmerpenguins)\npenguins |&gt;  lm(body_mass_g ~ flipper_length_mm + bill_length_mm, \n                data = _)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + bill_length_mm, \n    data = penguins)\n\nCoefficients:\n      (Intercept)  flipper_length_mm     bill_length_mm  \n        -5736.897             48.145              6.047  \n\n\n\nunique(penguins$island)\n\n[1] Torgersen Biscoe    Dream    \nLevels: Biscoe Dream Torgersen"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#fitting-a-model-with-categorical-variables",
+    "href": "files/r-scripts/MultLRCode.html#fitting-a-model-with-categorical-variables",
+    "title": "MultLR",
+    "section": "Fitting a model with categorical variables",
+    "text": "Fitting a model with categorical variables\nLooking at the penguins from palmerpenguins, fit a model between body_mass_g as an outcome variable and flipper_length_mm and islands as predictor variables.\n\nlibrary(palmerpenguins)\npenguins |&gt;  lm(body_mass_g ~ flipper_length_mm + island,\n                data = _)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + island, data = penguins)\n\nCoefficients:\n      (Intercept)  flipper_length_mm        islandDream    islandTorgersen  \n         -4624.98              44.54            -262.18            -185.13  \n\n\n\n#penguins &lt;- penguins |&gt; \n # mutate(island_dream = relevel(island , ref = \"Dream\"))\n#penguins |&gt; lm(body_mass_g ~ flipper_length_mm + island_dream, \n#               data = _)\n\n\n#library(tidyverse)\n#penguins|&gt;ggplot(aes(body_mass_g,island))+geom_boxplot()\n\n\nx1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#fit-model",
+    "href": "files/r-scripts/MultLRCode.html#fit-model",
+    "title": "MultLR",
+    "section": "Fit Model",
+    "text": "Fit Model\nFit a model between \\(Y\\) and \\(X_1\\).\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does \\(\\beta_1\\) get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta_1&lt;-rep(0,1000)\nsd&lt;-rep(0,1000)\nfor (i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nslm&lt;-lm(y~x1)\nbeta_1[i]&lt;-coef(slm)[2]\nsd[i]&lt;-sigma(slm)}\n\nmean(beta_1)\n\n[1] 1.999123\n\nmean(sd)\n\n[1] 4.471192"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#mlr-model",
+    "href": "files/r-scripts/MultLRCode.html#mlr-model",
+    "title": "MultLR",
+    "section": "MLR Model",
+    "text": "MLR Model\nInstead of fitting a simple linear regression model. Fit a model that will include predictor \\(X_2\\). This can be done by adding \\(X_2\\) in R:\n\nbeta&lt;-matrix(rep(0,3000),1000,3)\ndim(beta)\n\n[1] 1000    3\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nmlr&lt;-lm(y ~ x1 + x2)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 3.016967 1.998871 4.003168\n\n  mean(sd_mlr)\n\n[1] 2.000717\n\n\nModify your simulation study and see what happens to \\(\\beta_1\\) and the model variance."
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#simulation-study-2",
+    "href": "files/r-scripts/MultLRCode.html#simulation-study-2",
+    "title": "MultLR",
+    "section": "Simulation Study 2",
+    "text": "Simulation Study 2\nSimulate 1000 random variables from the following model:\nY=3+2log(X1)+ϵ\n\nX1∼N(8,1)\nϵ∼N(0,2)\n\n\nx1 &lt;- rnorm(1000, 8, 1)\n\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#fit-model-1",
+    "href": "files/r-scripts/MultLRCode.html#fit-model-1",
+    "title": "MultLR",
+    "section": "Fit Model",
+    "text": "Fit Model\nFit a model between Y and X1.\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does β1 get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ x1)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 5.1281454 0.2514854\n\n  mean(sd_mlr)\n\n[1] 1.999799"
+  },
+  {
+    "objectID": "files/r-scripts/MultLRCode.html#slr-model",
+    "href": "files/r-scripts/MultLRCode.html#slr-model",
+    "title": "MultLR",
+    "section": "SLR Model",
+    "text": "SLR Model\nFit a simple linear regression model using log(X1) instead.\nlm(y ~ log(x1))\nModify your simulation study and see what happens to β1β1 and the model variance.\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ log(x1))\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 3.012666 1.995550\n\n  mean(sd_mlr)\n\n[1] 1.99909\n\n\n\n# library(palmerpenguins)\n# clean_penguins &lt;- penguins|&gt;\n#   drop_na()\n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)\n\n\n# library(palmerpenguins)\n# library(dplyr)\n# clean_penguins &lt;- penguins|&gt;drop_na()\n# \n# clean_penguins_d&lt;-dummy_columns(clean_penguins,select_columns = \"island\")\n# \n# head(clean_penguins_d)\n# \n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)"
+  },
+  {
+    "objectID": "hw/hw5S25.html",
+    "href": "hw/hw5S25.html",
+    "title": "Homework 5",
+    "section": "",
+    "text": "Due 4/15/25 @ 11:59 PM\nSubmit the *.html file to canvas."
+  },
+  {
+    "objectID": "hw/hw5S25.html#problem-1",
+    "href": "hw/hw5S25.html#problem-1",
+    "title": "Homework 5",
+    "section": "Problem 1",
+    "text": "Problem 1\nThe faithful data set in R contains information on eruptions time and waiting time. Describe the relationship between waiting (independent) and eruptions (dependent).\nYou must provide descriptive statistics, visuals, and model."
+  },
+  {
+    "objectID": "hw/hw5S25.html#problem-2",
+    "href": "hw/hw5S25.html#problem-2",
+    "title": "Homework 5",
+    "section": "Problem 2",
+    "text": "Problem 2\nWhen estimating the \\(\\beta\\) coefficients, we are minimizing the sum of squared errors:\n\\[\n\\sum^n_{i=1}(y_i-(\\beta_0+\\beta_1x_i))^2\n\\]\nWe square the errors to make sure we do not lose information when summing up all the values. However, what if we try to use an absolute value:\n\\[\n\\sum^n_{i=1}|y_i-(\\beta_0+\\beta_1x_i)|\n\\]\nSimulate a data set, estimate the coefficients, and compare the results. Are they the same or different?"
+  },
+  {
+    "objectID": "hw/hw5S25.html#problem-3",
+    "href": "hw/hw5S25.html#problem-3",
+    "title": "Homework 5",
+    "section": "Problem 3",
+    "text": "Problem 3\nConduct a simulation assessing which case from problem 2 is better.\nTo assess which case is better compare the mean and standard deviations of the simulated-estimated coefficients."
+  },
+  {
+    "objectID": "hw/hw5S25.html#problem-4",
+    "href": "hw/hw5S25.html#problem-4",
+    "title": "Homework 5",
+    "section": "Problem 4",
+    "text": "Problem 4\nRun the code below to obtain the data:\n\nlibrary(tidyverse)\nanime &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-23/tidy_anime.csv\") |&gt; filter(!type == \"Unknown\") |&gt; as.data.frame()\n\nThe anime data set from MyAnimeList contains information on rankings and popularity scores of different anime episodes.\nFit a linear model showing the relationship between score (outcome; higher is better) and the predictors type, popularity, and rank. On average, what is the score for an anime that is a “Special”, popularity score of 520, and rank of 3582?"
+  },
+  {
+    "objectID": "hw/hw5S25.html#problem-5",
+    "href": "hw/hw5S25.html#problem-5",
+    "title": "Homework 5",
+    "section": "Problem 5",
+    "text": "Problem 5\nRun this code below to obtain the data (you may need to install tidytuesdayR):\n\nlibrary(tidyverse)\ntuesdata &lt;- tidytuesdayR::tt_load(2021, week = 52)\nstarbucks &lt;- tuesdata$starbucks |&gt; drop_na() |&gt; filter(size %in% c(\"tall\", \"grande\", \"venti\"))\n\nFit a linear model between the outcome caffeine_mg (outcome) and predictors size, calories, and sugar_g from the starbucks data set using the matrix formulation approach (do matrix algebra) by defining the \\(X\\) matrix. Use tall as the reference value for the size variable."
+  },
+  {
+    "objectID": "hw/hw1.html",
+    "href": "hw/hw1.html",
+    "title": "Homework 1",
+    "section": "",
+    "text": "Due 2/6/25 @ 11:59 PM\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas.\nFor all problems, you must use at least one for or while loop."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-1",
+    "href": "hw/hw1.html#problem-1",
+    "title": "Homework 1",
+    "section": "Problem 1",
+    "text": "Problem 1\nUsing the following code:\n\nx &lt;- matrix(rnorm(1500), nrow = 10)\n\nWrite the code to produce the output if you use the rowMeans() on the R object x."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-2",
+    "href": "hw/hw1.html#problem-2",
+    "title": "Homework 1",
+    "section": "Problem 2",
+    "text": "Problem 2\nUsing the following code:\n\ny &lt;- matrix(sample(1:400, 100, replace = T), nrow = 10)\n\nFind the median value for each column of the matrix y."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-3",
+    "href": "hw/hw1.html#problem-3",
+    "title": "Homework 1",
+    "section": "Problem 3",
+    "text": "Problem 3\nWrite the code that will generate the first 1000 numbers of the Fibonacci Sequence."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-4",
+    "href": "hw/hw1.html#problem-4",
+    "title": "Homework 1",
+    "section": "Problem 4",
+    "text": "Problem 4\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
+  },
+  {
+    "objectID": "hw/hw1.html#problem-5",
+    "href": "hw/hw1.html#problem-5",
+    "title": "Homework 1",
+    "section": "Problem 5",
+    "text": "Problem 5\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+  },
+  {
+    "objectID": "hw/hw4S25.html",
+    "href": "hw/hw4S25.html",
+    "title": "Homework 4",
+    "section": "",
+    "text": "Due 3/10/25 @ 11:59 PM\nSubmit the *.html file to canvas.\nAnswer the following problems from the Statistical Learning Book:\nFrom Section 2.4: 1, 2, 4, 5, 6"
+  },
+  {
+    "objectID": "hw/hw3S25.html",
+    "href": "hw/hw3S25.html",
+    "title": "Homework 3",
+    "section": "",
+    "text": "Due 2/25/24 @ 11:59 PM\nUse an RMD or QMD file to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-1",
+    "href": "hw/hw3S25.html#problem-1",
+    "title": "Homework 3",
+    "section": "Problem 1",
+    "text": "Problem 1\nUsing the vectors below, use sapply() to determine if the numbers are even or odd.\n\nx &lt;- 1:20"
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-2",
+    "href": "hw/hw3S25.html#problem-2",
+    "title": "Homework 3",
+    "section": "Problem 2",
+    "text": "Problem 2\nEvaluate the following function:\n\\[\nk(j(i(h(g(f(x))))))\n\\]\n\n\\(f(x)=\\sin(x)\\)\n\\(g(x) = x^2 +5\\)\n\\(h(x) = \\exp{2x}\\)\n\\(i(x) = \\sin(\\pi x)\\)\n\\(j(x) = x^2 + 5\\)\n\\(k(x) = \\sqrt x\\)\n\nYou are not allowed to store values, but you may create and store functions."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-3",
+    "href": "hw/hw3S25.html#problem-3",
+    "title": "Homework 3",
+    "section": "Problem 3",
+    "text": "Problem 3\nFrom the penguins data set from palmerpenguins package, create a new variable indicating if the penguin’s flipper length (flipper_length_mm) is greater than the average flipper length. Afterwards, group by the new variable and find the mean body_mass_g."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-4",
+    "href": "hw/hw3S25.html#problem-4",
+    "title": "Homework 3",
+    "section": "Problem 4",
+    "text": "Problem 4\nFrom the penguins data set from palmerpenguins package, find the mean and standard deviation of flipper_length_mm by species."
+  },
+  {
+    "objectID": "hw/hw3S25.html#problem-5",
+    "href": "hw/hw3S25.html#problem-5",
+    "title": "Homework 3",
+    "section": "Problem 5",
+    "text": "Problem 5\nUsing the vector random_dates generated from the code below:\n\n# Set the start and end dates\nstart_date &lt;- as.POSIXct(\"2022-01-01 00:00:00\")\nend_date &lt;- as.POSIXct(\"2022-12-31 23:59:59\")\n\n# Generate a vector of random dates and times between the start and end dates\nrandom_dates &lt;- as.POSIXct(runif(10, start_date, end_date), origin = \"1970-01-01\")\n\n# Print the vector of random dates and times\nrandom_dates\n\nUse sapply() to determine what day of the week (in words) does the date represent. Hint: Look at the wday function from lubridate."
+  },
+  {
+    "objectID": "hw/hw2.html",
+    "href": "hw/hw2.html",
+    "title": "Homework 2",
+    "section": "",
+    "text": "Due 2/18/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-1",
+    "href": "hw/hw2.html#problem-1",
+    "title": "Homework 2",
+    "section": "Problem 1",
+    "text": "Problem 1\nWrite a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-2",
+    "href": "hw/hw2.html#problem-2",
+    "title": "Homework 2",
+    "section": "Problem 2",
+    "text": "Problem 2\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-3",
+    "href": "hw/hw2.html#problem-3",
+    "title": "Homework 2",
+    "section": "Problem 3",
+    "text": "Problem 3\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+  },
+  {
+    "objectID": "hw/hw2.html#problem-4",
+    "href": "hw/hw2.html#problem-4",
+    "title": "Homework 2",
+    "section": "Problem 4",
+    "text": "Problem 4\nCreate a function that will randomly generate n numbers that are greater than x from a \\(Pois(\\lambda)\\)."
+  },
+  {
+    "objectID": "files/r-scripts/SimAndOptimCode.html",
+    "href": "files/r-scripts/SimAndOptimCode.html",
+    "title": "LmOptim",
+    "section": "",
+    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.4728 -0.9450 -0.0188  0.9934  4.6499 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.86738    0.17079   186.6   &lt;2e-16 ***\nx           -8.98821    0.02695  -333.5   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.448 on 498 degrees of freedom\nMultiple R-squared:  0.9955,    Adjusted R-squared:  0.9955 \nF-statistic: 1.112e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1707861        NaN\nx                   NaN 0.02694981\n\nsigma(lm_res)^2\n\n[1] 2.096625\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.867384\nx -8.988209\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
+  },
+  {
+    "objectID": "files/r-scripts/SimAndOptimCode.html#fit-a-line-using-lm-for-the-following-data",
+    "href": "files/r-scripts/SimAndOptimCode.html#fit-a-line-using-lm-for-the-following-data",
+    "title": "LmOptim",
+    "section": "",
+    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.4728 -0.9450 -0.0188  0.9934  4.6499 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.86738    0.17079   186.6   &lt;2e-16 ***\nx           -8.98821    0.02695  -333.5   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.448 on 498 degrees of freedom\nMultiple R-squared:  0.9955,    Adjusted R-squared:  0.9955 \nF-statistic: 1.112e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1707861        NaN\nx                   NaN 0.02694981\n\nsigma(lm_res)^2\n\n[1] 2.096625\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.867384\nx -8.988209\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
+  },
+  {
+    "objectID": "files/r-scripts/test.html",
+    "href": "files/r-scripts/test.html",
+    "title": "test",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "files/r-scripts/test.html#r-markdown",
+    "href": "files/r-scripts/test.html#r-markdown",
+    "title": "test",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "files/r-scripts/test.html#including-plots",
+    "href": "files/r-scripts/test.html#including-plots",
+    "title": "test",
+    "section": "Including Plots",
+    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot."
+  },
+  {
+    "objectID": "files/test.html",
+    "href": "files/test.html",
+    "title": "Semester Project",
+    "section": "",
+    "text": "The best part of the semester: the awesome data-based group project!\n\nProject Instructions"
+  },
+  {
+    "objectID": "lectures/2bS25.html#learning-objectives",
+    "href": "lectures/2bS25.html#learning-objectives",
+    "title": "Control Flow 2",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\nNested for Loops"
+  },
+  {
+    "objectID": "lectures/2bS25.html#nested-for-loops-1",
+    "href": "lectures/2bS25.html#nested-for-loops-1",
+    "title": "Control Flow 2",
+    "section": "Nested for Loops",
+    "text": "Nested for Loops\nNested for loops are for loops within another for loop. You can stack these loops as much as needed. Just make sure the index is different for each loop. The general format for a loop goes as follow:\n\nfor (i in vector_1){\n  for (ii in vector_2){\n    perform task\n  }\n}"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example",
+    "href": "lectures/2bS25.html#example",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nWithout using the sd() function, compute the standard deviation for each column of the matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 10)\n\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i=1}(x_i-\\bar x)^2\n\\]"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-1",
+    "href": "lectures/2bS25.html#example-1",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nThe median() function obtain the median value of a vector. Write code to obtain the median value for any vector.\n\nx &lt;- rnorm(500)\ny &lt;- rnorm(501)\nmedian(x)\nmedian(y)\n\nAnswer:\n\n\nCode\nwk &lt;- x \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)\n\nwk &lt;- y \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-2",
+    "href": "lectures/2bS25.html#example-2",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nUsing the code below:\n\nx &lt;- rnorm(5000)\n\nCreate a new vector containing all the positive values of x. The new vector should be less than 5000.\nAnswer:\n\n\nCode\nnn &lt;- length(x)\npos &lt;- c()\nfor (i in 1:nn){\n  if (x[i] &gt; 0) {\n    pos &lt;- c(pos, x[i])\n  }\n}\npos"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-3",
+    "href": "lectures/2bS25.html#example-3",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nCreate a vector reporting the data type of each variable in ISLR2::BrainCancer\n\nlibrary(ISLR2)\nBrainCancer\n\nAnswer:\n\n\nCode\nnn &lt;- ncol(BrainCancer)\ny &lt;- c()\nfor (i in 1:nn){\n  y &lt;- c(y, class(BrainCancer[,i]))\n}"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-4",
+    "href": "lectures/2bS25.html#example-4",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\n\\[\nf(x,y) = x^2 + y^2 + \\ln(x+y)\n\\]\nFind all the values of \\(f(x,y)\\) for every combination of \\(x \\in \\{1, 8, 13, 25, 42, 67, 95\\}\\) and \\(y \\in \\{6, 12, 18, 52, 61, 79, 83\\}\\)\nStore values in a \\(7\\times 7\\) matrix.\nAnswer:\n\n\nCode\nx &lt;- c(1, 8, 13, 25, 42, 67, 95)\ny &lt;- c(6, 12, 18, 52, 61, 79, 83)\nres &lt;- matrix(nrow = 7, ncol = 7)\ncolnames(res) &lt;- as.character(x)\nrownames(res) &lt;- as.character(y)\n\nfor (i in 1:7){\n  for (ii in 1:7){\n    res[ii,i] &lt;- x[i]^2 + y[ii]^2 + log(x[i] + y[ii])\n  }\n}\nprint(res)"
+  },
+  {
+    "objectID": "lectures/2bS25.html#example-5",
+    "href": "lectures/2bS25.html#example-5",
+    "title": "Control Flow 2",
+    "section": "Example",
+    "text": "Example\nFor each column in mtcars, take the mean for the even columns, and median for the odd columns. Store the values in a list containing 2 vectors.\nAnswer:\n\n\nCode\nx &lt;- c()\ny &lt;- c()\nnn &lt;- ncol(mtcars)\nfor (i in 1:nn){\n  if (i %% 2 == 0){\n    x &lt;- c(x, mean(mtcars[,i]))\n  } else {\n    y &lt;- c(y, median(mtcars[,i]))\n  }\n}\n\nxy &lt;- list(x,y)"
   },
   {
     "objectID": "lectures/5aS25.html#learning-objectives",
@@ -1197,711 +1827,326 @@
     "text": "Example\nUsing the penguins dataset from palmerpenguins, group by species and find the average ln flipper_length_mm"
   },
   {
-    "objectID": "lectures/2bS25.html#learning-objectives",
-    "href": "lectures/2bS25.html#learning-objectives",
-    "title": "Control Flow 2",
+    "objectID": "lectures/7aS25.html#learning-objectives",
+    "href": "lectures/7aS25.html#learning-objectives",
+    "title": "Linear Regression",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nNested for Loops"
+    "text": "Learning Objectives\n\nEstimation\nOrdinary Least Squares\nMatrix Formulation\nStandard Errors\nConduct in R"
   },
   {
-    "objectID": "lectures/2bS25.html#nested-for-loops-1",
-    "href": "lectures/2bS25.html#nested-for-loops-1",
-    "title": "Control Flow 2",
-    "section": "Nested for Loops",
-    "text": "Nested for Loops\nNested for loops are for loops within another for loop. You can stack these loops as much as needed. Just make sure the index is different for each loop. The general format for a loop goes as follow:\n\nfor (i in vector_1){\n  for (ii in vector_2){\n    perform task\n  }\n}"
+    "objectID": "lectures/7aS25.html#resources",
+    "href": "lectures/7aS25.html#resources",
+    "title": "Linear Regression",
+    "section": "Resources",
+    "text": "Resources\nLinear Algebra for Data Science"
   },
   {
-    "objectID": "lectures/2bS25.html#example",
-    "href": "lectures/2bS25.html#example",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nWithout using the sd() function, compute the standard deviation for each column of the matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 10)\n\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i=1}(x_i-\\bar x)^2\n\\]"
+    "objectID": "lectures/7aS25.html#estimation-1",
+    "href": "lectures/7aS25.html#estimation-1",
+    "title": "Linear Regression",
+    "section": "Estimation",
+    "text": "Estimation\n\nOrdinary Least Squares\nMaximum Likelihood Approach\nMethod of Moments"
   },
   {
-    "objectID": "lectures/2bS25.html#example-1",
-    "href": "lectures/2bS25.html#example-1",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nThe median() function obtain the median value of a vector. Write code to obtain the median value for any vector.\n\nx &lt;- rnorm(500)\ny &lt;- rnorm(501)\nmedian(x)\nmedian(y)\n\nAnswer:\n\n\nCode\nwk &lt;- x \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)\n\nwk &lt;- y \npos50 &lt;- (length(wk) + 1) / 2\nswk &lt;- sort(wk)\nif ((length(wk) %% 2) == 0) {\n  val &lt;- (swk[floor(pos50)] + swk[ceiling(pos50)]) / 2\n} else {\n  val &lt;- swk[pos50]\n}\nprint(val)\nmedian(wk)"
+    "objectID": "lectures/7aS25.html#standard-errors",
+    "href": "lectures/7aS25.html#standard-errors",
+    "title": "Linear Regression",
+    "section": "Standard Errors",
+    "text": "Standard Errors\n\nFind the variance of the estimate\nFind the information matrix\nUse for Inference"
   },
   {
-    "objectID": "lectures/2bS25.html#example-2",
-    "href": "lectures/2bS25.html#example-2",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nUsing the code below:\n\nx &lt;- rnorm(5000)\n\nCreate a new vector containing all the positive values of x. The new vector should be less than 5000.\nAnswer:\n\n\nCode\nnn &lt;- length(x)\npos &lt;- c()\nfor (i in 1:nn){\n  if (x[i] &gt; 0) {\n    pos &lt;- c(pos, x[i])\n  }\n}\npos"
+    "objectID": "lectures/7aS25.html#ordinary-least-squares-1",
+    "href": "lectures/7aS25.html#ordinary-least-squares-1",
+    "title": "Linear Regression",
+    "section": "Ordinary Least Squares",
+    "text": "Ordinary Least Squares\nFor a data pair \\((x_i,y_i)_{i=1}^n\\), the ordinary least squares estimator will find the estimates of \\(\\hat\\beta_0\\) and \\(\\hat\\beta_1\\) that minimize the following function:\n\\[\n\\sum^n_{i=1}\\{y_i-(\\beta_0+\\beta_1x_i)\\}^2\n\\]"
   },
   {
-    "objectID": "lectures/2bS25.html#example-3",
-    "href": "lectures/2bS25.html#example-3",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nCreate a vector reporting the data type of each variable in ISLR2::BrainCancer\n\nlibrary(ISLR2)\nBrainCancer\n\nAnswer:\n\n\nCode\nnn &lt;- ncol(BrainCancer)\ny &lt;- c()\nfor (i in 1:nn){\n  y &lt;- c(y, class(BrainCancer[,i]))\n}"
+    "objectID": "lectures/7aS25.html#estimates",
+    "href": "lectures/7aS25.html#estimates",
+    "title": "Linear Regression",
+    "section": "Estimates",
+    "text": "Estimates\n\\[\n\\hat\\beta_0 = \\bar y - \\hat\\beta_1\\bar x\n\\] \\[\n\\hat\\beta_1 = \\frac{\\sum^n_{i=1}(y_i-\\bar y)(x_i-\\bar x)}{\\sum^n_{i=1}(x_i-\\bar x)^2}\n\\] \\[\n\\hat\\sigma^2 = \\frac{1}{n-2}\\sum^n_{i=1}(y_i-\\hat y_i)^2\n\\]"
   },
   {
-    "objectID": "lectures/2bS25.html#example-4",
-    "href": "lectures/2bS25.html#example-4",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\n\\[\nf(x,y) = x^2 + y^2 + \\ln(x+y)\n\\]\nFind all the values of \\(f(x,y)\\) for every combination of \\(x \\in \\{1, 8, 13, 25, 42, 67, 95\\}\\) and \\(y \\in \\{6, 12, 18, 52, 61, 79, 83\\}\\)\nStore values in a \\(7\\times 7\\) matrix.\nAnswer:\n\n\nCode\nx &lt;- c(1, 8, 13, 25, 42, 67, 95)\ny &lt;- c(6, 12, 18, 52, 61, 79, 83)\nres &lt;- matrix(nrow = 7, ncol = 7)\ncolnames(res) &lt;- as.character(x)\nrownames(res) &lt;- as.character(y)\n\nfor (i in 1:7){\n  for (ii in 1:7){\n    res[ii,i] &lt;- x[i]^2 + y[ii]^2 + log(x[i] + y[ii])\n  }\n}\nprint(res)"
+    "objectID": "lectures/7aS25.html#matrix-version-of-model",
+    "href": "lectures/7aS25.html#matrix-version-of-model",
+    "title": "Linear Regression",
+    "section": "Matrix Version of Model",
+    "text": "Matrix Version of Model\n\\[\ny_i = \\boldsymbol X_i^\\mathrm T \\boldsymbol \\beta + \\epsilon_i\n\\]\n\n\\(y_i\\): Outcome Variable\n\\(\\boldsymbol X_i=(1, x_i)^\\mathrm T\\): Predictors\n\\(\\boldsymbol \\beta = (\\beta_0, \\beta_1)^\\mathrm T\\): Coefficients\n\\(\\epsilon_i\\): error term"
   },
   {
-    "objectID": "lectures/2bS25.html#example-5",
-    "href": "lectures/2bS25.html#example-5",
-    "title": "Control Flow 2",
-    "section": "Example",
-    "text": "Example\nFor each column in mtcars, take the mean for the even columns, and median for the odd columns. Store the values in a list containing 2 vectors.\nAnswer:\n\n\nCode\nx &lt;- c()\ny &lt;- c()\nnn &lt;- ncol(mtcars)\nfor (i in 1:nn){\n  if (i %% 2 == 0){\n    x &lt;- c(x, mean(mtcars[,i]))\n  } else {\n    y &lt;- c(y, median(mtcars[,i]))\n  }\n}\n\nxy &lt;- list(x,y)"
+    "objectID": "lectures/7aS25.html#data-matrix-formulation",
+    "href": "lectures/7aS25.html#data-matrix-formulation",
+    "title": "Linear Regression",
+    "section": "Data Matrix Formulation",
+    "text": "Data Matrix Formulation\nFor \\(n\\) data points\n\\[\n\\boldsymbol Y = \\boldsymbol X^\\mathrm T\\boldsymbol \\beta + \\boldsymbol \\epsilon\n\\]\n\n\\(\\boldsymbol Y = (y_1, \\cdots, y_n)^\\mathrm T\\): Outcome Variable\n\\(\\boldsymbol X=(\\boldsymbol X_1, \\cdots, \\boldsymbol X_n)^\\mathrm T\\): Predictors\n\\(\\boldsymbol \\beta = (\\beta_0, \\beta_1)^\\mathrm T\\): Coefficients\n\\(\\boldsymbol \\epsilon = (\\epsilon_1, \\cdots, \\epsilon_n)^\\mathrm T\\): Error terms"
   },
   {
-    "objectID": "files/test.html",
-    "href": "files/test.html",
-    "title": "Semester Project",
-    "section": "",
-    "text": "The best part of the semester: the awesome data-based group project!\n\nProject Instructions"
+    "objectID": "lectures/7aS25.html#least-squares-formula",
+    "href": "lectures/7aS25.html#least-squares-formula",
+    "title": "Linear Regression",
+    "section": "Least Squares Formula",
+    "text": "Least Squares Formula\n\\[\n(Y - \\boldsymbol X ^\\mathrm T\\boldsymbol \\beta)^\\mathrm T(Y - \\boldsymbol X ^\\mathrm T\\boldsymbol \\beta)\n\\]"
   },
   {
-    "objectID": "files/r-scripts/test.html",
-    "href": "files/r-scripts/test.html",
-    "title": "test",
-    "section": "",
-    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+    "objectID": "lectures/7aS25.html#estimates-1",
+    "href": "lectures/7aS25.html#estimates-1",
+    "title": "Linear Regression",
+    "section": "Estimates",
+    "text": "Estimates\n\\[\n\\hat{\\boldsymbol \\beta} = (\\boldsymbol X ^\\mathrm T\\boldsymbol X)^{-1}\\boldsymbol X ^\\mathrm T\\boldsymbol Y\n\\]"
   },
   {
-    "objectID": "files/r-scripts/test.html#r-markdown",
-    "href": "files/r-scripts/test.html#r-markdown",
-    "title": "test",
-    "section": "",
-    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+    "objectID": "lectures/7aS25.html#estimate-for-sigma2",
+    "href": "lectures/7aS25.html#estimate-for-sigma2",
+    "title": "Linear Regression",
+    "section": "Estimate for \\(\\sigma^2\\)",
+    "text": "Estimate for \\(\\sigma^2\\)\n\\[\n\\hat \\sigma^2 = \\frac{1}{n-2} \\sum^n_{i=1} (y_i-\\boldsymbol X_i^\\mathrm T\\hat{\\boldsymbol \\beta})^2\n\\]"
   },
   {
-    "objectID": "files/r-scripts/test.html#including-plots",
-    "href": "files/r-scripts/test.html#including-plots",
-    "title": "test",
-    "section": "Including Plots",
-    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot."
+    "objectID": "lectures/7aS25.html#standard-errors-of-betas",
+    "href": "lectures/7aS25.html#standard-errors-of-betas",
+    "title": "Linear Regression",
+    "section": "Standard Errors of \\(\\beta\\)’s",
+    "text": "Standard Errors of \\(\\beta\\)’s\n\\[\nSE(\\hat\\beta_0)=\\sqrt{\\frac{\\sum^n_{i=1}x_i^2\\hat\\sigma^2}{n\\sum^n_{i=1}(x_i-\\bar x)^2}}\n\\]\n\\[\nSE(\\hat\\beta_1)=\\sqrt\\frac{\\hat\\sigma^2}{\\sum^n_{i=1}(x_i-\\bar x)^2}\n\\]"
   },
   {
-    "objectID": "files/r-scripts/SimAndOptimCode.html",
-    "href": "files/r-scripts/SimAndOptimCode.html",
-    "title": "LmOptim",
-    "section": "",
-    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.0453 -0.8601 -0.0615  0.9636  4.2511 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.80725    0.17461   182.2   &lt;2e-16 ***\nx           -8.97836    0.02723  -329.7   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.432 on 498 degrees of freedom\nMultiple R-squared:  0.9954,    Adjusted R-squared:  0.9954 \nF-statistic: 1.087e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1746062        NaN\nx                   NaN 0.02722842\n\nsigma(lm_res)^2\n\n[1] 2.049506\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.807248\nx -8.978357\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
+    "objectID": "lectures/7aS25.html#standard-errors-matrix-form",
+    "href": "lectures/7aS25.html#standard-errors-matrix-form",
+    "title": "Linear Regression",
+    "section": "Standard Errors Matrix Form",
+    "text": "Standard Errors Matrix Form\n\\[\nVar(\\hat {\\boldsymbol \\beta}) = (\\boldsymbol X ^\\mathrm T\\boldsymbol X)^{-1} \\hat \\sigma^2\n\\]"
   },
   {
-    "objectID": "files/r-scripts/SimAndOptimCode.html#fit-a-line-using-lm-for-the-following-data",
-    "href": "files/r-scripts/SimAndOptimCode.html#fit-a-line-using-lm-for-the-following-data",
-    "title": "LmOptim",
-    "section": "",
-    "text": "x &lt;- rpois(500, 6)\nhist(x)\n\n\n\n\n\n\n\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.0453 -0.8601 -0.0615  0.9636  4.2511 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 31.80725    0.17461   182.2   &lt;2e-16 ***\nx           -8.97836    0.02723  -329.7   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.432 on 498 degrees of freedom\nMultiple R-squared:  0.9954,    Adjusted R-squared:  0.9954 \nF-statistic: 1.087e+05 on 1 and 498 DF,  p-value: &lt; 2.2e-16\n\nsqrt(vcov(lm_res))\n\nWarning in sqrt(vcov(lm_res)): NaNs produced\n\n\n            (Intercept)          x\n(Intercept)   0.1746062        NaN\nx                   NaN 0.02722842\n\nsigma(lm_res)^2\n\n[1] 2.049506\n\n\n\nX &lt;- cbind(rep(1, 500), x)\n#X[1:50,]\nsolve(t(X)%*%X) %*% t(X) %*% y  \n\n       [,1]\n  31.807248\nx -8.978357\n\n\n##Find the value of x that will minimize the following function.\n\\[\nf(𝑥)=2*(𝑥−5)^2+11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5)^2 + 11\n}\noptim(0, d)\n\nWarning in optim(0, d): one-dimensional optimization by Nelder-Mead is unreliable:\nuse \"Brent\" or optimize() directly\n\n\n$par\n[1] 4.9\n\n$value\n[1] 11.02\n\n$counts\nfunction gradient \n      18       NA \n\n$convergence\n[1] 0\n\n$message\nNULL"
+    "objectID": "lectures/7aS25.html#built-in-functions",
+    "href": "lectures/7aS25.html#built-in-functions",
+    "title": "Linear Regression",
+    "section": "Built in Functions",
+    "text": "Built in Functions\nYou can use the lm to fit a linear model and extract the estimated values and standard errors"
   },
   {
-    "objectID": "hw/hw2.html",
-    "href": "hw/hw2.html",
-    "title": "Homework 2",
-    "section": "",
-    "text": "Due 2/18/25 @ 11:59 PM\nUse an RMD M408 Template to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+    "objectID": "lectures/7aS25.html#matrix-formulation-1",
+    "href": "lectures/7aS25.html#matrix-formulation-1",
+    "title": "Linear Regression",
+    "section": "Matrix Formulation",
+    "text": "Matrix Formulation\nR is capable of conducting matrix operations with the following functions:\n\n%*%: matrix multiplication\nt(): transpose a matrix\nsolve(): computes the inverse matrix"
   },
   {
-    "objectID": "hw/hw2.html#problem-1",
-    "href": "hw/hw2.html#problem-1",
-    "title": "Homework 2",
-    "section": "Problem 1",
-    "text": "Problem 1\nWrite a function that takes a vector as an input an returns a labeled list with the mean, median, and variance of the vector."
+    "objectID": "lectures/7aS25.html#minimization-problem",
+    "href": "lectures/7aS25.html#minimization-problem",
+    "title": "Linear Regression",
+    "section": "Minimization Problem",
+    "text": "Minimization Problem\nMinimize the least squares using a numerical methods in R. The optim() function will minimize a function for set of parameters. We can minimize a function, least squares function, and supply initial values (0) for the parameters of interest."
   },
   {
-    "objectID": "hw/hw2.html#problem-2",
-    "href": "hw/hw2.html#problem-2",
-    "title": "Homework 2",
-    "section": "Problem 2",
-    "text": "Problem 2\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
+    "objectID": "lectures/7aS25.html#fit-a-line-using-lm-for-the-following-data",
+    "href": "lectures/7aS25.html#fit-a-line-using-lm-for-the-following-data",
+    "title": "Linear Regression",
+    "section": "Fit a Line using lm for the following data",
+    "text": "Fit a Line using lm for the following data\n\nx &lt;- rpois(500, 6)\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))\nlm_res &lt;- lm(y ~ x) \nsummary(lm_res)\nsqrt(vcov(lm_res))\nsigma(lm_res)^2"
   },
   {
-    "objectID": "hw/hw2.html#problem-3",
-    "href": "hw/hw2.html#problem-3",
-    "title": "Homework 2",
-    "section": "Problem 3",
-    "text": "Problem 3\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+    "objectID": "lectures/7aS25.html#fit-a-linear-model-using-matrix-operation",
+    "href": "lectures/7aS25.html#fit-a-linear-model-using-matrix-operation",
+    "title": "Linear Regression",
+    "section": "Fit a linear model using matrix operation",
+    "text": "Fit a linear model using matrix operation\n\nX &lt;- cbind(rep(1, 500), x)\nsolve(t(X)%*%X) %*% t(X) %*% y"
   },
   {
-    "objectID": "hw/hw2.html#problem-4",
-    "href": "hw/hw2.html#problem-4",
-    "title": "Homework 2",
-    "section": "Problem 4",
-    "text": "Problem 4\nCreate a function that will randomly generate n numbers that are greater than x from a \\(Pois(\\lambda)\\)."
+    "objectID": "lectures/7aS25.html#minimizing-a-function-using-optim",
+    "href": "lectures/7aS25.html#minimizing-a-function-using-optim",
+    "title": "Linear Regression",
+    "section": "Minimizing a function using optim",
+    "text": "Minimizing a function using optim\nFind the value of x and y that will minimize the following function for any value a and b.\n\\[\nf(x) = 2(x - 5)^2 + 11\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5) + 11\n}\noptim(0, d)"
   },
   {
-    "objectID": "hw/hw3S25.html",
-    "href": "hw/hw3S25.html",
-    "title": "Homework 3",
-    "section": "",
-    "text": "Due 2/25/24 @ 11:59 PM\nUse an RMD or QMD file to create the assignment.\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas."
+    "objectID": "lectures/7aS25.html#maximizing-a-function-using-optim",
+    "href": "lectures/7aS25.html#maximizing-a-function-using-optim",
+    "title": "Linear Regression",
+    "section": "Maximizing a function using optim",
+    "text": "Maximizing a function using optim\nFind the value of x and y that will minimize the following function for any value a and b.\n\\[\nf(x) = - 3 (x - 8)^2 + 9\n\\]\n\nd &lt;- function(x){\n  2 * (x - 5) + 11\n}\noptim(0, d)"
   },
   {
-    "objectID": "hw/hw3S25.html#problem-1",
-    "href": "hw/hw3S25.html#problem-1",
-    "title": "Homework 3",
-    "section": "Problem 1",
-    "text": "Problem 1\nUsing the vectors below, use sapply() to determine if the numbers are even or odd.\n\nx &lt;- 1:20"
+    "objectID": "lectures/7aS25.html#minimizing-function-using-optim",
+    "href": "lectures/7aS25.html#minimizing-function-using-optim",
+    "title": "Linear Regression",
+    "section": "Minimizing function using optim",
+    "text": "Minimizing function using optim\nFind the value of x and y that will minimize the following function for any value a and b.\n\\[\nf(x,y) = \\frac{(x-3)^2}{a^2} + \\frac{(y+4)^2}{b^2}\n\\]"
   },
   {
-    "objectID": "hw/hw3S25.html#problem-2",
-    "href": "hw/hw3S25.html#problem-2",
-    "title": "Homework 3",
-    "section": "Problem 2",
-    "text": "Problem 2\nEvaluate the following function:\n\\[\nk(j(i(h(g(f(x))))))\n\\]\n\n\\(f(x)=\\sin(x)\\)\n\\(g(x) = x^2 +5\\)\n\\(h(x) = \\exp{2x}\\)\n\\(i(x) = \\sin(\\pi x)\\)\n\\(j(x) = x^2 + 5\\)\n\\(k(x) = \\sqrt x\\)\n\nYou are not allowed to store values, but you may create and store functions."
+    "objectID": "lectures/7aS25.html#maximizing-function-using-optim",
+    "href": "lectures/7aS25.html#maximizing-function-using-optim",
+    "title": "Linear Regression",
+    "section": "Maximizing function using optim",
+    "text": "Maximizing function using optim\nFind the value of \\(\\lambda\\) that maximize the following function:\n\\[\n\\ell(\\lambda) = \\sum^n_{i=1} -\\lambda+X_i\\log(\\lambda) -\\log(X_i!)\n\\]\nwith the following data:\n\nz &lt;- rpois(1000, lambda = 2)"
   },
   {
-    "objectID": "hw/hw3S25.html#problem-3",
-    "href": "hw/hw3S25.html#problem-3",
-    "title": "Homework 3",
-    "section": "Problem 3",
-    "text": "Problem 3\nFrom the penguins data set from palmerpenguins package, create a new variable indicating if the penguin’s flipper length (flipper_length_mm) is greater than the average flipper length. Afterwards, group by the new variable and find the mean body_mass_g."
+    "objectID": "lectures/7aS25.html#fit-a-linear-model-using-optim",
+    "href": "lectures/7aS25.html#fit-a-linear-model-using-optim",
+    "title": "Linear Regression",
+    "section": "Fit a linear model using optim",
+    "text": "Fit a linear model using optim\nMinimize:\n\\[\n\\sum^n_{i=1}(y_i-\\hat y_i)^2\n\\]\n\\[\n\\hat y_i = \\hat \\beta_0 +\\hat\\beta_1 x_i\n\\]\nData:\n\nx &lt;- rpois(500, 6)\ny &lt;- -9 * x + 32 + rnorm(500, sd = sqrt(2))"
   },
   {
-    "objectID": "hw/hw3S25.html#problem-4",
-    "href": "hw/hw3S25.html#problem-4",
-    "title": "Homework 3",
-    "section": "Problem 4",
-    "text": "Problem 4\nFrom the penguins data set from palmerpenguins package, find the mean and standard deviation of flipper_length_mm by species."
+    "objectID": "lectures/8bS25.html#learning-outcomes",
+    "href": "lectures/8bS25.html#learning-outcomes",
+    "title": "Hypothesis Testing",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\n\nHypothesis Tests\nModel Inference"
   },
   {
-    "objectID": "hw/hw3S25.html#problem-5",
-    "href": "hw/hw3S25.html#problem-5",
-    "title": "Homework 3",
-    "section": "Problem 5",
-    "text": "Problem 5\nUsing the vector random_dates generated from the code below:\n\n# Set the start and end dates\nstart_date &lt;- as.POSIXct(\"2022-01-01 00:00:00\")\nend_date &lt;- as.POSIXct(\"2022-12-31 23:59:59\")\n\n# Generate a vector of random dates and times between the start and end dates\nrandom_dates &lt;- as.POSIXct(runif(10, start_date, end_date), origin = \"1970-01-01\")\n\n# Print the vector of random dates and times\nrandom_dates\n\nUse sapply() to determine what day of the week (in words) does the date represent. Hint: Look at the wday function from lubridate."
+    "objectID": "lectures/8bS25.html#hypothesis-tests-1",
+    "href": "lectures/8bS25.html#hypothesis-tests-1",
+    "title": "Hypothesis Testing",
+    "section": "Hypothesis Tests",
+    "text": "Hypothesis Tests\nHypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the Null and Alternative Hypothesis."
   },
   {
-    "objectID": "hw/hw4S25.html",
-    "href": "hw/hw4S25.html",
-    "title": "Homework 4",
-    "section": "",
-    "text": "Due 3/10/25 @ 11:59 PM\nSubmit the *.html file to canvas.\nAnswer the following problems from the Statistical Learning Book:\nFrom Section 2.4: 1, 2, 4, 5, 6"
+    "objectID": "lectures/8bS25.html#null-hypothesis-h_0",
+    "href": "lectures/8bS25.html#null-hypothesis-h_0",
+    "title": "Hypothesis Testing",
+    "section": "Null Hypothesis \\(H_0\\)",
+    "text": "Null Hypothesis \\(H_0\\)\nThe null hypothesis is the claim that is initially believed to be true. For the most part, it is always equal to the hypothesized value."
   },
   {
-    "objectID": "hw/hw1.html",
-    "href": "hw/hw1.html",
-    "title": "Homework 1",
-    "section": "",
-    "text": "Due 2/6/25 @ 11:59 PM\nYou must comment all your code to receive credit.\nSubmit the *.html file to canvas.\nFor all problems, you must use at least one for or while loop."
+    "objectID": "lectures/8bS25.html#alternative-hypothesis-h_a",
+    "href": "lectures/8bS25.html#alternative-hypothesis-h_a",
+    "title": "Hypothesis Testing",
+    "section": "Alternative Hypothesis \\(H_a\\)",
+    "text": "Alternative Hypothesis \\(H_a\\)\nThe alternative hypothesis contradicts the null hypothesis."
   },
   {
-    "objectID": "hw/hw1.html#problem-1",
-    "href": "hw/hw1.html#problem-1",
-    "title": "Homework 1",
-    "section": "Problem 1",
-    "text": "Problem 1\nUsing the following code:\n\nx &lt;- matrix(rnorm(1500), nrow = 10)\n\nWrite the code to produce the output if you use the rowMeans() on the R object x."
+    "objectID": "lectures/8bS25.html#example-of-null-and-alternative-hypothesis",
+    "href": "lectures/8bS25.html#example-of-null-and-alternative-hypothesis",
+    "title": "Hypothesis Testing",
+    "section": "Example of Null and Alternative Hypothesis",
+    "text": "Example of Null and Alternative Hypothesis\nWe want to see if \\(\\mu\\) is different from \\(\\mu_0\\)\n\n\n\nNull Hypothesis\nAlternative Hypothesis\n\n\n\n\n\\(H_0: \\mu=\\mu_0\\)\n\\(H_a: \\mu\\ne\\mu_0\\)\n\n\n\\(H_0: \\mu\\le\\mu_0\\)\n\\(H_a: \\mu&gt;\\mu_0\\)\n\n\n\\(H_0: \\mu\\ge\\mu_0\\)\n\\(H_0: \\mu&lt;\\mu_0\\)"
   },
   {
-    "objectID": "hw/hw1.html#problem-2",
-    "href": "hw/hw1.html#problem-2",
-    "title": "Homework 1",
-    "section": "Problem 2",
-    "text": "Problem 2\nUsing the following code:\n\ny &lt;- matrix(sample(1:400, 100, replace = T), nrow = 10)\n\nFind the median value for each column of the matrix y."
+    "objectID": "lectures/8bS25.html#one-side-vs-two-side-hypothesis-tests",
+    "href": "lectures/8bS25.html#one-side-vs-two-side-hypothesis-tests",
+    "title": "Hypothesis Testing",
+    "section": "One-Side vs Two-Side Hypothesis Tests",
+    "text": "One-Side vs Two-Side Hypothesis Tests\nNotice how there are 3 types of null and alternative hypothesis, The first type of hypothesis (\\(H_a:\\mu\\ne\\mu_0\\)) is considered a 2-sided hypothesis because the rejection region is located in 2 regions. The remaining two hypotheses are considered 1-sided because the rejection region is located on one side of the distribution.\n\n\n\nNull Hypothesis\nAlternative Hypothesis\nSide\n\n\n\n\n\\(H_0: \\mu=\\mu_0\\)\n\\(H_a: \\mu\\ne\\mu_0\\)\n2-sided\n\n\n\\(H_0: \\mu\\le\\mu_0\\)\n\\(H_a: \\mu&gt;\\mu_0\\)\n1-sided\n\n\n\\(H_0: \\mu\\ge\\mu_0\\)\n\\(H_0: \\mu&lt;\\mu_0\\)\n1-sided"
   },
   {
-    "objectID": "hw/hw1.html#problem-3",
-    "href": "hw/hw1.html#problem-3",
-    "title": "Homework 1",
-    "section": "Problem 3",
-    "text": "Problem 3\nWrite the code that will generate the first 1000 numbers of the Fibonacci Sequence."
+    "objectID": "lectures/8bS25.html#common-hypothesis-tests",
+    "href": "lectures/8bS25.html#common-hypothesis-tests",
+    "title": "Hypothesis Testing",
+    "section": "Common Hypothesis Tests",
+    "text": "Common Hypothesis Tests\n\n\n\n\n\n\n\n\n\n\n\n\nTest\n# of Samples\nNull Hypothesis\nDistribution\nDF\nTest Statistics\nNotes\n\n\n\n\nt-test\n1\n\\(\\mu=\\mu_0\\)\n\\(t_{DF}\\)\n\\(DF=n-1\\)\n\\(\\frac{\\bar X-\\mu_0}{\\sqrt{s^2/n}}\\)\n\\(n&lt;30\\)\n\n\nz-test\n1\n\\(\\mu=\\mu_0\\)\n\\(N(0,1)\\)\nNone\n\\(\\frac{\\bar X-\\mu_0}{\\sqrt{\\sigma^2/n}}\\)\n\\(n&gt;30\\) \\(\\sigma^2\\) known\n\n\nz-test\n1\n\\(\\mu=\\mu_0\\)\n\\(N(0,1)\\)\nNone\n\\(\\frac{\\bar X-\\mu_0}{\\sqrt{s^2/n}}\\)\n\\(n&gt;30\\) \\(\\sigma^2\\) unknown\n\n\npaired t-test\n2\n\\(\\mu_1-\\mu_2=D\\)\n\\(t_{DF}\\)\n\\(DF=n-1\\)\n\\(\\frac{\\bar X_d-D}{\\sqrt{s_d^2/n}}\\)\n\\(n\\) is the number of pairs\n\n\nindependent t-test\n2\n\\(\\mu_1-\\mu_2=D\\)\n\\(t_{DF}\\)\n\\(DF=n_1+n_2-2\\)\n\\(\\frac{\\bar X_1-\\bar X_2-D}{\\sqrt{s_p^2(1/n_1+1/n_2)}}\\)\n\\(s_p^2=\\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\\)\n\n\nindependent t-test\n2\n\\(\\mu_1-\\mu_2=D\\)\n\\(t_{DF}\\)\n\\(DF=\\frac{(s^2_1/n_1+s^2_2/n_2)^2}{(s^2_1/n_1)^2/(n_1-1)+(s^2_2/n_2)^2/(n_2-1)}\\)\n\\(\\frac{\\bar X_1-\\bar X_2-D}{\\sqrt{s_1^2/n_1+s^2_2/n_2}}\\)\n\n\n\nANOVA\n&gt;2\n\\(\\mu_1=\\mu_2=\\cdots=\\mu_k\\)\n\\(F_{DF1,DF2}\\)"
   },
   {
-    "objectID": "hw/hw1.html#problem-4",
-    "href": "hw/hw1.html#problem-4",
-    "title": "Homework 1",
-    "section": "Problem 4",
-    "text": "Problem 4\nWrite a function for the following equation:\n\\[\nf(x, y, z) =\\left\\{\\begin{array}{cc}\nx^2+\\sqrt y & z  = 0 \\\\\nx^2+2x+3+ \\log(y) & z = 1\n\\end{array}\\right.\n\\]\nInclude any error messages if necessary."
+    "objectID": "lectures/8bS25.html#decision-making-p-value",
+    "href": "lectures/8bS25.html#decision-making-p-value",
+    "title": "Hypothesis Testing",
+    "section": "Decision Making: P-Value",
+    "text": "Decision Making: P-Value\nThe p-value approach is one of the most common methods to report significant results. It is easier to interpret the p-value because it provides the probability of observing our test statistics, or something more extreme, given that the null hypothesis is true. Depending on the type of test, your p-value may be constructed as:\n\n\n\nAlternative Hypothesis\np-value\n\n\n\n\n\\(\\mu&gt;\\mu_0\\)\n\\(P(X&gt;T(x))=p\\)\n\n\n\\(\\mu&lt;\\mu_0\\)\n\\(P(X&lt;T(x))=p\\)\n\n\n\\(\\mu\\ne\\mu_0\\)\n\\(2\\times P(X&gt;|T(X)|)=p\\)\n\n\n\nIf \\(p &lt; \\alpha\\), then you reject \\(H_0\\); otherwise, you will fail to reject \\(H_0\\)."
   },
   {
-    "objectID": "hw/hw1.html#problem-5",
-    "href": "hw/hw1.html#problem-5",
-    "title": "Homework 1",
-    "section": "Problem 5",
-    "text": "Problem 5\nCreate a function that will give you the first x Fibonacci numbers. You must use a for loop."
+    "objectID": "lectures/8bS25.html#decision-making-confidence-interval-approach",
+    "href": "lectures/8bS25.html#decision-making-confidence-interval-approach",
+    "title": "Hypothesis Testing",
+    "section": "Decision Making: Confidence Interval Approach",
+    "text": "Decision Making: Confidence Interval Approach\nThe confidence interval approach can evaluate a hypothesis test where the alternative hypothesis is \\(\\mu\\ne\\mu_0\\). For this approach you will construct a \\((1-\\alpha)100\\%\\) confidence interval as\n\\[\nPE \\pm CV *SE\n\\]\nwhere PE is the point estimate, CV is the critical value based on \\(\\alpha\\) and SE is the standard error. This will result in a lower and upper bound denoted as: \\((LB, UB)\\). The confidence intervals provides a range values to capture the parameter \\(\\mu\\) such that if you repeat this process \\(n\\) times, \\((1-\\alpha)100\\%\\) of \\(n\\) will capture the true value of \\(\\mu\\). If \\(\\mu_0 \\in (LB,UB)\\), then you fail to reject \\(H_0\\). If \\(\\mu_0\\notin (LB,UB)\\), then you reject \\(H_0\\)."
   },
   {
-    "objectID": "hw/hw5S25.html",
-    "href": "hw/hw5S25.html",
-    "title": "Homework 5",
-    "section": "",
-    "text": "Due 4/15/25 @ 11:59 PM\nSubmit the *.html file to canvas."
+    "objectID": "lectures/8bS25.html#testing-beta_j",
+    "href": "lectures/8bS25.html#testing-beta_j",
+    "title": "Hypothesis Testing",
+    "section": "Testing \\(\\beta_j\\)",
+    "text": "Testing \\(\\beta_j\\)\n\\[\n\\frac{\\hat\\beta_j-\\theta}{\\mathrm{se}(\\hat\\beta_j)} \\sim t_{n-p^\\prime}\n\\]"
   },
   {
-    "objectID": "hw/hw5S25.html#problem-1",
-    "href": "hw/hw5S25.html#problem-1",
-    "title": "Homework 5",
-    "section": "Problem 1",
-    "text": "Problem 1\nThe faithful data set in R contains information on eruptions time and waiting time. Describe the relationship between waiting (independent) and eruptions (dependent).\nYou must provide descriptive statistics, visuals, and model."
+    "objectID": "lectures/8bS25.html#confidence-intervals",
+    "href": "lectures/8bS25.html#confidence-intervals",
+    "title": "Hypothesis Testing",
+    "section": "Confidence Intervals",
+    "text": "Confidence Intervals\n\\[\n\\hat \\beta_j \\pm CV \\times se(\\hat\\beta_j)\n\\]\n\nCV: Critical Value \\(P(X&lt;CV) = 1-\\alpha/2\\)\n\\(\\alpha\\): significance level\nSE: Standard Error"
   },
   {
-    "objectID": "hw/hw5S25.html#problem-2",
-    "href": "hw/hw5S25.html#problem-2",
-    "title": "Homework 5",
-    "section": "Problem 2",
-    "text": "Problem 2\nWhen estimating the \\(\\beta\\) coefficients, we are minimizing the sum of squared errors:\n\\[\n\\sum^n_{i=1}(y_i-(\\beta_0+\\beta_1x_i))^2\n\\]\nWe square the errors to make sure we do not lose information when summing up all the values. However, what if we try to use an absolute value:\n\\[\n\\sum^n_{i=1}|y_i-(\\beta_0+\\beta_1x_i)|\n\\]\nSimulate a data set, estimate the coefficients, and compare the results. Are they the same or different?"
+    "objectID": "lectures/8bS25.html#model-inference-1",
+    "href": "lectures/8bS25.html#model-inference-1",
+    "title": "Hypothesis Testing",
+    "section": "Model inference",
+    "text": "Model inference\nWe conduct model inference to determine if different models are better at explaining variation. A common example is to compare a linear model (\\(\\hat Y=\\hat\\beta_0 + \\hat\\beta_1 X\\)) to the mean of Y (\\(\\hat \\mu_y\\)). We determine the significance of the variation explained using an Analysis of Variance (ANOVA) table and F test."
   },
   {
-    "objectID": "hw/hw5S25.html#problem-3",
-    "href": "hw/hw5S25.html#problem-3",
-    "title": "Homework 5",
-    "section": "Problem 3",
-    "text": "Problem 3\nConduct a simulation assessing which case from problem 2 is better.\nTo assess which case is better compare the mean and standard deviations of the simulated-estimated coefficients."
+    "objectID": "lectures/8bS25.html#anova-table",
+    "href": "lectures/8bS25.html#anova-table",
+    "title": "Hypothesis Testing",
+    "section": "ANOVA Table",
+    "text": "ANOVA Table\n\n\n\n\n\n\n\n\n\n\nSource\nDF\nSS\nMS\nF\n\n\n\n\nModel\n\\(DFR=k-1\\)\n\\(SSR\\)\n\\(MSR=\\frac{SSM}{DFR}\\)\n\\(\\hat F=\\frac{MSR}{MSE}\\)\n\n\nError\n\\(DFE=n-k\\)\n\\(SSE\\)\n\\(MSE=\\frac{SSE}{DFE}\\)\n\n\n\nTotal\n\\(TDF=n-1\\)\n\\(TSS=SSR+SSE\\)\n\n\n\n\n\n\\[\n\\hat F \\sim F(DFR, DFE)\n\\]"
   },
   {
-    "objectID": "hw/hw5S25.html#problem-4",
-    "href": "hw/hw5S25.html#problem-4",
-    "title": "Homework 5",
-    "section": "Problem 4",
-    "text": "Problem 4\nRun the code below to obtain the data:\n\nlibrary(tidyverse)\nanime &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-04-23/tidy_anime.csv\") |&gt; filter(!type == \"Unknown\") |&gt; as.data.frame()\n\nThe anime data set from MyAnimeList contains information on rankings and popularity scores of different anime episodes.\nFit a linear model showing the relationship between score (outcome; higher is better) and the predictors type, popularity, and rank. On average, what is the score for an anime that is a “Special”, popularity score of 520, and rank of 3582?"
+    "objectID": "lectures/8bS25.html#model-inference-2",
+    "href": "lectures/8bS25.html#model-inference-2",
+    "title": "Hypothesis Testing",
+    "section": "Model Inference",
+    "text": "Model Inference\nGiven:\n\\[\nM1:\\ \\hat y = \\beta_0 + \\beta_1 X_1 + \\beta_2 X_2\n\\]\n\\[\nM2:\\ \\hat y = \\beta_0 + \\beta_1 X_1  \n\\]\nLet \\(M1\\) be the FULL (larger) model, and let \\(M2\\) be the RED (Reduced, smaller) model."
   },
   {
-    "objectID": "hw/hw5S25.html#problem-5",
-    "href": "hw/hw5S25.html#problem-5",
-    "title": "Homework 5",
-    "section": "Problem 5",
-    "text": "Problem 5\nRun this code below to obtain the data (you may need to install tidytuesdayR):\n\nlibrary(tidyverse)\ntuesdata &lt;- tidytuesdayR::tt_load(2021, week = 52)\nstarbucks &lt;- tuesdata$starbucks |&gt; drop_na() |&gt; filter(size %in% c(\"tall\", \"grande\", \"venti\"))\n\nFit a linear model between the outcome caffeine_mg (outcome) and predictors size, calories, and sugar_g from the starbucks data set using the matrix formulation approach (do matrix algebra) by defining the \\(X\\) matrix. Use tall as the reference value for the size variable."
+    "objectID": "lectures/8bS25.html#model-inference-3",
+    "href": "lectures/8bS25.html#model-inference-3",
+    "title": "Hypothesis Testing",
+    "section": "Model Inference",
+    "text": "Model Inference\nHe can test the following Hypothesis:\n\n\\(H_0\\): The error variations between the FULL and RED model are not different.\n\\(H_1\\): The error variations between the FULL and RED model are different."
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html",
-    "href": "files/r-scripts/MultLRCode.html",
-    "title": "MultLR",
-    "section": "",
-    "text": "Looking at the penguins from palmerpenguins, fit a model between body_mass_g as an outcome variable and flipper_length_mm and bill_length_mm as predictor variables.\n\nlibrary(palmerpenguins)\npenguins |&gt;  lm(body_mass_g ~ flipper_length_mm + bill_length_mm, \n                data = _)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + bill_length_mm, \n    data = penguins)\n\nCoefficients:\n      (Intercept)  flipper_length_mm     bill_length_mm  \n        -5736.897             48.145              6.047  \n\n\n\nunique(penguins$island)\n\n[1] Torgersen Biscoe    Dream    \nLevels: Biscoe Dream Torgersen"
+    "objectID": "lectures/8bS25.html#test-statistic",
+    "href": "lectures/8bS25.html#test-statistic",
+    "title": "Hypothesis Testing",
+    "section": "Test Statistic",
+    "text": "Test Statistic\n\\[\n\\hat F = \\frac{[SSE(RED) - SSE(FULL)]/[DFE(RED)-DFE(FULL)]}{MSE(FULL)}\n\\]\n\\[\n\\hat F \\sim F[DFE(RED) - DFE(FULL), DFE(FULL)]\n\\]"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#example",
-    "href": "files/r-scripts/MultLRCode.html#example",
-    "title": "MultLR",
-    "section": "",
-    "text": "Looking at the penguins from palmerpenguins, fit a model between body_mass_g as an outcome variable and flipper_length_mm and bill_length_mm as predictor variables.\n\nlibrary(palmerpenguins)\npenguins |&gt;  lm(body_mass_g ~ flipper_length_mm + bill_length_mm, \n                data = _)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + bill_length_mm, \n    data = penguins)\n\nCoefficients:\n      (Intercept)  flipper_length_mm     bill_length_mm  \n        -5736.897             48.145              6.047  \n\n\n\nunique(penguins$island)\n\n[1] Torgersen Biscoe    Dream    \nLevels: Biscoe Dream Torgersen"
+    "objectID": "lectures/8bS25.html#sample-t-test",
+    "href": "lectures/8bS25.html#sample-t-test",
+    "title": "Hypothesis Testing",
+    "section": "1-Sample t-test",
+    "text": "1-Sample t-test\nThis can be conducted as \\(Y=\\beta_0\\)\nTest the following hypothesis: \\(H_0:\\ \\beta_0 = 205\\) OR \\(H_0: \\mu = 205\\)\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\npenguins &lt;- penguins |&gt; drop_na()\nxlm &lt;- penguins  |&gt;  lm(flipper_length_mm ~ 1, data = _)\ncoef(xlm)\nconfint(xlm)\n\n## OR\nt.test(penguins$flipper_length_mm, mu = 205)"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#fitting-a-model-with-categorical-variables",
-    "href": "files/r-scripts/MultLRCode.html#fitting-a-model-with-categorical-variables",
-    "title": "MultLR",
-    "section": "Fitting a model with categorical variables",
-    "text": "Fitting a model with categorical variables\nLooking at the penguins from palmerpenguins, fit a model between body_mass_g as an outcome variable and flipper_length_mm and islands as predictor variables.\n\nlibrary(palmerpenguins)\npenguins |&gt;  lm(body_mass_g ~ flipper_length_mm + island,\n                data = _)\n\n\nCall:\nlm(formula = body_mass_g ~ flipper_length_mm + island, data = penguins)\n\nCoefficients:\n      (Intercept)  flipper_length_mm        islandDream    islandTorgersen  \n         -4624.98              44.54            -262.18            -185.13  \n\n\n\n#penguins &lt;- penguins |&gt; \n # mutate(island_dream = relevel(island , ref = \"Dream\"))\n#penguins |&gt; lm(body_mass_g ~ flipper_length_mm + island_dream, \n#               data = _)\n\n\n#library(tidyverse)\n#penguins|&gt;ggplot(aes(body_mass_g,island))+geom_boxplot()\n\n\nx1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error"
+    "objectID": "lectures/8bS25.html#sample-t-test-1",
+    "href": "lectures/8bS25.html#sample-t-test-1",
+    "title": "Hypothesis Testing",
+    "section": "2-Sample t-test",
+    "text": "2-Sample t-test\nThis can be conducted as \\(Y=\\beta_0 + \\beta_1 X\\), where \\(X\\) is a binary variable for 2 samples.\nTest the following hypothesis: \\(H_0:\\ \\beta_1 = 0\\) OR \\(H_0: \\mu_1-\\mu_2 = 0\\)\n\nmtcars |&gt; lm(mpg ~ vs, data = _) |&gt; summary()\n\n## OR\n\nmtcars |&gt; t.test(mpg ~ vs, data = _)"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#fit-model",
-    "href": "files/r-scripts/MultLRCode.html#fit-model",
-    "title": "MultLR",
-    "section": "Fit Model",
-    "text": "Fit Model\nFit a model between \\(Y\\) and \\(X_1\\).\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does \\(\\beta_1\\) get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta_1&lt;-rep(0,1000)\nsd&lt;-rep(0,1000)\nfor (i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nslm&lt;-lm(y~x1)\nbeta_1[i]&lt;-coef(slm)[2]\nsd[i]&lt;-sigma(slm)}\n\nmean(beta_1)\n\n[1] 2.00159\n\nmean(sd)\n\n[1] 4.469791"
+    "objectID": "lectures/8bS25.html#paired-t-test",
+    "href": "lectures/8bS25.html#paired-t-test",
+    "title": "Hypothesis Testing",
+    "section": "Paired t-test",
+    "text": "Paired t-test\nThis can be conducted as \\(Y_1 - Y_2=\\beta_0\\)\nTest the following hypothesis: \\(H_0:\\ \\beta_0 = 0\\) OR \\(H_0: \\mu_1 - \\mu_2 = 0\\)\n\n# DATA PREP\nbefore &lt;-c(200.1, 190.9, 192.7, 213, 241.4, 196.9, 172.2, 185.5, 205.2, 193.7)\nafter &lt;-c(392.9, 393.2, 345.1, 393, 434, 427.9, 422, 383.9, 392.3, 352.2)\ndf &lt;- data.frame(before, after)\n\ndf |&gt; lm(after - before ~ 1, data = _) |&gt; (\\(x) c(coef(x), confint(x)))()\n## OR\ndf |&gt; with(t.test(before, after, paired = T))"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#mlr-model",
-    "href": "files/r-scripts/MultLRCode.html#mlr-model",
-    "title": "MultLR",
-    "section": "MLR Model",
-    "text": "MLR Model\nInstead of fitting a simple linear regression model. Fit a model that will include predictor \\(X_2\\). This can be done by adding \\(X_2\\) in R:\n\nbeta&lt;-matrix(rep(0,3000),1000,3)\ndim(beta)\n\n[1] 1000    3\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\n  x1 &lt;- rnorm(1000, 2, 1)\nx2&lt;- rnorm(1000,-4,1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*x1+4*x2+error\nmlr&lt;-lm(y ~ x1 + x2)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 3.001482 1.998921 4.000578\n\n  mean(sd_mlr)\n\n[1] 1.998227\n\n\nModify your simulation study and see what happens to \\(\\beta_1\\) and the model variance."
+    "objectID": "lectures/8bS25.html#anova",
+    "href": "lectures/8bS25.html#anova",
+    "title": "Hypothesis Testing",
+    "section": "ANOVA",
+    "text": "ANOVA\nThis can be conducted as \\(Y=\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_k X_k\\), where \\(X_k\\) are binary variable for k samples.\nTest the following hypothesis: \\(H_0:\\ \\beta_1 =\\beta_2 =\\cdots=\\beta_k = 0\\) OR \\(H_0: \\mu_1 =\\mu_2 =\\cdots=\\mu_k = 0\\)\n\npenguins |&gt; lm(flipper_length_mm ~ species, data = _) |&gt; anova()\n\n## OR\n\npenguins |&gt; aov(flipper_length_mm ~ species, data = _) |&gt; anova()"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#simulation-study-2",
-    "href": "files/r-scripts/MultLRCode.html#simulation-study-2",
-    "title": "MultLR",
-    "section": "Simulation Study 2",
-    "text": "Simulation Study 2\nSimulate 1000 random variables from the following model:\nY=3+2log(X1)+ϵ\n\nX1∼N(8,1)\nϵ∼N(0,2)\n\n\nx1 &lt;- rnorm(1000, 8, 1)\n\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error"
+    "objectID": "lectures/8bS25.html#individual-hypothesis-testing",
+    "href": "lectures/8bS25.html#individual-hypothesis-testing",
+    "title": "Hypothesis Testing",
+    "section": "Individual Hypothesis Testing",
+    "text": "Individual Hypothesis Testing\n\npenguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm + species, data = _) |&gt; \n  summary()"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#fit-model-1",
-    "href": "files/r-scripts/MultLRCode.html#fit-model-1",
-    "title": "MultLR",
-    "section": "Fit Model",
-    "text": "Fit Model\nFit a model between Y and X1.\nRepeat the process 1000 times. and answer the following questions:\n\nOn average does β1 get estimated correctly? Why?\nWhat is the average model variance?\n\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ x1)\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 5.1178660 0.2533011\n\n  mean(sd_mlr)\n\n[1] 1.998658"
+    "objectID": "lectures/8bS25.html#model-inference-4",
+    "href": "lectures/8bS25.html#model-inference-4",
+    "title": "Hypothesis Testing",
+    "section": "Model Inference",
+    "text": "Model Inference\n\nxlm &lt;- penguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm + species, data = _) \n\nsummary(xlm)\nanova(xlm)\n\n## OR\n\nxlm_null &lt;- penguins |&gt; lm(body_mass_g ~ 1, data = _)\nanova(xlm_null, xlm)\n\n## OR\n\nlibrary(supernova)\nsupernova(xlm)"
   },
   {
-    "objectID": "files/r-scripts/MultLRCode.html#slr-model",
-    "href": "files/r-scripts/MultLRCode.html#slr-model",
-    "title": "MultLR",
-    "section": "SLR Model",
-    "text": "SLR Model\nFit a simple linear regression model using log(X1) instead.\nlm(y ~ log(x1))\nModify your simulation study and see what happens to β1β1 and the model variance.\n\nbeta&lt;-matrix(rep(0,2000),1000,2)\ndim(beta)\n\n[1] 1000    2\n\n  sd_mlr&lt;-rep(0,1000)\nfor(i in 1:1000){\nx1 &lt;- rnorm(1000, 8, 1)\nerror&lt;-rnorm(1000,0,2)\n\ny&lt;-rep(0,length(x1))\ny&lt;-3+2*log(x1)+error\nmlr&lt;-lm(y ~ log(x1))\nbeta[i,] &lt;- coef(mlr)\n#beta\nsd_mlr[i]&lt;-sigma(mlr)\n#sd_mlr\n}\n  colMeans(beta)\n\n[1] 2.950832 2.024385\n\n  mean(sd_mlr)\n\n[1] 1.999555\n\n\n\n# library(palmerpenguins)\n# clean_penguins &lt;- penguins|&gt;\n#   drop_na()\n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)\n\n\n# library(palmerpenguins)\n# library(dplyr)\n# clean_penguins &lt;- penguins|&gt;drop_na()\n# \n# clean_penguins_d&lt;-dummy_columns(clean_penguins,select_columns = \"island\")\n# \n# head(clean_penguins_d)\n# \n# X &lt;- cbind(rep(1, length(clean_penguins$flipper_length_mm)), clean_penguins$flipper_length_mm, clean_penguins$bill_length_mm)\n# \n# head(X)\n# \n# beta&lt;- solve(t(X)%*%X) %*% t(X) %*% clean_penguins$body_mass_g\n# beta\n# \n# penguins_lm&lt;-lm(clean_penguins$body_mass_g~clean_penguins$flipper_length_mm+clean_penguins$bill_length_mm)\n# \n# coef(penguins_lm)"
-  },
-  {
-    "objectID": "files/r-scripts/template.html#problem-2",
-    "href": "files/r-scripts/template.html#problem-2",
-    "title": "Title",
-    "section": "Problem 2",
-    "text": "Problem 2"
-  },
-  {
-    "objectID": "files/r-scripts/template.html#problem-3",
-    "href": "files/r-scripts/template.html#problem-3",
-    "title": "Title",
-    "section": "Problem 3",
-    "text": "Problem 3"
-  },
-  {
-    "objectID": "files/Hw.html",
-    "href": "files/Hw.html",
-    "title": "HW 1",
-    "section": "",
-    "text": "This is easy"
-  },
-  {
-    "objectID": "files/Hw.html#problem-1",
-    "href": "files/Hw.html#problem-1",
-    "title": "HW 1",
-    "section": "",
-    "text": "This is easy"
-  },
-  {
-    "objectID": "files/Hw.html#problem-2",
-    "href": "files/Hw.html#problem-2",
-    "title": "HW 1",
-    "section": "Problem 2",
-    "text": "Problem 2\nThis is also easy"
-  },
-  {
-    "objectID": "files/Hw.html#problem-3",
-    "href": "files/Hw.html#problem-3",
-    "title": "HW 1",
-    "section": "Problem 3 —",
-    "text": "Problem 3 —"
-  },
-  {
-    "objectID": "hw.html",
-    "href": "hw.html",
-    "title": "Homework",
-    "section": "",
-    "text": "Homework 1\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\n\nFeb 12, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\n\nFeb 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 4\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 5\n\n\n\n\n\n\n\n\n\n\n\nApr 15, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "lectures/4aS25.html#re-install",
-    "href": "lectures/4aS25.html#re-install",
-    "title": "*apply Functions",
-    "section": "Re Install",
-    "text": "Re Install\n\ncsucistats\n\n\ninstall.packages('csucistats', \n  repos = c('https://inqs909.r-universe.dev', \n  'https://cloud.r-project.org'))"
-  },
-  {
-    "objectID": "lectures/4aS25.html#learning-objectives",
-    "href": "lectures/4aS25.html#learning-objectives",
-    "title": "*apply Functions",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\n*apply()\napply()\nlapply()\nsapply\nmapply()\ntapply()"
-  },
-  {
-    "objectID": "lectures/4aS25.html#apply-1",
-    "href": "lectures/4aS25.html#apply-1",
-    "title": "*apply Functions",
-    "section": "*apply()",
-    "text": "*apply()\nThe *apply() functions are a set of functions that completes iterative tasks to each element of an R object."
-  },
-  {
-    "objectID": "lectures/4aS25.html#apply-3",
-    "href": "lectures/4aS25.html#apply-3",
-    "title": "*apply Functions",
-    "section": "apply()",
-    "text": "apply()\nThe apply function returns a vector, array, or list of values by applying a function to the margins of an array. You will need to specify the following arguments:\n\nX: an array to be indexed and applied\nMARGIN: specifyng which index(es) to subset by\nFUN: function to be applied\n…: further arguments to be applied to FUN, must be labeled\n\n\napply(X, MARGIN, FUN, ...)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example",
-    "href": "lectures/4aS25.html#example",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nFind the standard deviation of all the columns of the following matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 10)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-1",
-    "href": "lectures/4aS25.html#example-1",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nFind the \\(25th\\), \\(50th\\), and \\(75th\\) quartiles for each row of the following matrix:\n\nx &lt;- matrix(rnorm(1000), nrow = 20)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#lapply-1",
-    "href": "lectures/4aS25.html#lapply-1",
-    "title": "*apply Functions",
-    "section": "lapply()",
-    "text": "lapply()\nThe lapply function applies a function to all the elements of a vector or matrix, and it will return a list. You will need to specify the following arguments:\n\nX: object to be iterated\nFUN: a function to be applied\n…: further arguments to be passed along to FUN\n\n\nlapply(X, FUN, ...)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-2",
-    "href": "lectures/4aS25.html#example-2",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nCreate a function that returns a labeled list for with the following values: mean, standard deviation, median, max, and min."
-  },
-  {
-    "objectID": "lectures/4aS25.html#sapply-1",
-    "href": "lectures/4aS25.html#sapply-1",
-    "title": "*apply Functions",
-    "section": "sapply()",
-    "text": "sapply()\nThe sapply() function will apply a function to each element of a list or vector, and it will return a simplified object, vector, matrix, or array. The sapply() function uses 4 main arguments:\n\nX: a vector or list to be iterated\nFUN: a function to be applied\n…: arguments passed along to FUN, must be labeled\nsimplify: indicates how to simplify the function, defaults to n-dimensional array based on output\n\n\nsapply(X, FUN, ..., simplify = TRUE)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-3",
-    "href": "lectures/4aS25.html#example-3",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nUsing the vector below, compute the length of each string using sapply and str_length() from tidyverse\n\nfruits &lt;- c(\"apple\", \"banana\", \"cherry\", \"date\", \"elderberry\", \"fig\", \"grape\", \"honeydew\", \"kiwi\", \"lemon\")"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-4",
-    "href": "lectures/4aS25.html#example-4",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nUsing the list generated below, compute the mean of each element of the list using sapply.\n\n# Generate a list of 10 lists, each containing 5 random numbers\nlists &lt;- lapply(1:10, function(i) {\n  means &lt;- rpois(1, 3)\n  rnorm(5, means)\n})"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-5",
-    "href": "lectures/4aS25.html#example-5",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nUsing the vector below, use the sapply() to find \\(\\log(x)\\) for each value and return a matrix:\n\nnumbers &lt;- 4:400"
-  },
-  {
-    "objectID": "lectures/4aS25.html#mapply-1",
-    "href": "lectures/4aS25.html#mapply-1",
-    "title": "*apply Functions",
-    "section": "mapply()",
-    "text": "mapply()\nThe mapply() is the multivariate function of sapply(). The mapply() function has 3 major arguments:\n\nFUN: function applied to data\n…: arguments to be iterated, must be labeled.\nMoreArgs: A list containing other arguments that are necessary to FUN\n\n\nmapply(FUN, ..., MoreArgs = NULL)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-6",
-    "href": "lectures/4aS25.html#example-6",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nLet x and y be two vectors, shown below, represent the x and y coordinates of a point. Using mapply(), compute the the distance between the points and the origin.\n\nx &lt;- c(2, 3, 4, 5)\ny &lt;- c(4, 6, 8, 10)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#tapply-1",
-    "href": "lectures/4aS25.html#tapply-1",
-    "title": "*apply Functions",
-    "section": "tapply()",
-    "text": "tapply()\nThe tapply() function will apply function to a group of values based on and indexed lists. It takes 3 arguments:\n\nX: a vector that can split\nINDEX: the index list made up of factors\nFUN: the function that will be applied\n…: further arguments to be passed to FUN\n\n\ntapply(X, INDEX, FUN = NULL, ...)"
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-7",
-    "href": "lectures/4aS25.html#example-7",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nUsing the penguins data set from the palmerpenguins package, compute the average bill_length_mm for each island."
-  },
-  {
-    "objectID": "lectures/4aS25.html#example-8",
-    "href": "lectures/4aS25.html#example-8",
-    "title": "*apply Functions",
-    "section": "Example",
-    "text": "Example\nThe vectors below provide the heights of different trees in the sample. Compute the median for each type of tree.\n\nheights &lt;- c(70, 72, 68, 65, 80, 75, 60, 68, 90, 72)\nspecies &lt;- c(\"maple\", \"oak\", \"pine\", \"maple\", \"oak\", \"pine\", \"maple\", \"oak\", \"pine\", \"maple\")"
-  },
-  {
-    "objectID": "lectures/3bS25.html#learning-objectives",
-    "href": "lectures/3bS25.html#learning-objectives",
-    "title": "Functions",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\n\nBuilt-in Functions\nUser-built functions\nExtensions\n\nThere are several available functions in R to conduct specific statistical methods or tasks"
-  },
-  {
-    "objectID": "lectures/3bS25.html#help-documentation",
-    "href": "lectures/3bS25.html#help-documentation",
-    "title": "Functions",
-    "section": "Help Documentation",
-    "text": "Help Documentation\n\n\n\n\n\n\n\nSection\nDescription\n\n\n\n\nDescription\nProvides a brief introduction of the function\n\n\nUsage\nProvides potential usage of the function\n\n\nArguments\nArguments that the function can take\n\n\nDetails\nAn in depth description of the function\n\n\nValue\nProvides information of the output produced by the function\n\n\nNotes\nAny need to know information about the function\n\n\nAuthors\nDevelopers of the function\n\n\nReferences\nReferences to the model and function\n\n\nSee Also\nProvide information of supporting functions\n\n\nExamples\nExamples of the function"
-  },
-  {
-    "objectID": "lectures/3bS25.html#generic-functions",
-    "href": "lectures/3bS25.html#generic-functions",
-    "title": "Functions",
-    "section": "Generic Functions",
-    "text": "Generic Functions\nSeveral R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as summary() and plot().\nFor example, the summary() is a generic for several types of functions: summary.aov(), summary.lm(), summary.glm(), and many more."
-  },
-  {
-    "objectID": "lectures/3bS25.html#commonly-used-function",
-    "href": "lectures/3bS25.html#commonly-used-function",
-    "title": "Functions",
-    "section": "Commonly-used Function",
-    "text": "Commonly-used Function\n\n\n\nFunctions\nDescription\n\n\n\n\naov()\nFits an ANOVA Model\n\n\nlm()\nFits a linear model\n\n\nglm()\nFits a general linear model\n\n\nt.test()\nConducts a t-test"
-  },
-  {
-    "objectID": "lectures/3bS25.html#user-built-functions-1",
-    "href": "lectures/3bS25.html#user-built-functions-1",
-    "title": "Functions",
-    "section": "User-built functions",
-    "text": "User-built functions\n\nFunctions created by the user for analysis\nNeeds to be ran once to the R environment\nWill be lost when R session is closed"
-  },
-  {
-    "objectID": "lectures/3bS25.html#anatomy",
-    "href": "lectures/3bS25.html#anatomy",
-    "title": "Functions",
-    "section": "Anatomy",
-    "text": "Anatomy\n\nname_of_function &lt;- function(data_1, data_2 = NULL, \n                             argument_1, argument_2 = TRUE, argument_3 = NULL,\n                             ...){\n  # Conduct Task\n  # Conduct Task\n  output_object &lt;- Tasks\n  return(output_object)\n}\n\n\n\nfunction: used to construct the function\ndata1: first data argument that needs to supplied\ndata2: second data argument that does not need to be supplied\nargument1: first argument must be supplied to alter function\nargument2: second argument to alter function, set to TRUE\nargument3: third argument that does not need to be supplied\n…: additional arguments supplied to other functions"
-  },
-  {
-    "objectID": "lectures/3bS25.html#example",
-    "href": "lectures/3bS25.html#example",
-    "title": "Functions",
-    "section": "Example",
-    "text": "Example\nCreate a function for\n\\[\ny = \\ln(x^2)\n\\]"
-  },
-  {
-    "objectID": "lectures/3bS25.html#example-1",
-    "href": "lectures/3bS25.html#example-1",
-    "title": "Functions",
-    "section": "Example",
-    "text": "Example\nCreate a function for\n\\[\nf(x) = \\left\\{\\begin{array}{cc}\nx^3 & x&lt;0\\\\\nx^2 + 5 & \\mathrm{otherwise}\n\\end{array} \\right.\n\\]"
-  },
-  {
-    "objectID": "lectures/3bS25.html#example-2",
-    "href": "lectures/3bS25.html#example-2",
-    "title": "Functions",
-    "section": "Example",
-    "text": "Example\nCreate a function for\n\\[\nf(x,y) = \\left\\{\\begin{array}{cc}\nx^3 e^y &  x&lt;0\\ \\\\\nx^2 + 5 + \\ln(y) & \\mathrm{otherwise}\n\\end{array} \\right.\n\\]"
-  },
-  {
-    "objectID": "lectures/3bS25.html#example-3",
-    "href": "lectures/3bS25.html#example-3",
-    "title": "Functions",
-    "section": "Example",
-    "text": "Example\nCreate the function that allows your to compute the z-score of a specific value x using the sampling distribution from a set of data (y vector):\n\\[\nz =  \\frac{x-\\bar y}{\\sqrt{s^2_{y}/n_y}}\n\\]"
-  },
-  {
-    "objectID": "lectures/3bS25.html#r-packages",
-    "href": "lectures/3bS25.html#r-packages",
-    "title": "Functions",
-    "section": "R Packages",
-    "text": "R Packages\nR Packages are used to utilize functions created from the community.\nInstallation\n\ninstall.packages(\"tidyverse\")\n\nLoading\n\nlibrary(tidyverse)"
-  },
-  {
-    "objectID": "lectures/3bS25.html#reticulate",
-    "href": "lectures/3bS25.html#reticulate",
-    "title": "Functions",
-    "section": "Reticulate",
-    "text": "Reticulate\nReticulate is an R package that allows you to utilize python within R."
-  },
-  {
-    "objectID": "lectures/3bS25.html#rcpp",
-    "href": "lectures/3bS25.html#rcpp",
-    "title": "Functions",
-    "section": "Rcpp",
-    "text": "Rcpp\nRcpp is an R package that allows you to call C++ programs in R.\nWe will compare variance functions written in cpp, user-built R, and built-in R.\nRcpp code:\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n// [[Rcpp::export]]\ndouble var_cpp(NumericVector x){\nint n = x.length();\nNumericVector pre(n);\ndouble mean_x = mean(x);\nfor (int i=0; i&lt;n; ++i){\n   pre[i] = pow(x[i]-mean_x, 2);\n}\nint divisor = n - 1;\ndouble post = sum(pre) / divisor;\nreturn post;\n}\n\nR code:\n\nvar_r &lt;- function(x){\n  sum((x-mean(x))^2) / (length(x)-1)\n}\n\nBenchmark Analysis\n\nx &lt;- rnorm(50)\nbench::mark(\nvar_cpp(x),\nvar_r(x),\nvar(x)\n)\n\n#&gt; # A tibble: 3 × 6\n#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`\n#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;\n#&gt; 1 var_cpp(x) 573.99ns 778.99ns  1165831.      448B    117. \n#&gt; 2 var_r(x)     1.76µs   2.01µs   427971.    23.7KB     85.6\n#&gt; 3 var(x)       2.21µs   2.42µs   397458.    15.3KB     79.5\n\n\n\nvar\n\n#&gt; function (x, y = NULL, na.rm = FALSE, use) \n#&gt; {\n#&gt;     if (missing(use)) \n#&gt;         use &lt;- if (na.rm) \n#&gt;             \"na.or.complete\"\n#&gt;         else \"everything\"\n#&gt;     na.method &lt;- pmatch(use, c(\"all.obs\", \"complete.obs\", \"pairwise.complete.obs\", \n#&gt;         \"everything\", \"na.or.complete\"))\n#&gt;     if (is.na(na.method)) \n#&gt;         stop(\"invalid 'use' argument\")\n#&gt;     if (is.data.frame(x)) \n#&gt;         x &lt;- as.matrix(x)\n#&gt;     else if (!is.null(x)) \n#&gt;         stopifnot(is.atomic(x))\n#&gt;     if (is.data.frame(y)) \n#&gt;         y &lt;- as.matrix(y)\n#&gt;     else if (!is.null(y)) \n#&gt;         stopifnot(is.atomic(y))\n#&gt;     .Call(C_cov, x, y, na.method, FALSE)\n#&gt; }\n#&gt; &lt;bytecode: 0x11bb50ed0&gt;\n#&gt; &lt;environment: namespace:stats&gt;\n\n\nThis is an extremely advanced topic. Only do this if you need real speed and efficiency."
-  },
-  {
-    "objectID": "lectures/3bS25.html#motivating-example",
-    "href": "lectures/3bS25.html#motivating-example",
-    "title": "Functions",
-    "section": "Motivating Example",
-    "text": "Motivating Example\n\\[\nf(x) = 2 x^3 - 20x -43\n\\]\n\n\nCode\nf &lt;- function(x) 2*x^3 - 20 * x - 43\nx &lt;- seq(-5,5, length.out = 100)\nplot(x, f(x), type = \"l\")\nabline(h=0)"
-  },
-  {
-    "objectID": "lectures/3bS25.html#finding-the-root",
-    "href": "lectures/3bS25.html#finding-the-root",
-    "title": "Functions",
-    "section": "Finding the Root",
-    "text": "Finding the Root\n\n\nCode\nf &lt;- function(x) 2*x^3 - 20 * x - 43\nx &lt;- seq(-5,5, length.out = 100)\nuniroot(f, lower = -5, upper = 5)\n\n\n#&gt; $root\n#&gt; [1] 3.932792\n#&gt; \n#&gt; $f.root\n#&gt; [1] -2.30166e-05\n#&gt; \n#&gt; $iter\n#&gt; [1] 7\n#&gt; \n#&gt; $init.it\n#&gt; [1] NA\n#&gt; \n#&gt; $estim.prec\n#&gt; [1] 6.103516e-05"
-  },
-  {
-    "objectID": "lectures/3bS25.html#bisection-method-1",
-    "href": "lectures/3bS25.html#bisection-method-1",
-    "title": "Functions",
-    "section": "Bisection Method",
-    "text": "Bisection Method\n\nBegin with an interval \\(a\\) and \\(b\\) and evaluate \\(f(a)\\) and \\(f(b)\\).\nIf \\(f(a)\\) and \\(f(b)\\) are opposite signs, calculate \\(c = \\frac{a+b}{2}\\) and \\(f(c)\\).\nIf \\(|f(c)|&lt;\\varepsilon\\), for a small \\(\\varepsilon\\), then stop the algorithm and \\(c\\) is the root.\nReplace \\((a,f(a))\\) or \\((b,f(b))\\) with \\((c, f(c))\\) so that the signs of \\(f( \\cdot )\\) is 0."
-  },
-  {
-    "objectID": "lectures/3bS25.html#bisection-code",
-    "href": "lectures/3bS25.html#bisection-code",
-    "title": "Functions",
-    "section": "Bisection Code",
-    "text": "Bisection Code\n\n\nCode\nf &lt;- function(x){2*x^3 - 20 * x - 43}\naa &lt;- -5\nbb &lt;- 5\ndiff &lt;- 10\ni &lt;- 0\nwhile(diff &gt; 1e-6){\n  faa &lt;- f(aa)\n  cc &lt;- (aa + bb) / 2\n  fcc &lt;- f(cc)\n  if (faa &lt; 0 & fcc &gt; 0){\n    bb &lt;- cc\n  } else {\n    aa &lt;- cc\n  }\n  diff &lt;- abs(fcc)\n  i &lt;- i + 1\n}\ni\ncc\nfcc"
-  },
-  {
-    "objectID": "lectures/1bS25.html#introduction-to-r",
-    "href": "lectures/1bS25.html#introduction-to-r",
-    "title": "R Basics",
-    "section": "Introduction to R",
-    "text": "Introduction to R"
-  },
-  {
-    "objectID": "lectures/1bS25.html#r-packages",
-    "href": "lectures/1bS25.html#r-packages",
-    "title": "R Basics",
-    "section": "R Packages",
-    "text": "R Packages\n\nCore PackagesCourse PackagesMisc Packages\n\n\n\nTidyverse\ncsucistats\n\n\ninstall.packages('csucistats', \n  repos = c('https://inqs909.r-universe.dev', \n  'https://cloud.r-project.org'))\n\n\n\n\n\n\nISLR2\nleaps\ngam\ntree\n\n\n\ngbm\ne1071\nglmnet\ntorch\n\n\n\n\n\nRMarkdown\nQuarto\nextraInserts (GitHub Package)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#load-r-package",
-    "href": "lectures/1bS25.html#load-r-package",
-    "title": "R Basics",
-    "section": "Load R Package",
-    "text": "Load R Package\n\nlibrary(tidyverse)\nlibrary(torch)\n\n\nYou must load packages every new R Session"
-  },
-  {
-    "objectID": "lectures/1bS25.html#r-as-a-calculator",
-    "href": "lectures/1bS25.html#r-as-a-calculator",
-    "title": "R Basics",
-    "section": "R as a calculator",
-    "text": "R as a calculator\nR can evaluate different expressions in the console tab.\nTry the following:\n\n\\(4(4+2)/34\\)\n\\(6^3\\)\n\\(3-1\\)\n\\(4+4/3+45(32*34-54)\\)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#r-calculator",
-    "href": "lectures/1bS25.html#r-calculator",
-    "title": "R Basics",
-    "section": "R Calculator",
-    "text": "R Calculator\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "lectures/1bS25.html#r-functions",
-    "href": "lectures/1bS25.html#r-functions",
-    "title": "R Basics",
-    "section": "R Functions",
-    "text": "R Functions\nR functions performs tasks to specific data values.\nEvaluate the following values in R:\n\n\\(\\sqrt{3}\\)\n\\(e^3\\)\n\\(\\ln(53)\\)\n\\(\\log(324)\\)\n\\(\\sin(3)\\)\n\\(\\sin(3\\pi)\\)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#r-functions-1",
-    "href": "lectures/1bS25.html#r-functions-1",
-    "title": "R Basics",
-    "section": "R Functions",
-    "text": "R Functions\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-data",
-    "href": "lectures/1bS25.html#types-of-data",
-    "title": "R Basics",
-    "section": "Types of Data",
-    "text": "Types of Data\n\nNumeric\nCharacter\nLogical\nMissing\n\nEvaluate the following code:\n\nis.numeric(1)\nis.numeric(\"1\")\nis.numeric(T)\nis.numeric(NA)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-data-1",
-    "href": "lectures/1bS25.html#types-of-data-1",
-    "title": "R Basics",
-    "section": "Types of Data",
-    "text": "Types of Data\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-objects",
-    "href": "lectures/1bS25.html#types-of-objects",
-    "title": "R Basics",
-    "section": "Types of Objects",
-    "text": "Types of Objects\nIn R, an object contains a set of data. The most common types are vectors and matrix.\nRun this code and print out the objects in the console:\n\nx &lt;- 3:34\ny &lt;- matrix(1:20, nrow = 4)"
-  },
-  {
-    "objectID": "lectures/1bS25.html#types-of-objects-1",
-    "href": "lectures/1bS25.html#types-of-objects-1",
-    "title": "R Basics",
-    "section": "Types of objects",
-    "text": "Types of objects\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
-  },
-  {
-    "objectID": "lectures/1bS25.html#data-frames",
-    "href": "lectures/1bS25.html#data-frames",
-    "title": "R Basics",
-    "section": "Data Frames",
-    "text": "Data Frames\nData frames can be thought of as R’s version of a data set.\nPlay around with mtcars:\n\nmtcars \n\n#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb\n#&gt; Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4\n#&gt; Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4\n#&gt; Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1\n#&gt; Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1\n#&gt; Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2\n#&gt; Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1\n#&gt; Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4\n#&gt; Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2\n#&gt; Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2\n#&gt; Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4\n#&gt; Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4\n#&gt; Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3\n#&gt; Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3\n#&gt; Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3\n#&gt; Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4\n#&gt; Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4\n#&gt; Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4\n#&gt; Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1\n#&gt; Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2\n#&gt; Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1\n#&gt; Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1\n#&gt; Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2\n#&gt; AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2\n#&gt; Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4\n#&gt; Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2\n#&gt; Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1\n#&gt; Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2\n#&gt; Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2\n#&gt; Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4\n#&gt; Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6\n#&gt; Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8\n#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2"
-  },
-  {
-    "objectID": "lectures/1bS25.html#lists",
-    "href": "lectures/1bS25.html#lists",
-    "title": "R Basics",
-    "section": "Lists",
-    "text": "Lists\nList can be thought as an extended vector, but each element is a different R object.\nTry playing with this R object:\n\nlist_one &lt;- list(mtcars, rep(0, 4),\n                 diag(rep(1, 3)))"
-  },
-  {
-    "objectID": "lectures/1bS25.html#lists-1",
-    "href": "lectures/1bS25.html#lists-1",
-    "title": "R Basics",
-    "section": "Lists",
-    "text": "Lists\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "objectID": "lectures/8bS25.html#comparing-different-models",
+    "href": "lectures/8bS25.html#comparing-different-models",
+    "title": "Hypothesis Testing",
+    "section": "Comparing Different Models",
+    "text": "Comparing Different Models\n\nxlm1 &lt;- penguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm + species, data = _) \n\nxlm2 &lt;- penguins |&gt; \n  lm(body_mass_g ~ flipper_length_mm + species, data = _) \n\nanova(xlm2, xlm1)"
   },
   {
     "objectID": "lectures/6aS25.html#learning-outcomes",
@@ -2244,14 +2489,14 @@
     "href": "lectures/2aS25.html#example-5",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] 0.150815"
+    "text": "Example\nCompute the mean:\n\\[\n\\bar x = \\frac{1}{n}\\sum^n_{i=1}x_i\n\\]\n\nx &lt;- rnorm(100)\nmean(x)\n\n#&gt; [1] -0.08915899"
   },
   {
     "objectID": "lectures/2aS25.html#example-6",
     "href": "lectures/2aS25.html#example-6",
     "title": "Control Flow 1",
     "section": "Example",
-    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 1.170373"
+    "text": "Example\nCompute the variance:\n\\[\ns^2 = \\frac{1}{n-1}\\sum^n_{i-1}(x_i-\\bar x)^2\n\\]\n\nx &lt;- rnorm(100)\nvar(x)\n\n#&gt; [1] 0.8456687"
   },
   {
     "objectID": "lectures/9aS25.html#learning-outcomes",
