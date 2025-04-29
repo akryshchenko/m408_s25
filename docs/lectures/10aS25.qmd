@@ -1,0 +1,298 @@
+---
+title: "Generalized Linear Models"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    sc-sb-title: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: false
+    message: false
+    warnings: false
+    comment: "#>" 
+
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+
+editor: visual
+---
+
+## Learning Outcomes
+
+-   Exponential Family of Distributions
+
+-   Generalized Linear Models
+
+-   R Code
+
+# Exponential Family of Distributions
+
+## Exponential Family of Distributions
+
+An exponential family of distributions are random variables that allow their probability density function to have the following form:
+
+$$
+f(x; \theta,\phi) = a(x,\phi)\exp\left\{\frac{x\theta-\kappa(\theta)}{\phi}\right\}
+$$
+
+-   $\theta$: is the canonical parameter (also a function of other parameters)
+
+-   $\kappa(\theta)$: is a known cumulant function
+
+-   $\phi>0$: dispersion parameter function
+
+-   $a(y,\phi)$: normalizing constant
+
+## Canonical Parameter
+
+The canonical parameter represents the relationship between the random variable and the $E(Y)=\mu$
+
+## Normal Distribution
+
+$$
+f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+::: fragmet
+$$
+f(x;\mu,\sigma^2)= \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left\{\frac{x\mu-\mu^2/2}{\sigma^2}-\frac{x^2}{2\sigma^2}\right\}
+$$
+:::
+
+## Binomial Distribution
+
+$$
+f(x;n,p) = \left(\begin{array}{c}n\\x\end{array}\right) p^x(1-p)^{n-p}
+$$
+
+::: fragment
+$$
+f(x;n,p) = \left(\begin{array}{c}n\\x\end{array}\right) \exp\left\{x\log\left(\frac{p}{1-p}\right) + n \log(1-p)\right\}
+$$
+:::
+
+## Common Distributions and Canonical Parameters
+
+| Random Variable   | Canonical Parameter                  |
+|-------------------|--------------------------------------|
+| Normal            | $\mu$                                |
+| Binomial          | $\log\left(\frac{\mu}{1-\mu}\right)$ |
+| Negative Binomial | $\log\left(\frac{\mu}{\mu+k}\right)$ |
+| Poisson           | $\log(\mu)$                          |
+| Gamma             | $-\frac{1}{\mu}$                     |
+| Inverse Gaussian  | $-\frac{1}{2\mu^2}$                  |
+
+# Generalized Linear Models
+
+## Generalized Linear Models
+
+A generalized linear model (GLM) is used to model the association between an outcome variable (of any data type) and a set of predictor values. We estimate a set of regression coefficients $\boldsymbol \beta$ to explain how each predictor is related to the expected value of the outcome.
+
+## Generalized Linear Models
+
+A GLM is composed of a systematic and random component.
+
+## Random Component
+
+The random component is the random variable that defines the randomness and variation of the outcome variable.
+
+## Systematic Component
+
+The systematic component is the linear model that models the association between a set of predictors and the expected value of Y:
+
+$$
+g(\mu)=\eta=\boldsymbol X_i^\mathrm T \boldsymbol \beta
+$$
+
+-   $\boldsymbol\beta$: regression coefficients
+
+-   $\boldsymbol X_i=(1, X_{i1}, \ldots, X_{ip})^\mathrm T$: design vector
+
+-   $\eta$: linear model
+
+-   $\mu=E(Y)$
+
+-   $g(\cdot)$: link function
+
+# R Code
+
+## General R Code
+
+```{r}
+#| eval: false
+
+glm(formula, # <1>
+    data, # <2>
+    family) # <3>
+```
+
+1.  Supply a formula for R
+2.  Supply the data frame
+3.  Which family and link function is used to model data
+
+## Poisson Regression
+
+Poisson Regression is used when the outcome is count data:
+
+```{r}
+glm(y~x,
+    data, 
+    family = poisson())
+```
+
+## Gamma Regression
+
+Gamma Regression is used when modeling the association between predictors and positive continuous values:
+
+```{r}
+glm(y~x, 
+    data, 
+    family = Gamma())
+```
+
+## Negative Binomial Regression
+
+Negative Binomial Regression is used four with overdispersed count data, where the variance is larger than expected.
+
+```{r}
+library(MASS)
+glm.nb(y~x, 
+       data)
+```
+
+## Inverse Gaussian Regression
+
+Inverse Gaussian Regression is used for overly dispersed positive continuous data where Gamma Regression is inappropriate:
+
+```{r}
+glm(y~x, 
+    data, 
+    family = inverse.gaussian())
+```
+
+# Hypothesis Tests
+
+## Hypothesis Tests
+
+Hypothesis tests are used to test whether claims are valid or not. This is conducted by collecting data, setting the **Null** and **Alternative** Hypothesis.
+
+## Testing $\beta_j$
+
+::: columns
+::: {.column width="50%"}
+### $\phi$ known
+
+$$
+\frac{\hat\beta_j - \theta}{\mathrm{se}(\hat\beta_j)} \sim N(0,1)
+$$
+:::
+
+::: {.column width="50%"}
+### $\phi$ unknown
+
+$$
+\frac{\hat\beta_j-\theta}{\mathrm{se}(\hat\beta_j)} \sim t_{n-p^\prime}
+$$
+:::
+:::
+
+## Confidence Intervals
+
+$$
+PE \pm CV \times SE
+$$
+
+-   PE: Point Estimate
+
+-   CV: Critical Value $P(X<CV) = 1-\alpha/2$
+
+-   $\alpha$: significance level
+
+-   SE: Standard Error
+
+# Examples
+
+## Fitting Models
+
+Use the `survival`, `MASS` and `GLMsData` R packages to fit the models for examples.
+
+```{r}
+#| eval: true
+
+library(GLMsData)
+library(survival)
+library(MASS)
+```
+
+## Poisson Regression
+
+Fit a model between the outcome `recur`, number of reccurrence, and predictors `treatment`, drugs or placebo, and `number`, the initial number of tumors, from the `bladder1` data set.
+
+```{r}
+#| eval: true
+
+bladder1 |>  glm(recur ~ treatment + number,
+                 data = _,
+                 family = poisson(link = "log")) |>  
+  summary()
+
+```
+
+## Negative Binomial Regression
+
+Fit a model between the outcome `Count`, viral activity (pock counts), and predictor `Dilution` factor from the `pock` data set.
+
+```{r}
+#| eval: true
+
+data("pock")
+pock |> glm.nb(Count ~ Dilution, 
+               data = _)  |> 
+  summary()
+
+```
+
+## Gamma Regression
+
+Fit a model between the outcome `Foliage`, foliage biomass, and predictor `DBH`, tree diameter at breast height, from the `lime` data set.
+
+```{r}
+#| eval: true
+
+data("lime")
+lime |>  glm(Foliage ~ DBH,
+             data = _,
+             family = Gamma(link = "log"))  |>  
+  summary() 
+
+```
+
+## Inverse Gaussian Regression
+
+Fit a model between the outcome `Foliage`, foliage biomass, and predictor `DBH`, tree diameter at breast height, from the `lime` data set.
+
+```{r}
+#| eval: true
+
+data("lime")
+lime |>  glm(Foliage ~ DBH,
+             data = _,
+             family = inverse.gaussian(link = "log"))  |>
+  summary()
+
+```
