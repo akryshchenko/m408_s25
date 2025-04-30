@@ -1,0 +1,362 @@
+---
+title: "Model Selection"
+format:
+  revealjs:
+    scrollable: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    incremental: false 
+    chalkboard:
+      src: chalkboard.json
+      storage: chalkboard_pres
+      theme: whiteboard
+      chalk-width: 4
+knitr:
+  opts_chunk: 
+    echo: true
+    eval: true
+    message: false
+    warnings: false
+    comment: "#>" 
+    
+revealjs-plugins:
+  - pointer
+  - verticator
+  
+filters: 
+  - reveal-header
+  - code-fullscreen
+
+editor: visual
+---
+
+## Learning Outcomes
+
+-   Selection Criteria
+
+-   Subset Selection
+
+-   Shrinkage Methods
+
+## Model Building
+
+When given a set of predictors, we want to build a model that only contains predictors that best fits the data, without overfitting.
+
+## Model Building
+
+Ideally, we always want to choose a parsimonious model that best describes the outcome variable. The more predictors into the model, the less parsimonious and less powerful.
+
+Choosing the best model can be done based on selection criteria such as Mallow's $C_p$, AIC, AICc, BIC, and adjusted $R^2$.
+
+# Selection Criteria
+
+## Mallow's $C_p$
+
+$$
+C_p = \frac{1}{n}(RSS + 2 d \hat \sigma^2) 
+$$
+
+-   $RSS$: Residual Sum of Squares
+
+-   $\hat \sigma^2$: Mean Square Error
+
+-   $d$: number of predictors
+
+-   Lower is better
+
+## Aikaike Information Criteria (AIC)
+
+$$
+\frac{1}{n\hat\sigma^2}(RSS+2d\hat\sigma^2)
+$$
+
+-   Lower is Better
+
+## Bayesian Information Criteria (BIC)
+
+$$
+\frac{1}{n\hat\sigma^2}\{RSS+\log(n)d\hat\sigma^2\}
+$$
+
+-   Lower is better
+
+## $R^2$
+
+$$
+1-\frac{RSS}{TSS}
+$$
+
+-   $RSS=\sum^n_{i=1}(y_i-\hat y_i)^2$
+
+-   $TSS=\sum^n_{i=1}(y_i-\bar y)^2$
+
+-   Higher is Better
+
+## Adjusted $R^2$
+
+$$
+1-\frac{RSS/(n-d-1)}{
+TSS/(n-1)}
+$$
+
+-   Higher is Better
+
+# Subset Selection
+
+## Model Building
+
+-   Best Subset Model
+
+    -   Fit all models and select the best model based criteria
+
+-   Forward Stepwise Model Building
+
+    -   Begin with the null model ($Y\sim 1$) and add variables until a final model is chosen.
+
+-   Backward Stepwise Model Building
+
+    -   Begin with the full model, and remove variable until the final model is chosen.
+
+-   Hybrid Stepwise Regression
+
+    -   A hybrid approach between the forward and backward building approach.
+
+## Best Subset Model Building
+
+1.  Begin with the null model, no predictors
+2.  For $k=1,\ldots, p$ (number of predictors):
+    1.  Fit all $\left(^p_k\right)$ models that contain $k$ predictors
+
+    2.  Define $M_k$ as the model with the largest $R²$
+3.  The final model is the model $M_k$ based on selection criteria
+
+## Forward Stepwise Model Building
+
+1.  Begin with the null model, no predictors
+2.  For $k=0,\ldots, p-1$ (number of predictors):
+    1.  Fit all $p-k$ models that adds one new predictor to the orginal model containing $k$ predictors
+
+    2.  Define $M_{k+1}$ as the model with the largest $R²$ among $p-k$ models
+3.  The final model is the model $M_(k+1)$ based on selection criteria
+
+## Backward Stepwise Model Building
+
+1.  Begin with the full model $M_p$, with all predictors
+2.  For $k=p,p-1, \ldots, 1$ (number of predictors):
+    1.  Fit all models that contain $k-1$ predictors
+
+    2.  Define $M_{k-1}$ as the model with the largest $R²$
+3.  The final model is the model $M_k$ based on selection criteria
+
+## R Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+library(leaps)
+regsubsets(y ~ ., data)
+
+```
+
+## Full Subset
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: true
+
+library(leaps)
+lm_full <- regsubsets(mpg ~ ., data = mtcars)
+
+```
+
+## Summary
+
+```{r}
+#| echo: true
+#| eval: true
+sum_lm_full <- summary(lm_full)
+print(sum_lm_full)
+```
+
+## Plot
+
+```{r}
+#| echo: true
+#| eval: true
+plot(sum_lm_full$cp)
+```
+
+## Model
+
+```{r}
+#| echo: true
+#| eval: true
+coef(lm_full,3)
+```
+:::
+
+## Forward Model Building
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: true
+lm_full <- regsubsets(mpg ~ ., data = mtcars,
+                      method =  "forward")
+
+```
+
+## Summary
+
+```{r}
+#| echo: true
+#| eval: true
+sum_lm_full <- summary(lm_full)
+print(sum_lm_full)
+```
+
+## Plot
+
+```{r}
+#| echo: true
+#| eval: true
+plot(sum_lm_full$bic)
+```
+
+## Model
+
+```{r}
+#| echo: true
+#| eval: true
+coef(lm_full,2)
+```
+:::
+
+## Backward Model Building
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: true
+lm_full <- regsubsets(mpg ~ ., data = mtcars,
+                      method =  "backward")
+
+```
+
+## Summary
+
+```{r}
+#| echo: true
+#| eval: true
+sum_lm_full <- summary(lm_full)
+print(sum_lm_full)
+```
+
+## Plot
+
+```{r}
+#| echo: true
+#| eval: true
+plot(sum_lm_full$adjr2)
+```
+
+## Model
+
+```{r}
+#| echo: true
+#| eval: true
+
+coef(lm_full,6)
+```
+:::
+
+## Selection Critera
+
+# Shrinkage Methods
+
+## Shrinkage Methods
+
+Shrinkage methods are techniques that will reduce a full parameterized model (a high number of predictors) to a lower parameterized model (a smaller number of predictors).
+
+## Ridge Regression
+
+Ridge regression incorporates a shrinkage penalty term to the least squares formula. The shrinkage penalty term will reduce the $\beta$ coefficients towards 0 based on a penalty parameter ($\lambda$)
+
+## Ridge Regression
+
+$$
+\sum^n_{i=1}\left(Y_i-\beta_0 +\sum^p_{j=1}X_{ij}\beta_j\right)^2 + \lambda\sum^p_{j=1}\beta_j^2
+$$
+
+## LASSO
+
+Least Absolute Shrinkage and Selection Operator (LASSO) is known as a shrinkage method which forces $\beta$ coefficients that do not have a significant predicit power towards and possibly equal to 0.
+
+## LASSO
+
+$$
+\sum^n_{i=1}\left(Y_i-\beta_0 +\sum^p_{j=1}X_{ij}\beta_j\right)^2 + \lambda\sum^p_{j=1}|\beta_j|
+$$
+
+## Why Ridge or LASSO?
+
+Each method is capable on identifying the optimum MSE for the Bias-Variance trade-off scenario. This will lead to a lower prediction error. The key is to find the optimal penalty parameter. This can be done with a Cross-Validation technique (next lecture).
+
+## Ridge Regression in R
+
+```{r}
+#| eval: false
+library(glmnet)
+glmnet(x,
+       y,
+       alpha = 0,
+       lambda)
+
+```
+
+## LASSO in R
+
+```{r}
+#| eval: false
+library(glmnet)
+glmnet(x,
+       y,
+       alpha = 1,
+       lambda)
+
+```
+
+## Example
+
+```{r}
+library(glmnet)
+library(tidyverse)
+library(palmerpenguins)
+penguins <- penguins |> drop_na()
+mod <- penguins |> model.matrix(~ flipper_length_mm + bill_depth_mm + bill_length_mm - 1,
+  data = _) # Must include -1 to remove intercept, needed for glmnet
+ridge_mod <- glmnet(x = mod, 
+                    y = penguins$body_mass_g,
+                    alpha = 0,
+                    lambda = 1.3) # lambda was chosen at random
+coef(ridge_mod)[,1]
+```
+
+## Example
+
+```{r}
+lasso_mod <- glmnet(x = mod, 
+                    y = penguins$body_mass_g,
+                    alpha = 1,
+                    lambda = 1.3) # lambda was chosen at random
+coef(lasso_mod)[,1]
+```
