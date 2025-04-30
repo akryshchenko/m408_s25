@@ -6,17 +6,10 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
-<script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
-<script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
-<link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Functions</title>
+  <title>m408_s25 – Multivariable Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -106,7 +99,6 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/verticator/verticator.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -202,7 +194,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Functions</h1>
+  <h1 class="title">Multivariable Linear Regression</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -211,404 +203,251 @@
 <section id="learning-objectives" class="slide level2">
 <h2>Learning Objectives</h2>
 <ul>
-<li><p>Built-in Functions</p></li>
-<li><p>User-built functions</p></li>
-<li><p>Extensions</p></li>
+<li><p>Multivariable Linear Regression</p></li>
+<li><p>Simulation Study 1</p></li>
+<li><p>Simulation Study 2</p></li>
+<li><p>Matrix Formulation</p></li>
 </ul>
-<p>There are several available functions in R to conduct specific statistical methods or tasks</p>
-</section>
-<section id="help-documentation" class="slide level2">
-<h2>Help Documentation</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Section</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Description</td>
-<td style="text-align: left;">Provides a brief introduction of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Usage</td>
-<td style="text-align: left;">Provides potential usage of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arguments</td>
-<td style="text-align: left;">Arguments that the function can take</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Details</td>
-<td style="text-align: left;">An in depth description of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Value</td>
-<td style="text-align: left;">Provides information of the output produced by the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Notes</td>
-<td style="text-align: left;">Any need to know information about the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Authors</td>
-<td style="text-align: left;">Developers of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">References</td>
-<td style="text-align: left;">References to the model and function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">See Also</td>
-<td style="text-align: left;">Provide information of supporting functions</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Examples</td>
-<td style="text-align: left;">Examples of the function</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="generic-functions" class="slide level2">
-<h2>Generic Functions</h2>
-<p>Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as <code>summary()</code> and <code>plot()</code>.</p>
-<p>For example, the <code>summary()</code> is a generic for several types of functions: <code>summary.aov()</code>, <code>summary.lm()</code>, <code>summary.glm()</code>, and many more.</p>
-</section>
-<section id="commonly-used-function" class="slide level2">
-<h2>Commonly-used Function</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functions</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>aov()</code></td>
-<td style="text-align: left;">Fits an ANOVA Model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>lm()</code></td>
-<td style="text-align: left;">Fits a linear model</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>glm()</code></td>
-<td style="text-align: left;">Fits a general linear model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>t.test()</code></td>
-<td style="text-align: left;">Conducts a t-test</td>
-</tr>
-</tbody>
-</table>
 </section>
 <section>
-<section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
-<h1>User-built functions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
+<section id="multivariable-linear-regression" class="title-slide slide level1 center">
+<h1>Multivariable Linear Regression</h1>
+
 </section>
-<section id="user-built-functions-1" class="slide level2">
-<h2>User-built functions</h2>
-<ul>
-<li><p>Functions created by the user for analysis</p></li>
-<li><p>Needs to be ran once to the R environment</p></li>
-<li><p>Will be lost when R session is closed</p></li>
-</ul>
+<section id="mlr" class="slide level2">
+<h2>MLR</h2>
+<p>Multivariable linear regression models are used when more than one explanatory variable is used to explain the outcome of interest.</p>
 </section>
-<section id="anatomy" class="slide level2">
-<h2>Anatomy</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|4-5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>name_of_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data_1, <span class="at">data_2 =</span> <span class="cn">NULL</span>, </span>
-<span id="cb1-2"><a></a>                             argument_1, <span class="at">argument_2 =</span> <span class="cn">TRUE</span>, <span class="at">argument_3 =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a></a>                             ...){</span>
-<span id="cb1-4"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-5"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-6"><a></a>  output_object <span class="ot">&lt;-</span> Tasks</span>
-<span id="cb1-7"><a></a>  <span class="fu">return</span>(output_object)</span>
-<span id="cb1-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<ul>
-<li><p><code>function</code>: used to construct the function</p></li>
-<li><p><code>data1</code>: first data argument that needs to supplied</p></li>
-<li><p><code>data2</code>: second data argument that does not need to be supplied</p></li>
-<li><p><code>argument1</code>: first argument must be supplied to alter function</p></li>
-<li><p><code>argument2</code>: second argument to alter function, set to <code>TRUE</code></p></li>
-<li><p><code>argument3</code>: third argument that does not need to be supplied</p></li>
-<li><p><code>…</code>: additional arguments supplied to other functions</p></li>
-</ul>
-</div>
+<section id="continuous-variable" class="slide level2">
+<h2>Continuous Variable</h2>
+<p>To fit an additional continuous random variable to the model, we will only need to add it to the model:</p>
+<p><span class="math display">\[
+Y = \beta_0 +\beta_1 X_1 + \beta_2 X_2
+\]</span></p>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-y = \ln(x^2)
-\]</span></p>
+<p>Looking at the <code>penguins</code> from <code>palmerpenguins</code>, fit a model between <code>body_mass_g</code> as an outcome variable and <code>flipper_length_mm</code> and <code>bill_length_mm</code> as predictor variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a></a>penguins <span class="sc">|&gt;</span>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_length_mm, </span>
+<span id="cb1-3"><a></a>                <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="interpretation" class="slide level2">
+<h2>Interpretation</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ flipper_length_mm + bill_length_mm, 
+#&gt;     data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;       (Intercept)  flipper_length_mm     bill_length_mm  
+#&gt;         -5736.897             48.145              6.047</code></pre>
+</div>
+</div>
+</section>
+<section id="categorical-variable" class="slide level2">
+<h2>Categorical Variable</h2>
+<p>A categorical variable can be included in a model, but a reference category must be specified.</p>
+</section>
+<section id="fitting-a-model-with-categorical-variables" class="slide level2">
+<h2>Fitting a model with categorical variables</h2>
+<p>To fit a model with categorical variables, we must utilize dummy (binary) variables that indicate which category is being referenced. We use <span class="math inline">\(C-1\)</span> dummy variables where <span class="math inline">\(C\)</span> indicates the number of categories. When coded correctly, each category will be represented by a combination of dummy variables.</p>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x) = \left\{\begin{array}{cc}
-x^3 &amp; x&lt;0\\
-x^2 + 5 &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
+<p>If we have 4 categories, we will need 3 dummy variables:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Cat 1</th>
+<th>Cat 2</th>
+<th>Cat 3</th>
+<th>Cat 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dummy 1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Dummy 2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>Dummy 3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Which one is the reference category?</p>
 </section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x,y) = \left\{\begin{array}{cc}
-x^3 e^y &amp;  x&lt;0\ \\
-x^2 + 5 + \ln(y) &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
+<section id="fitting-a-model-with-categorical-variables-1" class="slide level2">
+<h2>Fitting a model with categorical variables</h2>
+<p>Looking at the <code>penguins</code> from <code>palmerpenguins</code>, fit a model between <code>body_mass_g</code> as an outcome variable and <code>flipper_length_mm</code> and <code>islands</code> as predictor variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb3-2"><a></a>penguins <span class="sc">|&gt;</span>  <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> island,</span>
+<span id="cb3-3"><a></a>                <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<p>Create the function that allows your to compute the z-score of a specific value <code>x</code> using the sampling distribution from a set of data (<code>y</code> vector):</p>
-<p><span class="math display">\[
-z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
-\]</span></p>
+<section id="interpreting-categorical-variable-results" class="slide level2">
+<h2>Interpreting Categorical Variable Results</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = body_mass_g ~ flipper_length_mm + island, data = penguins)
+#&gt; 
+#&gt; Coefficients:
+#&gt;       (Intercept)  flipper_length_mm        islandDream    islandTorgersen  
+#&gt;          -4624.98              44.54            -262.18            -185.13</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; [1] "Biscoe"    "Dream"     "Torgersen"</code></pre>
+</div>
+</div>
+</section>
+<section id="relevel-a-factor-variable-in-r" class="slide level2">
+<h2>Relevel a factor variable in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a></a>  <span class="fu">mutate</span>(<span class="at">island_dream =</span> <span class="fu">relevel</span>(island , <span class="at">ref =</span> <span class="st">"Dream"</span>))</span>
+<span id="cb6-3"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm <span class="sc">+</span> island_dream, </span>
+<span id="cb6-4"><a></a>               <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section></section>
 <section>
-<section id="extensions" class="title-slide slide level1 agenda-slide center">
-<h1>Extensions</h1>
-<div class="agenda">
+<section id="simulation-study-1" class="title-slide slide level1 center">
+<h1>Simulation Study 1</h1>
+
+</section>
+<section id="simulation-study-1-1" class="slide level2">
+<h2>Simulation Study 1</h2>
+<p>Simulate 1000 random variables from the following model:</p>
+<p><span class="math display">\[
+Y = 3 + 2X_1 + 4X_2 + \epsilon
+\]</span></p>
 <ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
+<li><p><span class="math inline">\(X_1\sim N(2,1)\)</span></p></li>
+<li><p><span class="math inline">\(X_2\sim N(-4,1)\)</span></p></li>
+<li><p><span class="math inline">\(\epsilon\sim N(0, 2)\)</span></p></li>
 </ul>
-</div>
 </section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p>R Packages are used to utilize functions created from the community.</p>
-<h3 id="installation">Installation</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<h3 id="loading">Loading</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="fit-model" class="slide level2">
+<h2>Fit Model</h2>
+<p>Fit a model between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X_1\)</span>.</p>
+<p>Repeat the process 1000 times. and answer the following questions:</p>
+<ul>
+<li><p>On average does <span class="math inline">\(\beta_1\)</span> get estimated correctly? Why?</p></li>
+<li><p>What is the average model variance?</p></li>
+</ul>
 </section>
-<section id="reticulate" class="slide level2">
-<h2>Reticulate</h2>
-<p>Reticulate is an R package that allows you to utilize python within R.</p>
-</section>
-<section id="rcpp" class="slide level2">
-<h2>Rcpp</h2>
-<p>Rcpp is an R package that allows you to call C++ programs in R.</p>
-<p>We will compare variance functions written in cpp, user-built R, and built-in R.</p>
-<p>Rcpp code:</p>
+<section id="mlr-model" class="slide level2">
+<h2>MLR Model</h2>
+<p>Instead of fitting a simple linear regression model. Fit a model that will include predictor <span class="math inline">\(X_2\)</span>. This can be done by adding <span class="math inline">\(X_2\)</span> in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-4"><a></a><span class="dt">double</span> var_cpp<span class="op">(</span>NumericVector x<span class="op">){</span></span>
-<span id="cb4-5"><a></a><span class="dt">int</span> n <span class="op">=</span> x<span class="op">.</span>length<span class="op">();</span></span>
-<span id="cb4-6"><a></a>NumericVector pre<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb4-7"><a></a><span class="dt">double</span> mean_x <span class="op">=</span> mean<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb4-8"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> <span class="op">++</span>i<span class="op">){</span></span>
-<span id="cb4-9"><a></a>   pre<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>x<span class="op">[</span>i<span class="op">]-</span>mean_x<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a><span class="dt">int</span> divisor <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-12"><a></a><span class="dt">double</span> post <span class="op">=</span> sum<span class="op">(</span>pre<span class="op">)</span> <span class="op">/</span> divisor<span class="op">;</span></span>
-<span id="cb4-13"><a></a><span class="cf">return</span> post<span class="op">;</span></span>
-<span id="cb4-14"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>R code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>var_r <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a></a>  <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Benchmark Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb6-2"><a></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-3"><a></a><span class="fu">var_cpp</span>(x),</span>
-<span id="cb6-4"><a></a><span class="fu">var_r</span>(x),</span>
-<span id="cb6-5"><a></a><span class="fu">var</span>(x)</span>
-<span id="cb6-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
-#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x)   1.64µs   1.84µs   470266.      448B     47.0
-#&gt; 2 var_r(x)     5.37µs    5.9µs   151501.    23.7KB     30.3
-#&gt; 3 var(x)       7.05µs   7.87µs   116669.    15.3KB     23.3</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; function (x, y = NULL, na.rm = FALSE, use) 
-#&gt; {
-#&gt;     if (missing(use)) 
-#&gt;         use &lt;- if (na.rm) 
-#&gt;             "na.or.complete"
-#&gt;         else "everything"
-#&gt;     na.method &lt;- pmatch(use, c("all.obs", "complete.obs", "pairwise.complete.obs", 
-#&gt;         "everything", "na.or.complete"))
-#&gt;     if (is.na(na.method)) 
-#&gt;         stop("invalid 'use' argument")
-#&gt;     if (is.data.frame(x)) 
-#&gt;         x &lt;- as.matrix(x)
-#&gt;     else if (!is.null(x)) 
-#&gt;         stopifnot(is.atomic(x))
-#&gt;     if (is.data.frame(y)) 
-#&gt;         y &lt;- as.matrix(y)
-#&gt;     else if (!is.null(y)) 
-#&gt;         stopifnot(is.atomic(y))
-#&gt;     .Call(C_cov, x, y, na.method, FALSE)
-#&gt; }
-#&gt; &lt;bytecode: 0x11430ffb8&gt;
-#&gt; &lt;environment: namespace:stats&gt;</code></pre>
-</div>
-</div>
-<p>This is an extremely advanced topic. Only do this if you need real speed and efficiency.</p>
+<p>Modify your simulation study and see what happens to <span class="math inline">\(\beta_1\)</span> and the model variance.</p>
 </section></section>
 <section>
-<section id="bisection-method" class="title-slide slide level1 agenda-slide center">
-<h1>Bisection Method</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
+<section id="simulation-study-2" class="title-slide slide level1 center">
+<h1>Simulation Study 2</h1>
+
 </section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
+<section id="simulation-study-2-1" class="slide level2">
+<h2>Simulation Study 2</h2>
+<p>Simulate 1000 random variables from the following model:</p>
 <p><span class="math display">\[
-f(x) = 2 x^3 - 20x -43
+Y = 3 + 2log(X_1) + \epsilon
 \]</span></p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb10-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb10-3"><a></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb10-4"><a></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="finding-the-root" class="slide level2">
-<h2>Finding the Root</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb11-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">uniroot</span>(f, <span class="at">lower =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; $root
-#&gt; [1] 3.932792
-#&gt; 
-#&gt; $f.root
-#&gt; [1] -2.30166e-05
-#&gt; 
-#&gt; $iter
-#&gt; [1] 7
-#&gt; 
-#&gt; $init.it
-#&gt; [1] NA
-#&gt; 
-#&gt; $estim.prec
-#&gt; [1] 6.103516e-05</code></pre>
-</div>
-</div>
+<ul>
+<li><p><span class="math inline">\(X_1\sim N(8,1)\)</span></p></li>
+<li><p><span class="math inline">\(\epsilon\sim N(0, 2)\)</span></p></li>
+</ul>
 </section>
-<section id="bisection-method-1" class="slide level2 scrollable">
-<h2>Bisection Method</h2>
-<ol type="1">
-<li>Begin with an interval <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and evaluate <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>.</li>
-<li>If <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> are opposite signs, calculate <span class="math inline">\(c = \frac{a+b}{2}\)</span> and <span class="math inline">\(f(c)\)</span>.</li>
-<li>If <span class="math inline">\(|f(c)|&lt;\varepsilon\)</span>, for a small <span class="math inline">\(\varepsilon\)</span>, then stop the algorithm and <span class="math inline">\(c\)</span> is the root.</li>
-<li>Replace <span class="math inline">\((a,f(a))\)</span> or <span class="math inline">\((b,f(b))\)</span> with <span class="math inline">\((c, f(c))\)</span> so that the signs of <span class="math inline">\(f( \cdot )\)</span> is 0.</li>
-</ol>
+<section id="fit-model-1" class="slide level2">
+<h2>Fit Model</h2>
+<p>Fit a model between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X_1\)</span>.</p>
+<p>Repeat the process 1000 times. and answer the following questions:</p>
+<ul>
+<li><p>On average does <span class="math inline">\(\beta_1\)</span> get estimated correctly? Why?</p></li>
+<li><p>What is the average model variance?</p></li>
+</ul>
 </section>
-<section id="bisection-code" class="slide level2">
-<h2>Bisection Code</h2>
+<section id="slr-model" class="slide level2">
+<h2>SLR Model</h2>
+<p>Fit a simple linear regression model using <span class="math inline">\(\log(X_1)\)</span> instead.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span>}</span>
-<span id="cb13-2"><a></a>aa <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb13-3"><a></a>bb <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-4"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb13-5"><a></a>i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a></a><span class="cf">while</span>(diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
-<span id="cb13-7"><a></a>  faa <span class="ot">&lt;-</span> <span class="fu">f</span>(aa)</span>
-<span id="cb13-8"><a></a>  cc <span class="ot">&lt;-</span> (aa <span class="sc">+</span> bb) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb13-9"><a></a>  fcc <span class="ot">&lt;-</span> <span class="fu">f</span>(cc)</span>
-<span id="cb13-10"><a></a>  <span class="cf">if</span> (faa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> fcc <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb13-11"><a></a>    bb <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-12"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-13"><a></a>    aa <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-14"><a></a>  }</span>
-<span id="cb13-15"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(fcc)</span>
-<span id="cb13-16"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a></a>}</span>
-<span id="cb13-18"><a></a>i</span>
-<span id="cb13-19"><a></a>cc</span>
-<span id="cb13-20"><a></a>fcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">log</span>(x1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Modify your simulation study and see what happens to <span class="math inline">\(\beta_1\)</span> and the model variance.</p>
+</section></section>
+<section>
+<section id="matrix-formulation" class="title-slide slide level1 center">
+<h1>Matrix Formulation</h1>
+
+</section>
+<section id="matrix-formulation-1" class="slide level2">
+<h2>Matrix Formulation</h2>
+<p><span class="math display">\[
+Y_i = \boldsymbol X_i^\mathrm T \boldsymbol \beta + \epsilon_i
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(Y_i\)</span>: Outcome Variable</p></li>
+<li><p><span class="math inline">\(\boldsymbol X_i\)</span>: Predictors</p></li>
+<li><p><span class="math inline">\(\boldsymbol \beta\)</span>: Coefficients</p></li>
+<li><p><span class="math inline">\(\epsilon_i\)</span>: error term</p></li>
+</ul>
+</section>
+<section id="matrix-formulation-2" class="slide level2">
+<h2>Matrix Formulation</h2>
+<p>Fit the following models using matrix formulas instead of the <code>lm</code> function.</p>
+<p><span class="math display">\[
+bmg = \beta_0+\beta_1 flipper\_length\_mm + \beta_2 bill\_length\_mm
+\]</span></p>
+<p><span class="math display">\[
+bmg = \beta_0 +\beta_1 flipper\_length\_mm + \beta_2 dream + \beta_3 biscoe  
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol\beta = (\boldsymbol X^\mathrm T \boldsymbol X)^{-1} \boldsymbol X^\mathrm T \boldsymbol Y
+\]</span></p>
+<p>Define <span class="math inline">\(\boldsymbol X\)</span> in each case.</p>
+</section></section>
+<section>
+<section id="r-tips" class="title-slide slide level1 center">
+<h1>R Tips</h1>
+
+</section>
+<section id="create-a-model-matrix-x" class="slide level2">
+<h2>Create a Model Matrix X</h2>
+<p><span class="math display">\[
+bmg = \\
+\beta_0+ \beta_1bill\_length\_mm +  \beta_2 dream +\beta_3 biscoe  
+\]</span></p>
+</section>
+<section id="model-matrix" class="slide level2">
+<h2>Model Matrix</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">model.matrix</span>(<span class="sc">~</span>flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> islands, <span class="at">data =</span> _)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-<div class="reveal-header">
-<div class="header-logo">
-<img data-src="">
-</div>
-<div class="sc-title">
-<p> </p>
-</div>
-<div class="header-text">
-<p> </p>
-</div>
-<div class="sb-title">
-<p> </p>
-</div>
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -625,7 +464,6 @@ f(x) = 2 x^3 - 20x -43
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/verticator/verticator.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -649,7 +487,6 @@ f(x) = 2 x^3 - 20x -43
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
-'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -820,7 +657,7 @@ f(x) = 2 x^3 - 20x -43
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Verticator, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

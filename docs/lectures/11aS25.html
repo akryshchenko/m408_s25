@@ -12,11 +12,10 @@
 <script src="../site_libs/quarto-contrib/jquery-3.6.3/jquery-3.6.3.min.js"></script>
 <script src="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.js" defer="true"></script>
 <link href="../site_libs/quarto-contrib/code-fullscreen-1.0.0/code-fullscreen.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/reveal-auto-agenda-0.0.3/reveal-auto-agenda.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/grid-no-htext-1.0.0/grid_no_htext.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <title>m408_s25 – Functions</title>
+  <title>m408_s25 – Model Selection</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -106,6 +105,7 @@
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-pointer/pointer.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/verticator/verticator.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
@@ -202,396 +202,448 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Functions</h1>
+  <h1 class="title">Model Selection</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="learning-objectives" class="slide level2">
-<h2>Learning Objectives</h2>
+<section id="learning-outcomes" class="slide level2">
+<h2>Learning Outcomes</h2>
 <ul>
-<li><p>Built-in Functions</p></li>
-<li><p>User-built functions</p></li>
-<li><p>Extensions</p></li>
+<li><p>Selection Criteria</p></li>
+<li><p>Subset Selection</p></li>
+<li><p>Shrinkage Methods</p></li>
 </ul>
-<p>There are several available functions in R to conduct specific statistical methods or tasks</p>
 </section>
-<section id="help-documentation" class="slide level2">
-<h2>Help Documentation</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Section</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Description</td>
-<td style="text-align: left;">Provides a brief introduction of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Usage</td>
-<td style="text-align: left;">Provides potential usage of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Arguments</td>
-<td style="text-align: left;">Arguments that the function can take</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Details</td>
-<td style="text-align: left;">An in depth description of the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Value</td>
-<td style="text-align: left;">Provides information of the output produced by the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Notes</td>
-<td style="text-align: left;">Any need to know information about the function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Authors</td>
-<td style="text-align: left;">Developers of the function</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">References</td>
-<td style="text-align: left;">References to the model and function</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">See Also</td>
-<td style="text-align: left;">Provide information of supporting functions</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Examples</td>
-<td style="text-align: left;">Examples of the function</td>
-</tr>
-</tbody>
-</table>
+<section id="model-building" class="slide level2">
+<h2>Model Building</h2>
+<p>When given a set of predictors, we want to build a model that only contains predictors that best fits the data, without overfitting.</p>
 </section>
-<section id="generic-functions" class="slide level2">
-<h2>Generic Functions</h2>
-<p>Several R objects have a known class attached to it. A specialized object designed to be read by generic functions, such as <code>summary()</code> and <code>plot()</code>.</p>
-<p>For example, the <code>summary()</code> is a generic for several types of functions: <code>summary.aov()</code>, <code>summary.lm()</code>, <code>summary.glm()</code>, and many more.</p>
-</section>
-<section id="commonly-used-function" class="slide level2">
-<h2>Commonly-used Function</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functions</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>aov()</code></td>
-<td style="text-align: left;">Fits an ANOVA Model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>lm()</code></td>
-<td style="text-align: left;">Fits a linear model</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>glm()</code></td>
-<td style="text-align: left;">Fits a general linear model</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>t.test()</code></td>
-<td style="text-align: left;">Conducts a t-test</td>
-</tr>
-</tbody>
-</table>
+<section id="model-building-1" class="slide level2">
+<h2>Model Building</h2>
+<p>Ideally, we always want to choose a parsimonious model that best describes the outcome variable. The more predictors into the model, the less parsimonious and less powerful.</p>
+<p>Choosing the best model can be done based on selection criteria such as Mallow’s <span class="math inline">\(C_p\)</span>, AIC, AICc, BIC, and adjusted <span class="math inline">\(R^2\)</span>.</p>
 </section>
 <section>
-<section id="user-built-functions" class="title-slide slide level1 agenda-slide center">
-<h1>User-built functions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
+<section id="selection-criteria" class="title-slide slide level1 center">
+<h1>Selection Criteria</h1>
+
 </section>
-<section id="user-built-functions-1" class="slide level2">
-<h2>User-built functions</h2>
+<section id="mallows-c_p" class="slide level2">
+<h2>Mallow’s <span class="math inline">\(C_p\)</span></h2>
+<p><span class="math display">\[
+C_p = \frac{1}{n}(RSS + 2 d \hat \sigma^2)
+\]</span></p>
 <ul>
-<li><p>Functions created by the user for analysis</p></li>
-<li><p>Needs to be ran once to the R environment</p></li>
-<li><p>Will be lost when R session is closed</p></li>
+<li><p><span class="math inline">\(RSS\)</span>: Residual Sum of Squares</p></li>
+<li><p><span class="math inline">\(\hat \sigma^2\)</span>: Mean Square Error</p></li>
+<li><p><span class="math inline">\(d\)</span>: number of predictors</p></li>
+<li><p>Lower is better</p></li>
 </ul>
 </section>
-<section id="anatomy" class="slide level2">
-<h2>Anatomy</h2>
+<section id="aikaike-information-criteria-aic" class="slide level2">
+<h2>Aikaike Information Criteria (AIC)</h2>
+<p><span class="math display">\[
+\frac{1}{n\hat\sigma^2}(RSS+2d\hat\sigma^2)
+\]</span></p>
+<ul>
+<li>Lower is Better</li>
+</ul>
+</section>
+<section id="bayesian-information-criteria-bic" class="slide level2">
+<h2>Bayesian Information Criteria (BIC)</h2>
+<p><span class="math display">\[
+\frac{1}{n\hat\sigma^2}\{RSS+\log(n)d\hat\sigma^2\}
+\]</span></p>
+<ul>
+<li>Lower is better</li>
+</ul>
+</section>
+<section id="r2" class="slide level2">
+<h2><span class="math inline">\(R^2\)</span></h2>
+<p><span class="math display">\[
+1-\frac{RSS}{TSS}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(RSS=\sum^n_{i=1}(y_i-\hat y_i)^2\)</span></p></li>
+<li><p><span class="math inline">\(TSS=\sum^n_{i=1}(y_i-\bar y)^2\)</span></p></li>
+<li><p>Higher is Better</p></li>
+</ul>
+</section>
+<section id="adjusted-r2" class="slide level2">
+<h2>Adjusted <span class="math inline">\(R^2\)</span></h2>
+<p><span class="math display">\[
+1-\frac{RSS/(n-d-1)}{
+TSS/(n-1)}
+\]</span></p>
+<ul>
+<li>Higher is Better</li>
+</ul>
+</section></section>
+<section>
+<section id="subset-selection" class="title-slide slide level1 center">
+<h1>Subset Selection</h1>
+
+</section>
+<section id="model-building-2" class="slide level2">
+<h2>Model Building</h2>
+<ul>
+<li><p>Best Subset Model</p>
+<ul>
+<li>Fit all models and select the best model based criteria</li>
+</ul></li>
+<li><p>Forward Stepwise Model Building</p>
+<ul>
+<li>Begin with the null model (<span class="math inline">\(Y\sim 1\)</span>) and add variables until a final model is chosen.</li>
+</ul></li>
+<li><p>Backward Stepwise Model Building</p>
+<ul>
+<li>Begin with the full model, and remove variable until the final model is chosen.</li>
+</ul></li>
+<li><p>Hybrid Stepwise Regression</p>
+<ul>
+<li>A hybrid approach between the forward and backward building approach.</li>
+</ul></li>
+</ul>
+</section>
+<section id="best-subset-model-building" class="slide level2 scrollable">
+<h2>Best Subset Model Building</h2>
+<ol type="1">
+<li>Begin with the null model, no predictors</li>
+<li>For <span class="math inline">\(k=1,\ldots, p\)</span> (number of predictors):
+<ol type="1">
+<li><p>Fit all <span class="math inline">\(\left(^p_k\right)\)</span> models that contain <span class="math inline">\(k\)</span> predictors</p></li>
+<li><p>Define <span class="math inline">\(M_k\)</span> as the model with the largest <span class="math inline">\(R²\)</span></p></li>
+</ol></li>
+<li>The final model is the model <span class="math inline">\(M_k\)</span> based on selection criteria</li>
+</ol>
+</section>
+<section id="forward-stepwise-model-building" class="slide level2 scrollable">
+<h2>Forward Stepwise Model Building</h2>
+<ol type="1">
+<li>Begin with the null model, no predictors</li>
+<li>For <span class="math inline">\(k=0,\ldots, p-1\)</span> (number of predictors):
+<ol type="1">
+<li><p>Fit all <span class="math inline">\(p-k\)</span> models that adds one new predictor to the orginal model containing <span class="math inline">\(k\)</span> predictors</p></li>
+<li><p>Define <span class="math inline">\(M_{k+1}\)</span> as the model with the largest <span class="math inline">\(R²\)</span> among <span class="math inline">\(p-k\)</span> models</p></li>
+</ol></li>
+<li>The final model is the model <span class="math inline">\(M_(k+1)\)</span> based on selection criteria</li>
+</ol>
+</section>
+<section id="backward-stepwise-model-building" class="slide level2 scrollable">
+<h2>Backward Stepwise Model Building</h2>
+<ol type="1">
+<li>Begin with the full model <span class="math inline">\(M_p\)</span>, with all predictors</li>
+<li>For <span class="math inline">\(k=p,p-1, \ldots, 1\)</span> (number of predictors):
+<ol type="1">
+<li><p>Fit all models that contain <span class="math inline">\(k-1\)</span> predictors</p></li>
+<li><p>Define <span class="math inline">\(M_{k-1}\)</span> as the model with the largest <span class="math inline">\(R²\)</span></p></li>
+</ol></li>
+<li>The final model is the model <span class="math inline">\(M_k\)</span> based on selection criteria</li>
+</ol>
+</section>
+<section id="r-code" class="slide level2">
+<h2>R Code</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-3|4-5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>name_of_function <span class="ot">&lt;-</span> <span class="cf">function</span>(data_1, <span class="at">data_2 =</span> <span class="cn">NULL</span>, </span>
-<span id="cb1-2"><a></a>                             argument_1, <span class="at">argument_2 =</span> <span class="cn">TRUE</span>, <span class="at">argument_3 =</span> <span class="cn">NULL</span>,</span>
-<span id="cb1-3"><a></a>                             ...){</span>
-<span id="cb1-4"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-5"><a></a>  <span class="co"># Conduct Task</span></span>
-<span id="cb1-6"><a></a>  output_object <span class="ot">&lt;-</span> Tasks</span>
-<span id="cb1-7"><a></a>  <span class="fu">return</span>(output_object)</span>
-<span id="cb1-8"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(leaps)</span>
+<span id="cb1-2"><a></a><span class="fu">regsubsets</span>(y <span class="sc">~</span> ., data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<ul>
-<li><p><code>function</code>: used to construct the function</p></li>
-<li><p><code>data1</code>: first data argument that needs to supplied</p></li>
-<li><p><code>data2</code>: second data argument that does not need to be supplied</p></li>
-<li><p><code>argument1</code>: first argument must be supplied to alter function</p></li>
-<li><p><code>argument2</code>: second argument to alter function, set to <code>TRUE</code></p></li>
-<li><p><code>argument3</code>: third argument that does not need to be supplied</p></li>
-<li><p><code>…</code>: additional arguments supplied to other functions</p></li>
-</ul>
+</section>
+<section id="full-subset" class="slide level2">
+<h2>Full Subset</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">Summary</a></li><li><a href="#tabset-1-3">Plot</a></li><li><a href="#tabset-1-4">Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(leaps)</span>
+<span id="cb2-2"><a></a>lm_full <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>sum_lm_full <span class="ot">&lt;-</span> <span class="fu">summary</span>(lm_full)</span>
+<span id="cb3-2"><a></a><span class="fu">print</span>(sum_lm_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Subset selection object
+#&gt; Call: regsubsets.formula(mpg ~ ., data = mtcars)
+#&gt; 10 Variables  (and intercept)
+#&gt;      Forced in Forced out
+#&gt; cyl      FALSE      FALSE
+#&gt; disp     FALSE      FALSE
+#&gt; hp       FALSE      FALSE
+#&gt; drat     FALSE      FALSE
+#&gt; wt       FALSE      FALSE
+#&gt; qsec     FALSE      FALSE
+#&gt; vs       FALSE      FALSE
+#&gt; am       FALSE      FALSE
+#&gt; gear     FALSE      FALSE
+#&gt; carb     FALSE      FALSE
+#&gt; 1 subsets of each size up to 8
+#&gt; Selection Algorithm: exhaustive
+#&gt;          cyl disp hp  drat wt  qsec vs  am  gear carb
+#&gt; 1  ( 1 ) " " " "  " " " "  "*" " "  " " " " " "  " " 
+#&gt; 2  ( 1 ) "*" " "  " " " "  "*" " "  " " " " " "  " " 
+#&gt; 3  ( 1 ) " " " "  " " " "  "*" "*"  " " "*" " "  " " 
+#&gt; 4  ( 1 ) " " " "  "*" " "  "*" "*"  " " "*" " "  " " 
+#&gt; 5  ( 1 ) " " "*"  "*" " "  "*" "*"  " " "*" " "  " " 
+#&gt; 6  ( 1 ) " " "*"  "*" "*"  "*" "*"  " " "*" " "  " " 
+#&gt; 7  ( 1 ) " " "*"  "*" "*"  "*" "*"  " " "*" "*"  " " 
+#&gt; 8  ( 1 ) " " "*"  "*" "*"  "*" "*"  " " "*" "*"  "*"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">plot</span>(sum_lm_full<span class="sc">$</span>cp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="11aS25_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">coef</span>(lm_full,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; (Intercept)          wt        qsec          am 
+#&gt;    9.617781   -3.916504    1.225886    2.935837</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forward-model-building" class="slide level2">
+<h2>Forward Model Building</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">Summary</a></li><li><a href="#tabset-2-3">Plot</a></li><li><a href="#tabset-2-4">Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>lm_full <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars,</span>
+<span id="cb8-2"><a></a>                      <span class="at">method =</span>  <span class="st">"forward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>sum_lm_full <span class="ot">&lt;-</span> <span class="fu">summary</span>(lm_full)</span>
+<span id="cb9-2"><a></a><span class="fu">print</span>(sum_lm_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Subset selection object
+#&gt; Call: regsubsets.formula(mpg ~ ., data = mtcars, method = "forward")
+#&gt; 10 Variables  (and intercept)
+#&gt;      Forced in Forced out
+#&gt; cyl      FALSE      FALSE
+#&gt; disp     FALSE      FALSE
+#&gt; hp       FALSE      FALSE
+#&gt; drat     FALSE      FALSE
+#&gt; wt       FALSE      FALSE
+#&gt; qsec     FALSE      FALSE
+#&gt; vs       FALSE      FALSE
+#&gt; am       FALSE      FALSE
+#&gt; gear     FALSE      FALSE
+#&gt; carb     FALSE      FALSE
+#&gt; 1 subsets of each size up to 8
+#&gt; Selection Algorithm: forward
+#&gt;          cyl disp hp  drat wt  qsec vs  am  gear carb
+#&gt; 1  ( 1 ) " " " "  " " " "  "*" " "  " " " " " "  " " 
+#&gt; 2  ( 1 ) "*" " "  " " " "  "*" " "  " " " " " "  " " 
+#&gt; 3  ( 1 ) "*" " "  "*" " "  "*" " "  " " " " " "  " " 
+#&gt; 4  ( 1 ) "*" " "  "*" " "  "*" " "  " " "*" " "  " " 
+#&gt; 5  ( 1 ) "*" " "  "*" " "  "*" "*"  " " "*" " "  " " 
+#&gt; 6  ( 1 ) "*" "*"  "*" " "  "*" "*"  " " "*" " "  " " 
+#&gt; 7  ( 1 ) "*" "*"  "*" "*"  "*" "*"  " " "*" " "  " " 
+#&gt; 8  ( 1 ) "*" "*"  "*" "*"  "*" "*"  " " "*" "*"  " "</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">plot</span>(sum_lm_full<span class="sc">$</span>bic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="11aS25_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">coef</span>(lm_full,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; (Intercept)         cyl          wt 
+#&gt;   39.686261   -1.507795   -3.190972</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="backward-model-building" class="slide level2">
+<h2>Backward Model Building</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Code</a></li><li><a href="#tabset-3-2">Summary</a></li><li><a href="#tabset-3-3">Plot</a></li><li><a href="#tabset-3-4">Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>lm_full <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars,</span>
+<span id="cb14-2"><a></a>                      <span class="at">method =</span>  <span class="st">"backward"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>sum_lm_full <span class="ot">&lt;-</span> <span class="fu">summary</span>(lm_full)</span>
+<span id="cb15-2"><a></a><span class="fu">print</span>(sum_lm_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; Subset selection object
+#&gt; Call: regsubsets.formula(mpg ~ ., data = mtcars, method = "backward")
+#&gt; 10 Variables  (and intercept)
+#&gt;      Forced in Forced out
+#&gt; cyl      FALSE      FALSE
+#&gt; disp     FALSE      FALSE
+#&gt; hp       FALSE      FALSE
+#&gt; drat     FALSE      FALSE
+#&gt; wt       FALSE      FALSE
+#&gt; qsec     FALSE      FALSE
+#&gt; vs       FALSE      FALSE
+#&gt; am       FALSE      FALSE
+#&gt; gear     FALSE      FALSE
+#&gt; carb     FALSE      FALSE
+#&gt; 1 subsets of each size up to 8
+#&gt; Selection Algorithm: backward
+#&gt;          cyl disp hp  drat wt  qsec vs  am  gear carb
+#&gt; 1  ( 1 ) " " " "  " " " "  "*" " "  " " " " " "  " " 
+#&gt; 2  ( 1 ) " " " "  " " " "  "*" "*"  " " " " " "  " " 
+#&gt; 3  ( 1 ) " " " "  " " " "  "*" "*"  " " "*" " "  " " 
+#&gt; 4  ( 1 ) " " " "  "*" " "  "*" "*"  " " "*" " "  " " 
+#&gt; 5  ( 1 ) " " "*"  "*" " "  "*" "*"  " " "*" " "  " " 
+#&gt; 6  ( 1 ) " " "*"  "*" "*"  "*" "*"  " " "*" " "  " " 
+#&gt; 7  ( 1 ) " " "*"  "*" "*"  "*" "*"  " " "*" "*"  " " 
+#&gt; 8  ( 1 ) " " "*"  "*" "*"  "*" "*"  " " "*" "*"  "*"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">plot</span>(sum_lm_full<span class="sc">$</span>adjr2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="11aS25_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-4">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">coef</span>(lm_full,<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt; (Intercept)        disp          hp        drat          wt        qsec 
+#&gt; 10.71061639  0.01310313 -0.02179818  1.02065283 -4.04454214  0.99072948 
+#&gt;          am 
+#&gt;  2.98468801</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="selection-critera" class="slide level2">
+<h2>Selection Critera</h2>
+</section></section>
+<section>
+<section id="shrinkage-methods" class="title-slide slide level1 center">
+<h1>Shrinkage Methods</h1>
+
+</section>
+<section id="shrinkage-methods-1" class="slide level2">
+<h2>Shrinkage Methods</h2>
+<p>Shrinkage methods are techniques that will reduce a full parameterized model (a high number of predictors) to a lower parameterized model (a smaller number of predictors).</p>
+</section>
+<section id="ridge-regression" class="slide level2">
+<h2>Ridge Regression</h2>
+<p>Ridge regression incorporates a shrinkage penalty term to the least squares formula. The shrinkage penalty term will reduce the <span class="math inline">\(\beta\)</span> coefficients towards 0 based on a penalty parameter (<span class="math inline">\(\lambda\)</span>)</p>
+</section>
+<section id="ridge-regression-1" class="slide level2">
+<h2>Ridge Regression</h2>
+<p><span class="math display">\[
+\sum^n_{i=1}\left(Y_i-\beta_0 +\sum^p_{j=1}X_{ij}\beta_j\right)^2 + \lambda\sum^p_{j=1}\beta_j^2
+\]</span></p>
+</section>
+<section id="lasso" class="slide level2">
+<h2>LASSO</h2>
+<p>Least Absolute Shrinkage and Selection Operator (LASSO) is known as a shrinkage method which forces <span class="math inline">\(\beta\)</span> coefficients that do not have a significant predicit power towards and possibly equal to 0.</p>
+</section>
+<section id="lasso-1" class="slide level2">
+<h2>LASSO</h2>
+<p><span class="math display">\[
+\sum^n_{i=1}\left(Y_i-\beta_0 +\sum^p_{j=1}X_{ij}\beta_j\right)^2 + \lambda\sum^p_{j=1}|\beta_j|
+\]</span></p>
+</section>
+<section id="why-ridge-or-lasso" class="slide level2">
+<h2>Why Ridge or LASSO?</h2>
+<p>Each method is capable on identifying the optimum MSE for the Bias-Variance trade-off scenario. This will lead to a lower prediction error. The key is to find the optimal penalty parameter. This can be done with a Cross-Validation technique (next lecture).</p>
+</section>
+<section id="ridge-regression-in-r" class="slide level2">
+<h2>Ridge Regression in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb20-2"><a></a><span class="fu">glmnet</span>(x,</span>
+<span id="cb20-3"><a></a>       y,</span>
+<span id="cb20-4"><a></a>       <span class="at">alpha =</span> <span class="dv">0</span>,</span>
+<span id="cb20-5"><a></a>       lambda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lasso-in-r" class="slide level2">
+<h2>LASSO in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb21-2"><a></a><span class="fu">glmnet</span>(x,</span>
+<span id="cb21-3"><a></a>       y,</span>
+<span id="cb21-4"><a></a>       <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb21-5"><a></a>       lambda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-y = \ln(x^2)
-\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb22-2"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb22-3"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb22-4"><a></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">drop_na</span>()</span>
+<span id="cb22-5"><a></a>mod <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> flipper_length_mm <span class="sc">+</span> bill_depth_mm <span class="sc">+</span> bill_length_mm <span class="sc">-</span> <span class="dv">1</span>,</span>
+<span id="cb22-6"><a></a>  <span class="at">data =</span> _) <span class="co"># Must include -1 to remove intercept, needed for glmnet</span></span>
+<span id="cb22-7"><a></a>ridge_mod <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(<span class="at">x =</span> mod, </span>
+<span id="cb22-8"><a></a>                    <span class="at">y =</span> penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb22-9"><a></a>                    <span class="at">alpha =</span> <span class="dv">0</span>,</span>
+<span id="cb22-10"><a></a>                    <span class="at">lambda =</span> <span class="fl">1.3</span>) <span class="co"># lambda was chosen at random</span></span>
+<span id="cb22-11"><a></a><span class="fu">coef</span>(ridge_mod)[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>#&gt;       (Intercept) flipper_length_mm     bill_depth_mm    bill_length_mm 
+#&gt;       -6400.54459          50.53481          17.07967           3.60524</code></pre>
+</div>
+</div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x) = \left\{\begin{array}{cc}
-x^3 &amp; x&lt;0\\
-x^2 + 5 &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
-</section>
-<section id="example-2" class="slide level2">
-<h2>Example</h2>
-<p>Create a function for</p>
-<p><span class="math display">\[
-f(x,y) = \left\{\begin{array}{cc}
-x^3 e^y &amp;  x&lt;0\ \\
-x^2 + 5 + \ln(y) &amp; \mathrm{otherwise}
-\end{array} \right.
-\]</span></p>
-</section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<p>Create the function that allows your to compute the z-score of a specific value <code>x</code> using the sampling distribution from a set of data (<code>y</code> vector):</p>
-<p><span class="math display">\[
-z =  \frac{x-\bar y}{\sqrt{s^2_{y}/n_y}}
-\]</span></p>
-</section></section>
-<section>
-<section id="extensions" class="title-slide slide level1 agenda-slide center">
-<h1>Extensions</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-post-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="r-packages" class="slide level2">
-<h2>R Packages</h2>
-<p>R Packages are used to utilize functions created from the community.</p>
-<h3 id="installation">Installation</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<h3 id="loading">Loading</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="reticulate" class="slide level2">
-<h2>Reticulate</h2>
-<p>Reticulate is an R package that allows you to utilize python within R.</p>
-</section>
-<section id="rcpp" class="slide level2">
-<h2>Rcpp</h2>
-<p>Rcpp is an R package that allows you to call C++ programs in R.</p>
-<p>We will compare variance functions written in cpp, user-built R, and built-in R.</p>
-<p>Rcpp code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-4"><a></a><span class="dt">double</span> var_cpp<span class="op">(</span>NumericVector x<span class="op">){</span></span>
-<span id="cb4-5"><a></a><span class="dt">int</span> n <span class="op">=</span> x<span class="op">.</span>length<span class="op">();</span></span>
-<span id="cb4-6"><a></a>NumericVector pre<span class="op">(</span>n<span class="op">);</span></span>
-<span id="cb4-7"><a></a><span class="dt">double</span> mean_x <span class="op">=</span> mean<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb4-8"><a></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span><span class="op">;</span> i<span class="op">&lt;</span>n<span class="op">;</span> <span class="op">++</span>i<span class="op">){</span></span>
-<span id="cb4-9"><a></a>   pre<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> pow<span class="op">(</span>x<span class="op">[</span>i<span class="op">]-</span>mean_x<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
-<span id="cb4-10"><a></a><span class="op">}</span></span>
-<span id="cb4-11"><a></a><span class="dt">int</span> divisor <span class="op">=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb4-12"><a></a><span class="dt">double</span> post <span class="op">=</span> sum<span class="op">(</span>pre<span class="op">)</span> <span class="op">/</span> divisor<span class="op">;</span></span>
-<span id="cb4-13"><a></a><span class="cf">return</span> post<span class="op">;</span></span>
-<span id="cb4-14"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>R code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>var_r <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb5-2"><a></a>  <span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Benchmark Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">50</span>)</span>
-<span id="cb6-2"><a></a>bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb6-3"><a></a><span class="fu">var_cpp</span>(x),</span>
-<span id="cb6-4"><a></a><span class="fu">var_r</span>(x),</span>
-<span id="cb6-5"><a></a><span class="fu">var</span>(x)</span>
-<span id="cb6-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>lasso_mod <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(<span class="at">x =</span> mod, </span>
+<span id="cb24-2"><a></a>                    <span class="at">y =</span> penguins<span class="sc">$</span>body_mass_g,</span>
+<span id="cb24-3"><a></a>                    <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb24-4"><a></a>                    <span class="at">lambda =</span> <span class="fl">1.3</span>) <span class="co"># lambda was chosen at random</span></span>
+<span id="cb24-5"><a></a><span class="fu">coef</span>(lasso_mod)[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>#&gt; # A tibble: 3 × 6
-#&gt;   expression      min   median `itr/sec` mem_alloc `gc/sec`
-#&gt;   &lt;bch:expr&gt; &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1 var_cpp(x)   1.64µs   1.84µs   470266.      448B     47.0
-#&gt; 2 var_r(x)     5.37µs    5.9µs   151501.    23.7KB     30.3
-#&gt; 3 var(x)       7.05µs   7.87µs   116669.    15.3KB     23.3</code></pre>
+<pre><code>#&gt;       (Intercept) flipper_length_mm     bill_depth_mm    bill_length_mm 
+#&gt;      -6372.371080         50.530548         16.241920          3.311152</code></pre>
 </div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; function (x, y = NULL, na.rm = FALSE, use) 
-#&gt; {
-#&gt;     if (missing(use)) 
-#&gt;         use &lt;- if (na.rm) 
-#&gt;             "na.or.complete"
-#&gt;         else "everything"
-#&gt;     na.method &lt;- pmatch(use, c("all.obs", "complete.obs", "pairwise.complete.obs", 
-#&gt;         "everything", "na.or.complete"))
-#&gt;     if (is.na(na.method)) 
-#&gt;         stop("invalid 'use' argument")
-#&gt;     if (is.data.frame(x)) 
-#&gt;         x &lt;- as.matrix(x)
-#&gt;     else if (!is.null(x)) 
-#&gt;         stopifnot(is.atomic(x))
-#&gt;     if (is.data.frame(y)) 
-#&gt;         y &lt;- as.matrix(y)
-#&gt;     else if (!is.null(y)) 
-#&gt;         stopifnot(is.atomic(y))
-#&gt;     .Call(C_cov, x, y, na.method, FALSE)
-#&gt; }
-#&gt; &lt;bytecode: 0x11430ffb8&gt;
-#&gt; &lt;environment: namespace:stats&gt;</code></pre>
-</div>
-</div>
-<p>This is an extremely advanced topic. Only do this if you need real speed and efficiency.</p>
-</section></section>
-<section>
-<section id="bisection-method" class="title-slide slide level1 agenda-slide center">
-<h1>Bisection Method</h1>
-<div class="agenda">
-<ul>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>User-built functions</p>
-</div></li>
-<li><div class="agenda-inactive agenda-pre-active">
-<p>Extensions</p>
-</div></li>
-<li><div class="agenda-active">
-<p>Bisection Method</p>
-</div></li>
-</ul>
-</div>
-</section>
-<section id="motivating-example" class="slide level2">
-<h2>Motivating Example</h2>
-<p><span class="math display">\[
-f(x) = 2 x^3 - 20x -43
-\]</span></p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb10-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb10-3"><a></a><span class="fu">plot</span>(x, <span class="fu">f</span>(x), <span class="at">type =</span> <span class="st">"l"</span>)</span>
-<span id="cb10-4"><a></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="3bS25_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="finding-the-root" class="slide level2">
-<h2>Finding the Root</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span></span>
-<span id="cb11-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb11-3"><a></a><span class="fu">uniroot</span>(f, <span class="at">lower =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">upper =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>#&gt; $root
-#&gt; [1] 3.932792
-#&gt; 
-#&gt; $f.root
-#&gt; [1] -2.30166e-05
-#&gt; 
-#&gt; $iter
-#&gt; [1] 7
-#&gt; 
-#&gt; $init.it
-#&gt; [1] NA
-#&gt; 
-#&gt; $estim.prec
-#&gt; [1] 6.103516e-05</code></pre>
-</div>
-</div>
-</section>
-<section id="bisection-method-1" class="slide level2 scrollable">
-<h2>Bisection Method</h2>
-<ol type="1">
-<li>Begin with an interval <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and evaluate <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span>.</li>
-<li>If <span class="math inline">\(f(a)\)</span> and <span class="math inline">\(f(b)\)</span> are opposite signs, calculate <span class="math inline">\(c = \frac{a+b}{2}\)</span> and <span class="math inline">\(f(c)\)</span>.</li>
-<li>If <span class="math inline">\(|f(c)|&lt;\varepsilon\)</span>, for a small <span class="math inline">\(\varepsilon\)</span>, then stop the algorithm and <span class="math inline">\(c\)</span> is the root.</li>
-<li>Replace <span class="math inline">\((a,f(a))\)</span> or <span class="math inline">\((b,f(b))\)</span> with <span class="math inline">\((c, f(c))\)</span> so that the signs of <span class="math inline">\(f( \cdot )\)</span> is 0.</li>
-</ol>
-</section>
-<section id="bisection-code" class="slide level2">
-<h2>Bisection Code</h2>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){<span class="dv">2</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">3</span> <span class="sc">-</span> <span class="dv">20</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">43</span>}</span>
-<span id="cb13-2"><a></a>aa <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb13-3"><a></a>bb <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb13-4"><a></a>diff <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb13-5"><a></a>i <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-6"><a></a><span class="cf">while</span>(diff <span class="sc">&gt;</span> <span class="fl">1e-6</span>){</span>
-<span id="cb13-7"><a></a>  faa <span class="ot">&lt;-</span> <span class="fu">f</span>(aa)</span>
-<span id="cb13-8"><a></a>  cc <span class="ot">&lt;-</span> (aa <span class="sc">+</span> bb) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb13-9"><a></a>  fcc <span class="ot">&lt;-</span> <span class="fu">f</span>(cc)</span>
-<span id="cb13-10"><a></a>  <span class="cf">if</span> (faa <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> fcc <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb13-11"><a></a>    bb <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-12"><a></a>  } <span class="cf">else</span> {</span>
-<span id="cb13-13"><a></a>    aa <span class="ot">&lt;-</span> cc</span>
-<span id="cb13-14"><a></a>  }</span>
-<span id="cb13-15"><a></a>  diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(fcc)</span>
-<span id="cb13-16"><a></a>  i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb13-17"><a></a>}</span>
-<span id="cb13-18"><a></a>i</span>
-<span id="cb13-19"><a></a>cc</span>
-<span id="cb13-20"><a></a>fcc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 
 
@@ -625,6 +677,7 @@ f(x) = 2 x^3 - 20x -43
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-pointer/pointer.js"></script>
   <script src="../site_libs/revealjs/plugin/verticator/verticator.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
@@ -649,6 +702,7 @@ f(x) = 2 x^3 - 20x -43
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true,"src":"chalkboard.json","storage":"chalkboard_pres","theme":"whiteboard","chalkWidth":4},
+'pointer': {"key":"q","color":"red","pointerSize":16,"alwaysVisible":false},
 'verticator': {"themetag":"h1","color":"","inversecolor":"","skipuncounted":false,"clickable":true,"position":"auto","offset":"3vmin","autogenerate":true,"tooltip":false,"scale":1},
 'smaller': false,
  
@@ -820,7 +874,7 @@ f(x) = 2 x^3 - 20x -43
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, Verticator, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealPointer, Verticator, QuartoSupport,
 
           RevealMath,
           RevealNotes,
